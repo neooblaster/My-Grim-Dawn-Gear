@@ -1,0 +1,29 @@
+Ready, Steady, Make builds !
+
+<p>Dear Readers,</p>
+
+<p>Today, i have the pleasure to announce you that all required features for the minimum use are ready.</p>
+
+<p>Nowadays, you can search items using filters on their qualities&nbsp;and their names.<br />
+You can drag items in their respective slots. After you completed your build, you can save it to get links to share it in threads forums.</p>
+
+<p>Regarding links, you will find two differents links. The first one is a direct link to your build on <strong>My Grim Dawn Gear</strong> to check it with all dynamic options that exists.<br />
+The second one is a link to a <strong>dynamic image generator</strong> of your build to include it in your messages. With that link, if you make some changes on your build, you would do not need to update it, because the generator always read the database !</p>
+
+<p>When you make a build, you can name it and set a password to protect it from malicious people. For information, if you do not put password, the build become a public build and it&#39;s impossible to add one later. That policy prevent anyone to appropriate it later.</p>
+
+<p>When you create your build, a prompt window will be open with your direct link to <strong>My Grim Dawn Gear</strong>. Do not hesitate to bookmark it to avoid to loose it.</p>
+
+<p>At this stage, only items placed in their slots are usefull. They have not yet attributes that will let you to know more about them and on the build in the whole.</p>
+
+<p>I think it more important to append all items first (Legendary, Epic, Rare from factions) that will let people use it as dynamic screenshot and database. For that all items are required.</p>
+
+<p>On the other side, i have to work a lot on the speed of searches queries and images generations.</p>
+
+<p>In one another ticket, i have detailed a little the web hosting service. The web server is running on a little Raspberry Pi which is not made for frequented web application and its big database.</p>
+
+<p>When hardware resources will been distributed to increase the response speed , i will officialize <strong>My Grim Dawn Gear</strong> tool on the corresponding section.</p>
+
+<p>I thank you alot for your patience.</p>
+
+<p>Neoblaster.</p>

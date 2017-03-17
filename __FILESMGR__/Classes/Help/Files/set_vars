@@ -1,0 +1,6 @@
+public
+boolean
+set_vars
+array $vars
+Declaration of simples variables for the render
+The input variable must be an associative arrays where keys represents the variable name.

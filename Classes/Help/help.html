@@ -1,0 +1,729 @@
+<style>
+	#template_manual {
+		font-family: "Consolas";
+		font-size: 0.9rem;
+	}
+	
+	#template_manual h1{
+		font-size: 1.25rem;
+		color: #336699
+	}
+	
+	#template_manual .template_manual_method {
+		font-weight: bold;
+	}	
+	
+	#template_manual .template_manual_methode_description {
+		margin: 10px 40px;
+		color: #626262;
+	}
+	
+	#template_manual .tpl_typeof{
+		color: #669933
+	}
+	
+	#template_manual .tpl_params:before {
+		content: "( ";
+	}
+	
+	#template_manual .tpl_params:after {
+		content: " ) :";
+	}
+	
+	#template_manual .tpl_method_name,
+	#template_manual .tpl_param
+	{
+		color: #336699
+	}
+	
+	#template_manual .tpl_button {
+		cursor: pointer;
+	}
+</style>
+
+<script type="text/javascript" language="javascript">
+	function descManager(id){
+		var desc_div = document.querySelector('#desc_'+id);
+		var tp_button = document.querySelector('#tpl_button_'+id);
+		var current_display = desc_div.style.display;
+		
+		desc_div.style.display = (current_display == 'none') ? 'block' : 'none';	
+		tp_button.innerHTML = (current_display == 'none') ? '[-]' : '[+]';	
+	}
+</script>
+
+
+<div id="template_manual">
+	<h1>Below, the list of all available methods of Template class.</h1>
+	<div class="template_manual_method">
+		<div class="template_manual_method_declaration">
+			<span class="tpl_modifier">public
+</span>
+			<span class="tpl_typeof">string
+</span>
+			<span class="tpl_method_name">Template::debugPath
+</span>
+			<span class="tpl_params">
+				<span class="tpl_typeof">void
+</span>
+				<span class="tpl_param"></span>
+			</span>
+			<span id="tpl_button_0" class="tpl_button" onclick="descManager(0)">[+]</span>
+		</div>
+		<div id="desc_0" class="template_manual_methode_description" style="display: none;">
+		This method returns a structural view of the neigborhood of the folder where the object using the class is executed.<br />
+This method is done to help you to find the right path toward the template file, the repository and the temporary directory.<br />
+
+		</div>
+	</div>
+	<div class="template_manual_method">
+		<div class="template_manual_method_declaration">
+			<span class="tpl_modifier">public
+</span>
+			<span class="tpl_typeof">string
+</span>
+			<span class="tpl_method_name">Template::display
+</span>
+			<span class="tpl_params">
+				<span class="tpl_typeof">void
+</span>
+				<span class="tpl_param"></span>
+			</span>
+			<span id="tpl_button_1" class="tpl_button" onclick="descManager(1)">[+]</span>
+		</div>
+		<div id="desc_1" class="template_manual_methode_description" style="display: none;">
+		This method displays the final rendered. <br />
+That allows you to check if the render has been done correctly or to displays the calculated content.<br />
+
+		</div>
+	</div>
+	<div class="template_manual_method">
+		<div class="template_manual_method_declaration">
+			<span class="tpl_modifier">private
+</span>
+			<span class="tpl_typeof">boolean
+</span>
+			<span class="tpl_method_name">Template::flush_renders
+</span>
+			<span class="tpl_params">
+				<span class="tpl_typeof">void
+</span>
+				<span class="tpl_param"></span>
+			</span>
+			<span id="tpl_button_2" class="tpl_button" onclick="descManager(2)">[+]</span>
+		</div>
+		<div id="desc_2" class="template_manual_methode_description" style="display: none;">
+		%METH_DESC%
+		</div>
+	</div>
+	<div class="template_manual_method">
+		<div class="template_manual_method_declaration">
+			<span class="tpl_modifier">public
+</span>
+			<span class="tpl_typeof">string
+</span>
+			<span class="tpl_method_name">Template::get_blocks_vars
+</span>
+			<span class="tpl_params">
+				<span class="tpl_typeof">void
+</span>
+				<span class="tpl_param"></span>
+			</span>
+			<span id="tpl_button_3" class="tpl_button" onclick="descManager(3)">[+]</span>
+		</div>
+		<div id="desc_3" class="template_manual_methode_description" style="display: none;">
+		This method returns a structural view of the associative array where values linked to keys will replace the variable in block during the rendering.<br />
+
+		</div>
+	</div>
+	<div class="template_manual_method">
+		<div class="template_manual_method_declaration">
+			<span class="tpl_modifier">public
+</span>
+			<span class="tpl_typeof">string
+</span>
+			<span class="tpl_method_name">Template::get_mail_recipients
+</span>
+			<span class="tpl_params">
+				<span class="tpl_typeof">void
+</span>
+				<span class="tpl_param"></span>
+			</span>
+			<span id="tpl_button_4" class="tpl_button" onclick="descManager(4)">[+]</span>
+		</div>
+		<div id="desc_4" class="template_manual_methode_description" style="display: none;">
+		This method returns a list of the email recipients when you use the method "sendMail".<br />
+This method allows you to check if the recipients are correct.<br />
+Note : the returned list is a string where recipients are separated by semicolon.
+		</div>
+	</div>
+	<div class="template_manual_method">
+		<div class="template_manual_method_declaration">
+			<span class="tpl_modifier">public
+</span>
+			<span class="tpl_typeof">string
+</span>
+			<span class="tpl_method_name">Template::get_mail_sender
+</span>
+			<span class="tpl_params">
+				<span class="tpl_typeof">void
+</span>
+				<span class="tpl_param"></span>
+			</span>
+			<span id="tpl_button_5" class="tpl_button" onclick="descManager(5)">[+]</span>
+		</div>
+		<div id="desc_5" class="template_manual_methode_description" style="display: none;">
+		This method returns the defined email address for the transmitter.
+		</div>
+	</div>
+	<div class="template_manual_method">
+		<div class="template_manual_method_declaration">
+			<span class="tpl_modifier">public
+</span>
+			<span class="tpl_typeof">string
+</span>
+			<span class="tpl_method_name">Template::get_mail_sender_name
+</span>
+			<span class="tpl_params">
+				<span class="tpl_typeof">void
+</span>
+				<span class="tpl_param"></span>
+			</span>
+			<span id="tpl_button_6" class="tpl_button" onclick="descManager(6)">[+]</span>
+		</div>
+		<div id="desc_6" class="template_manual_methode_description" style="display: none;">
+		This method returns the defined name of the transmitter.
+		</div>
+	</div>
+	<div class="template_manual_method">
+		<div class="template_manual_method_declaration">
+			<span class="tpl_modifier">public
+</span>
+			<span class="tpl_typeof">string
+</span>
+			<span class="tpl_method_name">Template::get_mail_subject
+</span>
+			<span class="tpl_params">
+				<span class="tpl_typeof">void
+</span>
+				<span class="tpl_param"></span>
+			</span>
+			<span id="tpl_button_7" class="tpl_button" onclick="descManager(7)">[+]</span>
+		</div>
+		<div id="desc_7" class="template_manual_methode_description" style="display: none;">
+		This method returns the defined subject for the outgoing email.
+		</div>
+	</div>
+	<div class="template_manual_method">
+		<div class="template_manual_method_declaration">
+			<span class="tpl_modifier">public
+</span>
+			<span class="tpl_typeof">string
+</span>
+			<span class="tpl_method_name">Template::get_output_directory
+</span>
+			<span class="tpl_params">
+				<span class="tpl_typeof">void
+</span>
+				<span class="tpl_param"></span>
+			</span>
+			<span id="tpl_button_8" class="tpl_button" onclick="descManager(8)">[+]</span>
+		</div>
+		<div id="desc_8" class="template_manual_methode_description" style="display: none;">
+		This method returns the defined repository directory for the outgoing file.
+		</div>
+	</div>
+	<div class="template_manual_method">
+		<div class="template_manual_method_declaration">
+			<span class="tpl_modifier">public
+</span>
+			<span class="tpl_typeof">string
+</span>
+			<span class="tpl_method_name">Template::get_output_file_name
+</span>
+			<span class="tpl_params">
+				<span class="tpl_typeof">void
+</span>
+				<span class="tpl_param"></span>
+			</span>
+			<span id="tpl_button_9" class="tpl_button" onclick="descManager(9)">[+]</span>
+		</div>
+		<div id="desc_9" class="template_manual_methode_description" style="display: none;">
+		This method returns the full name of the outgoing file.<br />
+The name contains the path and the name with the extension.
+		</div>
+	</div>
+	<div class="template_manual_method">
+		<div class="template_manual_method_declaration">
+			<span class="tpl_modifier">public
+</span>
+			<span class="tpl_typeof">string
+</span>
+			<span class="tpl_method_name">Template::get_output_name
+</span>
+			<span class="tpl_params">
+				<span class="tpl_typeof">void
+</span>
+				<span class="tpl_param"></span>
+			</span>
+			<span id="tpl_button_10" class="tpl_button" onclick="descManager(10)">[+]</span>
+		</div>
+		<div id="desc_10" class="template_manual_methode_description" style="display: none;">
+		This method returns the name of the outgoing file.<br />
+The name only contains the output name and the file extension.
+		</div>
+	</div>
+	<div class="template_manual_method">
+		<div class="template_manual_method_declaration">
+			<span class="tpl_modifier">public
+</span>
+			<span class="tpl_typeof">string
+</span>
+			<span class="tpl_method_name">Template::get_rendered_content
+</span>
+			<span class="tpl_params">
+				<span class="tpl_typeof">void
+</span>
+				<span class="tpl_param"></span>
+			</span>
+			<span id="tpl_button_11" class="tpl_button" onclick="descManager(11)">[+]</span>
+		</div>
+		<div id="desc_11" class="template_manual_methode_description" style="display: none;">
+		%METH_DESC%
+		</div>
+	</div>
+	<div class="template_manual_method">
+		<div class="template_manual_method_declaration">
+			<span class="tpl_modifier">public
+</span>
+			<span class="tpl_typeof">string
+</span>
+			<span class="tpl_method_name">Template::get_template_source
+</span>
+			<span class="tpl_params">
+				<span class="tpl_typeof">void
+</span>
+				<span class="tpl_param"></span>
+			</span>
+			<span id="tpl_button_12" class="tpl_button" onclick="descManager(12)">[+]</span>
+		</div>
+		<div id="desc_12" class="template_manual_methode_description" style="display: none;">
+		This method returns the template which will be use during the rendering.<br />
+The source name contains the path and the file name including the extension.
+		</div>
+	</div>
+	<div class="template_manual_method">
+		<div class="template_manual_method_declaration">
+			<span class="tpl_modifier">public
+</span>
+			<span class="tpl_typeof">string
+</span>
+			<span class="tpl_method_name">Template::get_vars
+</span>
+			<span class="tpl_params">
+				<span class="tpl_typeof">void
+</span>
+				<span class="tpl_param"></span>
+			</span>
+			<span id="tpl_button_13" class="tpl_button" onclick="descManager(13)">[+]</span>
+		</div>
+		<div id="desc_13" class="template_manual_methode_description" style="display: none;">
+		This method returns a structural view of the associative array where values linked to keys will replace the variable in the template during the rendering.
+		</div>
+	</div>
+	<div class="template_manual_method">
+		<div class="template_manual_method_declaration">
+			<span class="tpl_modifier">public
+</span>
+			<span class="tpl_typeof">string
+</span>
+			<span class="tpl_method_name">Template::get_vars_delim
+</span>
+			<span class="tpl_params">
+				<span class="tpl_typeof">void
+</span>
+				<span class="tpl_param"></span>
+			</span>
+			<span id="tpl_button_14" class="tpl_button" onclick="descManager(14)">[+]</span>
+		</div>
+		<div id="desc_14" class="template_manual_methode_description" style="display: none;">
+		This method displays the current delimiter to use during the rendering.<br />
+
+		</div>
+	</div>
+	<div class="template_manual_method">
+		<div class="template_manual_method_declaration">
+			<span class="tpl_modifier">public
+</span>
+			<span class="tpl_typeof">string
+</span>
+			<span class="tpl_method_name">Template::help
+</span>
+			<span class="tpl_params">
+				<span class="tpl_typeof">void
+</span>
+				<span class="tpl_param"></span>
+			</span>
+			<span id="tpl_button_15" class="tpl_button" onclick="descManager(15)">[+]</span>
+		</div>
+		<div id="desc_15" class="template_manual_methode_description" style="display: none;">
+		This method displays this manual.<br />
+The manual presents all existing methods and their roles.<br />
+
+		</div>
+	</div>
+	<div class="template_manual_method">
+		<div class="template_manual_method_declaration">
+			<span class="tpl_modifier">public
+</span>
+			<span class="tpl_typeof">string
+</span>
+			<span class="tpl_method_name">Template::render
+</span>
+			<span class="tpl_params">
+				<span class="tpl_typeof">void
+</span>
+				<span class="tpl_param"></span>
+			</span>
+			<span id="tpl_button_16" class="tpl_button" onclick="descManager(16)">[+]</span>
+		</div>
+		<div id="desc_16" class="template_manual_methode_description" style="display: none;">
+		This method trigger the file calculation between the sent data and the template.<br />
+Be aware, the "render" method only serve to generate the file.<br />
+To see the document strictly speaking, use the method "display"
+		</div>
+	</div>
+	<div class="template_manual_method">
+		<div class="template_manual_method_declaration">
+			<span class="tpl_modifier">public
+</span>
+			<span class="tpl_typeof">string
+</span>
+			<span class="tpl_method_name">Template::sendMail
+</span>
+			<span class="tpl_params">
+				<span class="tpl_typeof">void
+</span>
+				<span class="tpl_param"></span>
+			</span>
+			<span id="tpl_button_17" class="tpl_button" onclick="descManager(17)">[+]</span>
+		</div>
+		<div id="desc_17" class="template_manual_methode_description" style="display: none;">
+		This method sends by email the content of the calculated document.<br />
+So that mean you must use this method after the "render" method.<br />
+Moreover, you must define the email parameters before<br />
+She is useful when you generate reports which you want to receive on your email software.
+		</div>
+	</div>
+	<div class="template_manual_method">
+		<div class="template_manual_method_declaration">
+			<span class="tpl_modifier">public
+</span>
+			<span class="tpl_typeof">boolean
+</span>
+			<span class="tpl_method_name">Template::set_blocks_vars
+</span>
+			<span class="tpl_params">
+				<span class="tpl_typeof">array</span>
+				<span class="tpl_param">$blocks_vars
+</span>
+			</span>
+			<span id="tpl_button_18" class="tpl_button" onclick="descManager(18)">[+]</span>
+		</div>
+		<div id="desc_18" class="template_manual_methode_description" style="display: none;">
+		Declaration of the blocks variables for the render<br />
+The variable must be an numeric array composed with associative arrays.<br />
+
+		</div>
+	</div>
+	<div class="template_manual_method">
+		<div class="template_manual_method_declaration">
+			<span class="tpl_modifier">public
+</span>
+			<span class="tpl_typeof">boolean
+</span>
+			<span class="tpl_method_name">Template::set_mail_recipients
+</span>
+			<span class="tpl_params">
+				<span class="tpl_typeof">string</span>
+				<span class="tpl_param">$mail</span>
+				<span class="tpl_typeof">[,string</span>
+				<span class="tpl_param">$mail]{0,}
+</span>
+			</span>
+			<span id="tpl_button_19" class="tpl_button" onclick="descManager(19)">[+]</span>
+		</div>
+		<div id="desc_19" class="template_manual_methode_description" style="display: none;">
+		Declaration of the email's recipients<br />
+You can declare as much recipients as you want.<br />
+One recipient is an argument.
+		</div>
+	</div>
+	<div class="template_manual_method">
+		<div class="template_manual_method_declaration">
+			<span class="tpl_modifier">public
+</span>
+			<span class="tpl_typeof">boolean
+</span>
+			<span class="tpl_method_name">Template::set_mail_sender
+</span>
+			<span class="tpl_params">
+				<span class="tpl_typeof">string</span>
+				<span class="tpl_param">$sender
+</span>
+			</span>
+			<span id="tpl_button_20" class="tpl_button" onclick="descManager(20)">[+]</span>
+		</div>
+		<div id="desc_20" class="template_manual_methode_description" style="display: none;">
+		Declaration of the email address of the transmitter.
+		</div>
+	</div>
+	<div class="template_manual_method">
+		<div class="template_manual_method_declaration">
+			<span class="tpl_modifier">public
+</span>
+			<span class="tpl_typeof">boolean
+</span>
+			<span class="tpl_method_name">Template::set_mail_sender_name
+</span>
+			<span class="tpl_params">
+				<span class="tpl_typeof">string</span>
+				<span class="tpl_param">$sender_name
+</span>
+			</span>
+			<span id="tpl_button_21" class="tpl_button" onclick="descManager(21)">[+]</span>
+		</div>
+		<div id="desc_21" class="template_manual_methode_description" style="display: none;">
+		Declaration of the name of the transmitter for identify it in your mail software.
+		</div>
+	</div>
+	<div class="template_manual_method">
+		<div class="template_manual_method_declaration">
+			<span class="tpl_modifier">public
+</span>
+			<span class="tpl_typeof">boolean
+</span>
+			<span class="tpl_method_name">Template::set_mail_subject
+</span>
+			<span class="tpl_params">
+				<span class="tpl_typeof">string</span>
+				<span class="tpl_param">$subject
+</span>
+			</span>
+			<span id="tpl_button_22" class="tpl_button" onclick="descManager(22)">[+]</span>
+		</div>
+		<div id="desc_22" class="template_manual_methode_description" style="display: none;">
+		Declaration of the email object.
+		</div>
+	</div>
+	<div class="template_manual_method">
+		<div class="template_manual_method_declaration">
+			<span class="tpl_modifier">public
+</span>
+			<span class="tpl_typeof">boolean
+</span>
+			<span class="tpl_method_name">Template::set_output_directory
+</span>
+			<span class="tpl_params">
+				<span class="tpl_typeof">string</span>
+				<span class="tpl_param">$direcotry
+</span>
+			</span>
+			<span id="tpl_button_23" class="tpl_button" onclick="descManager(23)">[+]</span>
+		</div>
+		<div id="desc_23" class="template_manual_methode_description" style="display: none;">
+		Declaration of the repository folder for the rendered files.<br />
+Do not use the slash char at the end of the folder name.
+		</div>
+	</div>
+	<div class="template_manual_method">
+		<div class="template_manual_method_declaration">
+			<span class="tpl_modifier">public
+</span>
+			<span class="tpl_typeof">boolean
+</span>
+			<span class="tpl_method_name">Template::set_output_name
+</span>
+			<span class="tpl_params">
+				<span class="tpl_typeof">string</span>
+				<span class="tpl_param">$name
+</span>
+			</span>
+			<span id="tpl_button_24" class="tpl_button" onclick="descManager(24)">[+]</span>
+		</div>
+		<div id="desc_24" class="template_manual_methode_description" style="display: none;">
+		Declaration of the file name to the output file.<br />
+The name must contain the file extension.<br />
+Example, you want a HTML file, the name will be "my_file_name.html".
+		</div>
+	</div>
+	<div class="template_manual_method">
+		<div class="template_manual_method_declaration">
+			<span class="tpl_modifier">public
+</span>
+			<span class="tpl_typeof">boolean
+</span>
+			<span class="tpl_method_name">Template::set_render_type
+</span>
+			<span class="tpl_params">
+				<span class="tpl_typeof">string</span>
+				<span class="tpl_param">$type
+</span>
+			</span>
+			<span id="tpl_button_25" class="tpl_button" onclick="descManager(25)">[+]</span>
+		</div>
+		<div id="desc_25" class="template_manual_methode_description" style="display: none;">
+		This method allows you to define the type of the render. If you want to generate document, the appropriate render type is "permanent".<br />
+If you use template only to display something, the appropriate render type is "temporary".<br />
+
+		</div>
+	</div>
+	<div class="template_manual_method">
+		<div class="template_manual_method_declaration">
+			<span class="tpl_modifier">public
+</span>
+			<span class="tpl_typeof">boolean
+</span>
+			<span class="tpl_method_name">Template::set_template_name
+</span>
+			<span class="tpl_params">
+				<span class="tpl_typeof">string</span>
+				<span class="tpl_param">$source
+</span>
+			</span>
+			<span id="tpl_button_26" class="tpl_button" onclick="descManager(26)">[+]</span>
+		</div>
+		<div id="desc_26" class="template_manual_methode_description" style="display: none;">
+		Declaration of the path where the template is.<br />
+The name contain the folder path and / or the template file name (includes the file extension)
+		</div>
+	</div>
+	<div class="template_manual_method">
+		<div class="template_manual_method_declaration">
+			<span class="tpl_modifier">public
+</span>
+			<span class="tpl_typeof">boolean
+</span>
+			<span class="tpl_method_name">Template::set_temporary_folders_path
+</span>
+			<span class="tpl_params">
+				<span class="tpl_typeof">string</span>
+				<span class="tpl_param">$tmp_folders_path
+</span>
+			</span>
+			<span id="tpl_button_27" class="tpl_button" onclick="descManager(27)">[+]</span>
+		</div>
+		<div id="desc_27" class="template_manual_methode_description" style="display: none;">
+		Declaration of the path of the temporary repository.<br />
+The folder path name do not must contain the final slash.<br />
+This is an optional parameter.
+		</div>
+	</div>
+	<div class="template_manual_method">
+		<div class="template_manual_method_declaration">
+			<span class="tpl_modifier">public
+</span>
+			<span class="tpl_typeof">boolean
+</span>
+			<span class="tpl_method_name">Template::set_utf8_read_traitment
+</span>
+			<span class="tpl_params">
+				<span class="tpl_typeof">string</span>
+				<span class="tpl_param">$traitement
+</span>
+			</span>
+			<span id="tpl_button_28" class="tpl_button" onclick="descManager(28)">[+]</span>
+		</div>
+		<div id="desc_28" class="template_manual_methode_description" style="display: none;">
+		Declaration of the UTF8 treatment for the reading process of the output file.<br />
+The treatment possibilities are "none", "encode" and "decode".<br />
+"none" is the default setting.<br />
+"none" mean "use the default encoding of the output file"
+		</div>
+	</div>
+	<div class="template_manual_method">
+		<div class="template_manual_method_declaration">
+			<span class="tpl_modifier">public
+</span>
+			<span class="tpl_typeof">boolean
+</span>
+			<span class="tpl_method_name">Template::set_utf8_write_traitment
+</span>
+			<span class="tpl_params">
+				<span class="tpl_typeof">string</span>
+				<span class="tpl_param">$traitement
+</span>
+			</span>
+			<span id="tpl_button_29" class="tpl_button" onclick="descManager(29)">[+]</span>
+		</div>
+		<div id="desc_29" class="template_manual_methode_description" style="display: none;">
+		Declaration of the UTF8 treatment for the writing processing of the output file.<br />
+The treatment possibilities are "none", "encode" and "decode".<br />
+"none" is the default setting.<br />
+"none" mean "use the default encoding of the template file"
+		</div>
+	</div>
+	<div class="template_manual_method">
+		<div class="template_manual_method_declaration">
+			<span class="tpl_modifier">public
+</span>
+			<span class="tpl_typeof">boolean
+</span>
+			<span class="tpl_method_name">Template::set_vars
+</span>
+			<span class="tpl_params">
+				<span class="tpl_typeof">array</span>
+				<span class="tpl_param">$vars
+</span>
+			</span>
+			<span id="tpl_button_30" class="tpl_button" onclick="descManager(30)">[+]</span>
+		</div>
+		<div id="desc_30" class="template_manual_methode_description" style="display: none;">
+		Declaration of simples variables for the render<br />
+The input variable must be an associative arrays where keys represents the variable name.<br />
+
+		</div>
+	</div>
+	<div class="template_manual_method">
+		<div class="template_manual_method_declaration">
+			<span class="tpl_modifier">public
+</span>
+			<span class="tpl_typeof">boolean
+</span>
+			<span class="tpl_method_name">Template::set_vars_delim
+</span>
+			<span class="tpl_params">
+				<span class="tpl_typeof">string</span>
+				<span class="tpl_param">$delim
+</span>
+			</span>
+			<span id="tpl_button_31" class="tpl_button" onclick="descManager(31)">[+]</span>
+		</div>
+		<div id="desc_31" class="template_manual_methode_description" style="display: none;">
+		Declaration of the delimiter of variables.<br />
+The delimiter is the character which surround the variable name.<br />
+This allows the programme to identify the place where you need the expected value.
+		</div>
+	</div>
+	<div class="template_manual_method">
+		<div class="template_manual_method_declaration">
+			<span class="tpl_modifier">public
+</span>
+			<span class="tpl_typeof">string
+</span>
+			<span class="tpl_method_name">Template::show_warnings
+</span>
+			<span class="tpl_params">
+				<span class="tpl_typeof">void
+</span>
+				<span class="tpl_param"></span>
+			</span>
+			<span id="tpl_button_32" class="tpl_button" onclick="descManager(32)">[+]</span>
+		</div>
+		<div id="desc_32" class="template_manual_methode_description" style="display: none;">
+		This method displays all encountered errors during the rendering.<br />
+These errors are not blocking errors.<br />
+
+		</div>
+	</div>
+</div>

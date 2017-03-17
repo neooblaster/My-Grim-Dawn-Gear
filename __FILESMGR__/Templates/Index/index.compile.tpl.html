@@ -1,0 +1,109 @@
+<h1>
+	Générer un package <span target="build_package">-</span>
+</h1>
+
+<div content="build_package">
+	<form onsubmit="if(confirm('Procéder à la création du package ?'))request_compile(false); return false;">
+		<label>Code Version :</label>
+		<input id="code_version" type="text" required/>
+		<label>- Sera dépendant :</label>
+		<input type="button" value="%WILL_DEPEND%" disabled/> 
+		
+		<br /><br />
+		<input type="button" value="Prévisualiser le package" onclick="request_compile(true);"/>
+		<input type="button" value="Compiler les fichiers LESS" onclick="request_compile_less();"/>
+		<input type="button" value="Compiler les fichiers JS" onclick="request_compile_js();"/>
+		<input type="submit" value="Compilation du package" />
+		
+		<br /><br />
+		<input type="button" value="Supprimer les fichier .jsc" onclick="clean_jsc();"/>
+		
+		<br/> <br />
+		<input type="button" value="Afficher le snapshot MD5" onclick="show_md5_snapshot();"/>
+		<input type="button" value="Editer le snapshot MD5" onclick="edit_md5();"/>
+		<input type="button" value="Supprimer le snapshot MD5" onclick="if(confirm('Procéder à la suppression du snapshot MD5 ?'))request_flush_md5();"/>
+		
+		<br /><br />
+		<textarea placeholder="Change Description" style="width: 800px; height: 60px;" id="description"># Compilé par :
+# Compilé le :
+# Version :
+# Corrections :
+		</textarea>
+	</form>
+	<pre id="compile_output"></pre>
+</div>
+
+
+
+
+<h1>
+	Liste des packages <span target="packages">-</span>
+</h1>
+
+<ul content="packages">
+	<!-- BEGIN_BLOCK PACKAGES_LIST -->
+	<li file="%FILE%">
+		<input type="button" value="MANIFEST" title="Afficher Manifest" onclick="show_manifest(this);"/>
+		<input type="button" value="USE MD5" title="Utiliser ce fichier MD5" onclick="set_md5(this);"/>
+		<input type="button" value="CONFIG.INI" title="Afficher ce fichier Config.ini" onclick="show_config_ini(this);"/>
+		<input type="button" value="USE CFG.INI" title="Utiliser ce fichier Config.ini" onclick="set_config_ini(this);"/>
+		<input type="button" value="DOWNLOAD" title="Télécharger le package" onclick="document.location.href = 'Packages/%FILE%'"/>
+		<input type="button" value="DELETE" title="Supprimer le package" onclick="request_delete_package(this)"/> -
+		%DATE% - 
+		%VERSION% [%TYPE%] - 
+		%HASH% - 
+		%SIZE% - 
+		<!-- %FILE% - -->
+	</li>
+	<!-- END_BLOCK PACKAGES_LIST -->
+</ul>
+
+
+
+
+<h1>
+	Ligne de commande <span target="command">-</span>
+</h1>
+
+<div content="command">
+	<input id="exec_button" type="button" value="Executer" onclick="exec_ligne();"/>
+	<input type="button" value="Clear" onclick="document.getElementById('php_output').innerHTML = '';"/>
+	
+	<p>
+		Les commandes impliquant des paths doivent être précédée de ../../
+	</p>
+	
+	<textarea id="php_input" placeholder="CODE_PHP_>" style="width: 800px; height: 60px;" id="description"></textarea>
+	
+	<pre id="php_output" onkeydown="">
+		
+	</pre>
+</div>
+
+
+
+
+<h1>
+	Fichier de configuration <span target="config">-</span>
+</h1>
+
+<div content="config">
+	<input id="edit_button" type="button" value="Editer le fichier" onclick="edit_file();"/>
+	
+	<br /> <br />
+	
+	<pre id="configs.ini">
+	<!-- INCLUDE_TEMPLATE (configs.ini) -->
+	</pre>
+</div>
+
+
+
+
+<h1>
+	Dépendances <span target="dependancies">-</span>
+</h1>
+
+<div content="dependancies">
+	
+</div>

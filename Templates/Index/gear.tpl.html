@@ -1,0 +1,611 @@
+<div class="gear_panel %FOLD_STATS% %FOLD_INVENTORY%">
+		
+	<div class="gear_panel_build">
+		
+		<div class="gear_panel_build_items">
+			
+			<form id="gear_form">
+				
+				<!-- Head Data -->
+			<!-- IF (%VIEW_MODE% == 'READ') AS VIEW_MODE_INPUT -->
+				<input type="hidden" name="build_id" id="build_id" value="%BUILD_ID%" />
+				<input type="hidden" name="build_code" id="build_code" value="%BUILD_CODE%" />
+				<input type="hidden" name="build_name" id="build_name" value="" />
+			<!-- ELSE -->
+				<input type="hidden" name="build_name" id="build_name" value="" />
+				<input type="hidden" name="build_passcode" id="build_passcode" value="" />
+			<!-- ENDIF MODE_VIEW_INPUT -->
+				<input type="hidden" name="build_fold_stats" id="build_fold_stats" value="" />
+				<input type="hidden" name="build_fold_inventory" id="build_fold_inventory" value="" />
+				
+				<!-- Items -->
+				<input type="hidden" name="slot_head_item" id="input_slot_head_item" value="0"/>
+				<input type="hidden" name="slot_neck_item" id="input_slot_neck_item" value="0"/>
+				<input type="hidden" name="slot_lring_item" id="input_slot_lring_item" value="0"/>
+				<input type="hidden" name="slot_rring_item" id="input_slot_rring_item" value="0"/>
+				<input type="hidden" name="slot_main_hand_1_item" id="input_slot_main_hand_1_item" value="0"/>
+				<input type="hidden" name="slot_off_hand_1_item" id="input_slot_off_hand_1_item" value="0"/>
+				<input type="hidden" name="slot_main_hand_2_item" id="input_slot_main_hand_2_item" value="0"/>
+				<input type="hidden" name="slot_off_hand_2_item" id="input_slot_off_hand_2_item" value="0"/>
+				<input type="hidden" name="slot_chest_item" id="input_slot_chest_item" value="0"/>
+				<input type="hidden" name="slot_shoulders_item" id="input_slot_shoulders_item" value="0"/>
+				<input type="hidden" name="slot_hands_item" id="input_slot_hands_item" value="0"/>
+				<input type="hidden" name="slot_legs_item" id="input_slot_legs_item" value="0"/>
+				<input type="hidden" name="slot_feet_item" id="input_slot_feet_item" value="0"/>
+				<input type="hidden" name="slot_relic_item" id="input_slot_relic_item" value="0"/>
+				<input type="hidden" name="slot_waist_item" id="input_slot_waist_item" value="0"/>
+				<input type="hidden" name="slot_medal_item" id="input_slot_medal_item" value="0"/>
+				
+				<!-- Component -->
+				<input type="hidden" name="slot_head_comp" id="input_slot_head_comp" value="0"/>
+				<input type="hidden" name="slot_neck_comp" id="input_slot_neck_comp" value="0"/>
+				<input type="hidden" name="slot_lring_comp" id="input_slot_lring_comp" value="0"/>
+				<input type="hidden" name="slot_rring_comp" id="input_slot_rring_comp" value="0"/>
+				<input type="hidden" name="slot_main_hand_1_comp" id="input_slot_main_hand_1_comp" value="0"/>
+				<input type="hidden" name="slot_off_hand_1_comp" id="input_slot_off_hand_1_comp" value="0"/>
+				<input type="hidden" name="slot_main_hand_2_comp" id="input_slot_main_hand_2_comp" value="0"/>
+				<input type="hidden" name="slot_off_hand_2_comp" id="input_slot_off_hand_2_comp" value="0"/>
+				<input type="hidden" name="slot_chest_comp" id="input_slot_chest_comp" value="0"/>
+				<input type="hidden" name="slot_shoulders_comp" id="input_slot_shoulders_comp" value="0"/>
+				<input type="hidden" name="slot_hands_comp" id="input_slot_hands_comp" value="0"/>
+				<input type="hidden" name="slot_legs_comp" id="input_slot_legs_comp" value="0"/>
+				<input type="hidden" name="slot_feet_comp" id="input_slot_feet_comp" value="0"/>
+				<input type="hidden" name="slot_relic_comp" id="input_slot_relic_comp" value="0"/>
+				<input type="hidden" name="slot_waist_comp" id="input_slot_waist_comp" value="0"/>
+				<input type="hidden" name="slot_medal_comp" id="input_slot_medal_comp" value="0"/>
+				
+				<!-- Enchant / Booster -->
+				<input type="hidden" name="slot_head_enchant" id="input_slot_head_enchant" value="0"/>
+				<input type="hidden" name="slot_neck_enchant" id="input_slot_neck_enchant" value="0"/>
+				<input type="hidden" name="slot_lring_enchant" id="input_slot_lring_enchant" value="0"/>
+				<input type="hidden" name="slot_rring_enchant" id="input_slot_rring_enchant" value="0"/>
+				<input type="hidden" name="slot_main_hand_1_enchant" id="input_slot_main_hand_1_enchant" value="0"/>
+				<input type="hidden" name="slot_off_hand_1_enchant" id="input_slot_off_hand_1_enchant" value="0"/>
+				<input type="hidden" name="slot_main_hand_2_enchant" id="input_slot_main_hand_2_enchant" value="0"/>
+				<input type="hidden" name="slot_off_hand_2_enchant" id="input_slot_off_hand_2_enchant" value="0"/>
+				<input type="hidden" name="slot_chest_enchant" id="input_slot_chest_enchant" value="0"/>
+				<input type="hidden" name="slot_shoulders_enchant" id="input_slot_shoulders_enchant" value="0"/>
+				<input type="hidden" name="slot_hands_enchant" id="input_slot_hands_enchant" value="0"/>
+				<input type="hidden" name="slot_legs_enchant" id="input_slot_legs_enchant" value="0"/>
+				<input type="hidden" name="slot_feet_enchant" id="input_slot_feet_enchant" value="0"/>
+				<input type="hidden" name="slot_relic_enchant" id="input_slot_relic_enchant" value="0"/>
+				<input type="hidden" name="slot_waist_enchant" id="input_slot_waist_enchant" value="0"/>
+				<input type="hidden" name="slot_medal_enchant" id="input_slot_medal_enchant" value="0"/>
+				
+			</form>
+			
+			<div 
+				  class="gear_panel_build_items_slot slot_head" 
+				  data-accept-item="1" 
+			></div>
+			<div 
+				  class="gear_panel_build_items_slot slot_neck" 
+				  data-accept-item="18" 
+			></div>
+			<div 
+				  class="gear_panel_build_items_slot slot_lring" 
+				  data-accept-item="20" 
+			></div>
+			<div 
+				  class="gear_panel_build_items_slot slot_rring" 
+				  data-accept-item="20" 
+			></div>
+			<div 
+				  class="gear_panel_build_items_slot slot_main_hand_1" 
+				  data-accept-item="7,8,9,10,11,12,13,17,22" 
+			></div>
+			<div 
+				  class="gear_panel_build_items_slot slot_off_hand_1" 
+				  data-accept-item="7,10,11,12,17,14,15" 
+			></div>
+			<div 
+				  class="gear_panel_build_items_slot slot_main_hand_2 hidden" 
+				  data-accept-item="7,8,9,10,11,12,13,17,22" 
+			></div>
+			<div 
+				  class="gear_panel_build_items_slot slot_off_hand_2 hidden" 
+				  data-accept-item="7,10,11,12,17,14,15" 
+			></div>
+			<div 
+				  class="gear_panel_build_items_slot slot_chest" 
+				  data-accept-item="3" 
+			></div>
+			<div 
+				  class="gear_panel_build_items_slot slot_shoulders" 
+				  data-accept-item="2" 
+			></div>
+			<div 
+				  class="gear_panel_build_items_slot slot_hands" 
+				  data-accept-item="4" 
+			></div>
+			<div 
+				  class="gear_panel_build_items_slot slot_legs" 
+				  data-accept-item="5" 
+			></div>
+			<div 
+				  class="gear_panel_build_items_slot slot_feet" 
+				  data-accept-item="6" 
+			></div>
+			<div 
+				  class="gear_panel_build_items_slot slot_relic" 
+				  data-accept-item="24" 
+			></div>
+			<div 
+				  class="gear_panel_build_items_slot slot_waist" 
+				  data-accept-item="21" 
+			></div>
+			<div 
+				  class="gear_panel_build_items_slot slot_medal" 
+				  data-accept-item="19" 
+			></div>
+			<div 
+				  class="gear_panel_build_items_slot slot_switcher"
+				  data-accept-item="" 
+			>
+			</div>
+			
+			<div class="gear_panel_build_items_search_panel">
+				<h2 class="gear_panel_build_items_search_panel_title">
+					Search
+				</h2>
+				
+				<form onsubmit="gear().items().load(this); return false;" method="post">
+					<div class="gear_panel_build_items_search_panel_content">
+						
+						<div class="search_filter filter_name">
+							<input type="text" placeholder="Search Object Name" autofocus name="item_name"/>
+						</div>
+						
+						<div class="search_filter filter_qualities">
+							<input id="quality_common" type="hidden" name="quality_common" value="true"/>
+							<input id="quality_magic" type="hidden" name="quality_magic" value="true"/>
+							<input id="quality_rare" type="hidden" name="quality_rare" value="true"/>
+							<input id="quality_elite" type="hidden" name="quality_elite" value="true"/>
+							<input id="quality_legendary" type="hidden" name="quality_legendary" value="true"/>
+							
+							<input class="quality_button quality_common active" type="button" value="Common" onclick="qualityActivator(this);" data-input-target="quality_common"/>
+							<input class="quality_button quality_magic active" type="button" value="Magic" onclick="qualityActivator(this);" data-input-target="quality_magic"/>
+							<input class="quality_button quality_rare active" type="button" value="Rare" onclick="qualityActivator(this);" data-input-target="quality_rare"/>
+							<input class="quality_button quality_elite active" type="button" value="Elite" onclick="qualityActivator(this);" data-input-target="quality_elite"/>
+							<input class="quality_button quality_legendary active" type="button" value="Legendary" onclick="qualityActivator(this);" data-input-target="quality_legendary"/>
+						</div>
+						
+						<div class="search_filter filter_kinds">
+							<div class="kind_select kind_family">
+								<label for="kind_family"></label>
+								<select id="kind_family" name="item_family" onchange="updateType(this);">
+									<option value="0">- Items Families -</option>
+									<!-- BEGIN_BLOCK WITH ITEMS_FAMILIES -->
+									<option value="%ID%">%FAMILY%</option>
+									<!-- END_BLOCK ITEMS_FAMILIES -->
+								</select>
+							</div>
+							<div class="kind_select kind_type">
+								<label for="kind_type"></label>
+								<select id="kind_type" name="item_type">
+									<option value="0">- Items Types -</option>
+									<!-- BEGIN_BLOCK WITH ITEMS_TYPES -->
+									<option value="%ID%" data-rel-family="%REL_FAMILY%">%TYPE%</option>
+									<!-- END_BLOCK ITEMS_FAMILIES -->
+								</select>
+							</div>
+						</div>
+						
+						<div class="search_filter filter_sort">
+							Sort Disp
+						</div>
+						
+						<div class="search_filter filter_submit">
+							<input type="submit" value="Search" />
+						</div>
+					
+					</div>
+				</form>
+			</div>
+			
+		</div>
+		
+		<div class="gear_panel_build_stats">
+			
+			<div class="gear_panel_build_stats_menu" onselectstart="return false;">
+				
+				<div class="gear_panel_build_stats_menu_button button_char_1 active" data-target="overview" data-level="1" onclick="contentSwitcher(this, 2);">I</div>
+				<div class="gear_panel_build_stats_menu_button button_char_2" data-target="damages" data-level="1" onclick="contentSwitcher(this, 2);">II</div>
+				<div class="gear_panel_build_stats_menu_button button_char_3" data-target="defenses" data-level="1" onclick="contentSwitcher(this, 2);">III</div>
+				
+			</div>
+			
+			<div class="gear_panel_build_stats_content">
+				
+				<div class="gear_panel_build_stats_content_sheet sheet_char_1 active" data-content="overview" data-level="1">
+					
+					<h2>
+						%BUILD_OPTIONS%
+					</h2>
+					
+					<div class="option_panel">
+						<form onsubmit="gear().save(); return false;">
+						<!-- IF (%VIEW_MODE% === 'READ') AS VIEW_MODE_OPTIONS -->
+							<!--  IF ('%BUILD_NAME%' !== '') AS NAMMED -->
+							<input type="text" value="%BUILD_NAME%" readonly disabled/>
+							<!-- ENDIF NAMMED -->
+						<!-- ELSE -->
+							<input type="text" placeholder="Named your build" title="You can named your build" onkeyup="gear().synchronize(this, 'build_name')"/>
+							<input type="password" placeholder="Passcode" title="Blank password means that build is editable by everyone." onkeyup="gear().synchronize(this, 'build_passcode')"/>
+						<!-- ENDIF VIEW_MODE_OPTIONS -->
+							
+						<!-- IF (%BUILD_PROTECTED%) AS BUILD_PROTECTED -->
+							<input id="sign_button" type="button" value="Sign To Edit" data-sign="false" onclick="gear().sign()"/>
+						<!-- ELSE -->
+							<input type="submit" value="Save" title="create the build"/>
+						<!-- ENDIF BUILD_PROTECTED -->
+							
+						<!-- IF (%VIEW_MODE% === 'READ') AS SHOW_LINKS -->
+							<span class="button-img" onclick="gear().link().build();" title="Click to get a direct link to this build."><img src="/Images/Interfaces/build-link.png"/></span>
+							<span class="button-img" onclick="gear().link().image();" title="Click to get a link to image version of this build."><img src="/Images/Interfaces/image-link.png"/></span>
+						<!-- ENDIF SHOW_LINKS -->
+						</form>
+					</div>
+					
+					<h2>%ATTRIBUTES%<!-- - 90 Available Points--></h2>
+					
+					<div>
+						<div class="sheet_entry physique"></div>
+						<div class="sheet_entry cunning"></div>
+						<div class="sheet_entry spirit"></div>
+						<div class="sheet_entry health"></div>
+						<div class="sheet_entry energy"></div>
+					</div>
+					
+					
+					
+					<h2>%COMBAT_STATS%</h2>
+					
+					<div id="combat_stats">
+						<div class="sheet_entry offensive_ability"></div>
+						<div class="sheet_entry defensive_ability"></div>
+						<div class="sheet_entry damage_per_second"></div>
+						<div class="sheet_entry armor_rating"></div>
+					</div>
+					
+					
+					
+					<h2>%RESISTANCES%</h2>
+					
+					<div id="resistances">
+						<div class="primary_resistances">
+							<div class="resistance fire_resist"></div>
+							<div class="resistance cold_resist"></div>
+							<div class="resistance lightning_resist"></div>
+							<div class="resistance poison_resist"></div>
+							<div class="resistance piercing_resist"></div>
+						</div>
+						<div class="advanced_resistances">
+							<div class="resistance bleeding_resist"></div>
+							<div class="resistance vitality_resist"></div>
+							<div class="resistance aether_resist"></div>
+							<div class="resistance stunt_resist"></div>
+							<div class="resistance chaos_resist"></div>
+						</div>
+					</div>
+					
+				</div>
+				
+				<div class="gear_panel_build_stats_content_sheet sheet_char_2" data-content="damages" data-level="1">
+					
+					<h2>%DAMAGE_PER_HIT%</h2>
+					
+					<div id="damage_per_hit">
+						<!--<div class="sheet_entry lclick"><span>Savagery</span><span>3453 - 4128</span></div>-->
+						<!--<div class="sheet_entry rclick"><span></span><span></span></div>-->
+						<div class="sheet_entry weapon"><span>%WEAPON_DAMAGE%</span><span>0</span></div>
+					</div>
+					
+					<h2>%CHARACTER%</h2>
+					
+					<div id="character">
+						<div class="sheet_entry attach_speed pc"><span>%ATTACK_SPEED%</span><span>0</span></div>
+						<div class="sheet_entry critical_strike pc plus linefeed"><span>%CRITICAL_STRIKE%</span><span>0</span></div>
+						
+						<div class="sheet_entry run_speed pc"><span>%RUN_SPEED%</span><span>0</span></div>
+						<div class="sheet_entry health_regeneration"><span>%HEALTH_REGENERATION%</span><span>0</span></div>
+						<div class="sheet_entry energy_regeneration"><span>%ENERGY_REGENERATION%</span><span>0</span></div>
+						<div class="sheet_entry energy_absorption pc"><span>%ENERGY_ABSORPTION%</span><span>0</span></div>
+						<div class="sheet_entry constitution_bonus pc plus"><span>%CONSTITUTION_BONUS%</span><span>0</span></div>
+						<div class="sheet_entry experience_gained pc plus"><span>%EXPERIENCE_GAINED%</span><span>0</span></div>
+						<div class="sheet_entry light_radius pc plus linefeed"><span>%LIGHT_RADIUS%</span><span>0</span></div>
+						
+						<div class="sheet_entry all_skills plus"><span>%ALL_SKILLS%</span><span>0</span></div>
+						<div class="sheet_entry soldier_skills plus"><span>%SOLDIER_SKILLS%</span><span>0</span></div>
+						<div class="sheet_entry demolitionist_skills plus"><span>%DEMOLITIONIST_SKILLS%</span><span>0</span></div>
+						<div class="sheet_entry occultist_skills plus"><span>%OCCULTIST_SKILLS%</span><span>0</span></div>
+						<div class="sheet_entry nightblade_skills plus"><span>%NIGHTBLADE_SKILLS%</span><span>0</span></div>
+						<div class="sheet_entry arcanist_skills plus"><span>%ARCANIST_SKILLS%</span><span>0</span></div>
+						<div class="sheet_entry shaman_skills plus"><span>%SHAMAN_SKILLS%</span><span>0</span></div>
+					</div>
+					
+					
+					
+					<h2>%PHYSICAL%</h2>
+					
+					<div id="physical">
+						<div class="sheet_entry physical_damage"><span>%PHYSICAL_DAMAGE%</span><span>0</span></div>
+						<div class="sheet_entry physical_modifier pc plus linefeed"><span>%PHYSICAL_MODIFIER%</span><span>0</span></div>
+						
+						<div class="sheet_entry pierce_damage"><span>%PIERCE_DAMAGE%</span><span>0</span></div>
+						<div class="sheet_entry pierce_modifier pc plus linefeed"><span>%PIERCE_MODIFIER%</span><span>0</span></div>
+						
+						<div class="sheet_entry bleed_damage"><span>%BLEED_DAMAGE%</span><span>0</span></div>
+						<div class="sheet_entry bleed_modifier pc plus "><span>%BLEED_MODIFIER%</span><span>0</span></div>
+						<div class="sheet_entry bleed_duration pc linefeed"><span>%BLEED_DURATION%</span><span>0</span></div>
+						
+						<div class="sheet_entry trauma_damage"><span>%TRAUMA_DAMAGE%</span><span>0</span></div>
+						<div class="sheet_entry trauma_modifier pc plus"><span>%TRAUMA_MODIFIER%</span><span>0</span></div>
+						<div class="sheet_entry trauma_duration pc linefeed"><span>%TRAUMA_DURATION%</span><span>0</span></div>
+						
+						<div class="sheet_entry life_steal pc"><span>%LIFE_STEAL%</span><span>0</span></div>
+					</div>
+					
+					
+					
+					<h2>%MAGICAL%</h2>
+					
+					<div id="magical">
+						<div class="sheet_entry cast_speed pc"><span>%CAST_SPEED%</span><span>0</span></div>
+						<div class="sheet_entry cooldown_reduction pc"><span>%COOLDOWN_REDUCTION%</span><span>0</span></div>
+						<div class="sheet_entry skill_energy_cost pc linefeed"><span>%SKILL_ENERGY_COST%</span><span>0</span></div>
+						
+						<div class="sheet_entry health_damage pc linefeed"><span>%HEALTH_DAMAGE%</span><span>0</span></div>
+						
+						<div class="sheet_entry fire_damage"><span>%FIRE_DAMAGE%</span><span>0</span></div>
+						<div class="sheet_entry fire_modifier pc plus linefeed"><span>%FIRE_MODIFIER%</span><span>0</span></div>
+						
+						<div class="sheet_entry cold_damage"><span>%COLD_DAMAGE%</span><span>0</span></div>
+						<div class="sheet_entry cold_modifier pc plus linefeed"><span>%COLD_MODIFIER%</span><span>0</span></div>
+						
+						<div class="sheet_entry lightning_damage"><span>%LIGHTNING_DAMAGE%</span><span>0</span></div>
+						<div class="sheet_entry lightning_modifier pc plus linefeed"><span>%LIGHTNING_MODIFIER%</span><span>0</span></div>
+						
+						<div class="sheet_entry acid_damage"><span>%ACID_DAMAGE%</span><span>0</span></div>
+						<div class="sheet_entry acid_modifier pc plus linefeed"><span>%ACID_MODIFIER%</span><span>0</span></div>
+						
+						<div class="sheet_entry vitality_damage"><span>%VITALITY_DAMAGE%</span><span>0</span></div>
+						<div class="sheet_entry vitality_modifier pc plus linefeed"><span>%VITALITY_MODIFIER%</span><span>0</span></div>
+						
+						<div class="sheet_entry aether_damage"><span>%AETHER_DAMAGE%</span><span>0</span></div>
+						<div class="sheet_entry aether_modifier pc plus linefeed"><span>%AETHER_MODIFIER%</span><span>0</span></div>
+						
+						<div class="sheet_entry chaos_damage"><span>%CHAOS_DAMAGE%</span><span>0</span></div>
+						<div class="sheet_entry chaos_modifier pc plus linefeed"><span>%CHAOS_MODIFIER%</span><span>0</span></div>
+						
+						<div class="sheet_entry burn_damage"><span>%BURN_DAMAGE%</span><span>0</span></div>
+						<div class="sheet_entry burn_modifier pc plus"><span>%BURN_MODIFIER%</span><span>0</span></div>
+						<div class="sheet_entry burn_duration pc linefeed"><span>%BURN_DURATION%</span><span>0</span></div>
+						
+						<div class="sheet_entry frostburn_damage"><span>%FROSTBURN_DAMAGE%</span><span>0</span></div>
+						<div class="sheet_entry frostburn_modifier pc plus"><span>%FROSTBURN_MODIFIER%</span><span>0</span></div>
+						<div class="sheet_entry frostburn_duration pc linefeed"><span>%FROSTBURN_DURATION%</span><span>0</span></div>
+						
+						<div class="sheet_entry electrocute_damage"><span>%ELECTROCUTE_DAMAGE%</span><span>0</span></div>
+						<div class="sheet_entry electrocute_modifier pc plus"><span>%ELECTROCUTE_MODIFIER%</span><span>0</span></div>
+						<div class="sheet_entry electrocute_duration pc linefeed"><span>%ELECTROCUTE_DURATION%</span><span>0</span></div>
+						
+						<div class="sheet_entry poison_damage"><span>%POISON_DAMAGE%</span><span>0</span></div>
+						<div class="sheet_entry poison_modifier pc plus"><span>%POISON_MODIFIER%</span><span>0</span></div>
+						<div class="sheet_entry poison_duration pc linefeed"><span>%POISON_DURATION%</span><span>0</span></div>
+						
+						<div class="sheet_entry vitality_decay_damage"><span>%VITALITY_DECAY_DAMAGE%</span><span>0</span></div>
+						<div class="sheet_entry vitality_decay_modifier pc plus"><span>%VITALITY_DECAY_MODIFIER%</span><span>0</span></div>
+						<div class="sheet_entry vitality_decay_duration pc linefeed"><span>%VITALITY_DECAY_DURATION%</span><span>0</span></div>
+					</div>
+					
+					
+					
+					<h2>%PET_BONUSES%</h2>
+					
+					<div id="pet_bonuses">
+						<div class="sheet_entry pet_life pc plus"><span>%PET_LIFE%</span><span>0</span></div>
+						<div class="sheet_entry pet_damage pc plus"><span>%PET_DAMAGE%</span><span>0</span></div>
+						<div class="sheet_entry pet_attack_speed pc plus"><span>%PET_ATTACK_SPEED%</span><span>0</span></div>
+						<div class="sheet_entry pet_cast_speed pc plus"><span>%PET_CAST_SPEED%</span><span>0</span></div>
+						<div class="sheet_entry pet_run_speed pc plus"><span>%PET_RUN_SPEED%</span><span>0</span></div>
+						<div class="sheet_entry pet_offense_ability pc plus"><span>%PET_OFFENSE_ABILITY%</span><span>0</span></div>
+						<div class="sheet_entry pet_defense_ability pc plus"><span>%PET_DEFENSE_ABILITY%</span><span>0</span></div>
+						<div class="sheet_entry pet_fire_resist pc plus"><span>%PET_FIRE_RESIST%</span><span>0</span></div>
+						<div class="sheet_entry pet_cold_resist pc plus"><span>%PET_COLD_RESIST%</span><span>0</span></div>
+						<div class="sheet_entry pet_lightning_resist pc plus"><span>%PET_LIGHTNING_RESIST%</span><span>0</span></div>
+						<div class="sheet_entry pet_poison_acid_resist pc plus"><span>%PET_POISON_ACID_RESIST%</span><span>0</span></div>
+						<div class="sheet_entry pet_pierce_resist pc plus"><span>%PET_PIERCE_RESIST%</span><span>0</span></div>
+						<div class="sheet_entry pet_bleeding_resist pc plus"><span>%PET_BLEEDING_RESIST%</span><span>0</span></div>
+						<div class="sheet_entry pet_vitality_resist pc plus"><span>%PET_VITALITY_RESIST%</span><span>0</span></div>
+						<div class="sheet_entry pet_aether_resist pc plus"><span>%PET_AETHER_RESIST%</span><span>0</span></div>
+						<div class="sheet_entry pet_chaos_resist pc plus"><span>%PET_CHAOS_RESIST%</span><span>0</span></div>
+					</div>
+					
+				</div>
+				
+				<div class="gear_panel_build_stats_content_sheet sheet_char_3" data-content="defenses" data-level="1">
+					
+					<h2>%DEFENSE%</h2>
+					
+					<div id="defense">
+						<div class="sheet_entry chance_to_block"><span>%CHANCE_TO_BLOCK%</span><span>0</span></div>
+						<div class="sheet_entry damage_blocked"><span>%DAMAGE_BLOCKED%</span><span>0</span></div>
+						<div class="sheet_entry block_recovery"><span>%BLOCK_RECOVERY%</span><span>0</span></div>
+						<div class="sheet_entry dodge_chance"><span>%DODGE_CHANCE%</span><span>0</span></div>
+						<div class="sheet_entry deflect_change linefeed"><span>%DEFLECT_CHANCE%</span><span>0</span></div>
+						
+						<div class="sheet_entry physical_resist"><span>%PHYSICAL_RESIST%</span><span>0</span></div>
+						<div class="sheet_entry disruption_resist"><span>%DISRUPTION_RESIST%</span><span>0</span></div>
+						<div class="sheet_entry life_leech_resist"><span>%LIFE_LEECH_RESIST%</span><span>0</span></div>
+						<div class="sheet_entry energy_leech_resist"><span>%ENERGY_LEECH_RESIST%</span><span>0</span></div>
+						<div class="sheet_entry trap_resist"><span>%TRAP_RESIST%</span><span>0</span></div>
+						<div class="sheet_entry petrify_resist"><span>%PETRIFY_RESIST%</span><span>0</span></div>
+						<div class="sheet_entry freeze_resist"><span>%FREEZE_RESIST%</span><span>0</span></div>
+						<div class="sheet_entry sleep_resist"><span>%SLEEP_RESIST%</span><span>0</span></div>
+						<div class="sheet_entry slow_resist"><span>%SLOW_RESIST%</span><span>0</span></div>
+					</div>
+					
+					
+					
+					<h2>%RETALIATION%</h2>
+					
+					<div id="retaliation">
+						<div class="sheet_entry damage_reflect"><span>%DAMAGE_REFLECT%</span><span>0</span></div>
+						<div class="sheet_entry life_retaliation linefeed"><span>%LIFE_RETALIATION%</span><span>0</span></div>
+						
+						<div class="sheet_entry physical_retaliation"><span>%PHYSICAL_RETALIATION%</span><span>0</span></div>
+						<div class="sheet_entry physical_retaliation_modifier pc plus linefeed"><span>%PHYSICAL_RETALIATION_MODIFIER%</span><span>0</span></div>
+						
+						<div class="sheet_entry pierce_retaliation"><span>%PIERCE_RETALIATION%</span><span>0</span></div>
+						<div class="sheet_entry pierce_retaliation_modifier pc plus linefeed"><span>%PIERCE_RETALIATION_MODIFIER%</span><span>0</span></div>
+						
+						<div class="sheet_entry bleed_retaliation"><span>%BLEED_RETALIATION%</span><span>0</span></div>
+						<div class="sheet_entry bleed_retaliation_modifier pc plus linefeed"><span>%BLEED_RETALIATION_MODIFIER%</span><span>0</span></div>
+						
+						<div class="sheet_entry trauma_retaliation"><span>%TRAUMA_RETALIATION%</span><span>0</span></div>
+						<div class="sheet_entry trauma_retaliation_modifier pc plus linefeed"><span>%TRAUMA_RETALIATION_MODIFIER%</span><span>0</span></div>
+						
+						<div class="sheet_entry fire_retaliation"><span>%FIRE_RETALIATION%</span><span>0</span></div>
+						<div class="sheet_entry fire_retaliation_modifier pc plus linefeed"><span>%FIRE_RETALIATION_MODIFIER%</span><span>0</span></div>
+						
+						<div class="sheet_entry cold_retaliation"><span>%COLD_RETALIATION%</span><span>0</span></div>
+						<div class="sheet_entry cold_retaliation_modifier pc plus linefeed"><span>%COLD_RETALIATION_MODIFIER%</span><span>0</span></div>
+						
+						<div class="sheet_entry lightning_retaliation"><span>%LIGHTNING_RETALIATION%</span><span>0</span></div>
+						<div class="sheet_entry lightning_retaliation_modifier pc plus linefeed"><span>%LIGHTNING_RETALIATION_MODIFIER%</span><span>0</span></div>
+						
+						<div class="sheet_entry acid_retaliation"><span>%ACID_RETALIATION%</span><span>0</span></div>
+						<div class="sheet_entry acid_retaliation_modifier pc plus linefeed"><span>%ACID_RETALIATION_MODIFIER%</span><span>0</span></div>
+						
+						<div class="sheet_entry vitality_retaliation"><span>%VITALITY_RETALIATION%</span><span>0</span></div>
+						<div class="sheet_entry vitality_retaliation_modifier pc plus linefeed"><span>%VITALITY_RETALIATION_MODIFIER%</span><span>0</span></div>
+						
+						<div class="sheet_entry aether_retaliation"><span>%AETHER_RETALIATION%</span><span>0</span></div>
+						<div class="sheet_entry aether_retaliation_modifier pc plus linefeed"><span>%AETHER_RETALIATION_MODIFIER%</span><span>0</span></div>
+						
+						<div class="sheet_entry chaos_retaliation"><span>%CHAOS_RETALIATION%</span><span>0</span></div>
+						<div class="sheet_entry chaos_retaliation_modifier pc plus linefeed"><span>%CHAOS_RETALIATION_MODIFIER%</span><span>0</span></div>
+						
+						<div class="sheet_entry burn_retaliation"><span>%BURN_RETALIATION%</span><span>0</span></div>
+						<div class="sheet_entry burn_retaliation_modifier pc plus linefeed"><span>%BURN_RETALIATION_MODIFIER%</span><span>0</span></div>
+						
+						<div class="sheet_entry frostburn_retaliation"><span>%FROSTBURN_RETALIATION%</span><span>0</span></div>
+						<div class="sheet_entry frostburn_retaliation_modifier pc plus linefeed"><span>%FROSTBURN_RETALIATION_MODIFIER%</span><span>0</span></div>
+						
+						<div class="sheet_entry electrocute_retaliation"><span>%ELECTROCUTE_RETALIATION%</span><span>0</span></div>
+						<div class="sheet_entry electrocute_retaliation_modifier pc plus linefeed"><span>%ELECTROCUTE_RETALIATION_MODIFIER%</span><span>0</span></div>
+						
+						<div class="sheet_entry poison_retaliation"><span>%POISON_RETALIATION%</span><span>0</span></div>
+						<div class="sheet_entry poison_retaliation_modifier pc plus linefeed"><span>%POISON_RETALIATION_MODIFIER%</span><span>0</span></div>
+						
+						<div class="sheet_entry vitality_decay_retaliation"><span>%VITALITY_DECAY_RETALIATION%</span><span>0</span></div>
+						<div class="sheet_entry vitality_decay_retaliation_modifier pc plus linefeed"><span>%VITALITY_DECAY_RETALIATION_MODIFIER%</span><span>0</span></div>
+						
+					</div>
+					
+					
+					
+					<h2>%STATS%</h2>
+					
+					<div id="stats">
+						<div class="sheet_entry average_item_level"><span>%AVERAGE_ITEM_LEVEL%</span><span>0</span></div>
+					</div>
+					
+				</div>
+				
+			</div>
+			
+		</div>
+		
+	</div>
+	
+	<div class="gear_panel_options">
+		
+		<div class="gear_panel_options_views">0</div>
+		
+	</div>
+	
+	<div class="gear_panel_inventory">
+		
+		<div class="gear_panel_inventory_scroll_overflow">
+			
+			<div class="gear_panel_inventory_grid">
+				
+					<!--<div class="gear_panel_inventory_grid_item size2x4" data-width="2" data-height="4">item_1 2x4</div>-->
+				
+			</div>
+			
+		</div>
+		
+	</div>
+	
+	<div class="gear_panel_border"></div>
+	
+</div>
+
+
+<script id="mutation-attacher" type="text/javascript">
+	
+	var observe_target = document.querySelector('.gear_panel_inventory_grid');
+	
+	var inventory_observer = new MutationObserver(function(){
+		/** Element HTML requis **/
+		var gear_panel = document.querySelector('.gear_panel');
+		var gear_panel_inventory_scroll_overflow = document.querySelector('.gear_panel_inventory_scroll_overflow');
+		var gear_panel_inventory = document.querySelector('.gear_panel_inventory_grid');
+		
+		/** Gestion de la barre de défilement **/
+		if(gear_panel_inventory.offsetHeight > gear_panel_inventory_scroll_overflow.offsetHeight){
+			gear_panel_inventory_scroll_overflow.classList.add('with_scroll');
+		} else {
+			gear_panel_inventory_scroll_overflow.classList.remove('with_scroll');
+		}
+	});
+	
+	var observe_config = {attributes: true, childList: true, subtree: true};
+	
+	inventory_observer.observe(observe_target, observe_config);
+	
+	
+	
+	var observe_target_2 = document.querySelector('.gear_panel');
+	
+	var panel_observer = new MutationObserver(function(){
+		/** Element HTML requis **/
+		var gear_panel = document.querySelector('.gear_panel');
+		var gear_panel_inventory_scroll_overflow = document.querySelector('.gear_panel_inventory_scroll_overflow');
+		var gear_panel_inventory = document.querySelector('.gear_panel_inventory_grid');
+		
+		/** Gestion de la barre de défilement **/
+		if(gear_panel_inventory.offsetHeight > gear_panel_inventory_scroll_overflow.offsetHeight){
+			gear_panel_inventory_scroll_overflow.classList.add('with_scroll');
+		} else {
+			gear_panel_inventory_scroll_overflow.classList.remove('with_scroll');
+		}
+	});
+	
+	var observe_config_2 = {attributes: true, childList: false, subtree: false};
+	
+	panel_observer.observe(observe_target_2, observe_config_2);
+	
+	
+	
+<!-- IF (%VIEW_MODE% == 'READ') AS PROTECT_ID -->
+	
+	var to_protect = document.querySelector('#build_id');
+	var protector = new MutationObserver(
+		function(){
+			alert('Change Build ID is forbidden !!!');
+			document.location.reload();
+		}.bind(to_protect)
+	);
+	var protection = {attributes: true, childList: false, subtree: false};
+	protector.observe(to_protect, protection);
+	
+<!-- ENDIF PROTECT_ID -->
+	
+	
+	
+	document.scripts['mutation-attacher'].parentNode.removeChild(document.scripts['mutation-attacher']);
+</script>

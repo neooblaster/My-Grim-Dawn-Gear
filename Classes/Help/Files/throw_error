@@ -1,0 +1,10 @@
+static
+string
+throw_error
+string $message;,integer $error_level=E_USER_NOTICE
+This method lets you to trigger customs user errors even if you have not instantiated object.
+$error_level can be :
+&nbsp;&nbsp;&nbsp;256 => 'E_USER_ERROR'
+&nbsp;&nbsp;&nbsp;512 => 'E_USER_WARNING'
+&nbsp;&nbsp;&nbsp;1024 => 'E_USER_NOTICE'
+

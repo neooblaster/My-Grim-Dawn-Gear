@@ -1,0 +1,5 @@
+public
+string
+get_vars
+void
+This method returns a structural view of the associative array where values linked to keys will replace the variable in the template during the rendering.

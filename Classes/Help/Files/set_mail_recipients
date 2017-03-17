@@ -1,0 +1,7 @@
+public
+boolean
+set_mail_recipients
+string $mail;[,string $mail]{0,}
+Declaration of the email's recipients
+You can declare as much recipients as you want.
+One recipient is an argument.

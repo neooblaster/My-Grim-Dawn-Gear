@@ -1,0 +1,17 @@
+@import url('/LESS/Common/grid-engine_screen.less');
+
+#demo {
+	width: 800px;
+	height: 400px;
+	//background: blue;
+	
+	.grid-engine(800px, 8, 4, 4, blue);
+	
+	&.show-grid {
+		background: none;
+	}
+	
+	& > div {
+		background: red;
+	}
+}

@@ -1,0 +1,7 @@
+public
+boolean
+set_temporary_repository
+string $tmp_folders_path
+Declaration of the path of the temporary repository.
+The folder path name do not must contain the final slash.
+This is an optional parameter.

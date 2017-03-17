@@ -1,0 +1,254 @@
+<div class="admin_panel">
+	
+	<div class="gd_white_hr">
+		<div class="admin_panel_menu">
+			<div class="admin_panel_menu_entry %ACTIVE_ITEMS%" data-target="items" data-level="1" onclick="contentSwitcher(this, 3);">Items</div>
+			<div class="admin_panel_menu_entry %ACTIVE_SKILLS%" data-target="skills" data-level="1" onclick="contentSwitcher(this, 3);">Skills</div>
+			<div class="admin_panel_menu_entry %ACTIVE_ARTICLES%" data-target="articles" data-level="1" onclick="contentSwitcher(this, 3);">Articles</div>
+			<div class="admin_panel_menu_entry %ACTIVE_GAME_DATA%" data-target="game_data" data-level="1" onclick="contentSwitcher(this, 3);">Game Data</div>
+		</div>
+	</div>
+	
+	<div class="admin_panel_body">
+		<!-- Gestion des objets -->
+		<div class="admin_panel_body_content items %ACTIVE_ITEMS%" data-content="items" data-level="1">
+			
+			<h2>
+				Items Editor
+			</h2>
+			
+			<div class="items_menu">
+				
+			</div>
+			
+			<div class="items_editor">
+				
+				<div class="items_editor_slot" onclick="this.querySelector('input').click();">
+					<img id="item_image" src="" data-load-image="%ITEM_TAG_NAME%" data-width="%ITEM_WIDTH%" data-height="%ITEM_HEIGHT%"/>
+					<input type="file" hidden onchange="uploadImage(this);" data-image-name="%ITEM_TAG_NAME%"/>
+					<script type="text/javascript">
+						document.onreadystatechange = function(){
+							if(document.readyState === "complete"){
+								var item_image = document.querySelector('#item_image');
+								var image_to_load = item_image.getAttribute('data-load-image');
+								
+								if(image_to_load !== ''){
+									item_image.onerror = function(){
+										item_image.src = '/Images/Items/NotFound.png';
+									}
+									
+									item_image.src = "/Images/Items/"+image_to_load+'.png';
+								}
+							}
+						}
+					</script>
+				</div>
+				
+				<div class="items_editor_properties">
+					
+					<div class="items_editor_properties_main">
+						
+						<div class="items_editor_property">
+							<h3>
+								Item Properties
+							</h3>
+							
+							<h4>
+								Item Name
+							</h4>
+							<input class="id_field" type="text" value="%ITEM_ID%" placeholder="ID" readonly/>
+							<input class="tag_field" type="text" value="%ITEM_TAG_NAME%" placeholder="Tag Name" readonly/><br />
+							<input class="name_field" type="text" value="%ITEM_NAME%" placeholder="Item Name" readonly/>
+							
+							<h4>
+								Item Size
+							</h4>
+							
+							<p>
+								Values in grid case unit.
+							</p>
+							<input class="id_field" type="text" placeholder="X" value="%ITEM_WIDTH%" onkeyup="updateItem(%ITEM_ID%, 'WIDTH', this.value);"/> x
+							<input class="id_field" type="text" placeholder="Y" value="%ITEM_HEIGHT%" onkeyup="updateItem(%ITEM_ID%, 'HEIGHT', this.value);"/>
+								
+							<h4>Item Visibility</h4>
+							<select onchange="updateItem(%ITEM_ID%, 'ENABLED', this.value);">
+								<option value="1" %ENABLED_SETTED%>Enabled</option>
+								<option value="0" %DISABLED_SETTED%>Disabled</option>
+							</select>
+							
+							<h4>
+								Item Quality
+							</h4>
+							<select onchange="updateItem(%ITEM_ID%, 'REL_QUALITY', this.value);">
+								<!-- BEGIN_BLOCK WITH ITEMS_QUALITIES -->
+								<option value="%ID%" %SELECTED%>%QUALITY%</option>
+								<!-- END_BLOCK -->
+							</select>
+							
+							<h4>
+								Item Family
+							</h4>
+							<select onchange="updateItem(%ITEM_ID%, 'REL_FAMILY', this.value);">
+								<!-- BEGIN_BLOCK WITH ITEMS_FAMILIES -->
+								<option value="%ID%" %SELECTED%>%FAMILY%</option>
+								<!-- END_BLOCK -->
+							</select>
+							
+							<h4>
+								Item Type
+							</h4>
+							<select onchange="updateItem(%ITEM_ID%, 'REL_TYPE', this.value);">
+								<!-- BEGIN_BLOCK WITH ITEMS_TYPES -->
+								<option value="%ID%" data-rel-family="%REL_FAMILY%" %SELECTED%>%TYPE%</option>
+								<!-- END_BLOCK -->
+							</select>
+						</div>
+						
+					</div>
+					
+					<div class="items_editor_properties_attributes">
+						<h3>
+							Item Attributes
+						</h3>
+						
+						<h4>
+							Primaries
+						</h4>
+						
+						<h4>
+							Secondaries
+						</h4>
+						
+						<h4>
+							Petties
+						</h4>
+					</div>
+					
+				</div>
+				
+			</div>
+			
+		</div>
+		
+		<!-- Gestion des articles -->
+		<div class="admin_panel_body_content articles %ACTIVE_ARTICLES%" data-content="articles" data-level="1">
+			
+			<div class="articles_menu">
+				<!-- Filtre de recherche -->
+				<input type="text" placeholder="Filter"/>
+				
+				<!-- Liste des articles -->
+				<select onchange="loadArticle(this);">
+					<option value="0">- Select Article -</option>
+					<!-- BEGIN_BLOCK WITH ARTICLES -->
+					<option value="%ID%">%TITLE%</option>
+					<!-- END_BLOCK -->
+				</select>
+				
+				<!-- Supprimer l'article selectionné -->
+				<input id="article_delete" type="button" value="Delete" disabled onclick="if(confirm('Delete Selected Article ?')) deleteArticle();"/>
+			</div>
+			
+			<form onsubmit="saveArticle(); return false;">
+				<div class="articles_editor">
+					<input id="article_title" type="text" placeholder="Article Title" name="article_title" />
+					<input id="article_date" type="text" placeholder="dd/mm/yyyy - hh:ii" readonly name="article_date"/>
+					<input id="article_save_process" type="hidden" value="create" name="article_save_process"/>
+					<input id="article_id" type="hidden" value="0" name="article_id"/>
+					
+					<textarea id="article_editor" name="article_article"></textarea>
+					
+					<script type="text/javascript">
+						CKEDITOR.replace('article_editor', {
+							uiColor: '#84291b'
+						});
+					</script>
+					
+				</div>
+				
+				<input id="article_submitor" type="submit" value="Create" />
+			</form>
+			
+		</div>
+		
+		<!-- Gestion des Sorts -->
+		<div class="admin_panel_body_content skills %ACTIVE_SKILLS%" data-content="skills" data-level="1">
+			<!-- Gestion des sorts -->
+		</div>
+		
+		<!-- Gestion des Donnée de jeu -->
+		<div class="admin_panel_body_content game_data %ACTIVE_GAME_DATA%" data-content="game_data" data-level="1">
+			<!-- Enregistrer une Qualité d'objet -->
+			<h2>
+				Item Quality
+			</h2>
+			
+			<h3>
+				Create
+			</h3>
+			
+			<form onsubmit="return false;">
+				<input type="submit" value="create"/>
+			</form>
+			
+			<h3>
+				Edit
+			</h3>
+			
+			<!-- Enregistrer une Famille D'objet -->
+			<h2>
+				Item Family
+			</h2>
+			
+			<h3>
+				Create
+			</h3>
+			
+			<form onsubmit="return false;">
+				<input type="submit" value="create"/>
+			</form>
+			
+			<h3>
+				Edit
+			</h3>
+			
+			<!-- Enregistrer un type d'objet -->
+			<h2>
+				Item Type
+			</h2>
+			
+			<h3>
+				Create
+			</h3>
+			
+			<form onsubmit="return false;">
+				<input type="submit" value="create"/>
+			</form>
+			
+			<h3>
+				Edit
+			</h3>
+			
+			<!-- Enregistrer un type d'attribut -->
+			<h2>
+				Attribute Type
+			</h2>
+			
+			<h3>
+				Create
+			</h3>
+			
+			<form onsubmit="return false;">
+				<label>Reference HTML</label> <input type="text" placeholder="reference"/>
+				<label>Tag Name</label> <input type="text" placeholder="tag name"/>
+				
+				<input type="submit" value="create"/>
+			</form>
+			
+			<h3>
+				Edit
+			</h3>
+		</div>
+	</div>
+	
+</div>

@@ -1,0 +1,16 @@
+{
+	"items": [
+		<!-- BEGIN_BLOCK ITEMS -->
+		%COMMA% {
+			"ID": %ID%,
+			"TYPE": %TYPE%,
+			"WIDTH": %WIDTH%,
+			"HEIGHT": %HEIGHT%,
+			"NAME": "%NAME%",
+			"TAG_NAME": "%TAG_NAME%",
+			"QUALITY": %QUALITY%,
+			"ATTACHMENT": "%ATTACHMENT%"
+		}
+		<!-- END_BLOCK ITEMS -->
+	]
+}

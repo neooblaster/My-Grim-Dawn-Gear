@@ -1,0 +1,8 @@
+public
+boolean
+set_utf8_write_treatment
+string $traitement
+Declaration of the UTF8 treatment for the writing processing of the output file.
+The treatment possibilities are "none", "encode" and "decode".
+"none" is the default setting.
+"none" mean "use the default encoding of the template file"

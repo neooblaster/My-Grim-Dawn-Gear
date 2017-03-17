@@ -1,0 +1,6 @@
+public
+string
+show_warnings
+void
+This method displays all encountered errors during the rendering.
+These errors are not blocking errors.

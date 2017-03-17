@@ -1,0 +1,5 @@
+public
+boolean
+remove_folder
+string $folder_path
+This method allows you to delete a folder used by the render engine. You can also use it to remove another folder, but you must define the target from the script which executes this class.

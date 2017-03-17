@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="%LANG_LANG%">
+	<head>
+		<meta charset="utf-8" />
+		<title>%HEAD_VIEW_TITLE% - %HEAD_MAIN_TITLE%</title>
+		<link rel="icon" href="/Images/favicon.ico" />
+		<link rel="icon" href="/Images/favicon_16.png" sizes="16x16"/>
+		<link rel="icon" href="/Images/favicon_64.png" sizes="64x64"/>
+		<link rel="icon" href="/Images/favicon_128.png" sizes="128x128"/>
+		<link rel="icon" href="/Images/favicon_32.png" sizes="32x32"/>
+		<!-- INCLUDE_TEMPLATE (Templates/Common/head.tpl.html) -->
+	</head>
+	<body>
+		<!-- Site Header -->
+		<header>
+			<!-- NCLUDE_TEMPLATE (Templates/Common/module-lang-selector.tpl.html)-->
+			<a href="/"><img src="/Images/Textes/MyGrimDawnGear.png" title="Go home" alt="My Grim Dawn Gear"/></a>
+		</header>
+		
+		<!-- Site Navigation Barre -->
+		<nav>
+			<ul>
+				<li><a href="/home">%NAV_HOME%</a></li>
+				<!-- IF (%MGDG-ADMIN%) AS GEAR_EDITABLE -->
+				<li><a href="/gear#!edit">%NAV_GEAR%</a></li>
+				<!-- ELSE -->
+				<li><a href="/gear">%NAV_GEAR%</a></li>
+				<!-- ENDIF GEAR_EDITABLE -->
+				
+				<!-- IF (%MGDG-ADMIN%) AS ADM-UNLOCK-MENU -->
+				<li><a href="/manage">%NAV_MANAGE%</a></li>
+				<!-- ENDIF ADM-UNLOCK-MENU -->
+			</ul>
+		</nav>
+		
+		<!-- Site Related View Content -->
+		<section id="content" class="content">
+			<h1>
+				%VIEW_TITLE%
+			</h1>
+			
+			<!-- INCLUDE_TEMPLATE (Templates/Index/%VIEW%.tpl.html)-->
+		</section>
+		
+		<!-- Site Footer Barre -->
+		<!-- INCLUDE_TEMPLATE (Templates/Common/footer.tpl.html) -->
+	</body>
+</html>

@@ -1,0 +1,8 @@
+public
+string
+show_historic
+boolean $reverse
+This method displays all encountered errors during the rendering.
+These errors are not blocking errors.
+If $reverse is true, the reading of the historic will begin from recent entry.
+The default reading is the same order than encountered errors to keep consistency.

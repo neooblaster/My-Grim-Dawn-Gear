@@ -1,0 +1,5 @@
+public
+string
+get_vars_delim
+void
+This method displays the current delimiter to use during the rendering.

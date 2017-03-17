@@ -1,0 +1,8 @@
+public
+string
+sendMail
+void
+This method sends by email the content of the calculated document.
+So that mean you must use this method after the "render" method.
+Moreover, you must define the email parameters before
+She is useful when you generate reports which you want to receive on your email software.

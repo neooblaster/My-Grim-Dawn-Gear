@@ -1,0 +1,8 @@
+public
+boolean
+set_vars_delim
+string $delim
+Declaration of the delimiter of variables.
+The delimiter is the character which surround the variable name.
+This allows the programme to identify the place where you need the expected value.
+The method will automaticaly calculates the corresponding end delimiter.

@@ -1,0 +1,6 @@
+public
+boolean
+set_output_directory
+string $direcotry
+Declaration of the repository folder for the rendered files.
+Do not use the slash char at the end of the folder name.

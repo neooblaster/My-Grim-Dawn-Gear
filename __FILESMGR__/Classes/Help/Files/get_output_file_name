@@ -1,0 +1,6 @@
+public
+string
+get_output_file_name
+void
+This method returns the full name of the outgoing file.
+The name contains the path and the name with the extension.

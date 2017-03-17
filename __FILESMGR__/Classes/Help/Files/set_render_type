@@ -1,0 +1,7 @@
+public
+boolean
+set_render_type
+string $type
+This method allows you to define the type of the render. If you want to generate a document, the appropriate render type is "permanent".
+If you use only a template to display something, the appropriate render type is "temporary".
+The default value is set to "temporary".

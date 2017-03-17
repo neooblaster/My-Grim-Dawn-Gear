@@ -1,0 +1,27 @@
+ARTICLES @load_articles()
+	ID
+	TITLE
+	ARTICLE
+	CREATE_DATE
+	LAST_MODIFIED
+	LAST_MODIFIED_TS
+
+ITEMS_FAMILIES @load_items_families()
+	ID
+	FAMILY
+
+ITEMS_QUALITIES @load_items_qualities()
+	ID
+	QUALITY
+
+ITEMS_TYPES @load_items_types()
+	ID
+	REL_FAMILY
+	TYPE
+
+ITEMS @load_items()
+	ID
+	REL_FAMILY
+	REL_TYPE
+	REL_QUALITY
+	ITEM

@@ -1,0 +1,93 @@
+/** ----------------------------------------------------------------------------------------------------------------------- **/
+/** ----------------------------------------------------------------------------------------------------------------------- **/
+/** ---																																						--- **/
+/** --- 												---------------------------------------													--- **/
+/** ---														{ config.seo.index.json }																--- **/
+/** --- 												---------------------------------------													--- **/
+/** ---																																						--- **/
+/** ---		AUTEUR 	: Nicolas DUPRE																												--- **/
+/** ---																																						--- **/
+/** ---		RELEASE	: 12.07.2016																													--- **/
+/** ---																																						--- **/
+/** ---		VERSION	: 1.0																																--- **/
+/** ---																																						--- **/
+/** ---																																						--- **/
+/** --- 														-----------------------------															--- **/
+/** --- 															 { C H A N G E L O G } 																--- **/
+/** --- 														-----------------------------															--- **/
+/** ---																																						--- **/
+/** ---		VERSION 1.0 : 12.07.2016																												--- **/
+/** ---		------------------------																												--- **/
+/** ---			- Première release																													--- **/
+/** ---																																						--- **/
+/** ---																																						--- **/
+/** ---																																						--- **/
+/** ---		META-NAME :																																	--- **/
+/** ---		------------																																--- **/
+/** ---																																						--- **/
+/** ---			description																																--- **/
+/** ---			robots																																	--- **/
+/** ---			googlebot				: Cf description détaillée																				--- **/
+/** ---			Publisher																																--- **/
+/** ---			google					: paramèresgoogle																							--- **/
+/** ---			Reply-to																																	--- **/
+/** ---			verify-v1				: Code unique google pour la propriété																--- **/
+/** ---			syndication-source	: En cas de syndication de contenus, elle indique l'URL de l'article original			--- **/
+/** ---			original-source		: Indique l'url d'origine en cas de redirection													--- **/
+/** ---			pragma					: Gestion de la mise en cache des moteur de recherche et navigateur						--- **/
+/** ---			expire					: Date d'expiration des informations de la page													--- **/
+/** ---			copyright				: Droit de propriété																						--- **/
+/** ---																																						--- **/
+/** ---			geo.placename			: Nom du lieu																								--- **/
+/** ---			geo.position			: latitude; longitude																					--- **/
+/** ---			geo.region				: Code du pays (FR)																						--- **/
+/** ---			ICBM						: latitude; longitude																					--- **/
+/** ---																																						--- **/
+/** ---																																						--- **/
+/** ---																																						--- **/
+/** ---		META-HTTP-EQUIV :																															--- **/
+/** ---		------------------																														--- **/
+/** ---																																						--- **/
+/** ---			Content-Type			: Type de contenu envoyé																				--- **/
+/** ---			Content-Language		: Code de langue du site ou de la page																--- **/
+/** ---			cache-control			: Comportement de la mise en cache de la page													--- **/
+/** ---																																						--- **/
+/** ---																																						--- **/
+/** ---																																						--- **/
+/** ---																																						--- **/
+/** ---		robots & googlebot :																														--- **/
+/** ---		---------------------																													--- **/
+/** ---																																						--- **/
+/** ---			Valeur par défaut : index, follow																								--- **/
+/** ---																																						--- **/
+/** ---			Valeur Admise : 																														--- **/
+/** ---				index								: Permet l'indexage de la page															--- **/
+/** ---				follow							: Permet au bot de suivre les liens dans la page									--- **/
+/** ---				noindex							: Empeche l'indexage de la page															--- **/
+/** ---				nofollow							: bloque les liens URL à l'interieur de la page. Le bot ne les suivra pas	--- **/
+/** ---																																						--- **/
+/** ---				all								: Equivalent index, follow																	--- **/
+/** ---				none								: Equivalent noindex, nofollow															--- **/
+/** ---																																						--- **/
+/** ---				noarchive						: Permet de cacher l'attribut "en cache" dans les résultats de recherche	--- **/
+/** ---				unavailable_after:[data]	: Supprimer la page des résultats de recherche apres la date donnée			--- **/
+/** ---																																						--- **/
+/** ---				nosnippet						: bloque l'affichage d'une description dans les resultats de recherche		--- **/
+/** ---				noodp								: bloque l'utilisation du texte sur l'Open Directory dmoz.org pour			--- **/
+/** ---													  générer un snippet																			--- **/
+/** ---																																						--- **/
+/** ---																																						--- **/
+/** ---		cache-control :																															--- **/
+/** ---		---------------																															--- **/
+/** ---																																						--- **/
+/** ---			public		: autorise la mise en cache pour tout le monde y compris le caches partagés [défaut].			--- **/
+/** ---			private		: bloque la mise en cache sur serveur cache mais autorise celle du navigateur.					--- **/
+/** ---			no-cache		: bloque à la fois le navigateur et les autres systèmes de cache.										--- **/
+/** ---			no-store		:autorise le cache mais par l'archivage du document.														--- **/
+/** ---																																						--- **/
+/** ---																																						--- **/
+/** ---																																						--- **/
+/** ----------------------------------------------------------------------------------------------------------------------- **/
+/** ----------------------------------------------------------------------------------------------------------------------- **/
+{
+}

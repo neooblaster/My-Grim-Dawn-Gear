@@ -1,0 +1,21 @@
+<!-- BEGIN_BLOCK CSS_BLOCK -->
+		<link rel="stylesheet" href="/%CSS_FILE%?build=%CSS_FILEMTIME%" type="text/css" media="%CSS_MEDIA%">
+<!-- END_BLOCK CSS_BLOCK -->
+
+<!-- BEGIN_BLOCK LESS_BLOCK -->
+		<link rel="stylesheet/less" href="/%LESS_FILE%?build=%LESS_FILEMTIME%" type="text/css" media="%LESS_MEDIA%">
+<!-- END_BLOCK LESS_BLOCK -->
+
+<!-- BEGIN_BLOCK SCRIPTS_BLOCK -->
+		<script type="text/javascript" src="/%SCRIPT_FILE%?build=%SCRIPT_FILEMTIME%"></script>
+<!-- END_BLOCK SCRIPTS_BLOCK -->
+
+<!-- IF (%INCLUDE_CKEDITOR%) AS INCLUDE_CKEDITOR -->
+		<script type="text/javascript" src="/Modules/ckeditor/ckeditor.js"></script>
+<!-- ENDIF INCLUDE_CKEDITOR -->
+
+		<script type="text/javascript">
+			<!-- BEGIN_BLOCK VARJS -->
+			var $_%VAR_KEY% = '%VAR_VALUE%';
+			<!-- END_BLOCK VARJS -->
+		</script>

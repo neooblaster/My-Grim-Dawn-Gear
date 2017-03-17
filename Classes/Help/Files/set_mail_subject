@@ -1,0 +1,5 @@
+public
+boolean
+set_mail_subject
+string $subject
+Declaration of the email object.

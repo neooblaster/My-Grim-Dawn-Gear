@@ -1,0 +1,21 @@
+<div class="home_panel">
+	<!-- BEGIN_BLOCK WITH ARTICLES -->
+	<article>
+		<h2>
+			%ARTICLE_TITLE%
+		</h2>
+		
+		%ARTICLE_ARTICLE%
+		
+		<p>
+			%%PUBLISH_DATE%% : %ARTICLE_CREATE_DATE%<br/>
+			<!-- IF (%ARTICLE_LAST_MODIFIED_TS% > 0) AS HAS_BEEN_EDITED -->
+			%%LAST_MODIFIED%% : %ARTICLE_LAST_MODIFIED%
+			<!-- ENDIF HAS_BEEN_EDITED -->
+		</p>
+	</article>
+	<!-- END_BLOCK -->
+</div>
+
+
+

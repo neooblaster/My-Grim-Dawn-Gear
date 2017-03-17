@@ -1,0 +1,22 @@
+<div id="Module-Lang-Selector">
+	<div id="Lang-Label">
+		%LANG_SELECTOR_LABEL%
+	</div>
+	<div id="Lang-Button">
+		<a href="#Module-Lang-Selector">
+			<div id="Lang-Selected">
+				%LANG_NAME%
+			</div>
+			<div id="Lang-Flag">
+				<img src="/Images/Flags/%LANG_KEY%.png"/>
+			</div>
+		</a>
+	</div>
+	<div id="Lang-List">
+		<ul>
+			<!-- BEGIN_BLOCK LANGUAGES -->
+			<a href="#" onclick="setLanguage('%LANG_KEY%');"><li>%LANG_NAME%<img src="/Images/Flags/%LANG_KEY%.png"/></li></a>
+			<!-- END_BLOCK LANGUAGES -->
+		</ul>
+	</div>
+</div>

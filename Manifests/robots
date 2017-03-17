@@ -1,0 +1,59 @@
+Syntaxe
+
+La syntaxe acceptée par les robots offre un minimum de souplesse :
+- les espaces sont facultatifs
+- l'utilisation des majuscules ou minuscules est sans importance (on dit que la syntaxe n'est pas "case sensitive")
+
+Les lignes doivent commencer par l'une des 3 options suivantes :
+
+#
+
+Il s'agit d'un commentaire. Tout ce qui suit ce caractère sera ignoré par les robots
+
+User-Agent:
+
+Cette mention peut être suivie du caractère * ou du nom explicite d'un robot existant
+
+Disallow:
+
+Cette mention peut être suivie d'UN SEUL nom de répertoire ou de fichier
+
+
+La syntaxe typique est la suivante :
+
+User-Agent: AAAAAAA
+Disallow: BBBBBBB
+Disallow: CCCCCC
+
+User-Agent: AAAAAAA'
+Disallow: BBBBBBB'
+Disallow: CCCCCC
+
+etc.......
+
+où AAAAAAA et AAAAAAA' sont les noms des robots et BBBBBBB, BBBBBBB', CCCCCCC et CCCCCCC' les noms des fichiers et/ou des répertoires que l'on souhaite masquer (ne pas faire indexer) pour ces robots.
+
+Si vous utilisez le caractère * à la place du nom de robot, les lignes suivantes seront considérées comme des interdictions d'indexage pour TOUS les robots.
+
+Si vous utilisez le caractère / à la place du nom de fichier, AUCUN fichier du site ne sera indexé.
+
+
+
+
+
+
+
+
+# Sitemap: <lien url="http://www.mon-site-web.com/sitemap.xml">http://www.mon-site-web.com/sitemap.xml</lien>
+User-Agent: *
+
+
+
+
+
+# User-Agent: Googlebot
+# Disallow: 
+
+
+
+# GoogleBot : g`ere le joker * et l'indicateur de fin $

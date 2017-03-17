@@ -1,0 +1,6 @@
+# Cache de niveau 3, mise en cache pour le client (ms, m, s, h, d, W, Y)
+
+location ~* \.(png|gif)$ {
+	etag off;
+	expires 7d;
+}

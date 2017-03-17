@@ -1,0 +1,5 @@
+{
+	<!-- BEGIN_BLOCK SLOTS -->
+	%COMMA% "%SLOT%": %ITEM%
+	<!-- END_BLOCK SLOTS -->
+}

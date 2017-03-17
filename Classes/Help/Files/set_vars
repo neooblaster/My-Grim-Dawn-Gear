@@ -1,0 +1,6 @@
+public
+boolean
+set_vars
+array $vars
+The method lets you to specify the data you want to use in the engine.
+The input variable must be an associative arrays where keys represents the variable name.

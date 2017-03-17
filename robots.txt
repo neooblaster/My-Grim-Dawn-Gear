@@ -1,0 +1,4 @@
+Sitemap: http://my-grimdawn-gear.com/Configs/config.sitemaps.txt
+
+User-Agent: *
+Disallow: 

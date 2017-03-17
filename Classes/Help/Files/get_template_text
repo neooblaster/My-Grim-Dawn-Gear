@@ -1,0 +1,5 @@
+public
+string
+get_template_text
+void
+This method returns the template text defined which will be use during the rendering.

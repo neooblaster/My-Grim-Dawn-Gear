@@ -1,0 +1,7 @@
+public
+string
+get_mail_recipients
+void
+This method returns a list of the email recipients when you use the method "sendMail".
+This method allows you to check if the recipients are correct.
+Note : the returned list is a string where recipients are separated by semicolon.

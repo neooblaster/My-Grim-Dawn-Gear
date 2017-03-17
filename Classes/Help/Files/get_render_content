@@ -1,0 +1,5 @@
+public
+string
+get_render_content
+void
+This method look like to display method, but she retrieves the content of the rendered document. That allows you to manipulate the generated datas. For example, a JSON file generated with a template.

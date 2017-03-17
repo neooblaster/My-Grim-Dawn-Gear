@@ -1,0 +1,6 @@
+public
+string
+help
+void
+This method displays this manual.
+The manual presents all existing methods and their roles.

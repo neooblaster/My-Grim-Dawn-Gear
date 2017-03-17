@@ -1,0 +1,5 @@
+public
+boolean
+set_template_text
+string $source
+Define the text string which will be translated.

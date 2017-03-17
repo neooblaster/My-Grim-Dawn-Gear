@@ -1,0 +1,193 @@
+//#!/compile = false
+/** -------------------------------------------------------------------------------------------------------------------- ** 
+/** -------------------------------------------------------------------------------------------------------------------- ** 
+/** ---																																					--- **
+/** --- 											-----------------------------------------------											--- **
+/** ---														{ grid-engine_screen.less }														--- **
+/** --- 											-----------------------------------------------											--- **
+/** ---																																					--- **
+/** ---		MEDIA 	: SCREEN																														--- **
+/** ---																																					--- **
+/** ---		AUTEUR 	: Nicolas DUPRE																											--- **
+/** ---																																					--- **
+/** ---		RELEASE	: 02.10.2016																												--- **
+/** ---																																					--- **
+/** ---																																					--- **
+/** ---																																					--- **
+/** ---																																					--- **
+/** -------------------------------------------------------------------------------------------------------------------- **
+/** -------------------------------------------------------------------------------------------------------------------- **
+
+
+	Compatibilité :
+	----------------
+
+		Internet	:: Totale à partir de la version 11 - Versions antérieures à vérifier
+		Edge		:: Totale à partir de la version HTML 14 - Versions antérieures à vérifier
+		Firefox	:: Totale à partir de la version 47.0.1 - Versions antérieures à vérifier
+		Chrome 	:: Bonne à partir de la version 53.0.2785.116 - Versions antérieures à vérifier
+		Opera		:: Bonne à partir de la version 40 - Versions antérieures à vérifier
+
+
+	Paramètres d'entrée :
+	----------------------
+
+			Params				Need				Type				Default			Description
+		
+		@parent_width	:: Obligatoire	:: Pixel			:: 				:: Largeur effective en pixel du block (Width - border-left - border-right - padding-left - padding-right)
+		@grid_width		:: Obligatoire	:: Integer		:: 				:: Nombre de case désiréé sur l'axe X
+		@grid_height	:: Obligatoire	:: Integer		:: 				:: Nombre de case désirée sur l'axe Y
+		@grid_gutter	:: Facultatif	:: Pixel			:: 0px			:: Taille en pixel de l'espacement entre deux case - Donc entre deux block
+		@grid_color		:: Facultatif	:: Color			:: red			:: Couleur de la grille
+
+
+	Exemple d'Utilisation :
+	------------------------
+
+		HTML :
+		-------
+			
+			<div class="le-parent show-grid">
+				<div class="grid-engine size-1-1 position-1-1">Un block</div>
+			</div>
+		
+		
+		CSS :
+		------
+			
+			.le-parent {
+				// Fixer la largeur
+				width: 1000px;
+				
+				// Instanciation d'une grille de 10 case sur 5 case
+				.grid-engine(1000px, 10, 5);
+			}
+
+
+
+/** -------------------------------------------------------------------------------------------------------------------- **
+/** -------------------------------------------------------------------------------------------------------------------- **
+/** ---																																					--- **
+/** ---													Déclaration de la classe grid-engine												--- **
+/** ---																																					--- **
+/** -------------------------------------------------------------------------------------------------------------------- **
+/** -------------------------------------------------------------------------------------------------------------------- **/
+.grid-engine(@parent_width, @grid_width, @grid_height, @grid_gutter: 0px, @grid_color: red) {
+	
+	/** > Déterminer la taille d'une case - L'offset **/
+	@grid_offset: ((@parent_width - (@grid_width * @grid_gutter)) / @grid_width);
+		
+	/** > Fixé la hauteur de sorte à ce que les blocks ne sorte pas du cadre **/
+	height: (@grid_height * (@grid_offset + @grid_gutter));
+	position: relative;
+	
+	/** > Déclaration de la classe show-grid - Elle permet l'affichage de celle-ci pour aider au placement des block **/
+	&.show-grid {
+		// Afficher un titre de grille indiquant la taille appliqué - Permet d'éviter de calcul les cases une à une
+		&:before {
+			content: "Grid Size : @{grid_width} x @{grid_height} - Gutter Size : @{grid_gutter}";
+			position: absolute;
+			width: 400px;
+			height: @grid_offset;
+			line-height: @grid_offset;
+			text-align: center;
+			//background: black;
+			font-style: italic;
+			color: black;
+			font-weight: bold;
+			top: (@grid_gutter / 2);
+			left: calc(~'50% - 200px');
+		}
+		
+		// Composition graphique de la grille
+		background-image: 
+			linear-gradient(
+				to right,
+				transparent 0,
+				transparent (@grid_gutter / 2),
+				@grid_color ((@grid_gutter / 2) + 1),
+				transparent ((@grid_gutter / 2) + 2),
+				transparent ((@grid_gutter / 2) + 2),
+				transparent ((@grid_offset + @grid_gutter) - (@grid_gutter / 2) - 2),
+				@grid_color ((@grid_offset + @grid_gutter) - (@grid_gutter / 2) - 1),
+				transparent ((@grid_offset + @grid_gutter) - (@grid_gutter / 2)),
+				transparent (@grid_offset + @grid_gutter)
+			),
+			linear-gradient(
+				to bottom,
+				transparent 0,
+				transparent (@grid_gutter / 2),
+				@grid_color ((@grid_gutter / 2) + 1),
+				transparent ((@grid_gutter / 2) + 2),
+				transparent ((@grid_gutter / 2) + 2),
+				transparent ((@grid_offset + @grid_gutter) - (@grid_gutter / 2) - 2),
+				@grid_color ((@grid_offset + @grid_gutter) - (@grid_gutter / 2) - 1),
+				transparent ((@grid_offset + @grid_gutter) - (@grid_gutter / 2)),
+				transparent (@grid_offset + @grid_gutter)
+			)
+			//,linear-gradient(to right, white, gray, white)
+		;
+		
+		// Fixé la taille de la grille à celle du couple goutiere+offset
+		background-size: (@grid_offset + @grid_gutter) (@grid_offset + @grid_gutter);
+	}
+	
+	/** > Déclaration de la classe grid-engine - et des classe sous-jacente size-x-y et position-x-y **/
+	.grid-engine{
+		position: absolute;
+		box-sizing: border-box;
+		
+		// MIXIN - Création des classes de dimensionnement
+		.grid(@size_x, @size_y){
+			.grid-row(@size_y);
+		}
+		
+		// LOOP - Boucle récursive sur les lignes pour le dimensionnement
+		.grid-row(@r) when (@r > 0){
+			.grid-row((@r - 1));
+			
+			.grid-cell(@size_x);
+		}
+		
+		// LOOP - Boucle récursive sur les colonne // celulle pour le dimensionnement
+		.grid-cell(@c) when (@c > 0){
+			.grid-cell((@c - 1));
+			
+			&-@{c}-@{r}{
+				width: ((@c * @grid_offset) + ((@c - 1) * @grid_gutter)); 
+				height: ((@r * @grid_offset) + ((@r - 1) * @grid_gutter));
+			}
+		}
+		
+		// MIXIN : Création des classes de positionnement
+		.place(@pos_x, @pos_y){
+			.place-x(@pos_x);
+		}
+		
+		// LOOP : Boucle récursive sur X
+		.place-x(@px) when (@px > 0){
+			.place-x((@px - 1));
+			
+			.place-y(@pos_y);
+		}
+		
+		// LOOP : BOucle récursive sur Y
+		.place-y(@py) when (@py > 0){
+			.place-y((@py - 1));
+			
+			&-@{px}-@{py} {
+				left: (((@px - 1) * (@grid_offset + @grid_gutter)) + (@grid_gutter / 2));
+				top: (((@py - 1) * (@grid_offset + @grid_gutter)) + (@grid_gutter / 2));
+			}
+		}
+		
+		// APPELS : "Compilation"
+		&.size {
+			.grid(@grid_width, @grid_height);
+		}
+		
+		&.position {
+			.place(@grid_width, @grid_height);
+		}
+	}
+}

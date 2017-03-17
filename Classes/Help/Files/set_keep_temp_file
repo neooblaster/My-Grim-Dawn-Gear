@@ -1,0 +1,7 @@
+public
+boolean
+set_keep_temp_file
+boolean $keep_file
+This method allows you to force the conservation of temporary files.
+That can help you to debug your template.
+The default value is false. 

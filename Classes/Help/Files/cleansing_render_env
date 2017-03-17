@@ -1,0 +1,6 @@
+public
+boolean
+cleansing_render_env
+void
+This methode let you to force the cleansing of the temporary environnement used for the render.
+That method can be usefull when something happens wrong during the rendering to flush folder or if the normal process does not done its job.

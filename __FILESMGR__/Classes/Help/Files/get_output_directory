@@ -1,0 +1,5 @@
+public
+string
+get_output_directory
+void
+This method returns the defined repository directory for the outgoing file.

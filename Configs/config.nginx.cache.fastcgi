@@ -1,0 +1,2 @@
+# # Cache de niveau 2, cache des rendu HTML (a voir si compatible avec Template)
+# Pour un jeu c'est à voir obligatoirement : https://www.guillaume-leduc.fr/gestion-caches-nginx-php-fpm.html

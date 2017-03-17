@@ -1,0 +1,6 @@
+public
+boolean
+set_blocks_vars
+array $blocks_vars
+Declaration of the blocks variables for the render
+The variable must be an numeric array composed with associative arrays.

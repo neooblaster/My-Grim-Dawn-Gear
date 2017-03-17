@@ -1,0 +1,124 @@
+# ----------------------------------------------------------------------------------------------------------------------- ** 
+# ----------------------------------------------------------------------------------------------------------------------- ** 
+# ----																																					---- **
+# ---- 												---------------------------------------												---- **
+# ----														{ config.nginx.rewrite.urls } 													---- **
+# ---- 												---------------------------------------												---- **
+# ----																																					---- **
+# ----		AUTEUR 	: Nicolas DUPRE																											---- **
+# ----																																					---- **
+# ----		RELEASE	: 11.07.2016																												---- **
+# ----																																					---- **
+# ----		VERSION	: 1.0																															---- **
+# ----																																					---- **
+# ----																																					---- **
+# ---- 														---------------------------														---- **
+# ----															{ C H A N G E L O G }															---- **
+# ---- 														---------------------------														---- **
+# ----																																					---- **
+# ----																																					---- **
+# ----		VERSION 1.0 : 11.07.2016																											---- **
+# ----		------------------------																											---- **
+# ----			- Première release																												---- **
+# ----																																					---- **
+# ----------------------------------------------------------------------------------------------------------------------- **
+# ----------------------------------------------------------------------------------------------------------------------- **
+#
+#	Requirements :
+#	--------------
+#
+#		Nécessite les droits d'admins pour redémarrer le service nginx lorsque le fichier est modifié
+#
+#
+#
+#	Objectif du script :
+#	---------------------
+#	
+#		Est une extension de configuration de NGINX pour le site virtuel "dev-mobius" présent /etc/nginx/sites-enabled
+#		Le fichier de configuration dispose d'une instruction d'inclusion du fichier ci-présent
+#	
+#	
+#	
+#	Description fonctionnelle :
+#	----------------------------
+#
+#		Ré-écris la demande URL en version "classique" - Permet de masquer les paramètres
+#		Utilisation du module rewrite
+#		Règle de ré-écriture vont du cas le plus complet au cas le plus simple
+#
+# ----------------------------------------------------------------------------------------------------------------------- **
+# ----------------------------------------------------------------------------------------------------------------------- **
+#   rewrite ^/portail/task-editor/([a-zA-Z]+)/([0-9]+)$ /portail.php?content=task-editor&$1&id=$2 last;
+#   rewrite ^/portail/task-editor/([a-zA-Z]+)$ /portail.php?content=task-editor&$1& last;
+#   rewrite ^/portail/params/([a-zA-Z-_]+)$ /portail.php?content=params&panel=$1 last;
+#   rewrite ^/portail/(.*)$ /portail.php?content=$1 last;
+
+
+
+
+# ------------------------------- #
+# --- Configuration des Paths --- #
+# ------------------------------- #
+# Alias pour les appels AJAX
+	rewrite ^/XHR/(.*)$ /Processors/Async/$1 last;
+	
+# Alias pour les appels SSE
+	rewrite ^/SSE/(.*)$ /Processors/Scripts/$1 last;
+	
+# Alias pour les scripts JavaScript
+	rewrite ^/Scripts/(.*)$ /Scripts/$1 last;
+	
+# Alias pour les Images : DEV en local et PRD chez OVH
+	#rewrite ^/Images/(.*)$ /Images/$1 last;
+	rewrite ^/Images/(.*)$ http://mgdg.neoblaster.fr/Images/$1 last;
+	
+# Alias pour le dossier de dépôt des CSS
+	rewrite ^/CSS/(.*)$ /CSS/$1 last;
+	
+# Alias pour le dossier de dépôt pour les LESS
+	rewrite ^/LESS/(.*)$ /LESS/$1 last;
+	
+# Alias pour le dossier de dépôt de police de texte
+	rewrite ^/Fonts/(.*)$ /Fonts/$1 last;
+	
+# Alias pour le dossier de dépôt de police de texte
+	rewrite ^/Modules/(.*)$ /Modules/$1 last;
+	#rewrite ^/Modules/(.*)$ http://mgdg.neoblaster.fr/Modules$1 last;
+
+
+
+# ---------------------------------------------- #
+# --- Autorisé l'accès au fichier robots.txt --- #
+# ---------------------------------------------- #
+rewrite ^/robots\.txt$ /robots.txt last;
+
+
+
+# -------------------------------------------- #
+# --- Autorisé l'accès au fichier sitemaps --- #
+# -------------------------------------------- #
+rewrite ^/([a-zA-Z0-9-_./]+)+sitemaps\.(txt|xml)$ /$1sitemaps.$2 last;
+
+
+
+# ------------------------------------- #
+# --- Configuration de la page Gear --- #
+# ------------------------------------- #
+rewrite ^/(gear|build)/([a-zA-Z0-9]*)\/?$ /index.php?view=gear&gear=$2 last;
+rewrite ^/(img)/([a-zA-Z0-9]*)\/?$ /buildimg.php?gear=$2 last;
+
+
+
+# --------------------------------------- #
+# --- Configuration de la page Manage --- #
+# --------------------------------------- #
+rewrite ^/manage/edit/([a-zA-Z-_.]*)/([0-9]*)$ /index.php?view=manage&edit=$1&id=$2 last;
+
+
+
+# ------------------------------------------------ #
+# --- Configuration Générique de la page index --- #
+# ------------------------------------------------ #
+rewrite ^/([a-zA-Z0-9-_./]*)\/?$ /index.php?view=$1 last;
+
+

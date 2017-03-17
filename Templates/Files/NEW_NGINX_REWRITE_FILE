@@ -1,0 +1,63 @@
+# ----------------------------------------------------------------------------------------------------------------------- ** 
+# ----------------------------------------------------------------------------------------------------------------------- ** 
+# ----																																					---- **
+# ---- 												---------------------------------------												---- **
+# ----															{ nginx.rewrite.urls }															---- **
+# ---- 												---------------------------------------												---- **
+# ----																																					---- **
+# ----		AUTEUR 	: Nicolas DUPRE																											---- **
+# ----																																					---- **
+# ----		RELEASE	: 18.01.2016																												---- **
+# ----																																					---- **
+# ----		VERSION	: 1.0																															---- **
+# ----																																					---- **
+# ----																																					---- **
+# ---- 														---------------------------														---- **
+# ----															{ C H A N G E L O G }															---- **
+# ---- 														---------------------------														---- **
+# ----																																					---- **
+# ----																																					---- **
+# ----		VERSION 1.0 : 18.01.2016																											---- **
+# ----		------------------------																											---- **
+# ----			- Première release																												---- **
+# ----																																					---- **
+# ----------------------------------------------------------------------------------------------------------------------- **
+# ----------------------------------------------------------------------------------------------------------------------- **
+#
+#	Requirements :
+#	--------------
+#
+#		Nécessite les droits d'admins pour redémarrer le service nginx lorsque le fichier est modifié
+#
+#
+#
+#	Objectif du script :
+#	---------------------
+#	
+#		Est une extension de configuration de NGINX pour le site virtuel "mco-scheduler-dev" présent /etc/nginx/sites-enabled
+#		Le fichier de configuration dispose d'une instruction d'inclusion du fichier ci-présent
+#	
+#	
+#	
+#	Description fonctionnelle :
+#	----------------------------
+#
+#		Ré-écris la demande URL en version "classique" - Permet de masquer les paramètres
+#		Utilisation du module rewrite
+#		Règle de ré-écriture vont du cas le plus complet au cas le plus simple
+#
+# ----------------------------------------------------------------------------------------------------------------------- **
+# ----------------------------------------------------------------------------------------------------------------------- **
+
+#   rewrite ^/portail/task-editor/([a-zA-Z]+)/([0-9]+)$ /portail.php?content=task-editor&$1&id=$2 last;
+#   rewrite ^/portail/task-editor/([a-zA-Z]+)$ /portail.php?content=task-editor&$1& last;
+#   rewrite ^/portail/params/([a-zA-Z-_]+)$ /portail.php?content=params&panel=$1 last;
+#   rewrite ^/portail/(.*)$ /portail.php?content=$1 last;
+#   rewrite ^/XHR/(.*)$ /Fonctions/$1 last;
+#   rewrite ^/SSE/(.*)$ /Fonctions/$1 last;
+#   rewrite ^/Scripts/(.*)$ /Scripts/$1 last;
+#   rewrite ^/Images/(.*)$ /Images/$1 last;
+#   rewrite ^/CSS/(.*)$ /CSS/$1 last;
+#   rewrite ^/LESS/(.*)$ /LESS/$1 last;
+#   rewrite ^/([a-zA-Z-_.]*)$ /index.php?$1 last;
+

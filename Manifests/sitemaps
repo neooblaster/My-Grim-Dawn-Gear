@@ -1,0 +1,68 @@
+Tag
+Statut
+Explication
+
+urlset
+obligatoire
+Le tag urlset précise la version du standard XML sitemap utilisée. La valeur renvoie à une URL qui décrit le format utilisé dans le fichier courant. Dans la mesure où le standard peut évoluer, ce tag permet de faire cohabiter des anciennes versions du standard avec la dernière sans que cela ne pose problème. Il est donc inutile de mettre à jour son fichier sitemap lorsque le standard évolue (ça tombe bien, les webmasters ne sont pas particulièrement courageux :) ), à moins de vouloir profiter des nouvelles fonctionnalités que celui-ci propose.
+
+url
+obligatoire
+Le tag url regroupe l'ensemble des informations concernant une unique URL ou page web. Il en faut donc un par URL ou page web décrite dans le fichier sitemap (sitemap.xml).
+
+loc
+obligatoire
+<loc><a href="http://www.mon-site-web.com"><a href="http://www.mon-site-web.com">http://www.mon-site-web.com</a></a></loc> 
+Le tag loc précise l'URL courante, ici http://www.mon-site-web.com/.
+
+lastmod
+optionnel
+<lastmod>2007-06-03</lastmod> 
+Le tag lastmod précise la date de dernière mise à jour de l'URL courante. Cette date doit nécessairement être au format AAAA-MM-JJ, ici 2007-06-03, soit le 3 juin 2007.
+
+changefreq
+optionnel
+<changefreq>weekly</changefreq> 
+Le tag changefreq précise avec quelle fréquence change l'URL courante. Il peut prendre les valeurs always, hourly, dayly, weekly, monthly, yearly, never pour respectivement toujours (à chaque nouvel accés à l'URL courante), chaque heure, chaque jour, chaque semaine, chaque mois, chaque année, ou jamais (pour les URL archivées), ici weekly, soit chaque semaine.
+
+priority
+optionnel
+<priority>1.0</priority> 
+Le tag priority précise l'importance de l'URL courante relativement aux autres URL du même site (priority = 0.1, 1.0, etc.). Sa valeur varie de 0.0 (priorité faible) à 1.0 (priorité forte). S'il est absent, alors la valeur par défaut est 0.5. Dans le cas présent, la valeur 1.0 indique une forte priorité.
+
+
+
+
+
+
+
+
+https://support.google.com/webmasters/answer/183668?hl=fr&ref_topic=4581190
+
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" 
+  xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" 
+  xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+  <url> 
+    <loc>http://www.example.com/machin.html</loc> 
+    <image:image>
+       <image:loc>http://example.com/image.jpg</image:loc>
+       <image:caption>Chiens jouant aux cartes</image:caption>
+    </image:image>
+    <video:video>
+      <video:content_loc>
+        http://www.example.com/video123.flv
+      </video:content_loc>
+      <video:player_loc allow_embed="yes" autoplay="ap=1">
+        http://www.example.com/videoplayer.swf?video=123
+      </video:player_loc>
+      <video:thumbnail_loc>
+        http://www.example.com/thumbs/123.jpg
+      </video:thumbnail_loc>
+      <video:title>Barbecue d'été</video:title>  
+      <video:description>
+        Maîtrisez la cuisson de vos grillades
+      </video:description>
+    </video:video>
+  </url>
+</urlset>

@@ -1,0 +1,10 @@
+public
+string
+add_history
+string $message;,integer $err_level;[,boolean $debug_backtrace_provide_object=false]
+This methode lets you to add custom histories into the Template historic.
+$err_level can be :
+&nbsp;&nbsp;&nbsp;256 => 'E_USER_ERROR'
+&nbsp;&nbsp;&nbsp;512 => 'E_USER_WARNING'
+&nbsp;&nbsp;&nbsp;1024 => 'E_USER_NOTICE'
+$debug_backtrace_provide_object specifies if you want to store data about object in use when you add your history entry.

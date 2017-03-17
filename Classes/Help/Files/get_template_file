@@ -1,0 +1,6 @@
+public
+string
+get_template_file
+void
+This method returns the template which will be use during the rendering.
+The template source name contains the path and the file name including the extension.

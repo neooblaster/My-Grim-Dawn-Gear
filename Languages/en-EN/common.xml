@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	
+	<!--''''''''-->
+	<!--|      |-->
+	<!--,,,,,,,,-->
+	<!-- Nombre d'occurences : 1 -->
+		<resource KEY="" CST="false" SST="true"></resource>
+	
+	<!--''''''''''''''''''''''''''''''''''''''''-->
+	<!--|   /Templates/index.master.tpl.html   |-->
+	<!--,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,-->
+	<!-- Nombre d'occurences : 1 -->
+		<resource KEY="HEAD_MAIN_TITLE" CST="false" SST="true">My Grim Dawn Gear</resource>
+	
+		<resource KEY="NAV_GEAR" CST="false" SST="true">Gear</resource>
+		<resource KEY="NAV_HOME" CST="false" SST="true">Home</resource>
+		<resource KEY="NAV_MANAGE" CST="false" SST="true">Manage</resource>
+	
+		<resource KEY="HEAD_VIEW_TITLE_HOME" CST="false" SST="true">Home</resource>
+		<resource KEY="HEAD_VIEW_TITLE_GEAR" CST="false" SST="true">Gear Builder</resource>
+		<resource KEY="HEAD_VIEW_TITLE_MANAGE" CST="false" SST="true">Admin Portal</resource>
+		<resource KEY="HEAD_VIEW_TITLE_LOGIN" CST="false" SST="true">Login Portal</resource>
+	
+		<resource KEY="VIEW_TITLE_HOME" CST="false" SST="true">Welcome Home</resource>
+		<resource KEY="VIEW_TITLE_GEAR" CST="false" SST="true">Gear Builder</resource>
+		<resource KEY="VIEW_TITLE_MANAGE" CST="false" SST="true">Admin Portal</resource>
+		<resource KEY="VIEW_TITLE_LOGIN" CST="false" SST="true">Login Portal</resource>
+	
+	
+	<!--''''''''''''''''''''''''''''''''''''''-->
+	<!--|   /Templates/Index/home.tpl.html   |-->
+	<!--,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,-->
+	<!-- Nombre d'occurences : 1 -->
+		<resource KEY="PUBLISH_DATE" CST="false" SST="true">Publish Date</resource>
+		<resource KEY="LAST_MODIFIED" CST="false" SST="true">Last Modification</resource>
+	
+	
+	<!--''''''''''''''''''''''''''''''''''''''-->
+	<!--|   /Templates/Index/gear.tpl.html   |-->
+	<!--,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,-->
+	<!-- Nombre d'occurences : 1 -->
+		<resource KEY="BUILD_OPTIONS" CST="false" SST="true">Build Options</resource>
+		<resource KEY="ATTRIBUTES" CST="false" SST="true">Attributes</resource>
+		<resource KEY="COMBAT_STATS" CST="false" SST="true">Combat Stats</resource>
+		<resource KEY="RESISTANCES" CST="false" SST="true">Resistances</resource>
+		<resource KEY="DAMAGE_PER_HIT" CST="false" SST="true">Damage per hit</resource>
+		<resource KEY="CHARACTER" CST="false" SST="true">Character</resource>
+		<resource KEY="PHYSICAL" CST="false" SST="true">Physical</resource>
+		<resource KEY="MAGICAL" CST="false" SST="true">Magical</resource>
+		<resource KEY="PET_BONUSES" CST="false" SST="true">Pet bonuses</resource>
+		<resource KEY="DEFENSE" CST="false" SST="true">Defense</resource>
+		<resource KEY="RETALIATION" CST="false" SST="true">Retaliation</resource>
+		<resource KEY="STATS" CST="false" SST="true">Stats</resource>
+	
+		<resource KEY="WEAPON_DAMAGE" CST="false" SST="true">Weapon Damage</resource>
+	
+		<resource KEY="ATTACK_SPEED" CST="false" SST="true">Attack Speed</resource>
+		<resource KEY="CRITICAL_STRIKE" CST="false" SST="true">Critical Strike</resource>
+	
+		<resource KEY="RUN_SPEED" CST="false" SST="true">Run Speed</resource>
+		<resource KEY="HEALTH_REGENERATION" CST="false" SST="true">Health Regeneration</resource>
+		<resource KEY="ENERGY_REGENERATION" CST="false" SST="true">Energy Regeneration</resource>
+		<resource KEY="ENERGY_ABSORPTION" CST="false" SST="true">Energy Absorption</resource>
+		<resource KEY="CONSTITUTION_BONUS" CST="false" SST="true">Constitution Bonus</resource>
+		<resource KEY="EXPERIENCE_GAINED" CST="false" SST="true">Experience Gained</resource>
+		<resource KEY="LIGHT_RADIUS" CST="false" SST="true">Light Radius</resource>
+	
+		<resource KEY="ALL_SKILLS" CST="false" SST="true">All Skills</resource>
+		<resource KEY="SOLDIER_SKILLS" CST="false" SST="true">Soldier Skills</resource>
+		<resource KEY="DEMOLITIONIST_SKILLS" CST="false" SST="true">Demolitionist Skills</resource>
+		<resource KEY="OCCULTIST_SKILLS" CST="false" SST="true">Occultist Skills</resource>
+		<resource KEY="NIGHTBLADE_SKILLS" CST="false" SST="true">Nightblade Skills</resource>
+		<resource KEY="ARCANIST_SKILLS" CST="false" SST="true">Arcanist Skills</resource>
+		<resource KEY="SHAMAN_SKILLS" CST="false" SST="true">Shaman Skills</resource>
+	
+		<resource KEY="PHYSICAL_DAMAGE" CST="false" SST="true">Physical Damage</resource>
+		<resource KEY="PHYSICAL_MODIFIER" CST="false" SST="true">Physical Modifier</resource>
+	
+		<resource KEY="PIERCE_DAMAGE" CST="false" SST="true">Pierce Damage</resource>
+		<resource KEY="PIERCE_MODIFIER" CST="false" SST="true">Pierce Modifier</resource>
+	
+		<resource KEY="BLEED_DAMAGE" CST="false" SST="true">Bleed Damage</resource>
+		<resource KEY="BLEED_MODIFIER" CST="false" SST="true">Bleed Modifier</resource>
+		<resource KEY="BLEED_DURATION" CST="false" SST="true">Bleed Duration</resource>
+	
+		<resource KEY="TRAUMA_DAMAGE" CST="false" SST="true">Trauma Damage</resource>
+		<resource KEY="TRAUMA_MODIFIER" CST="false" SST="true">Trauma Modifier</resource>
+		<resource KEY="TRAUMA_DURATION" CST="false" SST="true">Trauma Duration</resource>
+	
+		<resource KEY="LIFE_STEAL" CST="false" SST="true">Life Steal</resource>
+	
+		<resource KEY="CAST_SPEED" CST="false" SST="true">Cast Speed</resource>
+		<resource KEY="COOLDOWN_REDUCTION" CST="false" SST="true">Cooldown Reduction</resource>
+		<resource KEY="SKILL_ENERGY_COST" CST="false" SST="true">Skill Energy Cost</resource>
+	
+		<resource KEY="HEALTH_DAMAGE" CST="false" SST="true">Health Damage</resource>
+	
+		<resource KEY="FIRE_DAMAGE" CST="false" SST="true">Fire Damage</resource>
+		<resource KEY="FIRE_MODIFIER" CST="false" SST="true">Fire Modifier</resource>
+	
+		<resource KEY="COLD_DAMAGE" CST="false" SST="true">Cold Damage</resource>
+		<resource KEY="COLD_MODIFIER" CST="false" SST="true">Cold Modifier</resource>
+	
+		<resource KEY="LIGHTNING_DAMAGE" CST="false" SST="true">Lightning Damage</resource>
+		<resource KEY="LIGHTNING_MODIFIER" CST="false" SST="true">Lightning Modifier</resource>
+	
+		<resource KEY="ACID_DAMAGE" CST="false" SST="true">Acid Damage</resource>
+		<resource KEY="ACID_MODIFIER" CST="false" SST="true">Acid Modifier</resource>
+	
+		<resource KEY="VITALITY_DAMAGE" CST="false" SST="true">Vitality Damage</resource>
+		<resource KEY="VITALITY_MODIFIER" CST="false" SST="true">Vitality Modifier</resource>
+	
+		<resource KEY="AETHER_DAMAGE" CST="false" SST="true">Aether Damage</resource>
+		<resource KEY="AETHER_MODIFIER" CST="false" SST="true">Aether Modifier</resource>
+	
+		<resource KEY="CHAOS_DAMAGE" CST="false" SST="true">Chaos Damage</resource>
+		<resource KEY="CHAOS_MODIFIER" CST="false" SST="true">Chaos Modifier</resource>
+	
+		<resource KEY="BURN_DAMAGE" CST="false" SST="true">Burn Damage</resource>
+		<resource KEY="BURN_MODIFIER" CST="false" SST="true">Burn Modifier</resource>
+		<resource KEY="BURN_DURATION" CST="false" SST="true">Burn Duration</resource>
+	
+		<resource KEY="FROSTBURN_DAMAGE" CST="false" SST="true">Frostburn Damage</resource>
+		<resource KEY="FROSTBURN_MODIFIER" CST="false" SST="true">Frostburn Modifier</resource>
+		<resource KEY="FROSTBURN_DURATION" CST="false" SST="true">Frostburn Duration</resource>
+	
+		<resource KEY="ELECTROCUTE_DAMAGE" CST="false" SST="true">Electrocute Damage</resource>
+		<resource KEY="ELECTROCUTE_MODIFIER" CST="false" SST="true">Electrocute Modifier</resource>
+		<resource KEY="ELECTROCUTE_DURATION" CST="false" SST="true">Electrocute Duration</resource>
+	
+		<resource KEY="POISON_DAMAGE" CST="false" SST="true">Poison Damage</resource>
+		<resource KEY="POISON_MODIFIER" CST="false" SST="true">Poison Modifier</resource>
+		<resource KEY="POISON_DURATION" CST="false" SST="true">Poison Duration</resource>
+	
+		<resource KEY="VITALITY_DECAY_DAMAGE" CST="false" SST="true">Vitality Decay Damage</resource>
+		<resource KEY="VITALITY_DECAY_MODIFIER" CST="false" SST="true">Vitality Decay Modifier</resource>
+		<resource KEY="VITALITY_DECAY_DURATION" CST="false" SST="true">Vitality Decay Duration</resource>
+	
+		<resource KEY="PET_LIFE" CST="false" SST="true">Life</resource>
+		<resource KEY="PET_DAMAGE" CST="false" SST="true">Damage</resource>
+		<resource KEY="PET_ATTACK_SPEED" CST="false" SST="true">Attack Speed</resource>
+		<resource KEY="PET_CAST_SPEED" CST="false" SST="true">Cast Speed</resource>
+		<resource KEY="PET_RUN_SPEED" CST="false" SST="true">Run Speed</resource>
+		<resource KEY="PET_OFFENSE_ABILITY" CST="false" SST="true">Offensive Ability</resource>
+		<resource KEY="PET_DEFENSE_ABILITY" CST="false" SST="true">Defensive Ability</resource>
+		<resource KEY="PET_FIRE_RESIST" CST="false" SST="true">Fire Resist</resource>
+		<resource KEY="PET_COLD_RESIST" CST="false" SST="true">Cold Resist</resource>
+		<resource KEY="PET_LIGHTNING_RESIST" CST="false" SST="true">Lightning Resist</resource>
+		<resource KEY="PET_POISON_ACID_RESIST" CST="false" SST="true">Poison/Acid Resist</resource>
+		<resource KEY="PET_PIERCE_RESIST" CST="false" SST="true">Pierce Resist</resource>
+		<resource KEY="PET_BLEEDING_RESIST" CST="false" SST="true">Bleeding Resist</resource>
+		<resource KEY="PET_VITALITY_RESIST" CST="false" SST="true">Vitality Resist</resource>
+		<resource KEY="PET_AETHER_RESIST" CST="false" SST="true">Aether Resist</resource>
+		<resource KEY="PET_CHAOS_RESIST" CST="false" SST="true">Chaos Resist</resource>
+	
+		<resource KEY="CHANCE_TO_BLOCK" CST="false" SST="true">Chance To Block</resource>
+		<resource KEY="DAMAGE_BLOCKED" CST="false" SST="true">Damage Blocked</resource>
+		<resource KEY="BLOCK_RECOVERY" CST="false" SST="true">Block Recovery</resource>
+		<resource KEY="DODGE_CHANCE" CST="false" SST="true">Dodge Chance</resource>
+		<resource KEY="DEFLECT_CHANCE" CST="false" SST="true">Deflect Damage</resource>
+	
+		<resource KEY="PHYSICAL_RESIST" CST="false" SST="true">Physical Resist</resource>
+		<resource KEY="DISRUPTION_RESIST" CST="false" SST="true">Disruption Resist</resource>
+		<resource KEY="LIFE_LEECH_RESIST" CST="false" SST="true">Life Leech Resist</resource>
+		<resource KEY="ENERGY_LEECH_RESIST" CST="false" SST="true">Energy Leech Resist</resource>
+		<resource KEY="TRAP_RESIST" CST="false" SST="true">Trap Resist</resource>
+		<resource KEY="PETRIFY_RESIST" CST="false" SST="true">Petrify Resist</resource>
+		<resource KEY="FREEZE_RESIST" CST="false" SST="true">Freeze Resist</resource>
+		<resource KEY="SLEEP_RESIST" CST="false" SST="true">Sleep Resist</resource>
+		<resource KEY="SLOW_RESIST" CST="false" SST="true">Slow Resist</resource>
+	
+		<resource KEY="DAMAGE_REFLECT" CST="false" SST="true">Damage Reflect</resource>
+		<resource KEY="LIFE_RETALIATION" CST="false" SST="true">Life Retaliation</resource>
+	
+		<resource KEY="PHYSICAL_RETALIATION" CST="false" SST="true">Physical</resource>
+		<resource KEY="PHYSICAL_RETALIATION_MODIFIER" CST="false" SST="true">Physical Modifier</resource>
+	
+		<resource KEY="PIERCE_RETALIATION" CST="false" SST="true">Pierce</resource>
+		<resource KEY="PIERCE_RETALIATION_MODIFIER" CST="false" SST="true">Pierce Modifier</resource>
+	
+		<resource KEY="BLEED_RETALIATION" CST="false" SST="true">Bleed</resource>
+		<resource KEY="BLEED_RETALIATION_MODIFIER" CST="false" SST="true">Bleed Modifier</resource>
+	
+		<resource KEY="TRAUMA_RETALIATION" CST="false" SST="true">Trauma</resource>
+		<resource KEY="TRAUMA_RETALIATION_MODIFIER" CST="false" SST="true">Trauma Modifier</resource>
+	
+		<resource KEY="FIRE_RETALIATION" CST="false" SST="true">Fire</resource>
+		<resource KEY="FIRE_RETALIATION_MODIFIER" CST="false" SST="true">Fire Modifier</resource>
+	
+		<resource KEY="COLD_RETALIATION" CST="false" SST="true">Cold</resource>
+		<resource KEY="COLD_RETALIATION_MODIFIER" CST="false" SST="true">Cold Modifier</resource>
+	
+		<resource KEY="LIGHTNING_RETALIATION" CST="false" SST="true">Lightning</resource>
+		<resource KEY="LIGHTNING_RETALIATION_MODIFIER" CST="false" SST="true">Lightning Modifier</resource>
+	
+		<resource KEY="ACID_RETALIATION" CST="false" SST="true">Acid</resource>
+		<resource KEY="ACID_RETALIATION_MODIFIER" CST="false" SST="true">Acid Modifier</resource>
+	
+		<resource KEY="VITALITY_RETALIATION" CST="false" SST="true">Vitality</resource>
+		<resource KEY="VITALITY_RETALIATION_MODIFIER" CST="false" SST="true">Vitality Modifier</resource>
+	
+		<resource KEY="AETHER_RETALIATION" CST="false" SST="true">Aether</resource>
+		<resource KEY="AETHER_RETALIATION_MODIFIER" CST="false" SST="true">Aether Modifier</resource>
+	
+		<resource KEY="CHAOS_RETALIATION" CST="false" SST="true">Chaos</resource>
+		<resource KEY="CHAOS_RETALIATION_MODIFIER" CST="false" SST="true">Chaos Modifier</resource>
+	
+		<resource KEY="BURN_RETALIATION" CST="false" SST="true">Burn</resource>
+		<resource KEY="BURN_RETALIATION_MODIFIER" CST="false" SST="true">Burn Modifier</resource>
+	
+		<resource KEY="FROSTBURN_RETALIATION" CST="false" SST="true">Frostburn</resource>
+		<resource KEY="FROSTBURN_RETALIATION_MODIFIER" CST="false" SST="true">Frostburn Modifier</resource>
+	
+		<resource KEY="ELECTROCUTE_RETALIATION" CST="false" SST="true">Electrocute</resource>
+		<resource KEY="ELECTROCUTE_RETALIATION_MODIFIER" CST="false" SST="true">Electrocute Modifier</resource>
+	
+		<resource KEY="POISON_RETALIATION" CST="false" SST="true">Poison</resource>
+		<resource KEY="POISON_RETALIATION_MODIFIER" CST="false" SST="true">Poison Modifier</resource>
+	
+		<resource KEY="VITALITY_DECAY_RETALIATION" CST="false" SST="true">Vitality Decay</resource>
+		<resource KEY="VITALITY_DECAY_RETALIATION_MODIFIER" CST="false" SST="true">Vitality Decay Modifier</resource>
+	
+		<resource KEY="AVERAGE_ITEM_LEVEL" CST="false" SST="true">Average Item Level</resource>
+	
+	
+	<!--'''''''''''''''''''''''''''''''''''''''''-->
+	<!--|   /Templates/Common/footer.tpl.html   |-->
+	<!--,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,-->
+	<!-- Nombre d'occurences : 1 -->
+		<resource KEY="FOOT_VERSION" CST="false" SST="true">Release</resource>
+		<resource KEY="FOOT_LOGIN" CST="false" SST="true">Login</resource>
+</resources>

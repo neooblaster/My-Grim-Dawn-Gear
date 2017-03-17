@@ -1,0 +1,6 @@
+public
+string
+display
+void
+This method displays the final rendered. 
+That allows you to check if the render has been done correctly or to displays the calculated content.

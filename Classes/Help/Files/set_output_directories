@@ -1,0 +1,7 @@
+public
+boolean
+set_output_directories
+string $direcotry;[,string $direcotry]{0,}
+Declaration of repositories folder for the rendered files.
+It's not necessary to define an output directory if you don't use the render type "permanent"
+Do not use the slash char at the end of the folder name.

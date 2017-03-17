@@ -1,0 +1,10 @@
+en-EN:http://host.neoblaster.fr/zip_composer.php?list=http://dev.my-grimdawn-gear.com/SSE/CRON/file_list.en-EN.txt&lang=en-EN
+#fr-FR:http://www.grimdawn.com/forums/attachment.php?attachmentid=11658&d=1467707520
+#gr-GR:http://www.grimdawn.com/public/localization/v1002_greek.zip
+#es-ES:http://www.grimdawn.com/public/localization/v1003_spanish.zip
+#jp-JP:http://www.grimdawn.com/public/localization/v1003_japanese.zip
+#ch-CH:http://www.grimdawn.com/public/localization/v1003_chinese.zip
+#pt-PT:http://www.grimdawn.com/public/localization/v1002_portuguese.zip
+#ru-RU:http://www.grimdawn.com/public/localization/v1003_russian.zip
+#de-DE:http://www.grimdawn.com/public/localization/v1002_german.zip
+#it-IT:http://www.grimdawn.com/public/localization/v1003_italian.zip

@@ -1,0 +1,5 @@
+public
+array
+get_output_directories
+void
+This method returns the defined repositories (directories) for the outgoing file.

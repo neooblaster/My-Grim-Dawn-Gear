@@ -1,0 +1,10 @@
+-> Portail admin pour manager le guide
+
+	-> Permettre la création de catégorie de niveau x exemple :
+		-> Catégorie niveau 1 related to root
+		-> Catégorie niveau 2 related to catégorie niveau 1 d'id ID
+
+	-> Permettre la création d'article related to catégorie d'id ID
+		-> Permettre de créer des related entre article
+		
+	-> Prévoir également une table lang pour assigné l'article à un language et le taggé dans le nom du fichier

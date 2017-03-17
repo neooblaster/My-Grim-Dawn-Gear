@@ -1,0 +1,6 @@
+public
+boolean
+set_template_file
+string $source
+Declaration of the path where the template file is.
+The name contain the folder path and / or the template file name (includes the file extension)

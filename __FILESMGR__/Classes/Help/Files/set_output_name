@@ -1,0 +1,7 @@
+public
+boolean
+set_output_name
+string $name
+Declaration of the file name to the output file.
+The name must contain the file extension.
+Example, you want a HTML file, the name will be "my_file_name.html".

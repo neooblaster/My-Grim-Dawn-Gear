@@ -1,0 +1,7 @@
+public
+string
+render
+void
+This method trigger the file calculation between the sent data and the template.
+Be aware, the "render" method only serve to generate the file.
+To see the document strictly speaking, use the method "display"

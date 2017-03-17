@@ -1,0 +1,7 @@
+public
+Template
+render
+void
+This method trigger the file calculation between the sent datas and the template.
+Be aware, the "render" method only serve to generate the file.
+To see the document strictly speaking, use the method "display" or "get_render_content" to retrieve text.

@@ -1,0 +1,7 @@
+public
+boolean
+cleansing_render_env
+void
+This methode let you to force the cleansing of the temporary environnement used for the render.
+When the render type is defined to 'temporary' and you just want to send mail, you must use this methode.
+The display() and get_render_content() automatically triggers this methode.

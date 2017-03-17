@@ -1,0 +1,6 @@
+public
+string
+debugPath
+void
+This method returns a structural view of the neigborhood of the folder where the object using the class is executed.
+This method is done to help you to find the right path toward the template file, repositories and the temporary directory.
