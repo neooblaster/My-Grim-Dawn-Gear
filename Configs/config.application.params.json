@@ -53,6 +53,6 @@
 	},
 	
 	/** Active / desactive le compteur de vue **/
-	"VIEW_COUNTER": true,
+	"VIEW_COUNTER": true
 }
 
