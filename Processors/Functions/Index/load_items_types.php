@@ -1,25 +1,68 @@
 <?php
+/** -------------------------------------------------------------------------------------------------------------------- ** 
+/** -------------------------------------------------------------------------------------------------------------------- ** 
+/** ---																																					--- **
+/** --- 										------------------------------------------------											--- **
+/** ---														{ load_items_types.php }															--- **
+/** --- 										------------------------------------------------											--- **
+/** ---																																					--- **
+/** ---		TAB SIZE			: 3																													--- **
+/** ---																																					--- **
+/** ---		AUTEUR			: Nicolas DUPRE																									--- **
+/** ---																																					--- **
+/** ---		RELEASE			: 18.03.2017																										--- **
+/** ---																																					--- **
+/** ---		FILE_VERSION	: 1.0 NDU																											--- **
+/** ---																																					--- **
+/** ---																																					--- **
+/** --- 														---------------------------														--- **
+/** ---															{ C H A N G E L O G }															--- **
+/** --- 														---------------------------														--- **
+/** ---																																					--- **
+/** ---																																					--- **
+/** ---		VERSION 1.0 : 18.03.2017 : NDU																									--- **
+/** ---		------------------------------																									--- **
+/** ---			- Première release																												--- **
+/** ---																																					--- **
+/** -------------------------------------------------------------------------------------------------------------------- **
+/** -------------------------------------------------------------------------------------------------------------------- **
 
-	function load_items_types(){
-		global $PDO;
+	Requirements :
+	--------------
+
+	Input Params :
+	--------------
+	
+	Output Params :
+	---------------
+
+	Objectif du script :
+	---------------------
+	
+	Description fonctionnelle :
+	----------------------------
+
+/** -------------------------------------------------------------------------------------------------------------------- **
+/** -------------------------------------------------------------------------------------------------------------------- **/
+function load_items_types(){
+	global $PDO;
+	
+	try {
+		$qItemsTypes = $PDO->query("SELECT ID, FAMILY, TYPE FROM TYPES");
 		
-		try {
-			$qItemsTypes = $PDO->query("SELECT ID, REL_FAMILY, TYPE FROM ITEMS_TYPES");
-			
-			$ITEMS_TYPES = Array();
-			
-			while($faItemsTypes = $qItemsTypes->fetch(PDO::FETCH_ASSOC)){
-				$ITEMS_TYPES[] = Array(
-					"ID" => $faItemsTypes['ID'],
-					"REL_FAMILY" => $faItemsTypes['REL_FAMILY'],
-					"TYPE" => $faItemsTypes['TYPE']
-				);
-			}
-			
-			return $ITEMS_TYPES;
-		} catch(Exception $e){
-			return Array();
+		$ITEMS_TYPES = Array();
+		
+		while($faItemsTypes = $qItemsTypes->fetch(PDO::FETCH_ASSOC)){
+			$ITEMS_TYPES[] = Array(
+				"ID" => $faItemsTypes['ID'],
+				"FAMILY" => $faItemsTypes['REL_FAMILY'],
+				"TYPE" => $faItemsTypes['TYPE']
+			);
 		}
+		
+		return $ITEMS_TYPES;
+	} catch(Exception $e){
+		return Array();
 	}
-
+}
 ?>
