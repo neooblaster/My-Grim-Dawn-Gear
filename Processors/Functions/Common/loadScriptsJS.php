@@ -49,47 +49,47 @@
 /** -------------------------------------------------------------------------------------------------------------------- **
 /** -------------------------------------------------------------------------------------------------------------------- **/	
 function loadScriptsJS($output){
-		/** > Analyser le nombre de paramètre envoyé à la fonction **/
-		if(func_num_args() === 1){
-			$path = Array('Scripts');
-		} else {
-			$path = func_get_args();	// Récupération ds argurments
-			array_shift($path);			// Suppression du premier argument
-		}
+	/** > Analyser le nombre de paramètre envoyé à la fonction **/
+	if(func_num_args() === 1){
+		$path = Array('Scripts');
+	} else {
+		$path = func_get_args();	// Récupération ds argurments
+		array_shift($path);			// Suppression du premier argument
+	}
+	
+	
+	/** > Analyser tout les dossiers demandé **/
+	$Scripts = Array();
+	
+	foreach($path as $key => $value){
+		/** > Scanner le dossier **/
+		$scan = scandir($path[$key]);
 		
 		
-		/** > Analyser tout les dossiers demandé **/
-		$Scripts = Array();
-		
-		foreach($path as $key => $value){
-			/** > Scanner le dossier **/
-			$scan = scandir($path[$key]);
-			
-			
-			/** > Lecture du dossier **/
-			foreach($scan as $fkey => $file){
-				if(!is_dir($path[$key].'/'.$file) && !preg_match('#^\.#', $file)){
-					/** > Traiter le nom du fichier **/
-					$media = explode('_', $file);
-					$media = explode('.', $media[1]);
-					$media = $media[0];
-					
-					/** > Si output = true, alors emettre les sorties **/
-					if($output){
-						echo "<script type=\"text/javascript\" src=\"$path[$key]/$file\"></script>\r\t";
-					}	
-					
-					/** > Ajouter les données au tableau **/
-					$Scripts[] = Array(
-						'SCRIPT_FILE' => $path[$key].'/'.$file,
-						'SCRIPT_FILEMTIME' => filemtime($path[$key].'/'.$file)
-					);
-				}
+		/** > Lecture du dossier **/
+		foreach($scan as $fkey => $file){
+			if(!is_dir($path[$key].'/'.$file) && !preg_match('#^\.#', $file)){
+				/** > Traiter le nom du fichier **/
+				$media = explode('_', $file);
+				$media = explode('.', $media[1]);
+				$media = $media[0];
+				
+				/** > Si output = true, alors emettre les sorties **/
+				if($output){
+					echo "<script type=\"text/javascript\" src=\"$path[$key]/$file\"></script>\r\t";
+				}	
+				
+				/** > Ajouter les données au tableau **/
+				$Scripts[] = Array(
+					'SCRIPT_FILE' => $path[$key].'/'.$file,
+					'SCRIPT_FILEMTIME' => filemtime($path[$key].'/'.$file)
+				);
 			}
 		}
-		
-		return $Scripts;
 	}
+	
+	return $Scripts;
+}
 ?>
 
 
