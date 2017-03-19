@@ -1,24 +1,67 @@
 <?php
+/** -------------------------------------------------------------------------------------------------------------------- ** 
+/** -------------------------------------------------------------------------------------------------------------------- ** 
+/** ---																																					--- **
+/** --- 										------------------------------------------------											--- **
+/** ---														{ load_items_qualities.php }														--- **
+/** --- 										------------------------------------------------											--- **
+/** ---																																					--- **
+/** ---		AUTEUR 	: Nicolas DUPRE																											--- **
+/** ---																																					--- **
+/** ---		RELEASE	: 19.03.2017																												--- **
+/** ---																																					--- **
+/** ---		VERSION	: 1.0																															--- **
+/** ---																																					--- **
+/** ---																																					--- **
+/** --- 														---------------------------														--- **
+/** ---															{ C H A N G E L O G }															--- **
+/** --- 														---------------------------														--- **
+/** ---																																					--- **
+/** ---																																					--- **
+/** ---		VERSION 1.0 : 19.03.2017																											--- **
+/** ---		------------------------																											--- **
+/** ---			- Première release																												--- **
+/** ---																																					--- **
+/** -------------------------------------------------------------------------------------------------------------------- **
+/** -------------------------------------------------------------------------------------------------------------------- **
 
-	function load_items_qualities(){
-		global $PDO;
+	Requirements :
+	--------------
+
+	Input Params :
+	--------------
+	
+	Output Params :
+	---------------
+
+	Objectif du script :
+	---------------------
+	
+	Description fonctionnelle :
+	----------------------------
+
+/** -------------------------------------------------------------------------------------------------------------------- **
+/** -------------------------------------------------------------------------------------------------------------------- **/
+function load_items_qualities(){
+	global $PDO;
+	global $vars;
+	
+	try {
+		$qQualities = $PDO->query("SELECT ID, QUALITY, TAG FROM QUALITIES");
 		
-		try {
-			$qQualities = $PDO->query("SELECT ID, QUALITY FROM ITEMS_QUALITIES");
-			
-			$QUALITIES = Array();
-			
-			while($faQualities = $qQualities->fetch(PDO::FETCH_ASSOC)){
-				$QUALITIES[] = Array(
-					"ID" => $faQualities['ID'],
-					"QUALITY" => $faQualities['QUALITY']
-				);
-			}
-			
-			return $QUALITIES;
-		} catch(Exception $e){
-			return Array();
+		$QUALITIES = Array();
+		
+		while($faQualities = $qQualities->fetch(PDO::FETCH_ASSOC)){
+			$QUALITIES[] = Array(
+				"ID" => $faQualities['ID'],
+				"QUALITY" => $faQualities['QUALITY'],
+				"QUALITY_NAME" => ($vars[$faQualities['TAG']]) ?: $faQualities['TAG']
+			);
 		}
+		
+		return $QUALITIES;
+	} catch(Exception $e){
+		return Array();
 	}
-
+}
 ?>

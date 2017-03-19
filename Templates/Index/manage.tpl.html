@@ -79,27 +79,27 @@
 							<h4>
 								Item Quality
 							</h4>
-							<select onchange="updateItem(%ITEM_ID%, 'REL_QUALITY', this.value);">
+							<select onchange="updateItem(%ITEM_ID%, 'QUALITY', this.value);">
 								<!-- BEGIN_BLOCK WITH ITEMS_QUALITIES -->
-								<option value="%ID%" %SELECTED%>%QUALITY%</option>
+								<option value="%ID%" %SELECTED% data-quality="%QUALITY%">%QUALITY_NAME%</option>
 								<!-- END_BLOCK -->
 							</select>
 							
 							<h4>
 								Item Family
 							</h4>
-							<select onchange="updateItem(%ITEM_ID%, 'REL_FAMILY', this.value);">
+							<select onchange="updateItem(%ITEM_ID%, 'FAMILY', this.value);">
 								<!-- BEGIN_BLOCK WITH ITEMS_FAMILIES -->
-								<option value="%ID%" %SELECTED%>%FAMILY%</option>
+								<option value="%ID%" %SELECTED% data-family="%FAMILY%">%FAMILY_NAME%</option>
 								<!-- END_BLOCK -->
 							</select>
 							
 							<h4>
 								Item Type
 							</h4>
-							<select onchange="updateItem(%ITEM_ID%, 'REL_TYPE', this.value);">
+							<select onchange="updateItem(%ITEM_ID%, 'TYPE', this.value);">
 								<!-- BEGIN_BLOCK WITH ITEMS_TYPES -->
-								<option value="%ID%" data-rel-family="%REL_FAMILY%" %SELECTED%>%TYPE%</option>
+								<option value="%ID%" data-rel-family="%FAMILY%" %SELECTED% data-type="%TYPE%">%TYPE_NAME%</option>
 								<!-- END_BLOCK -->
 							</select>
 						</div>
