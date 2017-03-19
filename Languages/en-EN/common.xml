@@ -223,6 +223,39 @@
 	
 		<resource KEY="AVERAGE_ITEM_LEVEL" CST="false" SST="true">Average Item Level</resource>
 	
+		<!-- ITEM TYPES NAMES -->
+		<resource KEY="T_HEAD" CST="false" SST="true">Head</resource>
+		<resource KEY="T_SHOULDERS" CST="false" SST="true">Shoulders</resource>
+		<resource KEY="T_CHEST" CST="false" SST="true">Chest</resource>
+		<resource KEY="T_HANDS" CST="false" SST="true">Hands</resource>
+		<resource KEY="T_LEGS" CST="false" SST="true">Legs</resource>
+		<resource KEY="T_FEET" CST="false" SST="true">Feet</resource>
+		<resource KEY="T_WAIST" CST="false" SST="true">Waist</resource>
+	
+		<resource KEY="T_PISTOLS" CST="false" SST="true">Pistols</resource>
+		<resource KEY="T_RIFLES" CST="false" SST="true">Rifles</resource>
+		<resource KEY="T_CROSSBOWS" CST="false" SST="true">Crossbows</resource>
+		<resource KEY="T_AXES" CST="false" SST="true">Axes</resource>
+		<resource KEY="T_MACES" CST="false" SST="true">Maces</resource>
+		<resource KEY="T_SWORDS" CST="false" SST="true">Swords</resource>
+		<resource KEY="T_TWO_HANDERS" CST="false" SST="true">Two Handers</resource>
+		<resource KEY="T_SHIELDS" CST="false" SST="true">Shields</resource>
+		<resource KEY="T_FOCUS" CST="false" SST="true">Focus</resource>
+		<resource KEY="T_SCEPTERS_DAGGERS" CST="false" SST="true">Daggers &amp; Scepters</resource>
+		<resource KEY="T_LIGHT_CROSSBOWS" CST="false" SST="true">Light Crossbows</resource>
+		<resource KEY="T_STAFFS" CST="false" SST="true">Staffs</resource>
+	
+		<resource KEY="T_AMULETS" CST="false" SST="true">Amulets</resource>
+		<resource KEY="T_MEDALS" CST="false" SST="true">Medals</resource>
+		<resource KEY="T_RINGS" CST="false" SST="true">Rings</resource>
+		<resource KEY="T_RELICS" CST="false" SST="true">Relics</resource>
+	
+		<resource KEY="T_COMPONENTS" CST="false" SST="true">Components</resource>
+		<resource KEY="T_AUGMENTS" CST="false" SST="true">Augments</resource>
+		<resource KEY="T_PREFIXES" CST="false" SST="true">Prefixes</resource>
+		<resource KEY="T_SUFFIXES" CST="false" SST="true">Suffixes</resource>
+	
+	
 	
 	<!--'''''''''''''''''''''''''''''''''''''''''-->
 	<!--|   /Templates/Common/footer.tpl.html   |-->
