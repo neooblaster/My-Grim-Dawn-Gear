@@ -1,28 +1,69 @@
 <?php
+/** -------------------------------------------------------------------------------------------------------------------- ** 
+/** -------------------------------------------------------------------------------------------------------------------- ** 
+/** ---																																					--- **
+/** --- 										------------------------------------------------											--- **
+/** ---														{ load_articles.php }																--- **
+/** --- 										------------------------------------------------											--- **
+/** ---																																					--- **
+/** ---		AUTEUR 	: Nicolas DUPRE																											--- **
+/** ---																																					--- **
+/** ---		RELEASE	: 19.03.2017																												--- **
+/** ---																																					--- **
+/** ---		VERSION	: 1.0																															--- **
+/** ---																																					--- **
+/** ---																																					--- **
+/** --- 														---------------------------														--- **
+/** ---															{ C H A N G E L O G }															--- **
+/** --- 														---------------------------														--- **
+/** ---																																					--- **
+/** ---																																					--- **
+/** ---		VERSION 1.0 : 19.03.2017																											--- **
+/** ---		------------------------																											--- **
+/** ---			- Première release																												--- **
+/** ---																																					--- **
+/** -------------------------------------------------------------------------------------------------------------------- **
+/** -------------------------------------------------------------------------------------------------------------------- **
 
-	function load_articles(){
-		global $PDO;
+	Requirements :
+	--------------
+
+	Input Params :
+	--------------
+	
+	Output Params :
+	---------------
+
+	Objectif du script :
+	---------------------
+	
+	Description fonctionnelle :
+	----------------------------
+
+/** -------------------------------------------------------------------------------------------------------------------- **
+/** -------------------------------------------------------------------------------------------------------------------- **/
+function load_articles(){
+	global $PDO;
+	
+	try {
+		$qArticles = $PDO->query("SELECT ID, TITLE, ARTICLE, CREATE_DATE, LAST_MODIFIED FROM ARTICLES");
 		
-		try {
-			$qArticles = $PDO->query("SELECT ID, TITLE, ARTICLE, CREATE_DATE, LAST_MODIFIED FROM ARTICLES");
-			
-			$ARTICLES = Array();
-			
-			while($faArticles = $qArticles->fetch(PDO::FETCH_ASSOC)){
-				$ARTICLES[] = Array(
-					"ID" => $faArticles['ID'],
-					"TITLE" => $faArticles['TITLE'],
-					"ARTICLE" => $faArticles['ARTICLE'],
-					"CREATE_DATE" => $faArticles['CREATE_DATE'],
-					"LAST_MODIFIED" => timestamp_to_date($faArticles['LAST_MODIFIED']),
-					"LAST_MODIFIED_TS" => $faArticles['LAST_MODIFIED']
-				);
-			}
-			
-			return $ARTICLES;
-		} catch(Exception $e){
-			return Array();
+		$ARTICLES = Array();
+		
+		while($faArticles = $qArticles->fetch(PDO::FETCH_ASSOC)){
+			$ARTICLES[] = Array(
+				"ID" => $faArticles['ID'],
+				"TITLE" => $faArticles['TITLE'],
+				"ARTICLE" => $faArticles['ARTICLE'],
+				"CREATE_DATE" => $faArticles['CREATE_DATE'],
+				"LAST_MODIFIED" => timestamp_to_date($faArticles['LAST_MODIFIED']),
+				"LAST_MODIFIED_TS" => $faArticles['LAST_MODIFIED']
+			);
 		}
+		
+		return $ARTICLES;
+	} catch(Exception $e){
+		return Array();
 	}
-
+}
 ?>
