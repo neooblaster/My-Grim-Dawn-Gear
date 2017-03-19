@@ -20,6 +20,10 @@
 /** --- 														---------------------------														--- **
 /** ---																																					--- **
 /** ---																																					--- **
+/** ---		VERSION 1.1 : 19.03.2017 : NDU																									--- **
+/** ---		------------------------------																									--- **
+/** ---			- Ajout du tag pour récupération de la valeur dans les fichiers de lang via $vars							--- **
+/** ---																																					--- **
 /** ---		VERSION 1.0 : 18.03.2017 : NDU																									--- **
 /** ---		------------------------------																									--- **
 /** ---			- Première release																												--- **
@@ -46,16 +50,18 @@
 /** -------------------------------------------------------------------------------------------------------------------- **/
 function load_items_families(){
 	global $PDO;
+	global $vars;
 	
 	try {
-		$qFamilies = $PDO->query("SELECT ID, FAMILY FROM FAMILIES");
+		$qFamilies = $PDO->query("SELECT ID, FAMILY, TAG FROM FAMILIES");
 		
 		$FAMILIES = Array();
 		
 		while($faFamilies = $qFamilies->fetch(PDO::FETCH_ASSOC)){
 			$FAMILIES[] = Array(
 				"ID" => $faFamilies['ID'],
-				"FAMILY" => $faFamilies['FAMILY']
+				"FAMILY" => $faFamilies['FAMILY'],
+				"FAMILY_NAME" => ($vars[$faFamilies['TAG']]) ?: $faFamilies['TAG']
 			);
 		}
 		

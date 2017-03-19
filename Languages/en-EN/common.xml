@@ -255,7 +255,13 @@
 		<resource KEY="T_PREFIXES" CST="false" SST="true">Prefixes</resource>
 		<resource KEY="T_SUFFIXES" CST="false" SST="true">Suffixes</resource>
 	
-	
+		<!-- ITEM FAMILY NAMES -->
+		<resource KEY="F_ARMORS" CST="false" SST="true">Armors</resource>
+		<resource KEY="F_WEAPONS" CST="false" SST="true">Weapons</resource>
+		<resource KEY="F_JEWELRIES" CST="false" SST="true">Jewelries</resource>
+		<resource KEY="F_MISCS" CST="false" SST="true">Miscs</resource>
+		<resource KEY="F_AFFIXES" CST="false" SST="true">Affixes</resource>
+
 	
 	<!--'''''''''''''''''''''''''''''''''''''''''-->
 	<!--|   /Templates/Common/footer.tpl.html   |-->
