@@ -3,13 +3,14 @@
 		<!-- BEGIN_BLOCK ITEMS -->
 		%COMMA% {
 			"ID": %ID%,
-			"TYPE": %TYPE%,
 			"WIDTH": %WIDTH%,
 			"HEIGHT": %HEIGHT%,
-			"NAME": "%NAME%",
-			"TAG_NAME": "%TAG_NAME%",
+			"FAMILY": %FAMILY%,
+			"TYPE": %TYPE%,
 			"QUALITY": %QUALITY%,
-			"ATTACHMENT": "%ATTACHMENT%"
+			"TAG": "%TAG%",
+			"NAME": "%NAME%",
+			"ATTACHEMENT": "%ATTACHMENT%"
 		}
 		<!-- END_BLOCK ITEMS -->
 	]
