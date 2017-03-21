@@ -36,7 +36,7 @@
 		$clause = null;
 		
 		/** Identifier la clause SQL **/
-		if(preg_match('#[a-zA-Z0-9]{6}#', $gear)){// Code de build
+		if(preg_match('#[0-9]{6}-[a-zA-Z0-9]{6}#', $gear)){// Code de build
 			$clause = "CODE = '$gear'";
 		} else if(preg_match('#[0-9]+#', $gear)) {// Identifiant du build
 			$clause = "ID = $gear";
