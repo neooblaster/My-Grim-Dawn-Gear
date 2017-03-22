@@ -1,0 +1,11 @@
+{
+	"ID": %ID%,
+	"WIDTH": %WIDTH%,
+	"HEIGHT": %HEIGHT%,
+	"FAMILY": %FAMILY%,
+	"TYPE": %TYPE%,
+	"QUALITY": %QUALITY%,
+	"TAG": "%TAG%",
+	"NAME": "%NAME%",
+	"ATTACHMENT": "%ATTACHMENT%"
+}
