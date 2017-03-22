@@ -10,7 +10,7 @@
 			"QUALITY": %QUALITY%,
 			"TAG": "%TAG%",
 			"NAME": "%NAME%",
-			"ATTACHEMENT": "%ATTACHMENT%"
+			"ATTACHMENT": "%ATTACHMENT%"
 		}
 		<!-- END_BLOCK ITEMS -->
 	]
