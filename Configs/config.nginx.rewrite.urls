@@ -69,8 +69,8 @@
 	rewrite ^/Scripts/(.*)$ /Scripts/$1 last;
 	
 # Alias pour les Images : DEV en local et PRD chez OVH
-	#rewrite ^/Images/(.*)$ /Images/$1 last;
-	rewrite ^/Images/(.*)$ http://mgdg.neoblaster.fr/Images/$1 last;
+	rewrite ^/Images/(.*)$ /Images/$1 last;
+	#rewrite ^/Images/(.*)$ http://mgdg.neoblaster.fr/Images/$1 last;
 	
 # Alias pour le dossier de dépôt des CSS
 	rewrite ^/CSS/(.*)$ /CSS/$1 last;

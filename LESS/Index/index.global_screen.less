@@ -162,9 +162,10 @@
 /** --- Variables Gear View --- **
 /** --------------------------- **/
 @gear_build_height: 417px;
-@gear_build_items_width: 413px;
+@gear_build_items_width: 417px;
 @gear_build_stats_width: 257px;
 
+@gear_build_items_search_left: 119px;
 @gear_build_items_search_width: 179px;
 @gear_build_items_search_height: 258px;
 
@@ -183,6 +184,11 @@
 
 @gear_inventory_offset_size: 32px;
 @gear_slot_offset_size: 35px;
+
+
+@slots_left_left_offset: 33px;
+@slots_center_left_offset: 175px;
+@slots_right_left_offset: 314px;
 
 
 
@@ -416,7 +422,7 @@ section {
 		
 		&_build {
 			position: relative;
-			height: 417px;
+			height: @gear_build_height;
 			width: 100%;
 				
 			&_items {
@@ -465,7 +471,7 @@ section {
 					&.slot {
 						&_head{
 							.slot(2, 2);
-							left: 173px;
+							left: @slots_center_left_offset;
 							top: 14px;
 							
 							&:not([class*="quality"]){
@@ -475,7 +481,7 @@ section {
 						
 						&_neck{
 							.slot(1, 1);
-							left: 258px;
+							left: @slots_center_left_offset + 85px;
 							top: 23px;
 							
 							&:not([class*="quality"]){
@@ -485,7 +491,7 @@ section {
 						
 						&_lring{
 							.slot(1, 1);
-							left: 120px;
+							left: @slots_center_left_offset - 53px;
 							top: 69px;
 							
 							&:not([class*="quality"]){
@@ -495,7 +501,7 @@ section {
 						
 						&_rring{
 							.slot(1, 1);
-							left: 258px;
+							left: @slots_center_left_offset + 85px;
 							top: 69px;
 							
 							&:not([class*="quality"]){
@@ -505,7 +511,7 @@ section {
 						
 						&_main_1{
 							.slot(2, 4, 4);
-							left: 32px;
+							left: @slots_left_left_offset;
 							top: 19px;
 							
 							&:not([class*="quality"]){
@@ -515,7 +521,7 @@ section {
 						
 						&_off_1{
 							.slot(2, 4, 4);
-							left: 311px;
+							left: @slots_right_left_offset;
 							top: 19px;
 							
 							&:not([class*="quality"]){
@@ -525,7 +531,7 @@ section {
 						
 						&_main_2{
 							.slot(2, 4, 4);
-							left: 32px;
+							left: @slots_left_left_offset;
 							top: 19px;
 							
 							&:not([class*="quality"]){
@@ -535,7 +541,7 @@ section {
 						
 						&_off_2{
 							.slot(2, 4, 4);
-							left: 311px;
+							left: @slots_right_left_offset;
 							top: 19px;
 							
 							&:not([class*="quality"]){
@@ -545,7 +551,7 @@ section {
 						
 						&_chest{
 							.slot(2, 3, 1.5);
-							left: 32px;
+							left: @slots_left_left_offset;
 							top: 167px;
 							
 							&:not([class*="quality"]){
@@ -555,7 +561,7 @@ section {
 						
 						&_shoulders{
 							.slot(2, 2);
-							left: 311px;
+							left: @slots_right_left_offset;
 							top: 160px;
 							
 							&:not([class*="quality"]){
@@ -565,7 +571,7 @@ section {
 						
 						&_hands{
 							.slot(2, 2);
-							left: 311px;
+							left: @slots_right_left_offset;
 							top: 238px;
 							
 							&:not([class*="quality"]){
@@ -575,7 +581,7 @@ section {
 						
 						&_legs{
 							.slot(2, 3, 1.5);
-							left: 32px;
+							left: @slots_left_left_offset;
 							top: 284px;
 							
 							&:not([class*="quality"]){
@@ -585,7 +591,7 @@ section {
 						
 						&_feet{
 							.slot(2, 2);
-							left: 311px;
+							left: @slots_right_left_offset;
 							top: 316px;
 							
 							&:not([class*="quality"]){
@@ -595,7 +601,7 @@ section {
 						
 						&_relic{
 							.slot((1 * (38 / 35)), (1 * (38 / 35)));
-							left: 119px;
+							left: @slots_center_left_offset - 54px;;
 							top: 373px;
 							
 							&:not([class*="quality"]){
@@ -605,7 +611,7 @@ section {
 						
 						&_waist{
 							.slot(2, (1 * (38 / 35)));
-							left: 172px;
+							left: @slots_center_left_offset - 1px;
 							top: 373px;
 							
 							&:not([class*="quality"]){
@@ -615,7 +621,7 @@ section {
 						
 						&_medal{
 							.slot((1 * (38 / 35)), (1 * (38 / 35)));
-							left: 257px;
+							left: @slots_center_left_offset + 84px;
 							top: 373px;
 							
 							&:not([class*="quality"]){
@@ -625,7 +631,7 @@ section {
 						
 						&_switcher{
 							.slot(1, 1);
-							left: 120px;
+							left: @slots_center_left_offset - 53px;
 							top: 23px;
 							
 							&:not([class*="quality"]){
@@ -702,7 +708,7 @@ section {
 				
 				&_search_panel {
 					position: relative;
-					left: 117px;
+					left: @gear_build_items_search_left;
 					top: 111px;
 					width: @gear_build_items_search_width;
 					height: @gear_build_items_search_height;
@@ -1072,7 +1078,7 @@ section {
 				//background-position: /*right 0 top 0,*/ 0 0;
 				background-position: 0 0;
 				//background-repeat: /*no-repeat, */repeat;
-				background-repeat: repeat;
+				background-repeat: repeat-y;
 				
 				//background-image: url('@{images}/Backgrounds/scrollbar.png'), url('@{images}/Backgrounds/grid.png');
 				
@@ -1423,9 +1429,18 @@ section {
 /** ---																																					--- **
 /** -------------------------------------------------------------------------------------------------------------------- **
 /** -------------------------------------------------------------------------------------------------------------------- **/
+@scroll_img_width: 64px;
+@scroll_img_height: 64px;
+@scroll_button_width: 16px;
+@scroll_button_height: 16px;
+
+// init = 16 - désirée = 17 :: 17/16 = 1.0625
+@scroll_coef: 1.0625;
+
+
 .gd_scrollbar {
 	&::-webkit-scrollbar {
-		width: 14px;
+		width: @scroll_coef * 16px;
 		
 		&-track {
 			
@@ -1437,8 +1452,8 @@ section {
 		&-button {
 			background-image: url('@{images}/Backgrounds/scroll_buttons.png');
 			//background-position: -1px 0;
-			background-size: (0.875 * 64px) (0.875 * 64px);// photo 64x48 pour unit = 16px, ////
-			height: 14px;
+			background-size: (@scroll_coef * 64px) (@scroll_coef * 64px);// photo 64x64 pour 4 unité de 16px on veut 17 px
+			height: 16px * @scroll_coef;
 			cursor: pointer;
 			
 			&:horizontal {
@@ -1451,22 +1466,22 @@ section {
 					background-position: 0 0;
 					
 					&:hover {
-						background-position: 0 (0.875 * -16px);
+						background-position: 0 (@scroll_coef * -16px);
 					}
 					
 					&:active {
-						background-position: 0 (0.875 * -32px);
+						background-position: 0 (@scroll_coef * -32px);
 					}
 				}
 				&:decrement {
-					background-position: (0.875 * -16px) 0;
+					background-position: (@scroll_coef * -16px) 0;
 					
 					&:hover {
-						background-position: (0.875 * -16px) (0.875 * -16px);
+						background-position: (@scroll_coef * -16px) (@scroll_coef * -16px);
 					}
 					
 					&:active {
-						background-position: (0.875 * -16px) (0.875 * -32px);
+						background-position: (@scroll_coef * -16px) (@scroll_coef * -32px);
 					}
 				}
 			}
@@ -1474,8 +1489,8 @@ section {
 		
 		&-thumb {
 			background-image: url('@{images}/Backgrounds/thumb-slider-vertical.png'),  url('@{images}/Backgrounds/thumb-slider-vertical.png'), url('@{images}/Backgrounds/thumb-slider-vertical.png');
-			background-size: (0.875 * 48px) (0.875 * 16px);////
-			background-position: (0.875 * -16px) 0, left 0 bottom 0, (0.875 * -32px) 0;
+			background-size: (@scroll_coef * 48px) (@scroll_coef * 16px);////
+			background-position: (@scroll_coef * -16px) 0, left 0 bottom 0, (@scroll_coef * -32px) 0;
 			background-repeat: no-repeat, no-repeat, repeat;
 		}
 		
