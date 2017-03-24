@@ -106,26 +106,4 @@ if(isset($_GET["gear"]) && $_GET["gear"] !== ""){
 		}
 	}
 }
-
-
-pprint($_SESSION);
-//session_destroy();
-echo "</pre>";
-
-
-//--//					$vars["SUBMIT_NAME"] = "Save as copie";
-//--//					$vars["SUBMIT_TITLE"] = "Create an edited build";
-//--//						if($_SESSION["BUILDS"][$gear]["SIGNED"]){
-//--//							$vars['BUILD_ID'] = $faGear['ID'];
-//--//							$vars['BUILD_SIGNED'] = "true";
-//--//							$vars['SUBMIT_NAME'] = "Update";
-//--//							$vars['SUBMIT_TITLE'] = "Update your build";
-//--//						}
-//--//					if($faGear['FOLD_STATS'] > 0){
-//--//						$vars['BUILD_FOLD_STATS'] = "stats_fold";
-//--//					}
-//--//					if($faGear['FOLD_INVENTORY'] > 0){
-//--//						$vars['BUILD_FOLD_INVENTORY'] = "inventory_fold";
-//--//					}
-
 ?>
