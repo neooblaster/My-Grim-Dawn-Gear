@@ -62,6 +62,7 @@
 /** -------------------------------------------------------------------------------------------------------------------- **
 /** -------------------------------------------------------------------------------------------------------------------- **/
 /** > Déclaration des variables **/
+	$build;	// STRING	:: Build en cours de manipulation
 	$grant;	// STRING	:: Indique si on est autorisé à modifier le build
 
 /** > Initialisation des variables **/
@@ -75,18 +76,21 @@
 /** ---																																					--- **
 /** -------------------------------------------------------------------------------------------------------------------- **
 /** -------------------------------------------------------------------------------------------------------------------- **/
-/** > Si le build est protégé **/
-if($_SESSION['BUILD_PROTECTED']){
-	if($_SESSION['BUILD_SIGNED']){
-		$grant = "true";
-	} else {
-		$grant =  "false";
-	}
-}
-/** > Sinon autorisé, mais en duplication **/
-else {
-	$grant = "false";
-}
+/** > Récupération du build en cours de consultation **/
+//--//$build = $_SESSION["WATCHING_BUILD"];
+//--//
+//--///** > Si le build est protégé **/
+//--//if($_SESSION['BUILDS'][$build]["PROTECTED"]){
+//--//	if($_SESSION['BUILDS'][$build]["SIGNED"]){
+//--//		$grant = "true";
+//--//	} else {
+//--//		$grant =  "false";
+//--//	}
+//--//}
+//--///** > Sinon autorisé, mais en duplication **/
+//--//else {
+//--//	$grant = "false";
+//--//}
 
 
 /** -------------------------------------------------------------------------------------------------------------------- **
@@ -107,5 +111,5 @@ else {
 /** > Configuration du moteur **/
 /** > Envoie des données **/
 /** > Execution du moteur **/
-echo '{"allow": '.$grant.'}';
+//--//echo '{"allow": '.$grant.'}';
 ?>

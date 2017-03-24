@@ -31,7 +31,6 @@
 	"CRYPT_KEY_1": "MyGrimDawnGear",
 	"CRYPT_KEY_2": "MGDG",
 	
-	
 	/** Paramètres de la page Index **/
 	/** Vue par défault **/
 	"DEFAULT_VIEW": "HOME", 
@@ -53,6 +52,9 @@
 	},
 	
 	/** Active / desactive le compteur de vue **/
-	"VIEW_COUNTER": true
+	"VIEW_COUNTER": true,
+	
+	/** Durée de vie des données en session en seconde **/
+	"SESSION_TTL": 60
 }
 

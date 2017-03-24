@@ -57,7 +57,7 @@
 	
 /** ----------------------------------------------------------------------------------------------------------------------- **
 /** ----------------------------------------------------------------------------------------------------------------------- **/
-function gear(){
+function gear(token){
 	/** -------------------------------------------------------------------------------------------------------------------- **
 	/** ---																																					--- **
 	/** ---												Déclaration des propriétés de l'instance												--- **
@@ -66,9 +66,11 @@ function gear(){
 	var self = this;
 	
 	/** Inline described properties **/
+	self.token = token;			// INTEGER	:: Token de liaison de donnée avec les session (multi onglet)
+	
+	self.item_previewed = null;// INTEGER	:: ID de l'objet en cours de consultation (permet d'optimiser le traitement)
+	
 	self.items = {};				// OBJECT	:: Liste des objets présente dans l'inventaire
-	self.xhr = new xhrQuery();	// xhrQuery	:: Moteur Ajax
-	self.item_previewed = null;// :: ID de l'objet en cours de consultation (permet d'optimiser le traitement)
 	
 	/** Block described properties **/
 	// Liste des selecteurs utilisé dans l'application
@@ -95,12 +97,25 @@ function gear(){
 		mode: null
 	};
 	
+	// URLS de l'application
+	self.targets = {
+		build_loader:'/XHR/Index/load_build.php',
+		build_manager: '/XHR/Index/build_manager.php',
+		build_signer: '/XHR/Index/sign.php',
+		items_loader: "/XHR/Index/load_items.php",
+		item_loader: '/XHR/Index/load_item.php'
+	};
+	
 	
 	/** -------------------------------------------------------------------------------------------------------------------- **
 	/** ---																																					--- **
 	/** ---															Pré-execution interne															--- **
 	/** ---																																					--- **
 	/** -------------------------------------------------------------------------------------------------------------------- **/
+	/** > Ajout du token aux URLS **/
+	for(var url in self.targets){
+		self.targets[url] += "?token="+self.token;
+	}
 	
 	
 	/** -------------------------------------------------------------------------------------------------------------------- **
@@ -108,6 +123,91 @@ function gear(){
 	/** ---												Déclaration des méthodes de l'instance													--- **
 	/** ---																																					--- **
 	/** -------------------------------------------------------------------------------------------------------------------- **/
+	/** ----------------------------------------------------------------- **
+	/** --- Programme de gestion des contraintes fonctionnel du build --- **
+	/** ----------------------------------------------------------------- **/
+	self.build = {
+		/** Capture du build à son état initial (onload) **/
+		hash: {},
+		
+		/** Indicateur de modificaiton du build **/
+		changed: false,
+		
+		/** Flag qui indique si le build est vide ou non **/
+		empty: true,
+		
+		/** Référencement des inputs **/
+		inputs: null,
+		
+		/** Méthode d'assimiliation du build **/
+		init: function(){
+			var isLoading = false;
+			
+			for(var i in self.build.loading){
+				isLoading = true;
+				break;
+			}
+			
+			if(!isLoading){
+				self.build.inputs = document.forms.gear_form.querySelectorAll("input[name*=slot_]");
+				
+				for(var i = 0; i < self.build.inputs.length; i++){
+					var input = self.build.inputs[i];
+					var value = parseInt(input.value);
+					
+					self.build.hash[input.name] = value;
+					
+					if(value){
+						self.build.empty = false;
+					}
+				}
+			}
+		},
+		
+		/** Méthode de controle du build **/
+		controle: function(){
+			var change_break = false;
+			var empty_break = false;
+			
+			for(var i = 0; i < self.build.inputs.length; i++){
+				var input = self.build.inputs[i];
+				var value = parseInt(input.value);
+				
+				/** Si une valeur positive, un objet est présent **/
+				if(value){
+					self.build.empty = false;
+					empty_break = true;
+				}
+				
+				/** Si la valeur stockée en hash est différent alors le build a changé **/
+				if(self.build.hash[input.name] !== value){
+					self.build.changed = true;
+					change_break = true;
+				}
+				
+				if(change_break && empty_break){
+					break;
+				}
+			}
+			
+			/** Si le flag change_break n'a pas été déclencher, le build est tel qu'à l'initiale **/
+			if(!change_break){
+				self.build.changed = false;
+			}
+			
+			/** Si le flag emptry_break n'à pas été déclencher, le build est vide **/
+			if(!empty_break){
+				self.build.empty = true;
+			}
+		},
+		
+		/** Liste des slots en cours de chargement. L'initialisation ne peux etre faites tant que des slots sont en cours de chargement**/
+		loading: {
+			
+		}
+	};
+	
+	
 	/** ---------------------------------------- **
 	/** --- Programmes de gestion des objets --- **
 	/** ---------------------------------------- **/
@@ -140,13 +240,13 @@ function gear(){
 				var xQuery = new xhrQuery();
 				
 				/** Définition de la cible de chargement des objets **/
-				xQuery.target("/XHR/Index/load_items.php");
+				xQuery.target(self.targets.items_loader);
 				
 				/** Parcourir les éléments du formulaire pour envoyer les informations **/
 				xQuery.forms(form);
 				
 				/** Méthode de rappel **/
-				xQuery.callbacks(function(d){
+				xQuery.callbacks(function(self, d){
 					try {
 						// Récupération de l'hote
 						var host = document.querySelector(self.selectors.inventory);
@@ -182,6 +282,7 @@ function gear(){
 									ondragstart: function(id, ev){
 										/** Spécifié les donnée transféré **/
 										ev.dataTransfer.setData("text", '{"item_id": '+id+'}');
+										
 										/** Montrer les slots compatible **/
 										self.slots(ev.target.parentNode).show();
 									}.bind(null, item.ID),
@@ -223,7 +324,7 @@ function gear(){
 					} catch (err){
 						console.error("gear::item::load.callback failed on", d, "with error", err);
 					}
-				});
+				}.bind(null, self));
 				
 				/** Envois des données **/
 				xQuery.send();
@@ -239,7 +340,8 @@ function gear(){
 					
 					/** Si l'objet à changer ou le mode, alors créer une nouvelle fenêtre **/
 					if(self.windows.id !== ID || self.windows.mode !== mode){
-						var show_tag_item = item.getAttribute("data-show-tag-item").toLowerCase();
+						var show_tag_item = item.getAttribute("data-show-tag-item");
+							show_tag_item = (show_tag_item) ? show_tag_item.toLowerCase() : null;
 						var data = self.items["itm-"+ID];
 					
 						/** Fermer les éventuelles fenêtre d'ouverte **/
@@ -349,28 +451,37 @@ function gear(){
 		return {
 			/** Méthode de chargement des références qui compose un build **/
 			build: function(){
-				var to_load = document.querySelector('#build_id');
-				
-				if(to_load !== null){
-					var xQuery = new xhrQuery();
-						xQuery.target('/XHR/Index/load_build.php');
-						xQuery.inputs(to_load);
-						xQuery.callbacks(
-							function(e){
-								try {
-									e = JSON.parse(e);
-									
-									for(var slot in e){
-										self.load().slot(slot, e[slot]);
+				var xQuery = new xhrQuery();
+					xQuery.target(self.targets.build_loader);
+					xQuery.callbacks(
+						function(e){
+							try {
+								e = JSON.parse(e);
+								
+								if(e.statut === "loaded"){
+									/** Charger chaque slot **/
+									for(var slot in e.slots){
+										/** Si le slots n'est pas vide **/
+										if(e.slots[slot]){
+											console.log(self.build);
+											
+											/** Ajouter une référence de chargement **/
+											self.build.loading[slot] = true;
+											console.log(self.build);
+											
+											/** Charger l'objet **/
+											self.load().slot(slot, e.slots[slot]);
+										}
 									}
-									
-								} catch (err){
-									console.log("can not parse data");
+								} else if(e.statut === "empty") {
+									self.build.init();
 								}
+							} catch (err){
+								console.log("gear::load::build.callback failed on", e, "with error", err);
 							}
-						);
-						xQuery.send();
-				}
+						}
+					);
+					xQuery.send();
 			},
 			
 			/** Méthode de chargement des données du slots donnée **/
@@ -378,7 +489,7 @@ function gear(){
 				if(item_id > 0){
 					var xQuery = new xhrQuery();
 					
-					xQuery.target('/XHR/Index/load_item.php');
+					xQuery.target(self.targets.item_loader);
 					xQuery.values('item_id='+item_id);
 					xQuery.callbacks(function(e){
 						e = e || {};
@@ -425,6 +536,12 @@ function gear(){
 						} catch (err){
 							
 						}
+						
+						/** Déférencer le chargement en cours **/
+						delete self.build.loading[slot];
+						
+						/** Lancer une eventuelle initialisation du build **/
+						self.build.init();
 					});
 					xQuery.send();
 				}
@@ -436,54 +553,53 @@ function gear(){
 	/** -------------------------------------- **
 	/** --- Méthode de sauvegarde du build --- **
 	/** -------------------------------------- **/
-	self.save = function(){
-		/** Créer un moteur AJAX **/
-		var xQuery = new xhrQuery();
-		
-		/** Script de sauvegarde **/
-		xQuery.target("/XHR/Index/is_allow.php");
-		
-		/** Fonction de rappelle **/
-		xQuery.callbacks(function(d){
-			try {
-				d = JSON.parse(d);console.log(d);
-				
-				var xhrQuerySave = new xhrQuery();
-				xhrQuerySave.target("/XHR/Index/build_manager.php");
-				xhrQuerySave.forms(document.forms.gear_form);
-				if(!d.allow) xhrQuerySave.values("dupplicate=true");
-				xhrQuerySave.callbacks(function(e){
-					console.log(e);
+	self.save = function(copy){
+		/** > Si le build n'est pas vide... **/
+		if(!self.build.empty){
+			/** > Si le build à changé alors sauvegarder, sinon ignorer */
+			if(self.build.changed){
+				var xQuery = new xhrQuery();
+				xQuery.target(self.targets.build_manager);
+				if(copy) xQuery.values("copy=true");
+				xQuery.forms(document.forms.gear_form);
+				xQuery.callbacks(function(e){
 					try {
 						e = JSON.parse(e);
 						
-						switch(e.STATUT){
-							case "success":
-								if(e.OPERATION === 'INSERT'){
-									prompt('Find below your link to share it :', document.location.hostname+'/build/'+e.BUILD_CODE);
-									history.replaceState("", "", "/build/"+e.BUILD_CODE);
+						if(e.statut === "success"){
+							// Si pas de code reçu, c'était une mise à jour
+							if(e.code !== ""){
+								prompt("Find below your link to share it :", document.location.hostname+'/build/'+e.code);
+								
+								if(!copy){
+									history.replaceState("", "", "/build/"+e.code);
 									document.location.reload();
+								} else {
+									// ouvrir un nouvelle onglet sur la copie
+									var newTab = window.open('/build/'+e.code, e.code);
+									newTab.focus();
 								}
-							break;
-							
-							case "skip":
-							case "error":
-								alert(e.MESSAGE);
-							break;
+							} else {
+								
+							}
+						} else {
+							alert(e.message);
 						}
-					} catch(serr){
-						console.error("gear::save.callback.callback failed on", e, "with error", serr);
+					} catch(err){
+						console.error("gear::save.callback failed on", e, "with error", err);
 					}
 				});
-				xhrQuerySave.send();
-			} catch(err){
-				console.error("gear::save.callback failed on", d, "with error", err);
+				xQuery.send();
 			}
-		});
-		
-		/** Sauvegarde **/
-		xQuery.send();
-	},
+			else {
+				alert("Nothing changed");
+			}
+		} 
+		/** Sinon envoyer une notification **/
+		else {
+			alert("Your build is empty");
+		}
+	};
 	
 	
 	/** ------------------------------------------------ **
@@ -520,6 +636,9 @@ function gear(){
 				
 				/** Mise à jour du champs input hidden correspondant **/
 				self.slots().input(slot, attachment, 0);
+				
+				/** Déclencher un controle de build **/
+				self.build.controle();
 			},
 			
 			/** Méthode de dépose de l'objet dans le slot **/
@@ -561,6 +680,9 @@ function gear(){
 				
 				//--- Mise à jour de l'input type hidden correspondant
 				self.slots().input(slot, item_attachment, item_id);
+				
+				/** Déclencher un controle de build **/
+				self.build.controle();
 			},
 			
 			/** Méthode pour masquer les slots compatible **/
@@ -585,7 +707,6 @@ function gear(){
 				
 				/** Récupérer le nom du slot **/
 				for(var c = 0; c < slot.classList.length; c++){
-					
 					if(slot_name_pattern.test(slot.classList[c])){
 						slot_name = slot.classList[c];
 						break;
@@ -644,40 +765,53 @@ function gear(){
 		};
 	};
 	
+	
 	/** ------------------------------------------- **
 	/** --- Méthode d'authentification de build --- **
 	/** ------------------------------------------- **/
 	self.sign = function(){
-		var xQuery = new xhrQuery();
+		var password = prompt("Type your password");
 		
-		xQuery.target('/XHR/Index/sign.php');
-		xQuery.values(
-			"id="+document.querySelector('#build_id').value,
-			"password="+prompt("Type your password")
-		);
-		xQuery.callbacks(
-			function(e){
+		if(password !== null || password !== ""){
+			var xQuery = new xhrQuery();
+			xQuery.target(self.targets.build_signer);
+			xQuery.values("password="+password);
+			xQuery.callbacks(function(e){
+				console.log(e);
+				
 				try {
 					e = JSON.parse(e);
 					
-					if(e.allow){
-						var submit_input = document.createElement('input');
-							submit_input.setAttribute('type', 'submit');
-							submit_input.value = "Save";
-							submit_input.title = "Update your gear";
+					/** > Si authentification effectuée avec succèss **/
+					if(e.statut === "success"){
+						/** > Le bouton save, devient le bouton update (no changement fonctionnel) **/
+						var save_input = document.querySelector("#save_button");
+							save_input.value = "UPDATE";
+							save_input.title = "Update your build";
 						
-						var sign_button = document.querySelector('#sign_button');
-						
-						sign_button.parentNode.replaceChild(submit_input, sign_button);
-					} else {
-						alert('Wrong Password. Try Again');
+						/** > Le bouton sign devient le bouton save as copy (changement fonctionnel) **/
+						var sign_button = document.querySelector("#sign_button");
+							sign_button.parentNode.replaceChild(HTML().compose({
+								name: "input",
+								attributes: {
+									type: "button",
+									value: "save as copie"
+								},
+								properties: {
+									onclick: function(p){self.save(p);}.bind(self, true)
+								}
+							}), sign_button);
 					}
-				} catch (err){
-					console.log("Can not parse data");
+					else {
+						alert(e.message);
+					}
+					
+				} catch(err){
+					console.error("gear::sign.callback failed on", e, "with error", err);
 				}
-			}
-		);
-		xQuery.send();
+			});
+			xQuery.send();
+		}
 	};
 	
 	
@@ -719,6 +853,8 @@ function gear(){
 	/** ---															Post-Execution interne															--- **
 	/** ---																																					--- **
 	/** -------------------------------------------------------------------------------------------------------------------- **/
+	/** > Initialisation de la section **/
+	self.load().build();
 	
 	
 	/** -------------------------------------------------------------------------------------------------------------------- **
@@ -733,7 +869,6 @@ function gear(){
 var GEAR = null;
 document.onreadystatechange = function(){
 	if(document.readyState === 'complete'){
-		GEAR = new gear();
-		GEAR.load().build();
+		if(document.forms.gear_form) GEAR = new gear(TOKEN);
 	}
 };

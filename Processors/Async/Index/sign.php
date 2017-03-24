@@ -63,11 +63,19 @@
 /** -------------------------------------------------------------------------------------------------------------------- **
 /** -------------------------------------------------------------------------------------------------------------------- **/
 /** > Déclaration des variables **/
-	$ID;			// STRING	:: Identifiant du build
+	$token;		// INTEGER	:: Jeton de session
 	$password;	// STRING	:: Mot de passe
+	$build;		// STRING	:: Build manipuler
+	$statut;		// STRING	:: Statut définissant l'état d'execution du script
+	$message;	// STRNG		:: Message d'erreur
+
 
 /** > Initialisation des variables **/
-	$ID = $_POST['id'];
+	$token = $_GET["token"];
+	$password = cryptpwd(cryptpwd($_POST['password'], CRYPT_KEY_1), CRYPT_KEY_2);
+	$build = $_SESSION["TOKEN_$token"]["WATCHING_BUILD"];
+
+
 /** > Déclaration et Intialisation des variables pour le moteur (référence) **/
 
 
@@ -78,23 +86,32 @@
 /** ---																																					--- **
 /** -------------------------------------------------------------------------------------------------------------------- **
 /** -------------------------------------------------------------------------------------------------------------------- **/
-/** > Encryption du mot de passe **/
-	$password = cryptpwd(cryptpwd($_POST['password'], CRYPT_KEY_1), CRYPT_KEY_2);
-
-
-/** > Tentative de connexion **/
-try {
-	$qAuth = $PDO->query("SELECT CODE FROM BUILDS WHERE ID = $ID AND PASSWORD = '$password'");
-	
-	if($qAuth->rowCount() > 0){
-		$grant = "true";
-		$_SESSION['BUILD_SIGNED'] = true;
-	} else {
-		$grant = "false";
+/** > Si un build à été identifier **/
+if($build !== ""){
+	/** > Tentative de connexion **/
+	try {
+		$pAuth = $PDO->prepare("SELECT ID FROM BUILDS WHERE CODE = :build AND :password");
+		$pAuth->execute(Array(":build" => $build, ":password" => $password));
+		
+		/** > Si un résultat, alors authentfication reussie **/
+		if($pAuth->rowCount() > 0){
+			$statut = "success";
+			$message = "";
+			
+			$_SESSION["BUILDS"][$build]["SIGNED"] = true;
+		} else {
+			$statut = "failed";
+			$message = "Wrong password.";
+		}
+	} catch (Exception $e){
+		$statis = "error";
+		$message = "Something happens wrong";
 	}
-} catch(Exception $e){
-	$grant = "false";
+} else {
+	$statut = "error";
+	$message = "That build doesn't exist.";
 }
+
 
 
 /** -------------------------------------------------------------------------------------------------------------------- **
@@ -115,5 +132,5 @@ try {
 /** > Configuration du moteur **/
 /** > Envoie des données **/
 /** > Execution du moteur **/
-echo '{"allow": '.$grant.'}';
+echo '{"statut": "'.$statut.'", "message" : "'.$message.'"}';
 ?>

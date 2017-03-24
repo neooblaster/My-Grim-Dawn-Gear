@@ -1,4 +1,4 @@
-<div class="gear_panel %FOLD_STATS% %FOLD_INVENTORY%">
+<div class="gear_panel %BUILD_FOLD_STATS% %BUILD_FOLD_INVENTORY%">
 		
 	<div class="gear_panel_build">
 		
@@ -7,16 +7,20 @@
 			<form id="gear_form">
 				
 				<!-- Head Data -->
-			<!-- IF (%VIEW_MODE% == 'READ') AS VIEW_MODE_INPUT -->
-				<input type="hidden" name="build_id" id="build_id" value="%BUILD_ID%" />
-				<input type="hidden" name="build_code" id="build_code" value="%BUILD_CODE%" />
-				<input type="hidden" name="build_name" id="build_name" value="" />
-			<!-- ELSE -->
-				<input type="hidden" name="build_name" id="build_name" value="" />
-				<input type="hidden" name="build_passcode" id="build_passcode" value="" />
-			<!-- ENDIF MODE_VIEW_INPUT -->
-				<input type="hidden" name="build_fold_stats" id="build_fold_stats" value="" />
-				<input type="hidden" name="build_fold_inventory" id="build_fold_inventory" value="" />
+				
+				
+				
+				
+				<input type="hidden" name="build_name" id="build_name" value="%BUILD_NAME%" />
+				
+				<input type="hidden" name="build_password" id="build_password" value="" />
+				
+				
+				
+				
+				<input type="hidden" name="build_fold_stats" id="build_fold_stats" value="%BUILD_FOLD_STATS%" />
+				<input type="hidden" name="build_fold_inventory" id="build_fold_inventory" value="%BUILD_FOLD_INVENTORY%" />
+				
 				
 				<!-- Items Prefix -->
 				<input type="hidden" name="slot_head_prefix" id="input_slot_head_prefix" value="0"/>
@@ -185,7 +189,7 @@
 					Search
 				</h2>
 				
-				<form onsubmit="gear().item().load(this); return false;" method="post">
+				<form onsubmit="GEAR.item().load(this); return false;" method="post">
 					<div class="gear_panel_build_items_search_panel_content">
 						
 						<div class="search_filter filter_name">
@@ -261,25 +265,46 @@
 					
 					<div class="option_panel">
 						<form onsubmit="GEAR.save(); return false;">
-						<!-- IF (%VIEW_MODE% === 'READ') AS VIEW_MODE_OPTIONS -->
-							<!--  IF ('%BUILD_NAME%' !== '') AS NAMMED -->
-							<input type="text" value="%BUILD_NAME%" readonly disabled/>
-							<!-- ENDIF NAMMED -->
-						<!-- ELSE -->
-							<input type="text" placeholder="Named your build" title="You can named your build" onkeyup="GEAR.synchronize(this, 'build_name')"/>
-							<input type="password" placeholder="Passcode" title="Blank password means that build is editable by everyone." onkeyup="GEAR.synchronize(this, 'build_passcode')"/>
-						<!-- ENDIF VIEW_MODE_OPTIONS -->
 							
-						<!-- IF (%BUILD_PROTECTED%) AS BUILD_PROTECTED -->
-							<input id="sign_button" type="button" value="Sign To Edit" data-sign="false" onclick="GEAR.sign();"/>
-						<!-- ELSE -->
-							<input type="submit" value="Save" title="create the build"/>
-						<!-- ENDIF BUILD_PROTECTED -->
 							
-						<!-- IF (%VIEW_MODE% === 'READ') AS SHOW_LINKS -->
+							
+							
+							<!-- Quelque soit la situation, afficher le champs nom (création, visualisation, edition, dupplication) -->
+							<input type="text" value="%BUILD_NAME%" placeholder="Named your build" title="You can named your build" onkeyup="GEAR.synchronize(this, 'build_name')"/>
+							
+							<!-- Ne pas afficher le mot de passe si nous somme authentifié à ce build -->
+							<input type="password" placeholder="Password" title="Blank password means that build is definitive." onkeyup="GEAR.synchronize(this, 'build_password')"/>
+							
+							<!-- Quelque soit la situation, afficher le champs savegarder (création, visualisation, edition, dupplication) -->
+							<input id="save_button" type="submit" value="%SUBMIT_NAME%" title="%SUBMIT_TITLE%"/>
+							
+							<!-- Ne pas afficher le bouton connexion, si nous somme déjà authentifié pour ce build -->
+							<!-- IF (%IS_BUILD_PROTECTED% && !%IS_BUILD_SIGNED%) AS PROTECTED_REQ_SIGN -->
+							<input id="sign_button" type="button" value="Sign to edit" data-sign="false" onclick="GEAR.sign();"/>
+							<!-- ELSEIF (%IS_BUILD_PROTECTED% && %IS_BUILD_SIGNED%) -->
+							<input id="copy_button" type="button" value="Save as copy" title="" onclick="GEAR.save(true);"/>
+							<!-- ENDIF PROTECTED_REQ_SIGN -->
+							
+							<!-- Afficher les linkers s'il s'agit d'un build -->
+							<!-- IF (%IS_WATCHING_BUILD%) AS BUILD_HAS_LINKS -->
 							<span class="button-img" onclick="GEAR.link().build();" title="Click to get a direct link to this build."><img src="/Images/Interfaces/build-link.png"/></span>
 							<span class="button-img" onclick="GEAR.link().image();" title="Click to get a link to image version of this build."><img src="/Images/Interfaces/image-link.png"/></span>
-						<!-- ENDIF SHOW_LINKS -->
+							<!-- ENDIF BUILD_HAS_LINKS -->
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
 						</form>
 					</div>
 					

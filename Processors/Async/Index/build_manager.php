@@ -31,6 +31,18 @@
 	Description fonctionnelle :
 	----------------------------
 	
+	
+		Ajout d'un nouveau build quand :
+			Nouveau build (pas de code de build)
+			Si build, mais non protegé
+			si build protegé mais non signé
+			Si build Signé AVEC copy
+			
+		Update un build si
+			build signé sans copy
+	
+	
+	
 /** -------------------------------------------------------------------------------------------------------------------- **
 /** -------------------------------------------------------------------------------------------------------------------- **
 /** ---																																					--- **
@@ -39,7 +51,7 @@
 /** -------------------------------------------------------------------------------------------------------------------- **
 /** -------------------------------------------------------------------------------------------------------------------- **
 /** > Chargement des Paramètres **/
-	setup('/Setups', Array('application', 'pdo'), 'setup.$1.php');
+	setup('/Setups', Array('application', 'pdo', 'sessions'), 'setup.$1.php');
 
 /** > Ouverture des SESSIONS Globales **/
 /** > Chargement des Classes **/
@@ -65,20 +77,26 @@
 /** > Déclaration des variables **/
 	$base62;				// ARRAY		:: Tableau de 62 caractère
 	$id;					// STRING	:: Identifiant du build si spécifié
-	$code;				// STRING	:: Code du build à updater
+	$build;				// STRING	:: Code du build à updater
 	$name;				// STRING	:: Nom du build si création
 	$password;			// STRING	:: Mot de passe crypté
 	$query;				// STRING	:: SQL Query
 	$unautomatized;	// ARRAY		:: Liste des colonnes à ne pas automatiser
-	$automatized;		// ARRAY		:: Liste des colonnes automatisée
+	$automatized;		// ARRAY		:: Liste des colonnes automatiser (slots recevant des integers)
 	$fold_stats;		// STRING	:: Panneau de stats affiché ou masqué
 	$fold_inventory;	// STRING	:: Panneau d'inventaire affiché ou masqué
 	$empty_build;		// BOOLEAN	:: Flag de sécurité pour empecher la création d'un build vide
 	$bound_tokens;		// ARRAY		:: Donnée à passé pour PDO
 	$statut;				// STRING	:: Status de l'opération du script (succèss / error)
 	$message;			// STRING	:: MEssage de l'echec
+	$token;				// STRING	:: Jeton correspondant à l'onglet du navigateur communiquant
+	$copy;				// BOOLEAN	:: Indique qu'il faut copier le build
+	$md5;					// STRING	:: Hash constituant le build
+	$new_build_code;	// STRING	:: Code du nouveau build
 
 /** > Initialisation des variables **/
+	$md5 = null;
+
 	$base62 = Array(
 		'0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
 		'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j',
@@ -88,18 +106,24 @@
 		'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T',
 		'U', 'V', 'W', 'X', 'Y', 'Z'
 	);
-
-	$unautomatized = Array("build_id", "build_code", "build_name", "build_passcode", "build_fold_stats", "build_fold_inventory");
-	$automatized = Array();
+	$unautomatized = Array("build_id", "build_code", "build_name", "build_password", "build_fold_stats", "build_fold_inventory", "copy");
+	$automatized = Array(
+		"cols" => Array(),
+		"values" => Array(),
+		"sets" => Array() 
+	);
 	$bound_tokens = Array();
 
-	$id = $_POST["build_id"];
+	$token = $_GET["token"];
 	$name = $_POST["build_name"];
-	$code = $_POST["build_code"];
-	$fold_stats = $_POST["build_fold_stats"];
-	$fold_inventory = $_POST["build_fold_inventory"];
 
-	$empty_build = true;
+	$password = (isset($_POST["build_password"]) && $_POST["build_password"] !== "") ? cryptpwd(cryptpwd($_POST["build_password"], CRYPT_KEY_1), CRYPT_KEY_2) : "";
+	$build = $_SESSION["TOKEN_$token"]["WATCHING_BUILD"];
+	$copy = (isset($_POST["copy"]) && $_POST["copy"] === "true") ? true : false;
+
+//$fold_stats = $_POST["build_fold_stats"];
+//$fold_inventory = $_POST["build_fold_inventory"];
+
 
 /** > Déclaration et Intialisation des variables pour le moteur (référence) **/
 
@@ -111,99 +135,93 @@
 /** ---																																					--- **
 /** -------------------------------------------------------------------------------------------------------------------- **
 /** -------------------------------------------------------------------------------------------------------------------- **/
-/** > Vérifier s'il s'agit d'une dupplication **/
-if($_POST["dupplicate"]){
-	$id = null;
-	unset($_POST["dupplicate"]);
-}
-
-
-/** > Déterminer le mot de passe **/
-$password = (isset($_POST["build_passcode"]) && $_POST["build_passcode"] !== "") ? cryptpwd(cryptpwd($_POST["build_passcode"], CRYPT_KEY_1), CRYPT_KEY_2) : "";
-
-
-/** > Parcourir les champs de donnée envoyé pour automatisation **/
+/** > Rechercher les clées automatisée **/
 foreach($_POST as $key => $value){
-	/** > S'il s'agit pas d'une clé à automatisé **/
 	if(!in_array($key, $unautomatized)){
-		// Pour la requête d'INSERT
 		$automatized["cols"][] = strtoupper($key);
-		$automatized["values"][] = $value;
+		$automatized["values"][] = intval($value);
+		$automatized["sets"][] = strtoupper($key)."=".intval($value);
 		
-		// Pour la requête d'UPDATE
-		$automatized["update"][] = strtoupper($key)."=".$value;
-		
-		if(intval($value) > 0){
-			$empty_build = false;
-		}
+		$md5 .= intval($value).".";
 	}
 }
 
+/** > Composition du hash MD5 **/
+$md5 = md5($md5);
 
-/** > Déterminer la requête SQL qui convient **/
-// Si ID est null c'est une création
-if($id === null){
-	$operation = "INSERT";
-	
-	/** Chercher un Code Disponible **/
-	do{
-		$build_code = date("ymd-", time());
+/** > Composition de la requête SQL **/
+// Nouveau Build
+if(
+	!$build || 
+	($build && !$_SESSION["BUILDS"][$build]["PROTECTED"]) || 
+	($build && $_SESSION["BUILDS"][$build]["PROTECTED"] && !$_SESSION["BUILDS"][$build]["SIGNED"]) ||
+	($build && $_SESSION["BUILDS"][$build]["PROTECTED"] && $_SESSION["BUILDS"][$build]["SIGNED"] && $copy) 
+){
+	/** > Générer un code de build unique **/
+	do {
+		// Augmentation des chance de succès + possilité à l'aide de la date
+		$new_build_code = date("ymd-", time());
+		
 		for($i = 0; $i < 6; $i++){
-			$build_code .= $base62[rand(0, 61)];
+			$new_build_code .= $base62[rand(0, 61)];
 		}
 		
+		// Vérification de la disponibilité
 		try {
-			$control = $PDO->query("SELECT ID FROM BUILDS WHERE CODE = '$build_code'");
+			$pAvailibility = $PDO->prepare("SELECT ID FROM BUILDS WHERE CODE = :code");
+			$pAvailibility->execute(Array(":code" => $new_build_code));
 		} catch (Exception $e){
 			$statut = "error";
-			$message = "Unable to generate build code.";
+			$message = "Unable to generate build code";
 			break;
 		}
-	} while($control->rowCount() > 0);
+	} while ($pAvailibility->rowCount() > 0);
 	
-	/** Finalisation de la requête SQL **/
+	/** > Generation de la requête SQL **/
 	$query = "
 		INSERT INTO BUILDS
 		
-		(CODE, NAME, PASSWORD, ".implode(",", $automatized["cols"]).")
+		(CODE, NAME, PASSWORD, MD5, ".implode(",", $automatized["cols"]).")
 		
-		VALUES(:build_code, :build_name, :password, ".implode(",", $automatized["values"]).")
+		VALUES(:code, :name, :password, :md5, ".implode(",", $automatized["values"]).")
 	";
 	
+	/** > Bound tokens **/
 	$bound_tokens = Array(
-		":build_code" => $build_code,
-		":build_name" => $name,
-		":password" => $password
+		":code" => $new_build_code,
+		":name" => $name,
+		":password" => $password,
+		":md5" => $md5
+	);
+}
+// Mise à jour du build
+else {
+	/** > Generation de la requête SQL **/
+	$query = "
+	UPDATE BUILDS
+	
+	SET ".implode(",", $automatized["sets"])."
+	
+	WHERE CODE = :code
+	";
+	
+	/** > Bound tokens **/
+	$bound_tokens = Array(
+		":code" => $build
 	);
 }
 
-// Sinon c'est une UPDATE
-else {
-	$operation = "UPDATE";
+/** > Execution de le requête SQL **/
+try {
+	$pQuery = $PDO->prepare($query);
+	$pQuery->execute($bound_tokens);
 	
-	$query = "
-		UPDATE BUILDS
-		
-		SET ".implode(",", $automatized["update"])."
-		
-		WHERE ID = $id
-	";
-}
-
-
-/** > Execution de la requête SQL **/
-if(!$empty_build){
-	try {
-		$pQuery = $PDO->prepare($query);
-		$pQuery->execute($bound_tokens);
-		$statut = "success";
-	} catch(Expcetion $e){
-		$statut = "error";
-		$message = "Build registration failed.";
-	}
-} else {
-	$statut = "skip";
-	$message = "Your build is empty.";
+	$statut = "success";
+	
+} catch (Exception $e){
+	$statut = "error";
+	$message = "Operation failed.";
+	error_log("[MGDG] :: build_manager.php failed with error :: ".$e->getMessage()." on query ".$query);
 }
 
 
@@ -226,10 +244,7 @@ if(!$empty_build){
 /** > Configuration du moteur **/
 /** > Envoie des données **/
 /** > Execution du moteur **/
-echo '{
-	"STATUT": "'.$statut.'",
-	"MESSAGE": "'.$message.'",
-	"OPERATION": "'.$operation.'",
-	"BUILD_CODE": "'.$build_code.'"
-}';
+
+echo '{"statut": "'.$statut.'", "message": "'.$message.'", "code": "'.$new_build_code.'"}';
+
 ?>

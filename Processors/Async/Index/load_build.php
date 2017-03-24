@@ -8,15 +8,20 @@
 /** ---																																					--- **
 /** ---		AUTEUR 	: Nicolas DUPRE																											--- **
 /** ---																																					--- **
-/** ---		RELEASE	: 21.03.2017																												--- **
+/** ---		RELEASE	: 23.03.2017																												--- **
 /** ---																																					--- **
-/** ---		VERSION	: 1.0																															--- **
+/** ---		VERSION	: 1.1																															--- **
 /** ---																																					--- **
 /** ---																																					--- **
 /** --- 														-----------------------------														--- **
 /** --- 															{ C H A N G E L O G } 															--- **
 /** --- 														-----------------------------														--- **	
 /** ---																																					--- **
+/** ---																																					--- **
+/** ---		VERSION 1.1 : 23.03.2017																											--- **
+/** ---		------------------------																											--- **
+/** ---			- Utilisation des données de session pour le chargement du build													--- **
+/** ---				> Utilisation d'un token pour lier les données																		--- **
 /** ---																																					--- **
 /** ---		VERSION 1.0 : 21.03.2017																											--- **
 /** ---		------------------------																											--- **
@@ -39,7 +44,7 @@
 /** -------------------------------------------------------------------------------------------------------------------- **
 /** -------------------------------------------------------------------------------------------------------------------- **
 /** > Chargement des Paramètres **/
-	setup('/Setups', Array('application', 'pdo'), 'setup.$1.php');
+	setup('/Setups', Array('application', 'pdo', 'sessions'), 'setup.$1.php');
 
 /** > Ouverture des SESSIONS Globales **/
 /** > Chargement des Classes **/
@@ -60,16 +65,17 @@
 /** -------------------------------------------------------------------------------------------------------------------- **
 /** -------------------------------------------------------------------------------------------------------------------- **/
 /** > Déclaration des variables **/
-	$ID;		// STRING	:: Identifiant du build à charger
 	$SLOTS;	// ARRAY		:: Liste de tableau trouvant l'objet attaché au SLOT
 	$first;	// BOOLEAN	:: Indique qu'il s'agit de la premiere entrée
 	$moteur;	// Template	:: Moteur de rendu
+	$token;	// STRING	:: Jeton de l'onglet navigateur
 
 
 /** > Initialisation des variables **/
-	$ID = $_POST["build_id"];
+	//$code = $_POST["build_code"];
 	$SLOTS = Array();
 	$first = true;
+	$token = $_GET["token"];
 
 
 /** > Déclaration et Intialisation des variables pour le moteur (référence) **/
@@ -80,25 +86,49 @@
 /** ---																																					--- **
 /** -------------------------------------------------------------------------------------------------------------------- **
 /** -------------------------------------------------------------------------------------------------------------------- **/
-/** > Charger les données du build **/
-try {
-	$qBuild = $PDO->query("SELECT * FROM BUILDS WHERE ID = $ID");
-	$faBuild = $qBuild->fetch(PDO::FETCH_ASSOC);
-	
-	foreach($faBuild as $key => $value){
-		if(preg_match("#^SLOT#", $key)){
-			$SLOTS[] = Array(
-				"COMMA" => ($first) ? "" : ",",
-				"SLOT" => $key,
-				"ITEM" => $value
-			);
-			
-			$first = false;
+/** > Consuler le build lié au token **/
+$build = $_SESSION["TOKEN_$token"]["WATCHING_BUILD"];
+
+
+/** > Si un build est lié, le charger **/
+if($build){
+	/** > Charger les données du build **/
+	try {
+		$pBuild = $PDO->prepare("SELECT * FROM BUILDS WHERE CODE = :code");
+		$pBuild->execute(Array(":code" => $build));
+		$faBuild = $pBuild->fetch(PDO::FETCH_ASSOC);
+		
+		foreach($faBuild as $key => $value){
+			if(preg_match("#^SLOT#", $key)){
+				$SLOTS[] = Array(
+					"COMMA" => ($first) ? "" : ",",
+					"SLOT" => $key,
+					"ITEM" => $value
+				);
+				
+				$first = false;
+			}
 		}
+		
+		/** > Création du moteur **/
+		$moteur = new Template();
+		
+		/** > Configuration du moteur **/
+		$moteur->set_template_file("../../../Templates/Data/build.tpl.json");
+		$moteur->set_output_name("build.json");
+		$moteur->set_temporary_repository("../../../Temps");
+		$moteur->set_vars(Array(
+			"SLOTS" => $SLOTS
+		));
+			
+		echo Template::strip_blank($moteur->render()->get_render_content());
+	} catch (Exception $e){
+		echo '{"statut": "failed"}';
 	}
-} catch (Exception $e){
-	
+} else {
+	echo '{"statut": "empty"}';
 }
+
 
 /** -------------------------------------------------------------------------------------------------------------------- **
 /** -------------------------------------------------------------------------------------------------------------------- **
@@ -114,19 +144,4 @@ try {
 /** ---																																					--- **
 /** -------------------------------------------------------------------------------------------------------------------- **
 /** -------------------------------------------------------------------------------------------------------------------- **/
-/** > Création du moteur **/
-	$moteur = new Template();
-
-/** > Configuration du moteur **/
-	$moteur->set_template_file("../../../Templates/Data/build.tpl.json");
-	$moteur->set_output_name("build.json");
-	$moteur->set_temporary_repository("../../../Temps");
-	$moteur->set_vars(Array(
-		"SLOTS" => $SLOTS
-	));
-
-	echo Template::strip_blank($moteur->render()->get_render_content());
-
-/** > Envoie des données **/
-/** > Execution du moteur **/
 ?>

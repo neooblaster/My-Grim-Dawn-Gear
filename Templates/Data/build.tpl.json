@@ -1,5 +1,8 @@
 {
-	<!-- BEGIN_BLOCK SLOTS -->
-	%COMMA% "%SLOT%": %ITEM%
-	<!-- END_BLOCK SLOTS -->
+	"statut": "loaded",
+	"slots": {
+		<!-- BEGIN_BLOCK SLOTS -->
+		%COMMA% "%SLOT%": %ITEM%
+		<!-- END_BLOCK SLOTS -->
+	}
 }
