@@ -105,7 +105,7 @@ rewrite ^/([a-zA-Z0-9-_./]+)+sitemaps\.(txt|xml)$ /$1sitemaps.$2 last;
 # --- Configuration de la page Gear --- #
 # ------------------------------------- #
 rewrite ^/(gear|build)/([a-zA-Z0-9-]*)\/?$ /index.php?view=gear&gear=$2 last;
-rewrite ^/(img)/([a-zA-Z0-9]*)\/?$ /buildimg.php?gear=$2 last;
+rewrite ^/(img)/([a-zA-Z0-9-]*)\/?$ /buildimg.php?gear=$2 last;
 
 
 

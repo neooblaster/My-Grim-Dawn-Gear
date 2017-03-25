@@ -25,8 +25,8 @@
 {
 	/** Définition des couleurs **/
 	"COLOR": {
-		"UNSET": "#444",
-		"COMMON": "#ddd",
+		"UNSET": "#444444",
+		"COMMON": "#dddddd",
 		"MAGIC": "#d7d40d",
 		"RARE": "#66d300",
 		"ELITE": "#4f7ad6",
@@ -49,6 +49,12 @@
 	/** Positionnement des backgrounds **/
 	"BACKGROUND": {
 		"GEAR": {
+			"PATH": "Images/Backgrounds/gear.png",
+			"X": 0,
+			"Y": 0
+		},
+		"STATS": {
+			"PATH": "Images/Backgrounds/stats.png",
 			"X": 0,
 			"Y": 0
 		}
@@ -76,22 +82,22 @@
 			"W": 35, "H": 35
 		},
 		
-		"MAIN_HAND_1": {
+		"MAIN_1": {
 			"X": 33, "Y": 19,
 			"W": 70, "H": 132
 		},
 		
-		"OFF_HAND_1": {
+		"OFF_1": {
 			"X": 314, "Y": 19,
 			"W": 70, "H": 132
 		},
 		
-		"MAIN_HAND_2": {
+		"MAIN_2": {
 			"X": 33, "Y": 19,
 			"W": 70, "H": 132
 		},
 		
-		"OFF_HAND_2": {
+		"OFF_2": {
 			"X": 314, "Y": 19,
 			"W": 70, "H": 132
 		},
