@@ -4,23 +4,15 @@
 		
 		<div class="gear_panel_build_items">
 			
+			<input type="hidden" id="build_code" value="%BUILD_CODE%"/>
+			
 			<form id="gear_form">
 				
 				<!-- Head Data -->
-				
-				
-				
-				
 				<input type="hidden" name="build_name" id="build_name" value="%BUILD_NAME%" />
-				
 				<input type="hidden" name="build_password" id="build_password" value="" />
-				
-				
-				
-				
 				<input type="hidden" name="build_fold_stats" id="build_fold_stats" value="%BUILD_FOLD_STATS%" />
 				<input type="hidden" name="build_fold_inventory" id="build_fold_inventory" value="%BUILD_FOLD_INVENTORY%" />
-				
 				
 				<!-- Items Prefix -->
 				<input type="hidden" name="slot_head_prefix" id="input_slot_head_prefix" value="0"/>
@@ -266,9 +258,6 @@
 					<div class="option_panel">
 						<form onsubmit="GEAR.save(); return false;">
 							
-							
-							
-							
 							<!-- Quelque soit la situation, afficher le champs nom (création, visualisation, edition, dupplication) -->
 							<input type="text" value="%BUILD_NAME%" placeholder="Named your build" title="You can named your build" onkeyup="GEAR.synchronize(this, 'build_name')"/>
 							
@@ -290,20 +279,6 @@
 							<span class="button-img" onclick="GEAR.link().build();" title="Click to get a direct link to this build."><img src="/Images/Interfaces/build-link.png"/></span>
 							<span class="button-img" onclick="GEAR.link().image();" title="Click to get a link to image version of this build."><img src="/Images/Interfaces/image-link.png"/></span>
 							<!-- ENDIF BUILD_HAS_LINKS -->
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
 							
 						</form>
 					</div>
