@@ -67,9 +67,6 @@ function gear(token){
 	
 	/** Inline described properties **/
 	self.token = token;			// INTEGER	:: Token de liaison de donnée avec les session (multi onglet)
-	
-	self.item_previewed = null;// INTEGER	:: ID de l'objet en cours de consultation (permet d'optimiser le traitement)
-	
 	self.items = {};				// OBJECT	:: Liste des objets présente dans l'inventaire
 	
 	/** Block described properties **/
@@ -99,6 +96,7 @@ function gear(token){
 	
 	// URLS de l'application
 	self.targets = {
+		attributes_loader: "/XHR/Index/load_attributes.php",
 		build_loader:'/XHR/Index/load_build.php',
 		build_manager: '/XHR/Index/build_manager.php',
 		build_signer: '/XHR/Index/sign.php',
@@ -208,12 +206,46 @@ function gear(token){
 	};
 	
 	
+	/** ----------------------------------------------------- **
+	/** --- Programme de gestion des attributs des objets --- **
+	/** ----------------------------------------------------- **/
+	self.attributes = function(attID){
+		return {
+			/** Méthode de chargement des attributs de l'objet demandé **/
+			load: function(itemID){
+				if(typeof(itemID) !== "number"){
+					itemID = parseInt(itemID);
+				}
+				
+				if(!isNaN(itemID)){
+					var xQuery = new xhrQuery();
+					xQuery.target(self.targets.attributes_loader);
+					xQuery.values("item_id="+itemID);
+					xQuery.callbacks(function(e){
+						try {
+							e = JSON.parse(e);
+							
+							/** Enregistrer tout les attribut **/
+							self.items["itm-"+itemID].ATTRIBUTES = e;
+							
+							
+						} catch (err){
+							console.error("gear::attributes::load.callback failed on", e, "with error", err);
+						}
+					});
+					xQuery.send();
+				}
+			}
+		};
+	};
+	
+	
 	/** ---------------------------------------- **
 	/** --- Programmes de gestion des objets --- **
 	/** ---------------------------------------- **/
 	self.item = function(){
 		return {
-			/** **/
+			/** Méthode pour figé la fenetre pour pouvoir la manipuler **/
 			activator: function(){
 				self.windows.activated = (self.windows.activated) ? false : true;
 				
@@ -311,12 +343,20 @@ function gear(token){
 								]
 							}));
 							
-							/** Mémoriser les objets **/
-							self.items['itm-'+item.ID] = {
-								'NAME': item.NAME,
-								'QUALITY': item.QUALITY,
-								'TAG_NAME': item.TAG
-							};
+							/** Mémoriser l'objet si inconnu **/
+							if(self.items['itm-'+item.ID] === undefined){
+								self.items['itm-'+item.ID] = {
+									'NAME': item.NAME,
+									'QUALITY': item.QUALITY,
+									'TAG_NAME': item.TAG,
+									'ATTRIBUTES': null
+								};
+							}
+							
+							/** Charger les attributs de l'objet si inconnus **/
+							if(self.items["itm-"+item.ID].ATTRIBUTES === null){
+								self.attributes().load(item.ID);
+							}
 						}
 						
 						// Ordonnée les objets 
@@ -463,11 +503,8 @@ function gear(token){
 									for(var slot in e.slots){
 										/** Si le slots n'est pas vide **/
 										if(e.slots[slot]){
-											console.log(self.build);
-											
 											/** Ajouter une référence de chargement **/
 											self.build.loading[slot] = true;
-											console.log(self.build);
 											
 											/** Charger l'objet **/
 											self.load().slot(slot, e.slots[slot]);
