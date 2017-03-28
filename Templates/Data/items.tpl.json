@@ -1,17 +1,8 @@
 {
 	"items": [
 		<!-- BEGIN_BLOCK ITEMS -->
-		%COMMA% {
-			"ID": %ID%,
-			"WIDTH": %WIDTH%,
-			"HEIGHT": %HEIGHT%,
-			"FAMILY": %FAMILY%,
-			"TYPE": %TYPE%,
-			"QUALITY": %QUALITY%,
-			"TAG": "%TAG%",
-			"NAME": "%NAME%",
-			"ATTACHMENT": "%ATTACHMENT%"
-		}
+		%COMMA% 
+		<!-- INCLUDE_TEMPLATE (../../../Templates/Data/item.tpl.json) --><
 		<!-- END_BLOCK ITEMS -->
 	]
 }

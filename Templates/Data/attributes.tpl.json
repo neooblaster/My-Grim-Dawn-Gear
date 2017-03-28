@@ -1,12 +1,3 @@
 [
-<!-- BEGIN_BLOCK ATTRIBUTES -->
-	%COMMA% {
-	"ID": %ID%, 
-	"ATTRIBUT": "%ATTRIBUT%", 
-	"ATTACHEMENT": "%ATTACHEMENT%", 
-	"PROBABILITY": %PROBABILITY%, 
-	"MASTER_VALUE": %MASTER_VALUE%, 
-	"SLAVE_VALUE": %SLAVE_VALUE%
-	}
-<!-- END_BLOCK ATTRIBUTES -->
+<!-- INCLUDE_TEMPLATE (../../../Templates/Data/attribute.tpl.json) -->
 ]
