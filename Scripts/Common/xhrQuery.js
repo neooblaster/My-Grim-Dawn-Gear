@@ -7,14 +7,18 @@
 /** ---																																						--- **
 /** ---		AUTEUR 	: Neoblaster																													--- **
 /** ---																																						--- **
-/** ---		RELEASE	: 20.03.2017																													--- **
+/** ---		RELEASE	: 27.03.2017																													--- **
 /** ---																																						--- **
-/** ---		VERSION	: 1.3																																--- **
+/** ---		VERSION	: 1.4																																--- **
 /** ---																																						--- **
 /** ---																																						--- **
 /** --- 														-----------------------------															--- **
 /** --- 															 { C H A N G E L O G } 																--- **
 /** --- 														-----------------------------															--- **
+/** ---																																						--- **
+/** ---		VERSION 1.4 : 27.03.2017																												--- **
+/** ---		------------------------																												--- **
+/** ---			- Prise en charge des champs textarea, uniquement en method POST														--- **
 /** ---																																						--- **
 /** ---		VERSION 1.3 : 20.03.2017																												--- **
 /** ---		------------------------																												--- **
@@ -197,6 +201,7 @@ function xhrQuery(){
 	this.xhr_raw_data = [];						// Array 			:: Liste des couples : nom=valeur pour un envois de donnée en method GET
 	this.xhr_target = null;						// String 			:: Script serveur cible
 	this.xhr_send_file = false;				// Boolean			:: Indique si des données issue d'un input type file à été inséré
+	this.xhr_warn_textarea = false;			// Boolean			:: Indique la présence de champs textarea (incompatible avec la méthode get)
 
 	
 	/** -------------------------------------------------------------------------------------------------------------------- **
@@ -330,6 +335,11 @@ function xhrQuery(){
 								this.xhr_errors.push({"error_level":2,"error_message":"xhrQuery::inputs() :: The select input "+input+" has no options -> input ignored"});
 							}
 						break;
+							
+						case "TEXTAREA":
+							this.xhr_form_data.append(input_name, input.value);
+							this.xhr_warn_textarea = true;
+						break;
 						
 						default:
 						break;
@@ -434,6 +444,11 @@ function xhrQuery(){
 					/** Emettre l'alerte si des données de type input file on été saisies **/
 					if(this.xhr_send_file){
 						this.xhr_errors.push({"error_level":2,"error_message":"xhrQuery::send() :: Datas sent with 'GET' method. The files datas has not been sent."});
+					}
+					
+					/** Emettre l'alerte si des donnée de type textarea on été utilisée **/
+					if(this.xhr_warn_textarea){
+						this.xhr_errors.push({"error_level":2,"error_message":"xhrQuery::send() :: Datas sent with 'GET' method. The textarea inputs has not been sent."});
 					}
 					
 					/** Envoyer les données **/
