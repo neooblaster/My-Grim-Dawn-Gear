@@ -4,5 +4,5 @@
 	<!--|      |-->
 	<!--,,,,,,,,-->
 	<!-- Nombre d'occurences : 1 -->
-		<resource KEY="" CST="false" SST="false"></resource>
+		<resource KEY="" CST="false" SST="false"><![CDATA[]]></resource>
 </resources>
