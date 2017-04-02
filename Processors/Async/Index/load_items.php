@@ -103,6 +103,9 @@
 	$quality_rare;			//	:: Indicateur d'état de la qualité rare
 	$quality_elite;		//	:: Indicateur d'état de la qualité elite
 	$quality_legendary;	//	:: Indicateur d'état de la qualité legendary
+	$quality_relic;		//	:: Indicateur d'état de la qualité relic
+	$quality_comp;			//	:: Indicateur d'état de la qualité comp
+	$quality_enchant;		//	:: Indicateur d'état de la qualité enchant
 	$qualities;				// ARRAY		:: Liste des qualités à cherché
 
 	$SYSLang;				// SYSLang	:: Moteur de langue
@@ -130,6 +133,9 @@
 	$quality_rare = $_POST["quality_rare"];
 	$quality_elite = $_POST["quality_elite"];
 	$quality_legendary = $_POST["quality_legendary"];
+	$quality_relic = $_POST["quality_relic"];
+	$quality_comp = $_POST["quality_comp"];
+	$quality_enchant = $_POST["quality_enchant"];
 
 	$SYSLang = new SYSLang("../../../Languages");
 	$lang = $SYSLang->get_lang();
@@ -162,11 +168,13 @@
 		I.WIDTH,
 		I.HEIGHT,
 		I.FAMILY,
-		I.TYPE,
+		I.TYPE, T.TAG AS TAG_TYPE,
 		I.QUALITY,
 		I.TAG,
 		TN.NAME,
-		A.ATTACHMENT
+		A.ATTACHMENT,
+		LEVEL, PHYSIQUE, CUNNING, SPIRIT,
+		SKILLED
 	";
 
 
@@ -177,6 +185,8 @@
 		ON I.TAG = TN.TAG
 		INNER JOIN ATTACHMENTS AS A
 		ON I.ATTACHMENT = A.ID
+		INNER JOIN TYPES AS T
+		ON I.TYPE = T.ID
 	";
 
 
@@ -186,7 +196,10 @@
 		if($quality_magic === "true") $qualities[] = 2;
 		if($quality_rare === "true") $qualities[] = 3;
 		if($quality_elite === "true") $qualities[] = 4;
-		if($quality_legendary=== "true") $qualities[] = 5;
+		if($quality_legendary === "true") $qualities[] = 5;
+		if($quality_relic === "true") $qualities[] = 6;
+		if($quality_comp === "true") $qualities[] = 7;
+		if($quality_enchant === "true") $qualities[] = 8;
 
 		if(count($qualities) > 0) $query_where = "WHERE I.QUALITY IN (".implode(",", $qualities).")";
 
@@ -211,11 +224,11 @@
 		// Gérer le nom
 		if($item_name){
 			if($query_where){
-				$query_where .= " AND TN.NAME LIKE '%:item_name%'";
+				$query_where .= " AND TN.NAME LIKE :item_name";
 			} else {
-				$query_where = "WHERE TN.NAME LIKE '%:item_name%'";
+				$query_where = "WHERE TN.NAME LIKE :item_name";
 			}
-			$query_tokens[":item_name"] = $item_name;
+			$query_tokens[":item_name"] = "%$item_name%";
 		}
 
 		// Afficher les objets activé
@@ -252,8 +265,14 @@ while($faData = $qData->fetch(PDO::FETCH_ASSOC)){
 		"TYPE" => $faData["TYPE"],
 		"QUALITY" => $faData["QUALITY"],
 		"TAG" => $faData["TAG"],
+		"TYPE_NAME" => $faData["TAG_TYPE"],// translation ici
 		"NAME" => $faData["NAME"],
-		"ATTACHMENT" => $faData["ATTACHMENT"]
+		"ATTACHMENT" => $faData["ATTACHMENT"],
+		"LEVEL" => $faData["LEVEL"],
+		"PHYSIQUE" => $faData["PHYSIQUE"],
+		"CUNNING" => $faData["CUNNING"],
+		"SPIRIT" => $faData["SPIRIT"],
+		"SKILLED" => ord($faData["SKILLED"])
 	);
 	
 	$first = false;
