@@ -1,0 +1,633 @@
+<ActionFile key="MGDG.Cleaners&amp;BlackToAlpha.atn" file="~/Desktop/MGDG/Scripts%20Adobe/MGDG.Cleaners&amp;BlackToAlpha.atn">
+  <ActionSet version="16" name="MGDG" expanded="true" count="7">
+    <Action key="1" name="Cleaner 2X2" index="2" expanded="false" count="7">
+      <ActionItem key="TEXT" expanded="false" enabled="true" withDialog="false" dialogOptions="2" identifier="TEXT" event="addTo" name="Ajouter à" hasDescriptor="true">
+        <ActionDescriptor key="addTo" count="2">
+          <DescValueType.REFERENCETYPE key="1853189228" id="1853189228" symname="Null" sym="null">
+            <ActionReference key="1853189228" id="1853189228" symname="Null" sym="null" count="1">
+              <ReferenceFormType.PROPERTY key="1130917484" id="1130917484" symname="Channel" sym="Chnl" desiredClassString="Channel" desiredClass="Chnl" property="1718838636" propertyName="selection" propertySym="selection"/>
+            </ActionReference>
+          </DescValueType.REFERENCETYPE>
+          <DescValueType.OBJECTTYPE key="1411391520" id="1411391520" symname="To" sym="T   " objectTypeString="Rectangle" objectType="Rctn" count="4">
+            <ActionDescriptor key="1411391520" id="1411391520" symname="To" sym="T   " count="4">
+              <DescValueType.UNITDOUBLE key="1416589344" id="1416589344" symname="Top" sym="Top " unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="59"/>
+              <DescValueType.UNITDOUBLE key="1281713780" id="1281713780" symname="Left" sym="Left" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="63"/>
+              <DescValueType.UNITDOUBLE key="1114926957" id="1114926957" symname="Bottom" sym="Btom" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="64"/>
+              <DescValueType.UNITDOUBLE key="1382508660" id="1382508660" symname="Right" sym="Rght" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="64"/>
+            </ActionDescriptor>
+          </DescValueType.OBJECTTYPE>
+        </ActionDescriptor>
+      </ActionItem>
+      <ActionItem key="TEXT" expanded="false" enabled="true" withDialog="false" dialogOptions="2" identifier="TEXT" event="addTo" name="Ajouter à" hasDescriptor="true">
+        <ActionDescriptor key="addTo" count="2">
+          <DescValueType.REFERENCETYPE key="1853189228" id="1853189228" symname="Null" sym="null">
+            <ActionReference key="1853189228" id="1853189228" symname="Null" sym="null" count="1">
+              <ReferenceFormType.PROPERTY key="1130917484" id="1130917484" symname="Channel" sym="Chnl" desiredClassString="Channel" desiredClass="Chnl" property="1718838636" propertyName="selection" propertySym="selection"/>
+            </ActionReference>
+          </DescValueType.REFERENCETYPE>
+          <DescValueType.OBJECTTYPE key="1411391520" id="1411391520" symname="To" sym="T   " objectTypeString="Rectangle" objectType="Rctn" count="4">
+            <ActionDescriptor key="1411391520" id="1411391520" symname="To" sym="T   " count="4">
+              <DescValueType.UNITDOUBLE key="1416589344" id="1416589344" symname="Top" sym="Top " unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="63"/>
+              <DescValueType.UNITDOUBLE key="1281713780" id="1281713780" symname="Left" sym="Left" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="57"/>
+              <DescValueType.UNITDOUBLE key="1114926957" id="1114926957" symname="Bottom" sym="Btom" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="64"/>
+              <DescValueType.UNITDOUBLE key="1382508660" id="1382508660" symname="Right" sym="Rght" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="64"/>
+            </ActionDescriptor>
+          </DescValueType.OBJECTTYPE>
+        </ActionDescriptor>
+      </ActionItem>
+      <ActionItem key="TEXT" expanded="false" enabled="true" withDialog="false" dialogOptions="2" identifier="TEXT" event="addTo" name="Ajouter à" hasDescriptor="true">
+        <ActionDescriptor key="addTo" count="2">
+          <DescValueType.REFERENCETYPE key="1853189228" id="1853189228" symname="Null" sym="null">
+            <ActionReference key="1853189228" id="1853189228" symname="Null" sym="null" count="1">
+              <ReferenceFormType.PROPERTY key="1130917484" id="1130917484" symname="Channel" sym="Chnl" desiredClassString="Channel" desiredClass="Chnl" property="1718838636" propertyName="selection" propertySym="selection"/>
+            </ActionReference>
+          </DescValueType.REFERENCETYPE>
+          <DescValueType.OBJECTTYPE key="1411391520" id="1411391520" symname="To" sym="T   " objectTypeString="Rectangle" objectType="Rctn" count="4">
+            <ActionDescriptor key="1411391520" id="1411391520" symname="To" sym="T   " count="4">
+              <DescValueType.UNITDOUBLE key="1416589344" id="1416589344" symname="Top" sym="Top " unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="62"/>
+              <DescValueType.UNITDOUBLE key="1281713780" id="1281713780" symname="Left" sym="Left" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="60"/>
+              <DescValueType.UNITDOUBLE key="1114926957" id="1114926957" symname="Bottom" sym="Btom" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="63"/>
+              <DescValueType.UNITDOUBLE key="1382508660" id="1382508660" symname="Right" sym="Rght" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="63"/>
+            </ActionDescriptor>
+          </DescValueType.OBJECTTYPE>
+        </ActionDescriptor>
+      </ActionItem>
+      <ActionItem key="TEXT" expanded="false" enabled="true" withDialog="false" dialogOptions="2" identifier="TEXT" event="addTo" name="Ajouter à" hasDescriptor="true">
+        <ActionDescriptor key="addTo" count="2">
+          <DescValueType.REFERENCETYPE key="1853189228" id="1853189228" symname="Null" sym="null">
+            <ActionReference key="1853189228" id="1853189228" symname="Null" sym="null" count="1">
+              <ReferenceFormType.PROPERTY key="1130917484" id="1130917484" symname="Channel" sym="Chnl" desiredClassString="Channel" desiredClass="Chnl" property="1718838636" propertyName="selection" propertySym="selection"/>
+            </ActionReference>
+          </DescValueType.REFERENCETYPE>
+          <DescValueType.OBJECTTYPE key="1411391520" id="1411391520" symname="To" sym="T   " objectTypeString="Rectangle" objectType="Rctn" count="4">
+            <ActionDescriptor key="1411391520" id="1411391520" symname="To" sym="T   " count="4">
+              <DescValueType.UNITDOUBLE key="1416589344" id="1416589344" symname="Top" sym="Top " unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="60"/>
+              <DescValueType.UNITDOUBLE key="1281713780" id="1281713780" symname="Left" sym="Left" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="62"/>
+              <DescValueType.UNITDOUBLE key="1114926957" id="1114926957" symname="Bottom" sym="Btom" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="63"/>
+              <DescValueType.UNITDOUBLE key="1382508660" id="1382508660" symname="Right" sym="Rght" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="63"/>
+            </ActionDescriptor>
+          </DescValueType.OBJECTTYPE>
+        </ActionDescriptor>
+      </ActionItem>
+      <ActionItem key="TEXT" expanded="false" enabled="true" withDialog="false" dialogOptions="2" identifier="TEXT" event="delete" name="Supprimer" hasDescriptor="false"/>
+      <ActionItem key="TEXT" expanded="false" enabled="true" withDialog="false" dialogOptions="0" identifier="TEXT" event="save" name="Enregistrer" hasDescriptor="true">
+        <ActionDescriptor key="save" count="3">
+          <DescValueType.OBJECTTYPE key="1098063904" id="1098063904" symname="As" sym="As  " objectTypeString="PNGFormat" objectType="PNGF" count="3">
+            <ActionDescriptor key="1098063904" id="1098063904" symname="As" sym="As  " count="3">
+              <DescValueType.ENUMERATEDTYPE key="1346849108" id="1346849108" symname="PNGInterlaceType" sym="PGIT" enumeratedTypeString="PNGInterlaceType" enumeratedType="PGIT" enumeratedValueString="PNGInterlaceNone" enumeratedValue="PGIN"/>
+              <DescValueType.ENUMERATEDTYPE key="1347307366" id="1347307366" symname="PNGFilter" sym="PNGf" enumeratedTypeString="PNGFilter" enumeratedType="PNGf" enumeratedValueString="PNGFilterAdaptive" enumeratedValue="PGAd"/>
+              <DescValueType.INTEGERTYPE key="1131245682" id="1131245682" symname="Compression" sym="Cmpr" integer="9"/>
+            </ActionDescriptor>
+          </DescValueType.OBJECTTYPE>
+          <DescValueType.ALIASTYPE key="1231953952" id="1231953952" symname="StampIn" sym="In  " path="~/Desktop/MGDG/Items"/>
+          <DescValueType.INTEGERTYPE key="1148150601" id="1148150601" symname="DocumentID" sym="DocI" integer="60"/>
+        </ActionDescriptor>
+      </ActionItem>
+      <ActionItem key="TEXT" expanded="false" enabled="true" withDialog="false" dialogOptions="0" identifier="TEXT" event="close" name="Fermer" hasDescriptor="false"/>
+    </Action>
+    <Action key="2" name="Cleaner 1X4" index="3" expanded="false" count="11">
+      <ActionItem key="TEXT" expanded="false" enabled="true" withDialog="false" dialogOptions="2" identifier="TEXT" event="addTo" name="Ajouter à" hasDescriptor="true">
+        <ActionDescriptor key="addTo" count="2">
+          <DescValueType.REFERENCETYPE key="1853189228" id="1853189228" symname="Null" sym="null">
+            <ActionReference key="1853189228" id="1853189228" symname="Null" sym="null" count="1">
+              <ReferenceFormType.PROPERTY key="1130917484" id="1130917484" symname="Channel" sym="Chnl" desiredClassString="Channel" desiredClass="Chnl" property="1718838636" propertyName="selection" propertySym="selection"/>
+            </ActionReference>
+          </DescValueType.REFERENCETYPE>
+          <DescValueType.OBJECTTYPE key="1411391520" id="1411391520" symname="To" sym="T   " objectTypeString="Rectangle" objectType="Rctn" count="4">
+            <ActionDescriptor key="1411391520" id="1411391520" symname="To" sym="T   " count="4">
+              <DescValueType.UNITDOUBLE key="1416589344" id="1416589344" symname="Top" sym="Top " unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="0"/>
+              <DescValueType.UNITDOUBLE key="1281713780" id="1281713780" symname="Left" sym="Left" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="24"/>
+              <DescValueType.UNITDOUBLE key="1114926957" id="1114926957" symname="Bottom" sym="Btom" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="1"/>
+              <DescValueType.UNITDOUBLE key="1382508660" id="1382508660" symname="Right" sym="Rght" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="32"/>
+            </ActionDescriptor>
+          </DescValueType.OBJECTTYPE>
+        </ActionDescriptor>
+      </ActionItem>
+      <ActionItem key="TEXT" expanded="false" enabled="true" withDialog="false" dialogOptions="2" identifier="TEXT" event="addTo" name="Ajouter à" hasDescriptor="true">
+        <ActionDescriptor key="addTo" count="2">
+          <DescValueType.REFERENCETYPE key="1853189228" id="1853189228" symname="Null" sym="null">
+            <ActionReference key="1853189228" id="1853189228" symname="Null" sym="null" count="1">
+              <ReferenceFormType.PROPERTY key="1130917484" id="1130917484" symname="Channel" sym="Chnl" desiredClassString="Channel" desiredClass="Chnl" property="1718838636" propertyName="selection" propertySym="selection"/>
+            </ActionReference>
+          </DescValueType.REFERENCETYPE>
+          <DescValueType.OBJECTTYPE key="1411391520" id="1411391520" symname="To" sym="T   " objectTypeString="Rectangle" objectType="Rctn" count="4">
+            <ActionDescriptor key="1411391520" id="1411391520" symname="To" sym="T   " count="4">
+              <DescValueType.UNITDOUBLE key="1416589344" id="1416589344" symname="Top" sym="Top " unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="0"/>
+              <DescValueType.UNITDOUBLE key="1281713780" id="1281713780" symname="Left" sym="Left" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="31"/>
+              <DescValueType.UNITDOUBLE key="1114926957" id="1114926957" symname="Bottom" sym="Btom" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="9"/>
+              <DescValueType.UNITDOUBLE key="1382508660" id="1382508660" symname="Right" sym="Rght" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="32"/>
+            </ActionDescriptor>
+          </DescValueType.OBJECTTYPE>
+        </ActionDescriptor>
+      </ActionItem>
+      <ActionItem key="TEXT" expanded="false" enabled="true" withDialog="false" dialogOptions="2" identifier="TEXT" event="addTo" name="Ajouter à" hasDescriptor="true">
+        <ActionDescriptor key="addTo" count="2">
+          <DescValueType.REFERENCETYPE key="1853189228" id="1853189228" symname="Null" sym="null">
+            <ActionReference key="1853189228" id="1853189228" symname="Null" sym="null" count="1">
+              <ReferenceFormType.PROPERTY key="1130917484" id="1130917484" symname="Channel" sym="Chnl" desiredClassString="Channel" desiredClass="Chnl" property="1718838636" propertyName="selection" propertySym="selection"/>
+            </ActionReference>
+          </DescValueType.REFERENCETYPE>
+          <DescValueType.OBJECTTYPE key="1411391520" id="1411391520" symname="To" sym="T   " objectTypeString="Rectangle" objectType="Rctn" count="4">
+            <ActionDescriptor key="1411391520" id="1411391520" symname="To" sym="T   " count="4">
+              <DescValueType.UNITDOUBLE key="1416589344" id="1416589344" symname="Top" sym="Top " unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="1"/>
+              <DescValueType.UNITDOUBLE key="1281713780" id="1281713780" symname="Left" sym="Left" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="27"/>
+              <DescValueType.UNITDOUBLE key="1114926957" id="1114926957" symname="Bottom" sym="Btom" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="2"/>
+              <DescValueType.UNITDOUBLE key="1382508660" id="1382508660" symname="Right" sym="Rght" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="31"/>
+            </ActionDescriptor>
+          </DescValueType.OBJECTTYPE>
+        </ActionDescriptor>
+      </ActionItem>
+      <ActionItem key="TEXT" expanded="false" enabled="true" withDialog="false" dialogOptions="2" identifier="TEXT" event="addTo" name="Ajouter à" hasDescriptor="true">
+        <ActionDescriptor key="addTo" count="2">
+          <DescValueType.REFERENCETYPE key="1853189228" id="1853189228" symname="Null" sym="null">
+            <ActionReference key="1853189228" id="1853189228" symname="Null" sym="null" count="1">
+              <ReferenceFormType.PROPERTY key="1130917484" id="1130917484" symname="Channel" sym="Chnl" desiredClassString="Channel" desiredClass="Chnl" property="1718838636" propertyName="selection" propertySym="selection"/>
+            </ActionReference>
+          </DescValueType.REFERENCETYPE>
+          <DescValueType.OBJECTTYPE key="1411391520" id="1411391520" symname="To" sym="T   " objectTypeString="Rectangle" objectType="Rctn" count="4">
+            <ActionDescriptor key="1411391520" id="1411391520" symname="To" sym="T   " count="4">
+              <DescValueType.UNITDOUBLE key="1416589344" id="1416589344" symname="Top" sym="Top " unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="1"/>
+              <DescValueType.UNITDOUBLE key="1281713780" id="1281713780" symname="Left" sym="Left" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="30"/>
+              <DescValueType.UNITDOUBLE key="1114926957" id="1114926957" symname="Bottom" sym="Btom" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="6"/>
+              <DescValueType.UNITDOUBLE key="1382508660" id="1382508660" symname="Right" sym="Rght" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="31"/>
+            </ActionDescriptor>
+          </DescValueType.OBJECTTYPE>
+        </ActionDescriptor>
+      </ActionItem>
+      <ActionItem key="TEXT" expanded="false" enabled="true" withDialog="false" dialogOptions="2" identifier="TEXT" event="addTo" name="Ajouter à" hasDescriptor="true">
+        <ActionDescriptor key="addTo" count="2">
+          <DescValueType.REFERENCETYPE key="1853189228" id="1853189228" symname="Null" sym="null">
+            <ActionReference key="1853189228" id="1853189228" symname="Null" sym="null" count="1">
+              <ReferenceFormType.PROPERTY key="1130917484" id="1130917484" symname="Channel" sym="Chnl" desiredClassString="Channel" desiredClass="Chnl" property="1718838636" propertyName="selection" propertySym="selection"/>
+            </ActionReference>
+          </DescValueType.REFERENCETYPE>
+          <DescValueType.OBJECTTYPE key="1411391520" id="1411391520" symname="To" sym="T   " objectTypeString="Rectangle" objectType="Rctn" count="4">
+            <ActionDescriptor key="1411391520" id="1411391520" symname="To" sym="T   " count="4">
+              <DescValueType.UNITDOUBLE key="1416589344" id="1416589344" symname="Top" sym="Top " unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="118"/>
+              <DescValueType.UNITDOUBLE key="1281713780" id="1281713780" symname="Left" sym="Left" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="31"/>
+              <DescValueType.UNITDOUBLE key="1114926957" id="1114926957" symname="Bottom" sym="Btom" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="128"/>
+              <DescValueType.UNITDOUBLE key="1382508660" id="1382508660" symname="Right" sym="Rght" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="32"/>
+            </ActionDescriptor>
+          </DescValueType.OBJECTTYPE>
+        </ActionDescriptor>
+      </ActionItem>
+      <ActionItem key="TEXT" expanded="false" enabled="true" withDialog="false" dialogOptions="2" identifier="TEXT" event="addTo" name="Ajouter à" hasDescriptor="true">
+        <ActionDescriptor key="addTo" count="2">
+          <DescValueType.REFERENCETYPE key="1853189228" id="1853189228" symname="Null" sym="null">
+            <ActionReference key="1853189228" id="1853189228" symname="Null" sym="null" count="1">
+              <ReferenceFormType.PROPERTY key="1130917484" id="1130917484" symname="Channel" sym="Chnl" desiredClassString="Channel" desiredClass="Chnl" property="1718838636" propertyName="selection" propertySym="selection"/>
+            </ActionReference>
+          </DescValueType.REFERENCETYPE>
+          <DescValueType.OBJECTTYPE key="1411391520" id="1411391520" symname="To" sym="T   " objectTypeString="Rectangle" objectType="Rctn" count="4">
+            <ActionDescriptor key="1411391520" id="1411391520" symname="To" sym="T   " count="4">
+              <DescValueType.UNITDOUBLE key="1416589344" id="1416589344" symname="Top" sym="Top " unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="127"/>
+              <DescValueType.UNITDOUBLE key="1281713780" id="1281713780" symname="Left" sym="Left" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="23"/>
+              <DescValueType.UNITDOUBLE key="1114926957" id="1114926957" symname="Bottom" sym="Btom" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="128"/>
+              <DescValueType.UNITDOUBLE key="1382508660" id="1382508660" symname="Right" sym="Rght" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="32"/>
+            </ActionDescriptor>
+          </DescValueType.OBJECTTYPE>
+        </ActionDescriptor>
+      </ActionItem>
+      <ActionItem key="TEXT" expanded="false" enabled="true" withDialog="false" dialogOptions="2" identifier="TEXT" event="addTo" name="Ajouter à" hasDescriptor="true">
+        <ActionDescriptor key="addTo" count="2">
+          <DescValueType.REFERENCETYPE key="1853189228" id="1853189228" symname="Null" sym="null">
+            <ActionReference key="1853189228" id="1853189228" symname="Null" sym="null" count="1">
+              <ReferenceFormType.PROPERTY key="1130917484" id="1130917484" symname="Channel" sym="Chnl" desiredClassString="Channel" desiredClass="Chnl" property="1718838636" propertyName="selection" propertySym="selection"/>
+            </ActionReference>
+          </DescValueType.REFERENCETYPE>
+          <DescValueType.OBJECTTYPE key="1411391520" id="1411391520" symname="To" sym="T   " objectTypeString="Rectangle" objectType="Rctn" count="4">
+            <ActionDescriptor key="1411391520" id="1411391520" symname="To" sym="T   " count="4">
+              <DescValueType.UNITDOUBLE key="1416589344" id="1416589344" symname="Top" sym="Top " unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="126"/>
+              <DescValueType.UNITDOUBLE key="1281713780" id="1281713780" symname="Left" sym="Left" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="25"/>
+              <DescValueType.UNITDOUBLE key="1114926957" id="1114926957" symname="Bottom" sym="Btom" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="127"/>
+              <DescValueType.UNITDOUBLE key="1382508660" id="1382508660" symname="Right" sym="Rght" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="31"/>
+            </ActionDescriptor>
+          </DescValueType.OBJECTTYPE>
+        </ActionDescriptor>
+      </ActionItem>
+      <ActionItem key="TEXT" expanded="false" enabled="true" withDialog="false" dialogOptions="2" identifier="TEXT" event="addTo" name="Ajouter à" hasDescriptor="true">
+        <ActionDescriptor key="addTo" count="2">
+          <DescValueType.REFERENCETYPE key="1853189228" id="1853189228" symname="Null" sym="null">
+            <ActionReference key="1853189228" id="1853189228" symname="Null" sym="null" count="1">
+              <ReferenceFormType.PROPERTY key="1130917484" id="1130917484" symname="Channel" sym="Chnl" desiredClassString="Channel" desiredClass="Chnl" property="1718838636" propertyName="selection" propertySym="selection"/>
+            </ActionReference>
+          </DescValueType.REFERENCETYPE>
+          <DescValueType.OBJECTTYPE key="1411391520" id="1411391520" symname="To" sym="T   " objectTypeString="Rectangle" objectType="Rctn" count="4">
+            <ActionDescriptor key="1411391520" id="1411391520" symname="To" sym="T   " count="4">
+              <DescValueType.UNITDOUBLE key="1416589344" id="1416589344" symname="Top" sym="Top " unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="120"/>
+              <DescValueType.UNITDOUBLE key="1281713780" id="1281713780" symname="Left" sym="Left" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="30"/>
+              <DescValueType.UNITDOUBLE key="1114926957" id="1114926957" symname="Bottom" sym="Btom" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="127"/>
+              <DescValueType.UNITDOUBLE key="1382508660" id="1382508660" symname="Right" sym="Rght" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="31"/>
+            </ActionDescriptor>
+          </DescValueType.OBJECTTYPE>
+        </ActionDescriptor>
+      </ActionItem>
+      <ActionItem key="TEXT" expanded="false" enabled="true" withDialog="false" dialogOptions="2" identifier="TEXT" event="delete" name="Supprimer" hasDescriptor="false"/>
+      <ActionItem key="TEXT" expanded="false" enabled="true" withDialog="false" dialogOptions="0" identifier="TEXT" event="save" name="Enregistrer" hasDescriptor="true">
+        <ActionDescriptor key="save" count="3">
+          <DescValueType.OBJECTTYPE key="1098063904" id="1098063904" symname="As" sym="As  " objectTypeString="PNGFormat" objectType="PNGF" count="3">
+            <ActionDescriptor key="1098063904" id="1098063904" symname="As" sym="As  " count="3">
+              <DescValueType.ENUMERATEDTYPE key="1346849108" id="1346849108" symname="PNGInterlaceType" sym="PGIT" enumeratedTypeString="PNGInterlaceType" enumeratedType="PGIT" enumeratedValueString="PNGInterlaceNone" enumeratedValue="PGIN"/>
+              <DescValueType.ENUMERATEDTYPE key="1347307366" id="1347307366" symname="PNGFilter" sym="PNGf" enumeratedTypeString="PNGFilter" enumeratedType="PNGf" enumeratedValueString="PNGFilterAdaptive" enumeratedValue="PGAd"/>
+              <DescValueType.INTEGERTYPE key="1131245682" id="1131245682" symname="Compression" sym="Cmpr" integer="9"/>
+            </ActionDescriptor>
+          </DescValueType.OBJECTTYPE>
+          <DescValueType.ALIASTYPE key="1231953952" id="1231953952" symname="StampIn" sym="In  " path="~/Desktop/MGDG/Items"/>
+          <DescValueType.INTEGERTYPE key="1148150601" id="1148150601" symname="DocumentID" sym="DocI" integer="199"/>
+        </ActionDescriptor>
+      </ActionItem>
+      <ActionItem key="TEXT" expanded="false" enabled="true" withDialog="false" dialogOptions="0" identifier="TEXT" event="close" name="Fermer" hasDescriptor="false"/>
+    </Action>
+    <Action key="3" name="Cleaner 1X3" index="4" expanded="false" count="7">
+      <ActionItem key="TEXT" expanded="false" enabled="true" withDialog="false" dialogOptions="2" identifier="TEXT" event="addTo" name="Ajouter à" hasDescriptor="true">
+        <ActionDescriptor key="addTo" count="2">
+          <DescValueType.REFERENCETYPE key="1853189228" id="1853189228" symname="Null" sym="null">
+            <ActionReference key="1853189228" id="1853189228" symname="Null" sym="null" count="1">
+              <ReferenceFormType.PROPERTY key="1130917484" id="1130917484" symname="Channel" sym="Chnl" desiredClassString="Channel" desiredClass="Chnl" property="1718838636" propertyName="selection" propertySym="selection"/>
+            </ActionReference>
+          </DescValueType.REFERENCETYPE>
+          <DescValueType.OBJECTTYPE key="1411391520" id="1411391520" symname="To" sym="T   " objectTypeString="Rectangle" objectType="Rctn" count="4">
+            <ActionDescriptor key="1411391520" id="1411391520" symname="To" sym="T   " count="4">
+              <DescValueType.UNITDOUBLE key="1416589344" id="1416589344" symname="Top" sym="Top " unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="86"/>
+              <DescValueType.UNITDOUBLE key="1281713780" id="1281713780" symname="Left" sym="Left" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="31"/>
+              <DescValueType.UNITDOUBLE key="1114926957" id="1114926957" symname="Bottom" sym="Btom" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="96"/>
+              <DescValueType.UNITDOUBLE key="1382508660" id="1382508660" symname="Right" sym="Rght" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="32"/>
+            </ActionDescriptor>
+          </DescValueType.OBJECTTYPE>
+        </ActionDescriptor>
+      </ActionItem>
+      <ActionItem key="TEXT" expanded="false" enabled="true" withDialog="false" dialogOptions="2" identifier="TEXT" event="addTo" name="Ajouter à" hasDescriptor="true">
+        <ActionDescriptor key="addTo" count="2">
+          <DescValueType.REFERENCETYPE key="1853189228" id="1853189228" symname="Null" sym="null">
+            <ActionReference key="1853189228" id="1853189228" symname="Null" sym="null" count="1">
+              <ReferenceFormType.PROPERTY key="1130917484" id="1130917484" symname="Channel" sym="Chnl" desiredClassString="Channel" desiredClass="Chnl" property="1718838636" propertyName="selection" propertySym="selection"/>
+            </ActionReference>
+          </DescValueType.REFERENCETYPE>
+          <DescValueType.OBJECTTYPE key="1411391520" id="1411391520" symname="To" sym="T   " objectTypeString="Rectangle" objectType="Rctn" count="4">
+            <ActionDescriptor key="1411391520" id="1411391520" symname="To" sym="T   " count="4">
+              <DescValueType.UNITDOUBLE key="1416589344" id="1416589344" symname="Top" sym="Top " unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="95"/>
+              <DescValueType.UNITDOUBLE key="1281713780" id="1281713780" symname="Left" sym="Left" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="24"/>
+              <DescValueType.UNITDOUBLE key="1114926957" id="1114926957" symname="Bottom" sym="Btom" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="96"/>
+              <DescValueType.UNITDOUBLE key="1382508660" id="1382508660" symname="Right" sym="Rght" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="32"/>
+            </ActionDescriptor>
+          </DescValueType.OBJECTTYPE>
+        </ActionDescriptor>
+      </ActionItem>
+      <ActionItem key="TEXT" expanded="false" enabled="true" withDialog="false" dialogOptions="2" identifier="TEXT" event="addTo" name="Ajouter à" hasDescriptor="true">
+        <ActionDescriptor key="addTo" count="2">
+          <DescValueType.REFERENCETYPE key="1853189228" id="1853189228" symname="Null" sym="null">
+            <ActionReference key="1853189228" id="1853189228" symname="Null" sym="null" count="1">
+              <ReferenceFormType.PROPERTY key="1130917484" id="1130917484" symname="Channel" sym="Chnl" desiredClassString="Channel" desiredClass="Chnl" property="1718838636" propertyName="selection" propertySym="selection"/>
+            </ActionReference>
+          </DescValueType.REFERENCETYPE>
+          <DescValueType.OBJECTTYPE key="1411391520" id="1411391520" symname="To" sym="T   " objectTypeString="Rectangle" objectType="Rctn" count="4">
+            <ActionDescriptor key="1411391520" id="1411391520" symname="To" sym="T   " count="4">
+              <DescValueType.UNITDOUBLE key="1416589344" id="1416589344" symname="Top" sym="Top " unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="94"/>
+              <DescValueType.UNITDOUBLE key="1281713780" id="1281713780" symname="Left" sym="Left" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="26"/>
+              <DescValueType.UNITDOUBLE key="1114926957" id="1114926957" symname="Bottom" sym="Btom" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="95"/>
+              <DescValueType.UNITDOUBLE key="1382508660" id="1382508660" symname="Right" sym="Rght" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="31"/>
+            </ActionDescriptor>
+          </DescValueType.OBJECTTYPE>
+        </ActionDescriptor>
+      </ActionItem>
+      <ActionItem key="TEXT" expanded="false" enabled="true" withDialog="false" dialogOptions="2" identifier="TEXT" event="addTo" name="Ajouter à" hasDescriptor="true">
+        <ActionDescriptor key="addTo" count="2">
+          <DescValueType.REFERENCETYPE key="1853189228" id="1853189228" symname="Null" sym="null">
+            <ActionReference key="1853189228" id="1853189228" symname="Null" sym="null" count="1">
+              <ReferenceFormType.PROPERTY key="1130917484" id="1130917484" symname="Channel" sym="Chnl" desiredClassString="Channel" desiredClass="Chnl" property="1718838636" propertyName="selection" propertySym="selection"/>
+            </ActionReference>
+          </DescValueType.REFERENCETYPE>
+          <DescValueType.OBJECTTYPE key="1411391520" id="1411391520" symname="To" sym="T   " objectTypeString="Rectangle" objectType="Rctn" count="4">
+            <ActionDescriptor key="1411391520" id="1411391520" symname="To" sym="T   " count="4">
+              <DescValueType.UNITDOUBLE key="1416589344" id="1416589344" symname="Top" sym="Top " unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="89"/>
+              <DescValueType.UNITDOUBLE key="1281713780" id="1281713780" symname="Left" sym="Left" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="30"/>
+              <DescValueType.UNITDOUBLE key="1114926957" id="1114926957" symname="Bottom" sym="Btom" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="95"/>
+              <DescValueType.UNITDOUBLE key="1382508660" id="1382508660" symname="Right" sym="Rght" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="31"/>
+            </ActionDescriptor>
+          </DescValueType.OBJECTTYPE>
+        </ActionDescriptor>
+      </ActionItem>
+      <ActionItem key="TEXT" expanded="false" enabled="true" withDialog="false" dialogOptions="2" identifier="TEXT" event="delete" name="Supprimer" hasDescriptor="false"/>
+      <ActionItem key="TEXT" expanded="false" enabled="true" withDialog="false" dialogOptions="0" identifier="TEXT" event="save" name="Enregistrer" hasDescriptor="true">
+        <ActionDescriptor key="save" count="3">
+          <DescValueType.OBJECTTYPE key="1098063904" id="1098063904" symname="As" sym="As  " objectTypeString="PNGFormat" objectType="PNGF" count="3">
+            <ActionDescriptor key="1098063904" id="1098063904" symname="As" sym="As  " count="3">
+              <DescValueType.ENUMERATEDTYPE key="1346849108" id="1346849108" symname="PNGInterlaceType" sym="PGIT" enumeratedTypeString="PNGInterlaceType" enumeratedType="PGIT" enumeratedValueString="PNGInterlaceNone" enumeratedValue="PGIN"/>
+              <DescValueType.ENUMERATEDTYPE key="1347307366" id="1347307366" symname="PNGFilter" sym="PNGf" enumeratedTypeString="PNGFilter" enumeratedType="PNGf" enumeratedValueString="PNGFilterAdaptive" enumeratedValue="PGAd"/>
+              <DescValueType.INTEGERTYPE key="1131245682" id="1131245682" symname="Compression" sym="Cmpr" integer="9"/>
+            </ActionDescriptor>
+          </DescValueType.OBJECTTYPE>
+          <DescValueType.ALIASTYPE key="1231953952" id="1231953952" symname="StampIn" sym="In  " path="~/Desktop/MGDG/Items"/>
+          <DescValueType.INTEGERTYPE key="1148150601" id="1148150601" symname="DocumentID" sym="DocI" integer="361"/>
+        </ActionDescriptor>
+      </ActionItem>
+      <ActionItem key="TEXT" expanded="false" enabled="true" withDialog="false" dialogOptions="0" identifier="TEXT" event="close" name="Fermer" hasDescriptor="false"/>
+    </Action>
+    <Action key="4" name="Cleaner 2X3" index="5" expanded="false" count="7">
+      <ActionItem key="TEXT" expanded="false" enabled="true" withDialog="false" dialogOptions="2" identifier="TEXT" event="addTo" name="Ajouter à" hasDescriptor="true">
+        <ActionDescriptor key="addTo" count="2">
+          <DescValueType.REFERENCETYPE key="1853189228" id="1853189228" symname="Null" sym="null">
+            <ActionReference key="1853189228" id="1853189228" symname="Null" sym="null" count="1">
+              <ReferenceFormType.PROPERTY key="1130917484" id="1130917484" symname="Channel" sym="Chnl" desiredClassString="Channel" desiredClass="Chnl" property="1718838636" propertyName="selection" propertySym="selection"/>
+            </ActionReference>
+          </DescValueType.REFERENCETYPE>
+          <DescValueType.OBJECTTYPE key="1411391520" id="1411391520" symname="To" sym="T   " objectTypeString="Rectangle" objectType="Rctn" count="4">
+            <ActionDescriptor key="1411391520" id="1411391520" symname="To" sym="T   " count="4">
+              <DescValueType.UNITDOUBLE key="1416589344" id="1416589344" symname="Top" sym="Top " unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="86"/>
+              <DescValueType.UNITDOUBLE key="1281713780" id="1281713780" symname="Left" sym="Left" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="63"/>
+              <DescValueType.UNITDOUBLE key="1114926957" id="1114926957" symname="Bottom" sym="Btom" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="96"/>
+              <DescValueType.UNITDOUBLE key="1382508660" id="1382508660" symname="Right" sym="Rght" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="64"/>
+            </ActionDescriptor>
+          </DescValueType.OBJECTTYPE>
+        </ActionDescriptor>
+      </ActionItem>
+      <ActionItem key="TEXT" expanded="false" enabled="true" withDialog="false" dialogOptions="2" identifier="TEXT" event="addTo" name="Ajouter à" hasDescriptor="true">
+        <ActionDescriptor key="addTo" count="2">
+          <DescValueType.REFERENCETYPE key="1853189228" id="1853189228" symname="Null" sym="null">
+            <ActionReference key="1853189228" id="1853189228" symname="Null" sym="null" count="1">
+              <ReferenceFormType.PROPERTY key="1130917484" id="1130917484" symname="Channel" sym="Chnl" desiredClassString="Channel" desiredClass="Chnl" property="1718838636" propertyName="selection" propertySym="selection"/>
+            </ActionReference>
+          </DescValueType.REFERENCETYPE>
+          <DescValueType.OBJECTTYPE key="1411391520" id="1411391520" symname="To" sym="T   " objectTypeString="Rectangle" objectType="Rctn" count="4">
+            <ActionDescriptor key="1411391520" id="1411391520" symname="To" sym="T   " count="4">
+              <DescValueType.UNITDOUBLE key="1416589344" id="1416589344" symname="Top" sym="Top " unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="95"/>
+              <DescValueType.UNITDOUBLE key="1281713780" id="1281713780" symname="Left" sym="Left" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="53"/>
+              <DescValueType.UNITDOUBLE key="1114926957" id="1114926957" symname="Bottom" sym="Btom" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="96"/>
+              <DescValueType.UNITDOUBLE key="1382508660" id="1382508660" symname="Right" sym="Rght" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="64"/>
+            </ActionDescriptor>
+          </DescValueType.OBJECTTYPE>
+        </ActionDescriptor>
+      </ActionItem>
+      <ActionItem key="TEXT" expanded="false" enabled="true" withDialog="false" dialogOptions="2" identifier="TEXT" event="addTo" name="Ajouter à" hasDescriptor="true">
+        <ActionDescriptor key="addTo" count="2">
+          <DescValueType.REFERENCETYPE key="1853189228" id="1853189228" symname="Null" sym="null">
+            <ActionReference key="1853189228" id="1853189228" symname="Null" sym="null" count="1">
+              <ReferenceFormType.PROPERTY key="1130917484" id="1130917484" symname="Channel" sym="Chnl" desiredClassString="Channel" desiredClass="Chnl" property="1718838636" propertyName="selection" propertySym="selection"/>
+            </ActionReference>
+          </DescValueType.REFERENCETYPE>
+          <DescValueType.OBJECTTYPE key="1411391520" id="1411391520" symname="To" sym="T   " objectTypeString="Rectangle" objectType="Rctn" count="4">
+            <ActionDescriptor key="1411391520" id="1411391520" symname="To" sym="T   " count="4">
+              <DescValueType.UNITDOUBLE key="1416589344" id="1416589344" symname="Top" sym="Top " unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="94"/>
+              <DescValueType.UNITDOUBLE key="1281713780" id="1281713780" symname="Left" sym="Left" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="55"/>
+              <DescValueType.UNITDOUBLE key="1114926957" id="1114926957" symname="Bottom" sym="Btom" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="95"/>
+              <DescValueType.UNITDOUBLE key="1382508660" id="1382508660" symname="Right" sym="Rght" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="63"/>
+            </ActionDescriptor>
+          </DescValueType.OBJECTTYPE>
+        </ActionDescriptor>
+      </ActionItem>
+      <ActionItem key="TEXT" expanded="false" enabled="true" withDialog="false" dialogOptions="2" identifier="TEXT" event="addTo" name="Ajouter à" hasDescriptor="true">
+        <ActionDescriptor key="addTo" count="2">
+          <DescValueType.REFERENCETYPE key="1853189228" id="1853189228" symname="Null" sym="null">
+            <ActionReference key="1853189228" id="1853189228" symname="Null" sym="null" count="1">
+              <ReferenceFormType.PROPERTY key="1130917484" id="1130917484" symname="Channel" sym="Chnl" desiredClassString="Channel" desiredClass="Chnl" property="1718838636" propertyName="selection" propertySym="selection"/>
+            </ActionReference>
+          </DescValueType.REFERENCETYPE>
+          <DescValueType.OBJECTTYPE key="1411391520" id="1411391520" symname="To" sym="T   " objectTypeString="Rectangle" objectType="Rctn" count="4">
+            <ActionDescriptor key="1411391520" id="1411391520" symname="To" sym="T   " count="4">
+              <DescValueType.UNITDOUBLE key="1416589344" id="1416589344" symname="Top" sym="Top " unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="87"/>
+              <DescValueType.UNITDOUBLE key="1281713780" id="1281713780" symname="Left" sym="Left" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="62"/>
+              <DescValueType.UNITDOUBLE key="1114926957" id="1114926957" symname="Bottom" sym="Btom" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="95"/>
+              <DescValueType.UNITDOUBLE key="1382508660" id="1382508660" symname="Right" sym="Rght" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="63"/>
+            </ActionDescriptor>
+          </DescValueType.OBJECTTYPE>
+        </ActionDescriptor>
+      </ActionItem>
+      <ActionItem key="TEXT" expanded="false" enabled="true" withDialog="false" dialogOptions="2" identifier="TEXT" event="delete" name="Supprimer" hasDescriptor="false"/>
+      <ActionItem key="TEXT" expanded="false" enabled="true" withDialog="false" dialogOptions="0" identifier="TEXT" event="save" name="Enregistrer" hasDescriptor="true">
+        <ActionDescriptor key="save" count="3">
+          <DescValueType.OBJECTTYPE key="1098063904" id="1098063904" symname="As" sym="As  " objectTypeString="PNGFormat" objectType="PNGF" count="3">
+            <ActionDescriptor key="1098063904" id="1098063904" symname="As" sym="As  " count="3">
+              <DescValueType.ENUMERATEDTYPE key="1346849108" id="1346849108" symname="PNGInterlaceType" sym="PGIT" enumeratedTypeString="PNGInterlaceType" enumeratedType="PGIT" enumeratedValueString="PNGInterlaceNone" enumeratedValue="PGIN"/>
+              <DescValueType.ENUMERATEDTYPE key="1347307366" id="1347307366" symname="PNGFilter" sym="PNGf" enumeratedTypeString="PNGFilter" enumeratedType="PNGf" enumeratedValueString="PNGFilterAdaptive" enumeratedValue="PGAd"/>
+              <DescValueType.INTEGERTYPE key="1131245682" id="1131245682" symname="Compression" sym="Cmpr" integer="9"/>
+            </ActionDescriptor>
+          </DescValueType.OBJECTTYPE>
+          <DescValueType.ALIASTYPE key="1231953952" id="1231953952" symname="StampIn" sym="In  " path="~/Desktop/MGDG/Items"/>
+          <DescValueType.INTEGERTYPE key="1148150601" id="1148150601" symname="DocumentID" sym="DocI" integer="492"/>
+        </ActionDescriptor>
+      </ActionItem>
+      <ActionItem key="TEXT" expanded="false" enabled="true" withDialog="false" dialogOptions="0" identifier="TEXT" event="close" name="Fermer" hasDescriptor="false"/>
+    </Action>
+    <Action key="5" name="Cleaner 1X1" index="6" expanded="false" count="6">
+      <ActionItem key="TEXT" expanded="false" enabled="true" withDialog="false" dialogOptions="2" identifier="TEXT" event="addTo" name="Ajouter à" hasDescriptor="true">
+        <ActionDescriptor key="addTo" count="2">
+          <DescValueType.REFERENCETYPE key="1853189228" id="1853189228" symname="Null" sym="null">
+            <ActionReference key="1853189228" id="1853189228" symname="Null" sym="null" count="1">
+              <ReferenceFormType.PROPERTY key="1130917484" id="1130917484" symname="Channel" sym="Chnl" desiredClassString="Channel" desiredClass="Chnl" property="1718838636" propertyName="selection" propertySym="selection"/>
+            </ActionReference>
+          </DescValueType.REFERENCETYPE>
+          <DescValueType.OBJECTTYPE key="1411391520" id="1411391520" symname="To" sym="T   " objectTypeString="Rectangle" objectType="Rctn" count="4">
+            <ActionDescriptor key="1411391520" id="1411391520" symname="To" sym="T   " count="4">
+              <DescValueType.UNITDOUBLE key="1416589344" id="1416589344" symname="Top" sym="Top " unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="31"/>
+              <DescValueType.UNITDOUBLE key="1281713780" id="1281713780" symname="Left" sym="Left" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="28"/>
+              <DescValueType.UNITDOUBLE key="1114926957" id="1114926957" symname="Bottom" sym="Btom" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="32"/>
+              <DescValueType.UNITDOUBLE key="1382508660" id="1382508660" symname="Right" sym="Rght" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="32"/>
+            </ActionDescriptor>
+          </DescValueType.OBJECTTYPE>
+        </ActionDescriptor>
+      </ActionItem>
+      <ActionItem key="TEXT" expanded="false" enabled="true" withDialog="false" dialogOptions="2" identifier="TEXT" event="addTo" name="Ajouter à" hasDescriptor="true">
+        <ActionDescriptor key="addTo" count="2">
+          <DescValueType.REFERENCETYPE key="1853189228" id="1853189228" symname="Null" sym="null">
+            <ActionReference key="1853189228" id="1853189228" symname="Null" sym="null" count="1">
+              <ReferenceFormType.PROPERTY key="1130917484" id="1130917484" symname="Channel" sym="Chnl" desiredClassString="Channel" desiredClass="Chnl" property="1718838636" propertyName="selection" propertySym="selection"/>
+            </ActionReference>
+          </DescValueType.REFERENCETYPE>
+          <DescValueType.OBJECTTYPE key="1411391520" id="1411391520" symname="To" sym="T   " objectTypeString="Rectangle" objectType="Rctn" count="4">
+            <ActionDescriptor key="1411391520" id="1411391520" symname="To" sym="T   " count="4">
+              <DescValueType.UNITDOUBLE key="1416589344" id="1416589344" symname="Top" sym="Top " unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="28"/>
+              <DescValueType.UNITDOUBLE key="1281713780" id="1281713780" symname="Left" sym="Left" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="31"/>
+              <DescValueType.UNITDOUBLE key="1114926957" id="1114926957" symname="Bottom" sym="Btom" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="32"/>
+              <DescValueType.UNITDOUBLE key="1382508660" id="1382508660" symname="Right" sym="Rght" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="32"/>
+            </ActionDescriptor>
+          </DescValueType.OBJECTTYPE>
+        </ActionDescriptor>
+      </ActionItem>
+      <ActionItem key="TEXT" expanded="false" enabled="true" withDialog="false" dialogOptions="2" identifier="TEXT" event="addTo" name="Ajouter à" hasDescriptor="true">
+        <ActionDescriptor key="addTo" count="2">
+          <DescValueType.REFERENCETYPE key="1853189228" id="1853189228" symname="Null" sym="null">
+            <ActionReference key="1853189228" id="1853189228" symname="Null" sym="null" count="1">
+              <ReferenceFormType.PROPERTY key="1130917484" id="1130917484" symname="Channel" sym="Chnl" desiredClassString="Channel" desiredClass="Chnl" property="1718838636" propertyName="selection" propertySym="selection"/>
+            </ActionReference>
+          </DescValueType.REFERENCETYPE>
+          <DescValueType.OBJECTTYPE key="1411391520" id="1411391520" symname="To" sym="T   " objectTypeString="Rectangle" objectType="Rctn" count="4">
+            <ActionDescriptor key="1411391520" id="1411391520" symname="To" sym="T   " count="4">
+              <DescValueType.UNITDOUBLE key="1416589344" id="1416589344" symname="Top" sym="Top " unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="30"/>
+              <DescValueType.UNITDOUBLE key="1281713780" id="1281713780" symname="Left" sym="Left" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="30"/>
+              <DescValueType.UNITDOUBLE key="1114926957" id="1114926957" symname="Bottom" sym="Btom" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="31"/>
+              <DescValueType.UNITDOUBLE key="1382508660" id="1382508660" symname="Right" sym="Rght" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="31"/>
+            </ActionDescriptor>
+          </DescValueType.OBJECTTYPE>
+        </ActionDescriptor>
+      </ActionItem>
+      <ActionItem key="TEXT" expanded="false" enabled="true" withDialog="false" dialogOptions="2" identifier="TEXT" event="delete" name="Supprimer" hasDescriptor="false"/>
+      <ActionItem key="TEXT" expanded="false" enabled="true" withDialog="false" dialogOptions="0" identifier="TEXT" event="save" name="Enregistrer" hasDescriptor="true">
+        <ActionDescriptor key="save" count="3">
+          <DescValueType.OBJECTTYPE key="1098063904" id="1098063904" symname="As" sym="As  " objectTypeString="PNGFormat" objectType="PNGF" count="3">
+            <ActionDescriptor key="1098063904" id="1098063904" symname="As" sym="As  " count="3">
+              <DescValueType.ENUMERATEDTYPE key="1346849108" id="1346849108" symname="PNGInterlaceType" sym="PGIT" enumeratedTypeString="PNGInterlaceType" enumeratedType="PGIT" enumeratedValueString="PNGInterlaceNone" enumeratedValue="PGIN"/>
+              <DescValueType.ENUMERATEDTYPE key="1347307366" id="1347307366" symname="PNGFilter" sym="PNGf" enumeratedTypeString="PNGFilter" enumeratedType="PNGf" enumeratedValueString="PNGFilterAdaptive" enumeratedValue="PGAd"/>
+              <DescValueType.INTEGERTYPE key="1131245682" id="1131245682" symname="Compression" sym="Cmpr" integer="9"/>
+            </ActionDescriptor>
+          </DescValueType.OBJECTTYPE>
+          <DescValueType.ALIASTYPE key="1231953952" id="1231953952" symname="StampIn" sym="In  " path="~/Desktop/MGDG/Items"/>
+          <DescValueType.INTEGERTYPE key="1148150601" id="1148150601" symname="DocumentID" sym="DocI" integer="2101"/>
+        </ActionDescriptor>
+      </ActionItem>
+      <ActionItem key="TEXT" expanded="false" enabled="true" withDialog="false" dialogOptions="0" identifier="TEXT" event="close" name="Fermer" hasDescriptor="false"/>
+    </Action>
+    <Action key="6" name="BlackToAlpha" index="2" shiftKey="true" expanded="false" count="6">
+      <ActionItem key="TEXT" expanded="false" enabled="true" withDialog="false" dialogOptions="2" identifier="TEXT" event="select" name="Sélectionner" hasDescriptor="true">
+        <ActionDescriptor key="select" count="2">
+          <DescValueType.REFERENCETYPE key="1853189228" id="1853189228" symname="Null" sym="null">
+            <ActionReference key="1853189228" id="1853189228" symname="Null" sym="null" count="1">
+              <ReferenceFormType.ENUMERATED key="1130917484" id="1130917484" symname="Channel" sym="Chnl" desiredClassString="Channel" desiredClass="Chnl" enumeratedTypeString="Ordinal" enumeratedType="Ordn" enumeratedValueString="Target" enumeratedValue="Trgt"/>
+            </ActionReference>
+          </DescValueType.REFERENCETYPE>
+          <DescValueType.BOOLEANTYPE key="1298880115" id="1298880115" symname="MakeVisible" sym="MkVs" boolean="true"/>
+        </ActionDescriptor>
+      </ActionItem>
+      <ActionItem key="TEXT" expanded="false" enabled="true" withDialog="false" dialogOptions="2" identifier="TEXT" event="paste" name="Coller" hasDescriptor="true">
+        <ActionDescriptor key="paste" count="1">
+          <DescValueType.ENUMERATEDTYPE key="1097757761" id="1097757761" symname="AntiAliasedPICTAcquire" sym="AntA" enumeratedTypeString="AntiAlias" enumeratedType="Annt" enumeratedValueString="AntiAliasNone" enumeratedValue="Anno"/>
+        </ActionDescriptor>
+      </ActionItem>
+      <ActionItem key="TEXT" expanded="false" enabled="true" withDialog="false" dialogOptions="0" identifier="TEXT" event="make" name="Créer" hasDescriptor="true">
+        <ActionDescriptor key="make" count="1">
+          <DescValueType.REFERENCETYPE key="1853189228" id="1853189228" symname="Null" sym="null">
+            <ActionReference key="1853189228" id="1853189228" symname="Null" sym="null" count="1">
+              <ReferenceFormType.CLASSTYPE key="1283027488" id="1283027488" symname="Layer" sym="Lyr " classString="Layer" class="Lyr "/>
+            </ActionReference>
+          </DescValueType.REFERENCETYPE>
+        </ActionDescriptor>
+      </ActionItem>
+      <ActionItem key="TEXT" expanded="false" enabled="true" withDialog="false" dialogOptions="2" identifier="TEXT" event="select" name="Sélectionner" hasDescriptor="true">
+        <ActionDescriptor key="select" count="3">
+          <DescValueType.REFERENCETYPE key="1853189228" id="1853189228" symname="Null" sym="null">
+            <ActionReference key="1853189228" id="1853189228" symname="Null" sym="null" count="1">
+              <ReferenceFormType.NAME key="1283027488" id="1283027488" symname="Layer" sym="Lyr " desiredClassString="Layer" desiredClass="Lyr " name="Calque 0"/>
+            </ActionReference>
+          </DescValueType.REFERENCETYPE>
+          <DescValueType.ENUMERATEDTYPE key="683" id="683" symname="selectionModifier" sym="selectionModifier" enumeratedTypeString="selectionModifierType" enumeratedType="selectionModifierType" enumeratedValueString="addToSelectionContinuous" enumeratedValue="addToSelectionContinuous"/>
+          <DescValueType.BOOLEANTYPE key="1298880115" id="1298880115" symname="MakeVisible" sym="MkVs" boolean="false"/>
+        </ActionDescriptor>
+      </ActionItem>
+      <ActionItem key="TEXT" expanded="false" enabled="true" withDialog="false" dialogOptions="0" identifier="TEXT" event="mergeLayersNew" name="Fusionner les calques" hasDescriptor="true">
+        <ActionDescriptor key="mergeLayersNew" count="0"/>
+      </ActionItem>
+      <ActionItem key="TEXT" expanded="true" enabled="true" withDialog="false" dialogOptions="0" identifier="TEXT" event="transform" name="Transformation" hasDescriptor="true">
+        <ActionDescriptor key="transform" count="5">
+          <DescValueType.REFERENCETYPE key="1853189228" id="1853189228" symname="Null" sym="null">
+            <ActionReference key="1853189228" id="1853189228" symname="Null" sym="null" count="1">
+              <ReferenceFormType.ENUMERATED key="1283027488" id="1283027488" symname="Layer" sym="Lyr " desiredClassString="Layer" desiredClass="Lyr " enumeratedTypeString="Ordinal" enumeratedType="Ordn" enumeratedValueString="Target" enumeratedValue="Trgt"/>
+            </ActionReference>
+          </DescValueType.REFERENCETYPE>
+          <DescValueType.ENUMERATEDTYPE key="1179935603" id="1179935603" symname="FreeTransformCenterState" sym="FTcs" enumeratedTypeString="QuadCenterState" enumeratedType="QCSt" enumeratedValueString="QCSAverage" enumeratedValue="Qcsa"/>
+          <DescValueType.OBJECTTYPE key="1332114292" id="1332114292" symname="Offset" sym="Ofst" objectTypeString="Offset" objectType="Ofst" count="2">
+            <ActionDescriptor key="1332114292" id="1332114292" symname="Offset" sym="Ofst" count="2">
+              <DescValueType.UNITDOUBLE key="1215461998" id="1215461998" symname="Horizontal" sym="Hrzn" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="0"/>
+              <DescValueType.UNITDOUBLE key="1450341475" id="1450341475" symname="Vertical" sym="Vrtc" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="0"/>
+            </ActionDescriptor>
+          </DescValueType.OBJECTTYPE>
+          <DescValueType.UNITDOUBLE key="1214736500" id="1214736500" symname="Height" sym="Hght" unitDoubleTypeString="Percent" unitDoubleType="#Prc" unitDoubleValue="-100"/>
+          <DescValueType.ENUMERATEDTYPE key="1231975538" id="1231975538" symname="Intersect" sym="Intr" enumeratedTypeString="Interpolation" enumeratedType="Intp" enumeratedValueString="Bicubic" enumeratedValue="Bcbc"/>
+        </ActionDescriptor>
+      </ActionItem>
+    </Action>
+    <Action key="7" name="Cleaner 2X1" index="7" expanded="false" count="8">
+      <ActionItem key="TEXT" expanded="false" enabled="true" withDialog="false" dialogOptions="2" identifier="TEXT" event="addTo" name="Ajouter à" hasDescriptor="true">
+        <ActionDescriptor key="addTo" count="2">
+          <DescValueType.REFERENCETYPE key="1853189228" id="1853189228" symname="Null" sym="null">
+            <ActionReference key="1853189228" id="1853189228" symname="Null" sym="null" count="1">
+              <ReferenceFormType.PROPERTY key="1130917484" id="1130917484" symname="Channel" sym="Chnl" desiredClassString="Channel" desiredClass="Chnl" property="1718838636" propertyName="selection" propertySym="selection"/>
+            </ActionReference>
+          </DescValueType.REFERENCETYPE>
+          <DescValueType.OBJECTTYPE key="1411391520" id="1411391520" symname="To" sym="T   " objectTypeString="Rectangle" objectType="Rctn" count="4">
+            <ActionDescriptor key="1411391520" id="1411391520" symname="To" sym="T   " count="4">
+              <DescValueType.UNITDOUBLE key="1416589344" id="1416589344" symname="Top" sym="Top " unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="24"/>
+              <DescValueType.UNITDOUBLE key="1281713780" id="1281713780" symname="Left" sym="Left" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="63"/>
+              <DescValueType.UNITDOUBLE key="1114926957" id="1114926957" symname="Bottom" sym="Btom" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="32"/>
+              <DescValueType.UNITDOUBLE key="1382508660" id="1382508660" symname="Right" sym="Rght" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="64"/>
+            </ActionDescriptor>
+          </DescValueType.OBJECTTYPE>
+        </ActionDescriptor>
+      </ActionItem>
+      <ActionItem key="TEXT" expanded="false" enabled="true" withDialog="false" dialogOptions="2" identifier="TEXT" event="addTo" name="Ajouter à" hasDescriptor="true">
+        <ActionDescriptor key="addTo" count="2">
+          <DescValueType.REFERENCETYPE key="1853189228" id="1853189228" symname="Null" sym="null">
+            <ActionReference key="1853189228" id="1853189228" symname="Null" sym="null" count="1">
+              <ReferenceFormType.PROPERTY key="1130917484" id="1130917484" symname="Channel" sym="Chnl" desiredClassString="Channel" desiredClass="Chnl" property="1718838636" propertyName="selection" propertySym="selection"/>
+            </ActionReference>
+          </DescValueType.REFERENCETYPE>
+          <DescValueType.OBJECTTYPE key="1411391520" id="1411391520" symname="To" sym="T   " objectTypeString="Rectangle" objectType="Rctn" count="4">
+            <ActionDescriptor key="1411391520" id="1411391520" symname="To" sym="T   " count="4">
+              <DescValueType.UNITDOUBLE key="1416589344" id="1416589344" symname="Top" sym="Top " unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="31"/>
+              <DescValueType.UNITDOUBLE key="1281713780" id="1281713780" symname="Left" sym="Left" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="59"/>
+              <DescValueType.UNITDOUBLE key="1114926957" id="1114926957" symname="Bottom" sym="Btom" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="32"/>
+              <DescValueType.UNITDOUBLE key="1382508660" id="1382508660" symname="Right" sym="Rght" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="64"/>
+            </ActionDescriptor>
+          </DescValueType.OBJECTTYPE>
+        </ActionDescriptor>
+      </ActionItem>
+      <ActionItem key="TEXT" expanded="false" enabled="true" withDialog="false" dialogOptions="2" identifier="TEXT" event="addTo" name="Ajouter à" hasDescriptor="true">
+        <ActionDescriptor key="addTo" count="2">
+          <DescValueType.REFERENCETYPE key="1853189228" id="1853189228" symname="Null" sym="null">
+            <ActionReference key="1853189228" id="1853189228" symname="Null" sym="null" count="1">
+              <ReferenceFormType.PROPERTY key="1130917484" id="1130917484" symname="Channel" sym="Chnl" desiredClassString="Channel" desiredClass="Chnl" property="1718838636" propertyName="selection" propertySym="selection"/>
+            </ActionReference>
+          </DescValueType.REFERENCETYPE>
+          <DescValueType.OBJECTTYPE key="1411391520" id="1411391520" symname="To" sym="T   " objectTypeString="Rectangle" objectType="Rctn" count="4">
+            <ActionDescriptor key="1411391520" id="1411391520" symname="To" sym="T   " count="4">
+              <DescValueType.UNITDOUBLE key="1416589344" id="1416589344" symname="Top" sym="Top " unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="30"/>
+              <DescValueType.UNITDOUBLE key="1281713780" id="1281713780" symname="Left" sym="Left" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="60"/>
+              <DescValueType.UNITDOUBLE key="1114926957" id="1114926957" symname="Bottom" sym="Btom" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="31"/>
+              <DescValueType.UNITDOUBLE key="1382508660" id="1382508660" symname="Right" sym="Rght" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="63"/>
+            </ActionDescriptor>
+          </DescValueType.OBJECTTYPE>
+        </ActionDescriptor>
+      </ActionItem>
+      <ActionItem key="TEXT" expanded="false" enabled="true" withDialog="false" dialogOptions="2" identifier="TEXT" event="addTo" name="Ajouter à" hasDescriptor="true">
+        <ActionDescriptor key="addTo" count="2">
+          <DescValueType.REFERENCETYPE key="1853189228" id="1853189228" symname="Null" sym="null">
+            <ActionReference key="1853189228" id="1853189228" symname="Null" sym="null" count="1">
+              <ReferenceFormType.PROPERTY key="1130917484" id="1130917484" symname="Channel" sym="Chnl" desiredClassString="Channel" desiredClass="Chnl" property="1718838636" propertyName="selection" propertySym="selection"/>
+            </ActionReference>
+          </DescValueType.REFERENCETYPE>
+          <DescValueType.OBJECTTYPE key="1411391520" id="1411391520" symname="To" sym="T   " objectTypeString="Rectangle" objectType="Rctn" count="4">
+            <ActionDescriptor key="1411391520" id="1411391520" symname="To" sym="T   " count="4">
+              <DescValueType.UNITDOUBLE key="1416589344" id="1416589344" symname="Top" sym="Top " unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="28"/>
+              <DescValueType.UNITDOUBLE key="1281713780" id="1281713780" symname="Left" sym="Left" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="62"/>
+              <DescValueType.UNITDOUBLE key="1114926957" id="1114926957" symname="Bottom" sym="Btom" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="31"/>
+              <DescValueType.UNITDOUBLE key="1382508660" id="1382508660" symname="Right" sym="Rght" unitDoubleTypeString="Pixels" unitDoubleType="#Pxl" unitDoubleValue="63"/>
+            </ActionDescriptor>
+          </DescValueType.OBJECTTYPE>
+        </ActionDescriptor>
+      </ActionItem>
+      <ActionItem key="TEXT" expanded="false" enabled="true" withDialog="false" dialogOptions="2" identifier="TEXT" event="delete" name="Supprimer" hasDescriptor="false"/>
+      <ActionItem key="TEXT" expanded="false" enabled="true" withDialog="false" dialogOptions="2" identifier="TEXT" event="set" name="Définir" hasDescriptor="true">
+        <ActionDescriptor key="set" count="2">
+          <DescValueType.REFERENCETYPE key="1853189228" id="1853189228" symname="Null" sym="null">
+            <ActionReference key="1853189228" id="1853189228" symname="Null" sym="null" count="1">
+              <ReferenceFormType.PROPERTY key="1130917484" id="1130917484" symname="Channel" sym="Chnl" desiredClassString="Channel" desiredClass="Chnl" property="1718838636" propertyName="selection" propertySym="selection"/>
+            </ActionReference>
+          </DescValueType.REFERENCETYPE>
+          <DescValueType.ENUMERATEDTYPE key="1411391520" id="1411391520" symname="To" sym="T   " enumeratedTypeString="Ordinal" enumeratedType="Ordn" enumeratedValueString="None" enumeratedValue="None"/>
+        </ActionDescriptor>
+      </ActionItem>
+      <ActionItem key="TEXT" expanded="false" enabled="true" withDialog="false" dialogOptions="0" identifier="TEXT" event="save" name="Enregistrer" hasDescriptor="true">
+        <ActionDescriptor key="save" count="3">
+          <DescValueType.OBJECTTYPE key="1098063904" id="1098063904" symname="As" sym="As  " objectTypeString="PNGFormat" objectType="PNGF" count="3">
+            <ActionDescriptor key="1098063904" id="1098063904" symname="As" sym="As  " count="3">
+              <DescValueType.ENUMERATEDTYPE key="1346849108" id="1346849108" symname="PNGInterlaceType" sym="PGIT" enumeratedTypeString="PNGInterlaceType" enumeratedType="PGIT" enumeratedValueString="PNGInterlaceNone" enumeratedValue="PGIN"/>
+              <DescValueType.ENUMERATEDTYPE key="1347307366" id="1347307366" symname="PNGFilter" sym="PNGf" enumeratedTypeString="PNGFilter" enumeratedType="PNGf" enumeratedValueString="PNGFilterAdaptive" enumeratedValue="PGAd"/>
+              <DescValueType.INTEGERTYPE key="1131245682" id="1131245682" symname="Compression" sym="Cmpr" integer="9"/>
+            </ActionDescriptor>
+          </DescValueType.OBJECTTYPE>
+          <DescValueType.ALIASTYPE key="1231953952" id="1231953952" symname="StampIn" sym="In  " path="~/Desktop/MGDG/Items"/>
+          <DescValueType.INTEGERTYPE key="1148150601" id="1148150601" symname="DocumentID" sym="DocI" integer="105"/>
+        </ActionDescriptor>
+      </ActionItem>
+      <ActionItem key="TEXT" expanded="false" enabled="true" withDialog="false" dialogOptions="0" identifier="TEXT" event="close" name="Fermer" hasDescriptor="false"/>
+    </Action>
+  </ActionSet>
+</ActionFile>
