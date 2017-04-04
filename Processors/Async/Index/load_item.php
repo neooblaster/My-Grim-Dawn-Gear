@@ -45,6 +45,10 @@
 /** > Chargement des Classes **/
 /** > Chargement des Configs **/
 /** > Chargement des Fonctions **/
+	require_once __ROOT__."/Processors/Functions/Index/load_items.php";
+
+
+
 /** -------------------------------------------------------------------------------------------------------------------- **
 /** -------------------------------------------------------------------------------------------------------------------- **
 /** ---																																					--- **
@@ -63,7 +67,6 @@
 	$ID;			// INTEGER	:: Identifiant de l'objet à charger
 	$SYSLang;	// SYSLang	:: Moteur de langue
 	$lang;		// STRING	:: Langue de l'utilisateur
-	$query;		// STRING	:: Reqête SQL de récupération de données
 	$moteur;		// Template	:: Moteur de rendu
 
 /** > Initialisation des variables **/
@@ -83,45 +86,18 @@
 /** -------------------------------------------------------------------------------------------------------------------- **/
 /** > Execution la requête SQL de récupération **/
 try {
-	$query = "
-		SELECT
-			I.ID,
-			I.WIDTH, I.HEIGHT,
-			I.FAMILY, I.TYPE, I.QUALITY,
-			I.TAG, TN.NAME,
-			I.ATTACHMENT
-			
-		FROM ITEMS AS I
-		INNER JOIN TAGS_NAMES AS TN
-		ON I.TAG = TN.TAG
-		
-		WHERE I.ID = $ID AND LANG = '$lang'
-	";
-	
-	
-	$qItem = $PDO->query($query);
-	$faItem = $qItem->fetch(PDO::FETCH_ASSOC);
-	
 	$moteur = new Template();
 	$moteur->set_template_file("../../../Templates/Data/item.tpl.json");
 	$moteur->set_output_name("item.json");
 	$moteur->set_temporary_repository("../../../Temps");
-	$moteur->set_vars(Array(
-		"ID" => $faItem["ID"],
-		"WIDTH" => $faItem["WIDTH"],
-		"HEIGHT" => $faItem["HEIGHT"],
-		"FAMILY" => $faItem["FAMILY"],
-		"TYPE" => $faItem["TYPE"],
-		"QUALITY" => $faItem["QUALITY"],
-		"TAG" => $faItem["TAG"],
-		"NAME" => $faItem["NAME"],
-		"ATTACHMENT" => $faItem["ATTACHMENT"]
-	));
+	$moteur->set_vars(
+		load_items("WHERE I.ID = :id AND LANG = :lang", Array(":id" => $ID, ":lang" => $lang))[0]
+	);
 	
 	echo Template::strip_blank($moteur->render()->get_render_content());
 	
 } catch(Exception $e){
-	//echo $e->getMessage();
+	error_log(sprintf("[ MGDG ] :: load_item.php failed with error %s", $e->getMessage()));
 	echo "{}";
 }
 

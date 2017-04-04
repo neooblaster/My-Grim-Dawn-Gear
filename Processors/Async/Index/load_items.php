@@ -76,6 +76,8 @@
 /** > Chargement des Classes **/
 /** > Chargement des Configs **/
 /** > Chargement des Fonctions **/
+	require_once __ROOT__."/Processors/Functions/Index/load_items.php";
+
 
 
 /** -------------------------------------------------------------------------------------------------------------------- **
@@ -113,10 +115,7 @@
 
 	$lang;					// STRING	:: Langue de l'utilisateur
 
-	$query;					// STRING	:: Requête SQL final à executée
-	$query_select;			// STRING	:: Partie SELECT de la requête
-	$query_from;			// STRING	:: Partie FROM de la requête
-	$query_where;			// STRING	:: Partie WHERE de la requête
+	$query_where;			// STRING	:: Clause SQL à déterminée
 	$query_tokens;			// ARRAY		:: Donnée relative aux paramètres linké (PDO)
 
 	$ITEMS;					// ARRAY		:: Liste de tableau contenant les informations des objets
@@ -161,121 +160,63 @@
 /** ---																																					--- **
 /** -------------------------------------------------------------------------------------------------------------------- **
 /** -------------------------------------------------------------------------------------------------------------------- **/
-/** > Composition de la requête SQL **/
-	// [SELECT] Composition de la zone de selection
-	$query_select = "
-		I.ID,
-		I.WIDTH,
-		I.HEIGHT,
-		I.FAMILY,
-		I.TYPE, T.TAG AS TAG_TYPE,
-		I.QUALITY,
-		I.TAG,
-		TN.NAME,
-		A.ATTACHMENT,
-		LEVEL, PHYSIQUE, CUNNING, SPIRIT,
-		SKILLED
-	";
-
-
-	// [FROM] Composition de la zone cible
-	$query_from = "
-		ITEMS AS I
-		INNER JOIN TAGS_NAMES AS TN
-		ON I.TAG = TN.TAG
-		INNER JOIN ATTACHMENTS AS A
-		ON I.ATTACHMENT = A.ID
-		INNER JOIN TYPES AS T
-		ON I.TYPE = T.ID
-	";
-
-
-	// [WHERE] Composition de la clause SQL
-		// Gérer les qualitées 
-		if($quality_common === "true") $qualities[] = 1;
-		if($quality_magic === "true") $qualities[] = 2;
-		if($quality_rare === "true") $qualities[] = 3;
-		if($quality_elite === "true") $qualities[] = 4;
-		if($quality_legendary === "true") $qualities[] = 5;
-		if($quality_relic === "true") $qualities[] = 6;
-		if($quality_comp === "true") $qualities[] = 7;
-		if($quality_enchant === "true") $qualities[] = 8;
-
-		if(count($qualities) > 0) $query_where = "WHERE I.QUALITY IN (".implode(",", $qualities).")";
-
-		// Gérer les familles
-		if(intval($item_family) > 0){
-			if($query_where){
-				$query_where .= " AND I.FAMILY = $item_family";
-			} else {
-				$query_where = "WHERE I.FAMILY = $item_family";
-			}
-		}
-
-		// Gérer les types
-		if(intval($item_type) > 0){
-			if($query_where){
-				$query_where .= " AND I.TYPE = $item_type";
-			} else {
-				$query_where = "WHERE I.TYPE = $item_type";
-			}
-		}
-
-		// Gérer le nom
-		if($item_name){
-			if($query_where){
-				$query_where .= " AND TN.NAME LIKE :item_name";
-			} else {
-				$query_where = "WHERE TN.NAME LIKE :item_name";
-			}
-			$query_tokens[":item_name"] = "%$item_name%";
-		}
-
-		// Afficher les objets activé
-		if($query_where){
-			$query_where .= " AND I.ENABLED = 1 AND TN.LANG = :lang";
-		} else {
-			$query_where = "WHERE I.ENABLED = 1 AND TN.LANG = :lang";
-		}
-		
-		$query_tokens[":lang"] = $lang;
+/** > Composition de la clause SQL WHERE **/
+	// Gérer les qualitées 
+	if($quality_common === "true") $qualities[] = 1;
+	if($quality_magic === "true") $qualities[] = 2;
+	if($quality_rare === "true") $qualities[] = 3;
+	if($quality_elite === "true") $qualities[] = 4;
+	if($quality_legendary === "true") $qualities[] = 5;
+	if($quality_relic === "true") $qualities[] = 6;
+	if($quality_comp === "true") $qualities[] = 7;
+	if($quality_enchant === "true") $qualities[] = 8;
 	
+	if(count($qualities) > 0) $query_where = "WHERE I.QUALITY IN (".implode(",", $qualities).")";
+	
+	// Gérer les familles
+	if(intval($item_family) > 0){
+		if($query_where){
+			$query_where .= " AND I.FAMILY = $item_family";
+		} else {
+			$query_where = "WHERE I.FAMILY = $item_family";
+		}
+	}
+	
+	// Gérer les types
+	if(intval($item_type) > 0){
+		if($query_where){
+			$query_where .= " AND I.TYPE = $item_type";
+		} else {
+			$query_where = "WHERE I.TYPE = $item_type";
+		}
+	}
+	
+	// Gérer le nom
+	if($item_name){
+		if($query_where){
+			$query_where .= " AND TN.NAME LIKE :item_name";
+		} else {
+			$query_where = "WHERE TN.NAME LIKE :item_name";
+		}
+		$query_tokens[":item_name"] = "%$item_name%";
+	}
+		
+	// Afficher les objets activé
+	if($query_where){
+		$query_where .= " AND I.ENABLED = 1 AND TN.LANG = :lang";
+	} else {
+		$query_where = "WHERE I.ENABLED = 1 AND TN.LANG = :lang";
+	}
+	
+	$query_tokens[":lang"] = $lang;
 
-/** > Compilation de la query **/
-$query = sprintf("SELECT %s FROM %s %s", $query_select, $query_from, $query_where);
 
 
 /** > Execution de la requête SQL **/
 try {
-	$qData = $PDO->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
-	$qData->execute($query_tokens);
+	$ITEMS = load_items($query_where, $query_tokens);
 } catch(Exception $e){
-	error_log("[ MGDG ] :: load_items failed on query $query with error ".$e->getMessage());
-}
-
-
-/** > Parcourir les donnée **/
-while($faData = $qData->fetch(PDO::FETCH_ASSOC)){
-	$ITEMS[] = Array(
-		"COMMA" => ($first ? '' : ','),
-		"ID" => $faData["ID"],
-		"WIDTH" => $faData["WIDTH"],
-		"HEIGHT" => $faData["HEIGHT"],
-		"FAMILY" => $faData["FAMILY"],
-		"TYPE" => $faData["TYPE"],
-		"QUALITY" => $faData["QUALITY"],
-		"TAG" => $faData["TAG"],
-		"TYPE_NAME" => $faData["TAG_TYPE"],// translation ici
-		"NAME" => $faData["NAME"],
-		"ATTACHMENT" => $faData["ATTACHMENT"],
-		"LEVEL" => $faData["LEVEL"],
-		"PHYSIQUE" => $faData["PHYSIQUE"],
-		"CUNNING" => $faData["CUNNING"],
-		"SPIRIT" => $faData["SPIRIT"],
-		"SKILLED" => ord($faData["SKILLED"])
-	);
-	
-	$first = false;
+	error_log("[ MGDG ] :: load_items.php failed on query $query with error ".$e->getMessage());
 }
 
 
