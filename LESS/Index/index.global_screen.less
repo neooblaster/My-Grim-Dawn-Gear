@@ -46,8 +46,9 @@
 /** -------------------------------------------------------------------------------------------------------------------- **
 /** ---					Chargement des variables 					--- **
 /** ----------------------------------------------------------- **/
-@import url('../Variables/variable.common_screen.less');
-@import url('../Variables/variable.zindex_screen.less');
+@import (once, reference) "../_References/Variables/variables.params.less";
+@import (once, reference) "../_References/Variables/variables.colors.less";
+@import (once, reference) "../_References/Variables/variables.zindexs.less";
 
 
 /** ----------------------------------------------------------- **
@@ -70,76 +71,6 @@
 /** ---																																					--- **
 /** -------------------------------------------------------------------------------------------------------------------- **
 /** -------------------------------------------------------------------------------------------------------------------- **/
-/** --- Palette de couleur --- **
-/** -------------------------- **/
-// Couleur Grise - Objets inconnu
-	@unset_hexa_color: #444;
-
-// Couleur Blanche - Objets commun
-	@common_hexa_color: #ddd;
-
-// Couleur Jaune- Objets Magique
-	@magic_hexa_color: #d7d40d;
-
-// Couleur Verte - Objets Rare
-	@rare_hexa_color: #66d300;
-
-// Couleur Bleu - Objet Elite
-	@elite_hexa_color: #4f7ad6;
-
-// Couleur Violet foncé - Objet Legendaire
-	@legendary_hexa_color: #552e99;
-
-// Couleur Bleu Turquoise - Relic
-	@relic_hexa_color: #00e5d9;
-
-// Couleur Ambre - Composents
-	@comp_hexa_color: #eebd44;
-
-// Couleur Violet clair - Objets de quête
-	@quest_hexa_color: #b144c1;
-
-// Couleur Beige satin - Texte et nom d'attributs
-	@text_hexa_color: #d6bf95;
-
-// Couleur Rose Pale - Notes Lore
-	@note_hexa_color: #c89bd6;
-
-// Couleur Beige Clair - Valeur d'attribut
-	@value_hexa_color: #efe9d1;
-
-// Couleur Vert Jaune Fade - Augment d'objets
-	@enchant_hexa_color: #94be00;
-
-// Couleur Rouge tirant sur du pale - Liner Rouge
-	@blood_hexa_color: #84291b;
-
-// Couleur Beige Clair 2 > Beige Clair - Titre de section d'attribut
-	//@menu_hexa_color: #f1dbb7;
-	@menu_hexa_color: #f4e9d5;
-
-// Couleur Beige foncé - Line de titre d'attribut
-	@menu_liner_hexa_color: #9e8463;
-
-// Couleur Grise - Couleur de texte des paragraphe (gros contenu)
-	@article_hexa_color: #827d73;
-	@article_uppercase_hexa_color: #b9aa89;
-	@basic_hex_color: #959595;
-
-// Couleur Jaune Or - Sous Titre, fenêtre objet (item_window)
-	@golden_hexa_color: #eebf77;
-
-// Couleur bleu - Titre de sort
-	@skill_hexa_color: #70a4f8;
-
-// Couleur Rouge - Error / Delete
-	@darkred_hexa_color: #e10000;
-
-// Couleur Cyan - Titre de set
-	@set_hexa_color: #49adaf;
-
-
-
 /** ------------------------- **/
 /** --- Variables Commune --- **/
 /** ------------------------- **/

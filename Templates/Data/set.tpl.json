@@ -1,0 +1,12 @@
+{
+	"ID": %ID%,
+	"NAME": "%NAME%",
+	"DESCRIPTION": "%DESCRIPTION%",
+	"ITEMS": {
+		"IDS": [%ITEMS%],
+		"NAMES": [%NAMES%]
+	},
+	"ATTRIBUTES": [
+	<!-- INCLUDE_TEMPLATE (../../../Templates/Data/attribute.tpl.json) -->
+	]
+}

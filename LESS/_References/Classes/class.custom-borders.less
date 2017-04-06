@@ -1,10 +1,10 @@
-//#!/compile = true
+//#!/compile = false
 /** -------------------------------------------------------------------------------------------------------------------- ** 
 /** -------------------------------------------------------------------------------------------------------------------- ** 
 /** ---																																					--- **
-/** --- 											------------------------------------------------										--- **
-/** ---												{ common.module-lang-selector_screen.less }											--- **
-/** --- 											------------------------------------------------										--- **
+/** --- 											-----------------------------------------------											--- **
+/** ------ **
+/** --- 											-----------------------------------------------											--- **
 /** ---																																					--- **
 /** ---		MEDIA 	: SCREEN																														--- **
 /** ---																																					--- **
@@ -31,9 +31,6 @@
 		calc(~'% - @{var}')  Interpolation of variable
 
 
-
-
-
 /** --------------------------------------- **/
 /** ---   #1. Sa propre configuration   --- **/
 /** --------------------------------------- **/
@@ -54,8 +51,7 @@
 /** -------------------------------------------------------------------------------------------------------------------- **
 /** ---					Chargement des variables 					--- **
 /** ----------------------------------------------------------- **/
-//@import url('../Variables/variable.common_screen.less');
-@import (once, reference) "../_References/Variables/variables.params.less";
+@import (once, reference) "../Variables/variables.params.less";
 
 /** ----------------------------------------------------------- **/
 /** ---			Chargement de la palette de couleur 			--- **
@@ -78,106 +74,15 @@
 /** -------------------------------------------------------------------------------------------------------------------- **/
 
 
+
 /** -------------------------------------------------------------------------------------------------------------------- **
 /** -------------------------------------------------------------------------------------------------------------------- **
 /** ---																																					--- **
-/** ---											Configuration du module de selection de langue											--- **
+/** ---														Configuration de l'interface														--- **
 /** ---																																					--- **
-/** -------------------------------------------------------------------------------------------------------------------- **
-/** -------------------------------------------------------------------------------------------------------------------- **
-
-	Note : La configuration du module ne concerne que ses enfants. Le positionnement est effectué dans le fichier dont 
-	la structure implique sont utilisation
-
 /** -------------------------------------------------------------------------------------------------------------------- **
 /** -------------------------------------------------------------------------------------------------------------------- **/
-#Module-Lang-Selector {
-	position: (@mls-width-label + @mls-width-label);
-	width: 310px;
-	height: @mls-height;
-	line-height: @mls-height;
-	color: @mls-color;
-	text-shadow: 1px 0 1px black, 0 1px 1px black, -1px 0 1px black, 0 -1px 1px black;
-	
-	div {
-		position: absolute;
-		
-		&#Lang-Label {
-			width: @mls-width-label;
-			height: 100%;
-			right: @mls-width-button;
-			text-align: right;
-			padding: 0 4px 0 0;
-			cursor: context-menu;
-		}
-		
-		&#Lang-Button {
-			width: @mls-width-button;
-			height: 100%;
-			right: 0;
-			
-			a {
-				text-decoration: none;
-				color: @mls-color;
-				
-				div {
-					&#Lang-Selected {
-						width: calc(~'@{mls-width-button} - 34px');
-						height: 100%;
-						right: 35px;
-						text-align: center;
-					}
-					
-					&#Lang-Flag {
-						height: 100%;
-						width: 34px;
-						right: 0;
-						
-						img {
-							width: 29px;
-							margin-bottom: -5px;
-						}
-					}
-				}
-			}
-		}
-		
-		&#Lang-List {
-			display: none;
-			width: 164px;
-			top: 25px;
-			right: 0;
-			background-color: rgba(255, 255, 255, 0.4);
-			
-			ul {
-				a {
-					text-decoration: none;
-					color: @mls-color;
-					
-					li {
-						height: @mls-height;
-						position: relative;
-						list-style-type: none;
-						text-align: center;
-						cursor: pointer;
-						
-						img {
-							position: absolute;
-							width: 29px;
-							right: 2px;
-							top: 2px;
-						}
-					}
-				}
-			}
-		}
-	}
-	
-	&:target {
-		div {
-			&#Lang-List {
-				display: block;
-			}
-		}
-	}
+.border-amber() {
+	border-width: 16px;
+	border-image: url('@{images}/Borders/borders-amber.png') 16 16 16 16 round;
 }

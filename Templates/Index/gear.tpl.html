@@ -108,71 +108,88 @@
 			
 			<div 
 				  class="gear_panel_build_items_slot slot_head" 
-				  data-accept-item="1" 
+				  data-accept-item="1,24,25,26,27"
+				  data-attachable="false"
 			></div>
 			<div 
 				  class="gear_panel_build_items_slot slot_neck" 
-				  data-accept-item="20" 
+				  data-accept-item="20,24,25,26,27"
+				  data-attachable="false"
 			></div>
 			<div 
 				  class="gear_panel_build_items_slot slot_lring" 
-				  data-accept-item="22" 
+				  data-accept-item="22,24,25,26,27"
+				  data-attachable="false"
 			></div>
 			<div 
 				  class="gear_panel_build_items_slot slot_rring" 
-				  data-accept-item="22" 
+				  data-accept-item="22,24,25,26,27"
+				  data-attachable="false"
 			></div>
 			<div 
 				  class="gear_panel_build_items_slot slot_main_1" 
-				  data-accept-item="8,9,10,11,12,13,14,17,18,19"  
+				  data-accept-item="8,9,10,11,12,13,14,17,18,19,24,25,26,27"
+				  data-attachable="false"
 			></div>
 			<div 
 				  class="gear_panel_build_items_slot slot_off_1" 
-				  data-accept-item="8,11,12,13,15,16,17"
+				  data-accept-item="8,11,12,13,15,16,17,24,25,26,27"
+				  data-attachable="false"
 			></div>
 			<div 
 				  class="gear_panel_build_items_slot slot_main_2 hidden" 
-				  data-accept-item="8,9,10,11,12,13,14,17,18,19" 
+				  data-accept-item="8,9,10,11,12,13,14,17,18,19,24,25,26,27"
+				  data-attachable="false"
 			></div>
 			<div 
 				  class="gear_panel_build_items_slot slot_off_2 hidden" 
-				  data-accept-item="8,11,12,13,15,16,17" 
+				  data-accept-item="8,11,12,13,15,16,17,24,25,26,27"
+				  data-attachable="false"
 			></div>
 			<div 
 				  class="gear_panel_build_items_slot slot_chest" 
-				  data-accept-item="3" 
+				  data-accept-item="3,24,25,26,27"
+				  data-attachable="false"
 			></div>
 			<div 
 				  class="gear_panel_build_items_slot slot_shoulders" 
-				  data-accept-item="2" 
+				  data-accept-item="2,24,25,26,27"
+				  data-attachable="false"
 			></div>
 			<div 
 				  class="gear_panel_build_items_slot slot_hands" 
-				  data-accept-item="4" 
+				  data-accept-item="4,24,25,26,27"
+				  data-attachable="false"
 			></div>
 			<div 
 				  class="gear_panel_build_items_slot slot_legs" 
-				  data-accept-item="5" 
+				  data-accept-item="5,24,25,26,27"
+				  data-attachable="false"
 			></div>
 			<div 
 				  class="gear_panel_build_items_slot slot_feet" 
-				  data-accept-item="6" 
+				  data-accept-item="6,24,25,26,27"
+				  data-attachable="false"
 			></div>
 			<div 
 				  class="gear_panel_build_items_slot slot_relic" 
-				  data-accept-item="23" 
+				  data-accept-item="23"
+				  data-attachable="false"
 			></div>
 			<div 
 				  class="gear_panel_build_items_slot slot_waist" 
-				  data-accept-item="7" 
+				  data-accept-item="7,24,25,26,27"
+				  data-attachable="false"
 			></div>
 			<div 
 				  class="gear_panel_build_items_slot slot_medal" 
-				  data-accept-item="21" 
+				  data-accept-item="21,24,25,26,27"
+				  data-attachable="false"
 			></div>
 			<div 
 				  class="gear_panel_build_items_slot slot_switcher"
-				  data-accept-item="" 
+				  data-accept-item=",24,25,26,27"
+				  data-attachable="false"
 			>
 			</div>
 			
@@ -189,17 +206,23 @@
 						</div>
 						
 						<div class="search_filter filter_qualities">
-							<input id="quality_common" type="hidden" name="quality_common" value="true"/>
-							<input id="quality_magic" type="hidden" name="quality_magic" value="true"/>
-							<input id="quality_rare" type="hidden" name="quality_rare" value="true"/>
+							<input id="quality_common" type="hidden" name="quality_common" value="false"/>
+							<input id="quality_magic" type="hidden" name="quality_magic" value="false"/>
+							<input id="quality_rare" type="hidden" name="quality_rare" value="false"/>
 							<input id="quality_elite" type="hidden" name="quality_elite" value="true"/>
 							<input id="quality_legendary" type="hidden" name="quality_legendary" value="true"/>
+							<input id="quality_relic" type="hidden" name="quality_relic" value="true"/>
+							<input id="quality_comp" type="hidden" name="quality_comp" value="true"/>
+							<input id="quality_enchant" type="hidden" name="quality_enchant" value="true"/>
 							
-							<input class="quality_button quality_common active" type="button" value="Common" onclick="qualityActivator(this);" data-input-target="quality_common"/>
-							<input class="quality_button quality_magic active" type="button" value="Magic" onclick="qualityActivator(this);" data-input-target="quality_magic"/>
-							<input class="quality_button quality_rare active" type="button" value="Rare" onclick="qualityActivator(this);" data-input-target="quality_rare"/>
-							<input class="quality_button quality_elite active" type="button" value="Elite" onclick="qualityActivator(this);" data-input-target="quality_elite"/>
-							<input class="quality_button quality_legendary active" type="button" value="Legendary" onclick="qualityActivator(this);" data-input-target="quality_legendary"/>
+							<input class="quality_button quality_common" type="button" value="Common" onclick="qualityActivator(this);" data-input-target="quality_common" title="Show commons items" />
+							<input class="quality_button quality_magic" type="button" value="Magic" onclick="qualityActivator(this);" data-input-target="quality_magic" title="Show magics items" />
+							<input class="quality_button quality_rare" type="button" value="Rare" onclick="qualityActivator(this);" data-input-target="quality_rare" title="Show rares items" />
+							<input class="quality_button quality_elite active" type="button" value="Elite" onclick="qualityActivator(this);" data-input-target="quality_elite" title="Show elites items" />
+							<input class="quality_button quality_legendary active" type="button" value="Legendary" onclick="qualityActivator(this);" data-input-target="quality_legendary" title="Show legendarys items" />
+							<input class="quality_button quality_relic active" type="button" value="Relic" onclick="qualityActivator(this);" data-input-target="quality_relic" title="Show relics items" />
+							<input class="quality_button quality_comp active" type="button" value="Comp" onclick="qualityActivator(this);" data-input-target="quality_comp" title="Show components items" />
+							<input class="quality_button quality_enchant active" type="button" value="Enchant" onclick="qualityActivator(this);" data-input-target="quality_enchant" title="Show augments items" />
 						</div>
 						
 						<div class="search_filter filter_kinds">
@@ -228,7 +251,7 @@
 						</div>
 						
 						<div class="search_filter filter_submit">
-							<input type="submit" value="Search" />
+							<input id="submitSearch" type="submit" value="Search" disabled/>
 						</div>
 					
 					</div>
