@@ -82,6 +82,7 @@
 	$textes;				// ARRAY		: Textes correspondant à la langue désirée
 	$view;				// STRING	: Partie du site à afficher
 	//$views_allowed;	// ARRAY		: Valeur autorisée pour le paramètre GET 'view'
+	$token;				// INTEGER	: Jeton de l'onglet du navigateur
 
 
 /** > Initialisation des variables **/
@@ -107,6 +108,7 @@
 	//$LOAD_TEMPLATE = $view;
 
 	$lang = new SYSLang('Languages');
+	$token = rand(1, 999);
 
 
 /** > Déclaration et Intialisation des variables pour le moteur (référence) **/
@@ -125,6 +127,7 @@
 	//	"LANG_NAME" => &$LANG_NAME,
 	//	"SKY_GRADIENT" => get_sky_gradient(), 
 	//	"DEPLOYED" => 'false',
+		"TOKEN" => $token,
 
 		// @Jeu de donnée 
 		"CSS_BLOCK" => loadCSS(false, 'CSS/Common', 'CSS/Index'),
@@ -149,7 +152,7 @@
 /** -------------------------------------------------------------------------------------------------------------------- **
 /** -------------------------------------------------------------------------------------------------------------------- **/
 /** > Charger et ajouter les textes dans la variables $vars **/
-	$textes = @$lang->unpack('common.xml'/*, "$view.xml"*/);
+	$textes = @$lang->unpack('common.xml', "$view.xml");
 	$vars = array_merge($vars, $textes['Serveur']);
 
 

@@ -10,7 +10,7 @@
 /** ---																																					--- **
 /** ---		AUTEUR			: Nicolas DUPRE																									--- **
 /** ---																																					--- **
-/** ---		RELEASE			: xx.xx.2017																										--- **
+/** ---		RELEASE			: 04.04.2017																										--- **
 /** ---																																					--- **
 /** ---		FILE_VERSION	: 1.0 NDU																											--- **
 /** ---																																					--- **
@@ -29,7 +29,7 @@
 /** --- 														---------------------------														--- **
 /** ---																																					--- **
 /** ---																																					--- **
-/** ---		VERSION 1.0 : xx.xx.2017 : NDU																									--- **
+/** ---		VERSION 1.0 : 04.04.2017 : NDU																									--- **
 /** ---		------------------------------																									--- **
 /** ---			- Première release																												--- **
 /** ---																																					--- **
@@ -56,7 +56,7 @@
 	---------------------
 		
 		L'objectif de cette fonction est de chargé les objets en fonction d'une clause SQL donnée et un jeu de donnée lié
-		Elle fonctionne en adéquation avec le modèle de donnée item.tpl.json.
+		Elle fonctionne en adéquation avec le modèle de donnée __ROO__/Templates/Data/item.tpl.json.
 		Simplifie la maintenance entre les différents scripts sur la partie des selection des champs de donné.
 	
 	

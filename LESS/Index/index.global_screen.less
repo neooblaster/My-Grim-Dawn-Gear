@@ -61,7 +61,7 @@
 /** ----------------------------------------------------------- **/
 //@import url('../Mixins/mixin.global_screen.less');
 
-
+// text-shadow: -1px -1px 0 #000000, -1px 1px 0 #000000, -1px 0 0 #000000, 1px -1px 0 #000000, 1px 1px 0 #000000, 1px 0 0 #000000, 0 -1px 0 #000000, 0 1px 0 #000000;
 
 /** -------------------------------------------------------------------------------------------------------------------- **
 /** -------------------------------------------------------------------------------------------------------------------- **
@@ -94,7 +94,7 @@
 	@relic_hexa_color: #00e5d9;
 
 // Couleur Ambre - Composents
-	@materia_hexa_color: #eebd44;
+	@comp_hexa_color: #eebd44;
 
 // Couleur Violet clair - Objets de quête
 	@quest_hexa_color: #b144c1;
@@ -109,7 +109,7 @@
 	@value_hexa_color: #efe9d1;
 
 // Couleur Vert Jaune Fade - Augment d'objets
-	@augment_hexa_color: #94be00;
+	@enchant_hexa_color: #94be00;
 
 // Couleur Rouge tirant sur du pale - Liner Rouge
 	@blood_hexa_color: #84291b;
@@ -124,9 +124,19 @@
 // Couleur Grise - Couleur de texte des paragraphe (gros contenu)
 	@article_hexa_color: #827d73;
 	@article_uppercase_hexa_color: #b9aa89;
+	@basic_hex_color: #959595;
 
 // Couleur Jaune Or - Sous Titre, fenêtre objet (item_window)
 	@golden_hexa_color: #eebf77;
+
+// Couleur bleu - Titre de sort
+	@skill_hexa_color: #70a4f8;
+
+// Couleur Rouge - Error / Delete
+	@darkred_hexa_color: #e10000;
+
+// Couleur Cyan - Titre de set
+	@set_hexa_color: #49adaf;
 
 
 
@@ -206,6 +216,8 @@ body {
 	background-repeat: no-repeat;
 	background-position: center top;
 	background-attachment: fixed;
+	
+	font-family: fontSerif;
 }
 
 header {
@@ -442,11 +454,22 @@ section {
 					flex-direction: column;
 					justify-content: center;
 					
+					// Paramètre par défaut des images
 					img {
 						display: block;
 						margin: auto;
+						
+						// Spécification pour les images de taile 1x3 (arme simple dans un slot 2x4)
 						&.size1x3 {
 							.slot(1, 3)
+						}
+						
+						// Spécifications pour les composants : En bas à droit
+						&[data-item-attachment=comp]{
+							position: absolute;
+							bottom: 0;
+							right: 0;
+							transform: scale(.75);
 						}
 					}
 					
@@ -854,6 +877,45 @@ section {
 												border-color: @article_uppercase_hexa_color;
 											}
 										}
+										
+										&_relic {
+											border-color: @relic_hexa_color;
+											
+											&:active, &:focus {
+												box-shadow: 0 0 6px 2px @relic_hexa_color;
+											}
+											
+											&.active {
+												background-position: 0 -120px;
+												border-color: @article_uppercase_hexa_color;
+											}
+										}
+										
+										&_comp {
+											border-color: @comp_hexa_color;
+											
+											&:active, &:focus {
+												box-shadow: 0 0 6px 2px @comp_hexa_color;
+											}
+											
+											&.active {
+												background-position: 0 -140px;
+												border-color: @article_uppercase_hexa_color;
+											}
+										}
+										
+										&_enchant {
+											border-color: @enchant_hexa_color;
+											
+											&:active, &:focus {
+												box-shadow: 0 0 6px 2px @enchant_hexa_color;
+											}
+											
+											&.active {
+												background-position: 0 -160px;
+												border-color: @article_uppercase_hexa_color;
+											}
+										}
 									}
 								}
 							}
@@ -1135,6 +1197,15 @@ section {
 							}
 							&_legendary {
 								&:extend(.gd_qly_legendary all);
+							}
+							&_relic {
+								&:extend(.gd_qly_relic all);
+							}
+							&_comp {
+								&:extend(.gd_qly_comp all);
+							}
+							&_enchant {
+								&:extend(.gd_qly_enchant all);
 							}
 						}
 						
@@ -1506,11 +1577,9 @@ section {
 .gd_qly_unset {
 	.item_overlay(@unset_hexa_color);
 }
-
 .gd_qly_common {
 	.item_overlay(@common_hexa_color);
 }
-
 .gd_qly_magic {
 	.item_overlay(fadeout(@magic_hexa_color, 15%));
 }
@@ -1526,6 +1595,58 @@ section {
 .gd_qly_relic {
 	.item_overlay(fadeout(@relic_hexa_color, 15%));
 }
+.gd_qly_comp {
+	.item_overlay(fadeout(@comp_hexa_color, 15%));
+}
+.gd_qly_enchant {
+	.item_overlay(fadeout(@enchant_hexa_color, 15%));
+}
+.gd_qly_blood {
+	.item_overlay(fadeout(@blood_hexa_color, 15%));
+}
+
+.gd_qly_blood_stroke {
+	border-color: @darkred_hexa_color;
+	//box-shadow: 0 0 6px 2px fadeout(@blood_hexa_color, 25%);
+	box-shadow: 0 0 6px 2px fadeout(#c20202, 0%);
+}
+.gd_qly_unset_stroke {
+	border-color: @unset_hexa_color;
+	box-shadow: 0 0 6px 2px fadeout(@unset_hexa_color, 25%);
+}
+.gd_qly_common_stroke {
+	border-color: @common_hexa_color;
+	box-shadow: 0 0 6px 2px fadeout(@common_hexa_color, 25%);
+}
+.gd_qly_magic_stroke {
+	border-color: @magic_hexa_color;
+	box-shadow: 0 0 6px 2px fadeout(@magic_hexa_color, 25%);
+}
+.gd_qly_rare_stroke {
+	border-color: @rare_hexa_color;
+	box-shadow: 0 0 6px 2px fadeout(@rare_hexa_color, 25%);
+}
+.gd_qly_elite_stroke {
+	border-color: @elite_hexa_color;
+	box-shadow: 0 0 6px 2px fadeout(@elite_hexa_color, 25%);
+}
+.gd_qly_legendary_stroke {
+	border-color: @legendary_hexa_color;
+	box-shadow: 0 0 6px 2px fadeout(@legendary_hexa_color, 25%);
+}
+.gd_qly_relic_stroke {
+	border-color: @relic_hexa_color;
+	box-shadow: 0 0 6px 2px fadeout(@relic_hexa_color, 25%);
+}
+.gd_qly_comp_stroke {
+	border-color: @comp_hexa_color;
+	box-shadow: 0 0 6px 2px fadeout(@comp_hexa_color, 25%);
+}
+.gd_qly_enchant_stroke {
+	border-color: @enchant_hexa_color;
+	box-shadow: 0 0 6px 2px fadeout(@enchant_hexa_color, 25%);
+}
+
 
 .gd_win_border {
 	background-color: rgba(13, 13, 15, 0.98);
@@ -1728,11 +1849,24 @@ section {
 
 .item_window {
 	position: absolute;
-	background-color: rgba(13, 13, 15, 0.98);
+	background-color: rgba(11, 11, 15, 0.98);
+	//background-color: rgba(5, 10, 15, 0.94);
 	border: 1px solid red;
 	border-radius: 4px;
 	padding: 4px 8px;
 	
+	/** Gestion des fonts **/
+	h3, h4 {
+		font-family: "Crimson Text";
+	}
+	
+	p, li {
+		font-family: sans-serif;
+   	font-size: 0.9rem;
+	}
+	
+	
+	/** Customisation en fonction de l'assemblage des éléments **/
 	h3 {
 		&.item_name {
 			
@@ -1763,23 +1897,112 @@ section {
 				color: lighten(@golden_hexa_color, 10%);
 			}
 		}
-	}
-	
-	ul {
-		&.primaries {
-			
-		}
 		
-		&.secondaries {
-			
-		}
-		
-		&.petties {
-			
+		&.skill {
+			color: @skill_hexa_color;
+			margin-left: 10px;
 		}
 		
 		&.set {
+			color: @set_hexa_color;
+			//margin-left: 10px;
+		}
+	}
+	
+	p + h4 {
+		margin-top: 3px;
+	}
+	
+	p {
+		color: darken(@common_hexa_color, 10%);
+		text-align: justify;
+		//color: #b2b2b2;
+		//color: @basic_hex_color;
+		
+		&.not_empty {
+			&:before {
+				content: "“";
+			}
+			&:after {
+				content: "”";
+			}
+		}
+	}
+	
+	h4.skill + p {
+		margin: 0 10px;
+	}
+	
+	ul {
+		li {
+			list-style-type: none;
+			padding: 1px 3px;
+			margin: 1px 0;
 			
+			span {
+				color: @value_hexa_color;
+			}
+			
+			&.probability {
+			}
+		}
+		
+		ul {
+			margin-left: 15px;
+		}
+		
+		&.primaries {
+			li {
+				color: @basic_hex_color;
+			}
+		}
+		
+		&.secondaries {
+			margin: 10px;
+			
+			li {
+				color: @text_hexa_color;
+			}
+		}
+		
+		&.petties {
+			margin: 0 10px 10px;
+			
+			li {
+				color: @text_hexa_color;
+			}
+		}
+		
+		/** La liste des objets appartenant au set **/
+		&.set {
+			margin: 10px;
+			
+			li {
+				color: @golden_hexa_color;
+				
+				&.disabled {
+					color: @basic_hex_color;
+				}
+			}
+		}
+		
+		/** Les différents attribut gagné en fonction des objet équipé (tiers) **/
+		&.tiers  {
+			//margin: 10px;
+			
+			li {
+				color: @text_hexa_color;
+				
+				&.disabled {
+					color: @basic_hex_color;
+					
+					span {
+						color: @basic_hex_color;
+					}
+				}
+			}
+			
+			margin-bottom: 10px;
 		}
 		
 		&.requirements {
@@ -1787,10 +2010,136 @@ section {
 		}
 	}
 	
+	div {
+		&.component {
+			h3 {
+				color: @comp_hexa_color;
+			}
+		}
+		
+		&.enchant {
+			h3 {
+				color: @enchant_hexa_color;
+			}
+		}
+		
+		&.disabled {
+			h4, p, ul, li, span {
+				color: @basic_hex_color;
+			}
+		}
+	}
+	
+	.removes {
+		position: absolute;
+		float: right;
+		top: 0;
+		transform: translateX(-100%);
+		left: -2 * (5px);
+		direction: rtl;
+		
+		a {
+			img {
+				display: block;
+				background-color: rgba(13, 13, 15, 0.98);
+				border: 1px solid red;
+				border-radius: 4px;
+				//transform: translateZ(0) scale(0.9);
+				//image-rendering: auto;
+				//image-rendering: crisp-edges;
+				//image-rendering: pixelated;
+				//transform: scale(0.5, 0.5);
+				//width: 200%;
+				//transition: all 0.2s;
+				//backface-visibility: hidden;
+				//-webkit-font-smoothing: subpixel-antialiased;
+				
+				&.size {
+					&2x4 {.item(2, 4);} 
+					&2x3 {.item(2, 3);} 
+					&1x4 {.item(1, 4);} 
+					&1x3 {.item(1, 3);} 
+					&2x2 {.item(2, 2);} 
+					&1x1 {.item(1, 1);} 
+					&1x2 {.item(1, 2);} 
+					&2x1 {.item(2, 1);} 
+					&3x2 {.item(3, 2);} 
+				}
+				
+				&.quality {
+					&_unset {
+						&:extend(.gd_qly_unset_stroke all);
+						&:hover {
+							&:extend(.gd_qly_blood_stroke all);
+						}
+					}
+					&_common {
+						&:extend(.gd_qly_common_stroke all);
+						&:hover {
+							&:extend(.gd_qly_blood_stroke all);
+						}
+					}
+					&_magic {
+						&:extend(.gd_qly_magic_stroke all);
+						&:hover {
+							&:extend(.gd_qly_blood_stroke all);
+						}
+					}
+					&_rare {
+						&:extend(.gd_qly_rare_stroke all);
+						&:hover {
+							&:extend(.gd_qly_blood_stroke all);
+						}
+					}
+					&_elite {
+						&:extend(.gd_qly_elite_stroke all);
+						&:hover {
+							&:extend(.gd_qly_blood_stroke all);
+						}
+					}
+					&_legendary {
+						&:extend(.gd_qly_legendary_stroke all);
+						&:hover {
+							&:extend(.gd_qly_blood_stroke all);
+						}
+					}
+					&_relic {
+						&:extend(.gd_qly_relic_stroke all);
+						&:hover {
+							&:extend(.gd_qly_blood_stroke all);
+						}
+					}
+					&_comp {
+						&:extend(.gd_qly_comp_stroke all);
+						&:hover {
+							&:extend(.gd_qly_blood_stroke all);
+						}
+					}
+					&_enchant {
+						&:extend(.gd_qly_enchant_stroke all);
+						&:hover {
+							&:extend(.gd_qly_blood_stroke all);
+						}
+					}
+				}
+			}
+			
+			&:not(:last-child) {
+				img {
+					margin: 0 0 10px;
+				}
+			}
+		}
+	}
+	
+	.highlight {
+		background: fadeout(@darkred_hexa_color, 70%);
+		border-radius: 4px;
+	}
+	
 	&.quality {
 		&_unset {
-			border-color: @unset_hexa_color;
-			box-shadow: 0 0 6px 2px fadeout(@unset_hexa_color, 25%);
+			&:extend(.gd_qly_unset_stroke all);
 			
 			h3 {
 				&.item_name {
@@ -1799,8 +2148,7 @@ section {
 			}
 		}
 		&_common {
-			border-color: @common_hexa_color;
-			box-shadow: 0 0 6px 2px fadeout(@common_hexa_color, 25%);
+			&:extend(.gd_qly_common_stroke all);
 			
 			h3 {
 				&.item_name {
@@ -1809,8 +2157,7 @@ section {
 			}
 		}
 		&_magic {
-			border-color: @magic_hexa_color;
-			box-shadow: 0 0 6px 2px fadeout(@magic_hexa_color, 25%);
+			&:extend(.gd_qly_magic_stroke all);
 			
 			h3 {
 				&.item_name {
@@ -1819,8 +2166,7 @@ section {
 			}
 		}
 		&_rare {
-			border-color: @rare_hexa_color;
-			box-shadow: 0 0 6px 2px fadeout(@rare_hexa_color, 25%);
+			&:extend(.gd_qly_rare_stroke all);
 			
 			h3 {
 				&.item_name {
@@ -1829,8 +2175,7 @@ section {
 			}
 		}
 		&_elite {
-			border-color: @elite_hexa_color;
-			box-shadow: 0 0 6px 2px fadeout(@elite_hexa_color, 25%);
+			&:extend(.gd_qly_elite_stroke all);
 			
 			h3 {
 				&.item_name {
@@ -1839,12 +2184,38 @@ section {
 			}
 		}
 		&_legendary {
-			border-color: @legendary_hexa_color;
-			box-shadow: 0 0 6px 2px fadeout(@legendary_hexa_color, 25%);
+			&:extend(.gd_qly_legendary_stroke all);
 			
 			h3 {
 				&.item_name {
 					color: @legendary_hexa_color;
+				}
+			}
+		}
+		&_relic {
+			&:extend(.gd_qly_relic_stroke all);
+			
+			h3 {
+				&.item_name {
+					color: @relic_hexa_color;
+				}
+			}
+		}
+		&_comp {
+			&:extend(.gd_qly_comp_stroke all);
+			
+			h3 {
+				&.item_name {
+					color: @comp_hexa_color;
+				}
+			}
+		}
+		&_enchant {
+			&:extend(.gd_qly_enchant_stroke all);
+			
+			h3 {
+				&.item_name {
+					color: @enchant_hexa_color;
 				}
 			}
 		}
@@ -1882,6 +2253,12 @@ section {
 					display: inline;
 				}
 			}
+		}
+	}
+	
+	&.unsized {
+		p {
+			display: none;
 		}
 	}
 }
@@ -1924,93 +2301,3 @@ section {
 	0% {box-shadow: 0 0 6px 2px @golden_hexa_color;}
 	50% {box-shadow: 0 0 12px 2px @golden_hexa_color;}
 }
-
-
-
-/**
-#exe {
-	background: white;
-	width: 100%;
-	height: 400px;
-	text-align: center;
-	padding-top: 150px;
-	
-	a {
-		display: inline-block;
-		z-index: 1;
-		//background: red;
-		position: relative;
-		text-decoration: none;
-		color: blue;
-		padding: 2px 2px 0 2px;
-		border-bottom: 2px solid blue;
-		
-		&:before {
-			z-index: 2;
-			content: " ";
-			position: absolute;
-			top: 0;
-			left: 0;
-			background: blue;
-			width: 2px;
-			height: 0%;
-			
-			transition: height 0.2s 0.2s;
-		}
-		
-		&:after {
-			z-index: 1;
-			content: " ";
-			position: absolute;
-			bottom: 0;
-			right: 0;
-			background: blue;
-			width: 2px;
-			height: 0%;
-				
-			transition: 
-				width 0.2s 0.4s, height 0.2s 0.6s; 
-		}
-		
-		span {
-			position: relative;
-			z-index: 4;
-			display: inline-block;
-			padding: 8px 32px;
-			background: white;
-				
-			transition: background 0.2s, color 0.2s;
-		}
-		
-		&:hover {
-			&:before {
-				height: 100%;
-			
-				transition: height 0.2s 0.4s;
-			}
-			
-			&:after {
-				height: 100%;
-				width: calc(100% - 2px);
-				
-				transition: 
-					height 0.2s, width 0.2s 0.2s; 
-			}
-			
-			span {
-				background: blue;
-				color: white;
-				
-				transition: background 0.2s 0.6s, color 0.2s 0.6s;
-			}
-		}
-	}
-}
-
-<!-- A DELETYE -->
-<div id="exe">
-	
-	<a href="#"><span>Salut, Nico !!</span></a>
-	
-</div>
-<!-- A DELETYE -->**/
