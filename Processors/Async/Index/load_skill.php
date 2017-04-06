@@ -73,13 +73,14 @@
 	//--//$ATTRIBUTES;	// ARRAY				:: Liste des attributes obtenus
 	$first;					// BOOLEAN			:: Indique si c'est la premiere entrée enregistrée
 	$skillID;				// INTEGER			:: Identifiant du sort (nécessaire pour récupéré les attributs)
+	$attachment;			// STRING			:: A quel élément le skill est attaché (ITEM ou SET)
 
 
 /** > Initialisation des variables **/
 	$first = true;
-	//--//$ATTRIBUTES = Array();
 
-	$ID = $_POST["item_id"];
+	$ID = $_POST["id"];
+	$attachment = strtoupper($_POST["attachment"]);
 
 	$SYSLang = new SYSLang(__ROOT__."/Languages");
 	$lang = $SYSLang->get_lang();
@@ -108,7 +109,7 @@
 	ON S.TAG = SN.TAG
 	
 	WHERE
-		ITEM = :ID AND LANG = :lang
+		S.$attachment = :ID AND LANG = :lang
 	";
 
 /** > Récupération des informations **/
@@ -122,8 +123,8 @@
 	$attributes_query = "
 	SELECT
 		A.ID,
-		BASIC, PROBABILITY,
-		MASTER_VALUE, SLAVE_VALUE,
+		A.BASIC, A.PET, A.PROBABILITY, A.TIER,
+		A.MASTER_VALUE, A.SLAVE_VALUE, A.ATTACHMENT,
 		AN.NAME
 	
 	FROM ATTRIBUTES AS A
@@ -163,8 +164,10 @@ while($faAttributes = $pAttributes->fetch(PDO::FETCH_ASSOC)){
 		"COMMA" => ($first) ? "" : ",",
 		"ID" => $faAttributes["ID"],
 		"BASIC" => ord($faAttributes["BASIC"]),
+		"PET" => ord($faAttributes["PET"]),
+		"TIER" => $faAttributes["TIER"],
 		"ATTRIBUT" => $attribut,
-		"ATTACHEMENT" => $faAttributes["ATTACHEMENT"],
+		"ATTACHMENT" => $faAttributes["ATTACHMENT"],
 		"PROBABILITY" => $faAttributes["PROBABILITY"] * 100,
 		"MASTER_VALUE" => $faAttributes["MASTER_VALUE"],
 		"SLAVE_VALUE" => $faAttributes["SLAVE_VALUE"]

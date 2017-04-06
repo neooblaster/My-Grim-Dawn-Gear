@@ -97,8 +97,8 @@
 	$query = "
 	SELECT
 		A.ID,
-		PROBABILITY,
-		MASTER_VALUE, SLAVE_VALUE,
+		A.BASIC, A.PET, A.PROBABILITY, A.TIER,
+		A.MASTER_VALUE, A.SLAVE_VALUE, A.ATTACHMENT,
 		AN.NAME
 		
 	FROM ATTRIBUTES AS A
@@ -126,13 +126,21 @@
 /** -------------------------------------------------------------------------------------------------------------------- **/
 /** > Parcourir les données reçues pour envois au client **/
 while($faAttributes = $pAttributes->fetch(PDO::FETCH_ASSOC)){
-	$attribut = sprintf($faAttributes["NAME"], $faAttributes["MASTER_VALUE"], $faAttributes["SLAVE_VALUE"]);
+	$name = $faAttributes["NAME"];
+	
+	$name = preg_replace("#%s(%)#", "%s&#37;", $name);
+	$name = preg_replace("#(\+?\s*%s(&\#37;)?)#", "<span>$1</span>", $name);
+	
+	$attribut = @sprintf($name, $faAttributes["MASTER_VALUE"], $faAttributes["SLAVE_VALUE"]);
 	
 	$ATTRIBUTES[] = Array(
 		"COMMA" => ($first) ? "" : ",",
 		"ID" => $faAttributes["ID"],
+		"BASIC" => ord($faAttributes["BASIC"]),
+		"PET" => ord($faAttributes["PET"]),
+		"TIER" => $faAttributes["TIER"],
 		"ATTRIBUT" => $attribut,
-		"ATTACHEMENT" => $faAttributes["ATTACHEMENT"],
+		"ATTACHMENT" => $faAttributes["ATTACHMENT"],
 		"PROBABILITY" => $faAttributes["PROBABILITY"] * 100,
 		"MASTER_VALUE" => $faAttributes["MASTER_VALUE"],
 		"SLAVE_VALUE" => $faAttributes["SLAVE_VALUE"]
