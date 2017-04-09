@@ -93,6 +93,12 @@
 rewrite ^/robots\.txt$ /robots.txt last;
 
 
+# -------------------------------------------- #
+# --- Autorisé l'accès au zip_composer.php --- #
+# -------------------------------------------- #
+rewrite ^/zip_composer?(.*)\.php$ /zip_composer.php?&1 last;
+
+
 
 # -------------------------------------------- #
 # --- Autorisé l'accès au fichier sitemaps --- #
