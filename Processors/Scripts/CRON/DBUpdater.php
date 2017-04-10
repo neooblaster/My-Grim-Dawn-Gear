@@ -145,7 +145,6 @@
 	$langs = Array();
 	$identifiers = Array();
 
-	//[FLAG::HERE] :: Requis pour prévenir des erreur PHP_NOTICE
 	$datas = Array();
 	$names = Array();
 
@@ -189,7 +188,6 @@ fclose($cfg_file_urls);
 /** --- Phase 4.2 :: Récupération des fichiers ZIP                                   --- **/
 /** ------------------------------------------------------------------------------------ **/
 foreach($urls as $lang => $url){
-	/*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/continue;
 	echo sprintf("Retrieving ZIP File of language :: %s\n", $lang);
 	
 	/** Création du fichier ZIP cible pour CURL **/
@@ -267,10 +265,10 @@ while($faItems = $pItems->fetch(PDO::FETCH_ASSOC)){
 /** ------------------------------------------------------------------------------------------------------- **/
 foreach($langs as $index => $lang){
 	/** Extraction des fichiers **/
-	//--//$zip = new ZipArchive();
-	//--//$zip->open(sprintf($zip_path, $lang), ZipArchive::CHECKCONS);
-	//--//$zip->extractTo($temp_path."/$lang", $tags_files);
-	//--//$zip->close();
+	$zip = new ZipArchive();
+	$zip->open(sprintf($zip_path, $lang), ZipArchive::CHECKCONS);
+	$zip->extractTo($temp_path."/$lang", $tags_files);
+	$zip->close();
 	
 	/** Parcourir les fichiers **/
 	foreach($tags_files as $index => $file){
@@ -348,8 +346,6 @@ foreach($langs as $index => $lang){
 						
 						/** Regardé du côté des langues (autre cas que la description) **/
 						// Si le tag est connu alors...
-						
-						
 						if(array_key_exists($tag, $names[$identifier["TABLE_NAME"]][$lang])){
 							// Controler le MD5
 							if(md5($value) !== $names[$identifier["TABLE_NAME"]][$lang][$tag]["NAME_MD5"]){
@@ -381,8 +377,6 @@ foreach($langs as $index => $lang){
 							switch($identifier["TABLE_DATA"]){
 								//[FLAG::HERE]
 								case "ITEMS":
-									
-									
 									// Composition de la requête SQL
 									$query = "INSERT INTO ITEMS (FAMILY, TYPE, TAG, ATTACHMENT) VALUES(:FAMILY, :TYPE, :TAG, :ATTACHMENT)";
 									$bound_tokens = Array(
@@ -463,7 +457,6 @@ foreach($operations as $sql_op => $array){
 					$uvalues_to_process[] = "$field = :$field";
 				}
 				
-				//pprints($fields_to_process);
 				
 				switch($sql_op){
 					case "INSERT":
@@ -477,6 +470,7 @@ foreach($operations as $sql_op => $array){
 						$message = "UPDATE QUERY DONE SUCESSFULLY";
 					break;
 				}
+				
 				
 				/** Execution de la requête SQL **/
 				try {
