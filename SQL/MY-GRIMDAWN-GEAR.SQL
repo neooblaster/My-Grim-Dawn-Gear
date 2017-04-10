@@ -78,12 +78,15 @@ CREATE TABLE `ATTRIBUTES` (
   `SKILL` smallint(5) unsigned NOT NULL DEFAULT '0',
   `SET` smallint(5) unsigned NOT NULL DEFAULT '0',
   `TIER` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `TAG` varchar(30) NOT NULL,
+  `MASTER_TAG` varchar(30) NOT NULL,
+  `SLAVE_TAG` varchar(30) DEFAULT '',
   `BASIC` bit(1) NOT NULL DEFAULT b'0',
   `PET` bit(1) NOT NULL DEFAULT b'0',
   `PROBABILITY` decimal(3,2) NOT NULL DEFAULT '1.00',
-  `MASTER_VALUE` smallint(6) NOT NULL DEFAULT '0',
-  `SLAVE_VALUE` smallint(6) NOT NULL DEFAULT '0',
+  `MASTER_VALUE_1` smallint(6) NOT NULL DEFAULT '0',
+  `MASTER_VALUE_2` smallint(6) NOT NULL DEFAULT '0',
+  `SLAVE_VALUE_1` smallint(6) NOT NULL DEFAULT '0',
+  `SLAVE_VALUE_2` smallint(6) NOT NULL DEFAULT '0',
   `ATTACHMENT` smallint(5) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`ID`),
   KEY `ITEM` (`ITEM`),
@@ -142,9 +145,14 @@ CREATE TABLE `ATTRIBUTES_NAMES` (
   `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `LANG` char(5) NOT NULL,
   `TAG` varchar(30) NOT NULL,
+  `GENDER` char(2) NOT NULL DEFAULT 'ms',
   `NAME` varchar(150) NOT NULL,
-  `MD5` char(40) NOT NULL,
-  PRIMARY KEY (`ID`)
+  `NAME_MD5` char(40) NOT NULL,
+  `DESCRIPTION` text NOT NULL,
+  `DESCRIPTION_MD5` char(40) NOT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `LANG` (`LANG`),
+  KEY `TAG` (`TAG`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -325,11 +333,14 @@ CREATE TABLE `IDENTIFIERS` (
   `ID` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
   `TAG` varchar(30) NOT NULL,
   `TABLE_DATA` varchar(30) NOT NULL COMMENT 'Table fonctionnel',
-  `TABLE_NAME` varchar(30) NOT NULL COMMENT 'Table de text',
   `FAMILY` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT 'Dest : TABLE_DATA',
   `TYPE` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT 'Dest : TABLE_DATA',
+  `ATTACHMENT` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `TABLE_NAME` varchar(30) NOT NULL,
+  `DESCRIPTION` varchar(30) NOT NULL,
+  `IGNORE` varchar(30) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -338,7 +349,7 @@ CREATE TABLE `IDENTIFIERS` (
 
 LOCK TABLES `IDENTIFIERS` WRITE;
 /*!40000 ALTER TABLE `IDENTIFIERS` DISABLE KEYS */;
-INSERT INTO `IDENTIFIERS` VALUES (1,'tagWeaponSword','ITEMS','TAGS_NAMES',2,13),(2,'tagWeaponBlunt','ITEMS','TAGS_NAMES',2,12),(3,'tagWeaponAxe','ITEMS','TAGS_NAMES',2,11),(4,'tagWeaponGun1h','ITEMS','TAGS_NAMES',2,8),(5,'tagWeaponGun2h','ITEMS','TAGS_NAMES',2,9),(6,'tagWeaponCrossbow2h','ITEMS','TAGS_NAMES',2,10),(7,'tagWeaponMelee2h','ITEMS','TAGS_NAMES',2,14),(8,'tagWeaponCaster1h','ITEMS','TAGS_NAMES',2,17),(9,'tagWeaponArcane','ITEMS','TAGS_NAMES',2,19),(10,'tagWeaponCrossbow1h','ITEMS','TAGS_NAMES',2,18),(11,'tagShield','ITEMS','TAGS_NAMES',2,15),(12,'tagFocus','ITEMS','TAGS_NAMES',2,16),(13,'tagHead','ITEMS','TAGS_NAMES',1,1),(14,'tagShoulder','ITEMS','TAGS_NAMES',1,2),(15,'tagTorso','ITEMS','TAGS_NAMES',1,3),(16,'tagWaist','ITEMS','TAGS_NAMES',1,7),(17,'tagHands','ITEMS','TAGS_NAMES',1,4),(18,'tagLegs','ITEMS','TAGS_NAMES',1,5),(19,'tagFeet','ITEMS','TAGS_NAMES',1,6),(20,'tagRing','ITEMS','TAGS_NAMES',3,22),(21,'tagNecklace','ITEMS','TAGS_NAMES',3,20),(22,'tagMedal','ITEMS','TAGS_NAMES',3,21),(23,'tagRelic','ITEMS','TAGS_NAMES',4,23),(24,'tagEnchant[ABC]','ITEMS','TAGS_NAMES',4,25),(25,'tagComp[AB]','ITEMS','TAGS_NAMES',4,24),(26,'tagItemSet','SETS','SETS_NAMES',0,0),(27,'tagSuffix','ITEMS','TAGS_NAME',5,27),(28,'tagPrefix','ITEMS','TAGS_NAMES',5,26),(29,'tagCharAttributeName','','OTHER_NAMES',0,0),(30,'tagCharStats','','OTHER_NAMES',0,0),(31,'tagStatsResistance','','OTHER_NAMES',0,0),(32,'tagCharHeader','','OTHER_NAMES',0,0),(33,'tagCharBonus','','OTHER_NAMES',0,0),(34,'tagCharAttribute[0-9]','','ATTRIBUTES_NAME',0,0),(35,'tagStatsResistance','','OTHER_NAMES',0,0),(36,'tagChar','','ATTRIBUTES_NAME',0,0);
+INSERT INTO `IDENTIFIERS` VALUES (1,'tagWeaponSword[A-Z]','ITEMS',2,13,1,'TAGS_NAMES','Desc','');
 /*!40000 ALTER TABLE `IDENTIFIERS` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -355,7 +366,6 @@ CREATE TABLE `ITEMS` (
   `FAMILY` tinyint(4) unsigned NOT NULL DEFAULT '1',
   `TYPE` tinyint(3) unsigned NOT NULL DEFAULT '1',
   `QUALITY` tinyint(3) unsigned NOT NULL DEFAULT '1',
-  `GENDER` char(2) NOT NULL DEFAULT 'ms',
   `ATTACHMENT` tinyint(3) unsigned NOT NULL DEFAULT '1',
   `SET` bit(1) NOT NULL,
   `TAG` varchar(30) NOT NULL,
@@ -366,6 +376,7 @@ CREATE TABLE `ITEMS` (
   `CUNNING` smallint(5) unsigned NOT NULL DEFAULT '0',
   `SPIRIT` smallint(5) unsigned NOT NULL DEFAULT '0',
   `SKILLED` bit(1) NOT NULL DEFAULT b'0',
+  `LAST_CHANGE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`ID`),
   KEY `FAMILY` (`FAMILY`),
   KEY `TYPE` (`TYPE`),
@@ -396,10 +407,14 @@ CREATE TABLE `OTHER_NAMES` (
   `ID` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
   `LANG` char(5) NOT NULL,
   `TAG` varchar(40) NOT NULL,
+  `GENDER` char(2) NOT NULL DEFAULT 'ms',
   `NAME` text NOT NULL,
+  `NAME_MD5` char(40) NOT NULL,
   `DESCRIPTION` text NOT NULL,
-  `MD5` char(40) NOT NULL,
-  PRIMARY KEY (`ID`)
+  `DESCRIPTION_MD5` char(40) NOT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `LANG` (`LANG`),
+  KEY `TAG` (`TAG`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -433,7 +448,7 @@ CREATE TABLE `QUALITIES` (
 
 LOCK TABLES `QUALITIES` WRITE;
 /*!40000 ALTER TABLE `QUALITIES` DISABLE KEYS */;
-INSERT INTO `QUALITIES` VALUES (1,'common','Q_COMMON'),(2,'magic','Q_MAGIC'),(3,'rare','Q_RARE'),(4,'elite','Q_ELITE'),(5,'legendary','Q_LEGENDARY'),(6,'relic','Q_RELIC'),(7,'comp','Q_COMP'),(8,'enchant','Q_ENCHANT');
+INSERT INTO `QUALITIES` VALUES (1,'common','Q_COMMON'),(2,'magic','tagMagic'),(3,'rare','tagMagic'),(4,'elite','tagEpic'),(5,'legendary','tagLegend'),(6,'relic','Q_RELIC'),(7,'comp','Q_COMP'),(8,'enchant','Q_ENCHANT');
 /*!40000 ALTER TABLE `QUALITIES` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -471,10 +486,14 @@ CREATE TABLE `SETS_NAMES` (
   `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `LANG` char(5) NOT NULL,
   `TAG` varchar(30) NOT NULL,
+  `GENDER` char(2) NOT NULL DEFAULT 'ms',
   `NAME` varchar(100) NOT NULL,
+  `NAME_MD5` char(40) NOT NULL,
   `DESCRIPTION` text NOT NULL,
-  `MD5` char(40) NOT NULL,
-  PRIMARY KEY (`ID`)
+  `DESCRIPTION_MD5` char(40) NOT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `LANG` (`LANG`),
+  KEY `TAG` (`TAG`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -526,10 +545,14 @@ CREATE TABLE `SKILLS_NAMES` (
   `ID` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
   `LANG` char(5) NOT NULL,
   `TAG` varchar(30) NOT NULL,
+  `GENDER` char(2) NOT NULL DEFAULT 'ms',
   `NAME` varchar(100) NOT NULL,
+  `NAME_MD5` char(40) NOT NULL,
   `DESCRIPTION` text NOT NULL,
-  `MD5` char(40) NOT NULL,
-  PRIMARY KEY (`ID`)
+  `DESCRIPTION_MD5` char(40) NOT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `LANG` (`LANG`),
+  KEY `TAG` (`TAG`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -553,10 +576,14 @@ CREATE TABLE `TAGS_NAMES` (
   `ID` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
   `LANG` char(5) NOT NULL,
   `TAG` varchar(30) NOT NULL,
+  `GENDER` char(2) NOT NULL DEFAULT 'ms',
   `NAME` varchar(100) NOT NULL,
+  `NAME_MD5` char(40) NOT NULL,
   `DESCRIPTION` text NOT NULL,
-  `MD5` char(40) NOT NULL,
-  PRIMARY KEY (`ID`)
+  `DESCRIPTION_MD5` char(40) NOT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `LANG` (`LANG`),
+  KEY `TAG` (`TAG`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -591,7 +618,7 @@ CREATE TABLE `TYPES` (
 
 LOCK TABLES `TYPES` WRITE;
 /*!40000 ALTER TABLE `TYPES` DISABLE KEYS */;
-INSERT INTO `TYPES` VALUES (1,1,'head','T_HEAD'),(2,1,'shoulders','T_SHOULDERS'),(3,1,'chest','T_CHEST'),(4,1,'hands','T_HANDS'),(5,1,'legs','T_LEGS'),(6,1,'feet','T_FEET'),(7,1,'waist','T_WAIST'),(8,2,'pistols','T_PISTOLS'),(9,2,'rifles','T_RIFLES'),(10,2,'crossbows','T_CROSSBOWS'),(11,2,'axes','T_AXES'),(12,2,'maces','T_MACES'),(13,2,'swords','T_SWORDS'),(14,2,'two_handers','T_TWO_HANDERS'),(15,2,'shields','T_SHIELDS'),(16,2,'focus','T_FOCUS'),(17,2,'scepters_daggers','T_SCEPTERS_DAGGERS'),(18,2,'light_crossbows','T_LIGHT_CROSSBOWS'),(19,2,'staffs','T_STAFFS'),(20,3,'amulets','T_AMULETS'),(21,3,'medals','T_MEDALS'),(22,3,'rings','T_RINGS'),(23,4,'relics','T_RELICS'),(24,4,'components','T_COMPONENTS'),(25,4,'augments','T_AUGMENTS'),(26,5,'prefixes','T_PREFIXES'),(27,5,'suffixes','T_SUFFIXES');
+INSERT INTO `TYPES` VALUES (1,1,'head','tagHead'),(2,1,'shoulders','tagShoulders'),(3,1,'chest','tagChest'),(4,1,'hands','tagGloves'),(5,1,'legs','tagLegs'),(6,1,'feet','tagFeet'),(7,1,'waist','tagBelt'),(8,2,'pistols','tagOneHandedPistol'),(9,2,'rifles','tagTwoHandedRifle'),(10,2,'crossbows','T_CROSSBOWS'),(11,2,'axes','tagOneHandedAxe'),(12,2,'maces','tagOneHandedMace'),(13,2,'swords','tagOneHandedSword'),(14,2,'two_handers','T_TWO_HANDERS'),(15,2,'shields','T_SHIELDS'),(16,2,'focus','T_FOCUS'),(17,2,'scepters_daggers','T_SCEPTERS_DAGGERS'),(18,2,'light_crossbows','T_LIGHT_CROSSBOWS'),(19,2,'staffs','tagStaff'),(20,3,'amulets','tagAmulet'),(21,3,'medals','tagMedal'),(22,3,'rings','tagRing'),(23,4,'relics','T_RELICS'),(24,4,'components','tagComponentComplete'),(25,4,'augments','T_AUGMENTS'),(26,5,'prefixes','T_PREFIXES'),(27,5,'suffixes','T_SUFFIXES');
 /*!40000 ALTER TABLE `TYPES` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -604,4 +631,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-04-07 17:10:49
+-- Dump completed on 2017-04-10 21:42:06
