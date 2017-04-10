@@ -2,21 +2,25 @@
 /** -------------------------------------------------------------------------------------------------------------------- ** 
 /** -------------------------------------------------------------------------------------------------------------------- ** 
 /** ---																																					--- **
-/** --- 											-----------------------------------------------											--- **
+/** --- 											----------------------------------------------- 										--- **
 /** ---															{ load_attributes.php }															--- **
-/** --- 											-----------------------------------------------											--- **
+/** --- 											----------------------------------------------- 										--- **
 /** ---																																					--- **
 /** ---		AUTEUR 	: Nicolas DUPRE																											--- **
 /** ---																																					--- **
-/** ---		RELEASE	: 26.03.2017																												--- **
+/** ---		RELEASE	: 10.04.2017																												--- **
 /** ---																																					--- **
-/** ---		VERSION	: 1.0																															--- **
+/** ---		VERSION	: 1.1																															--- **
 /** ---																																					--- **
 /** ---																																					--- **
-/** --- 														-----------------------------														--- **
+/** --- 														----------------------------- 													--- **
 /** --- 															{ C H A N G E L O G } 															--- **
-/** --- 														-----------------------------														--- **	
+/** --- 														----------------------------- 													--- **	
 /** ---																																					--- **
+/** ---																																					--- **
+/** ---		VERSION 1.1 : 10.04.2017																											--- **
+/** ---		------------------------																											--- **
+/** ---			- Ajustements pour fonctionner de maniere plus autonome aves l'auto-assimilation des données 			--- **
 /** ---																																					--- **
 /** ---		VERSION 1.0 : 26.03.2017																											--- **
 /** ---		------------------------																											--- **
@@ -97,15 +101,20 @@
 	$query = "
 	SELECT
 		A.ID,
-		A.BASIC, A.PET, A.PROBABILITY, A.TIER,
-		A.MASTER_VALUE, A.SLAVE_VALUE, A.ATTACHMENT,
-		AN.NAME
+		A.BASIC, A.PET, A.PROBABILITY, A.TIER, A.ATTACHMENT,
+		A.MASTER_VALUE_1, A.MASTER_VALUE_2, A.SLAVE_VALUE_1, A.SLAVE_VALUE_2, 
+		MAN.NAME AS MASTER_NAME, SAN.NAME AS SLAVE_NAME
 		
 	FROM ATTRIBUTES AS A
-	LEFT JOIN ATTRIBUTES_NAMES AS AN
-	ON A.TAG = AN.TAG
+	LEFT JOIN ATTRIBUTES_NAMES AS MAN
+	ON A.MASTER_TAG = MAN.TAG
+	LEFT JOIN ATTRIBUTES_NAMES AS SAN
+	ON A.SLAVE_TAG = SAN.TAG
 	
-	WHERE ITEM = :item AND LANG = :lang
+	WHERE 
+		ITEM = :item 
+		AND MAN.LANG = :lang
+		AND SAN.LANG = :lang
 	
 	ORDER BY
 		PROBABILITY DESC
@@ -126,12 +135,23 @@
 /** -------------------------------------------------------------------------------------------------------------------- **/
 /** > Parcourir les données reçues pour envois au client **/
 while($faAttributes = $pAttributes->fetch(PDO::FETCH_ASSOC)){
-	$name = $faAttributes["NAME"];
+	$master_name = $faAttributes["MASTER_NAME"];
+	$slave_name = $faAttributes["SLAVE_NAME"];
 	
-	$name = preg_replace("#%s(%)#", "%s&#37;", $name);
-	$name = preg_replace("#(\+?\s*%s(&\#37;)?)#", "<span>$1</span>", $name);
+	//──┐ Convertir le % en entité HTML
+	$master_name = preg_replace("#%s(%)#", "%s&#37;", $master_name);
+	$slave_name = preg_replace("#%s(%)#", "%s&#37;", $slave_name);
 	
-	$attribut = @sprintf($name, $faAttributes["MASTER_VALUE"], $faAttributes["SLAVE_VALUE"]);
+	//──┐ Ajouter la balise span autour des valeurs
+	$master_name = preg_replace("#(\+?\s*%s(&\#37;)?)#", "<span>$1</span>", $master_name);
+	$slave_name = preg_replace("#(\+?\s*%s(&\#37;)?)#", "<span>$1</span>", $slave_name);
+	
+	//──┐ Composer l'attribut a proprement parler
+	$master_name = @sprintf($master_name, $faAttributes["MASTER_VALUE_1"], $faAttributes["MASTER_VALUE_2"]);
+	$slave_name = @sprintf(" $slave_name", $faAttributes["SLAVE_VALUE_1"], $faAttributes["SLAVE_VALUE_2"]);
+	
+	$attribut = $master_name;
+	if($faAttributes["SLAVE_NAME"]) $attribut .= $slave_name;
 	
 	$ATTRIBUTES[] = Array(
 		"COMMA" => ($first) ? "" : ",",
@@ -142,8 +162,10 @@ while($faAttributes = $pAttributes->fetch(PDO::FETCH_ASSOC)){
 		"ATTRIBUT" => $attribut,
 		"ATTACHMENT" => $faAttributes["ATTACHMENT"],
 		"PROBABILITY" => $faAttributes["PROBABILITY"] * 100,
-		"MASTER_VALUE" => $faAttributes["MASTER_VALUE"],
-		"SLAVE_VALUE" => $faAttributes["SLAVE_VALUE"]
+		"MASTER_VALUE_1" => $faAttributes["MASTER_VALUE_1"],
+		"MASTER_VALUE_2" => $faAttributes["MASTER_VALUE_2"],
+		"SLAVE_VALUE_1" => $faAttributes["SLAVE_VALUE_1"],
+		"SLAVE_VALUE_2" => $faAttributes["SLAVE_VALUE_2"]
 	);
 	
 	$first = false;
