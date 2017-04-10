@@ -1,4 +1,4 @@
 # How To
 
 ## Update DB
-`php -f auto_discover_tagnames.php`
+`php -f DNUpdater.php`

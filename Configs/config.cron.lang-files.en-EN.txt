@@ -1,0 +1,3 @@
+https://raw.githubusercontent.com/solael/GrimDawn/master/source/tags_ui.txt
+https://raw.githubusercontent.com/solael/GrimDawn/master/source/tags_items.txt
+https://raw.githubusercontent.com/solael/GrimDawn/master/source/tags_skills.txt

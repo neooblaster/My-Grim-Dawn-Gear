@@ -1,0 +1,32 @@
+# Source de Grim Dawn :: http://grimdawn.com/public/localization/localization.txt
+en-EN::http://dev.my-grimdawn-gear.com/zip_composer.php?list=/var/www/dev.my-grimdawn-gear.com/Configs/config.cron.lang-files.en-EN.txt&lang=en-EN
+#
+# fr-FR::http://www.grimdawn.com/forums/attachment.php?attachmentid=11658&d=1467707520
+fr-FR::http://www.grimdawn.com/public/localization/french_18.zip
+# gr-GR::http://www.grimdawn.com/public/localization/v1002_greek.zip
+# es-ES::http://www.grimdawn.com/public/localization/v1003_spanish.zip
+# jp-JP::http://www.grimdawn.com/public/localization/v1003_japanese.zip
+# ch-CH::http://www.grimdawn.com/public/localization/v1003_chinese.zip
+# pt-PT::http://www.grimdawn.com/public/localization/v1002_portuguese.zip
+# ru-RU::http://www.grimdawn.com/public/localization/v1003_russian.zip
+# de-DE::http://www.grimdawn.com/public/localization/v1002_german.zip
+# it-IT::http://www.grimdawn.com/public/localization/v1003_italian.zip
+#
+# ? src file_name version realise language
+# 1|http://www.grimdawn.com/public/localization/greek_1.zip|community_greek.zip|v1.0.0.4/r1 Greek
+# 10|http://www.grimdawn.com/public/localization/spanish_10.zip|community_spanish.zip|v1.0.0.9/r10 Spanish
+# 17|http://www.grimdawn.com/public/localization/japanese_17.zip|community_japanese.zip|v1.0.0.9/r17 Japanese
+# 17|http://www.grimdawn.com/public/localization/japanese_e_17.zip|community_japanese_e.zip|v1.0.0.9/r17 Japanese (Noun Eng)
+# 26|http://www.grimdawn.com/public/localization/chinese_26.zip|community_chinese.zip|v1.0.0.9/r26 Chinese
+# 26|http://www.grimdawn.com/public/localization/chinese_m_26.zip|community_chinese_m.zip|v1.0.0.9/r26 Chinese (Modified)
+# 3|http://www.grimdawn.com/public/localization/portuguese_3.zip|community_portuguese.zip|v1.0.0.7/r3 Portuguese
+# 29|http://www.grimdawn.com/public/localization/russian_29.zip|community_russian.zip|v1.0.0.9/r29 Russian
+# 12|http://www.grimdawn.com/public/localization/german_12.zip|community_german.zip|v1.0.0.9/r12 German
+# 11|http://www.grimdawn.com/public/localization/german_e_11.zip|community_german_e.zip|v1.0.0.9/r11 German (+English)
+# 6|http://www.grimdawn.com/public/localization/dutch_6.zip|community_dutch.zip|v1.0.0.9/r6 Dutch
+# 18|http://www.grimdawn.com/public/localization/french_18.zip|community_french.zip|v1.0.0.9/r18 French
+# 9|http://www.grimdawn.com/public/localization/czech_9.zip|community_czech.zip|v1.0.0.9/r9 Czech
+# 2|http://www.grimdawn.com/public/localization/italian_2.zip|community_italian.zip|v1.0.0.6/r2 Italian
+# 7|http://www.grimdawn.com/public/localization/vietnamese_7.zip|community_vietnamese.zip|v1.0.0.9/r7 Vietnamese
+# 43|http://www.grimdawn.com/public/localization/polish_43.zip|community_polish.zip|v1.0.0.9/r43 Polish
+# 7|http://www.grimdawn.com/public/localization/bulgarian_7.zip|community_bulgarian.zip|v1.0.0.8/r7 Bulgarian
