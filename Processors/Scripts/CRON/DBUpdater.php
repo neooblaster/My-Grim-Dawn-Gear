@@ -11,9 +11,9 @@
 /** ---																																					--- **
 /** ---		AUTEUR			: Nicolas DUPRE																									--- **
 /** ---																																					--- **
-/** ---		RELEASE			: 10.04.2017																										--- **
+/** ---		RELEASE			: 11.04.2017																										--- **
 /** ---																																					--- **
-/** ---		FILE_VERSION	: 1.0 NDU																											--- **
+/** ---		FILE_VERSION	: 1.1 NDU																											--- **
 /** ---																																					--- **
 /** ---																																					--- **
 /** --- 														---------------------------														--- **
@@ -29,6 +29,10 @@
 /** --- 															{ C H A N G E L O G } 															--- **
 /** --- 														-----------------------------														--- **	
 /** ---																																					--- **
+/** ---																																					--- **
+/** ---		VERSION 1.1 : 11.04.2017 : NDU																									--- **
+/** ---		------------------------------																									--- **
+/** ---			- Ajout de traitement de remplacement sur les tags																		--- **
 /** ---																																					--- **
 /** ---		VERSION 1.0 : 10.04.2017 : NDU																									--- **
 /** ---		------------------------------																									--- **
@@ -56,6 +60,17 @@
 			../../../../	/var/www/
 			
 		Flag pour trouver où ajouter du traitement décisionnel en fonction des DB :: [FLAG::HERE]
+		
+		
+		Flags trouvés
+		--------------
+			
+			[ms] Masculin Singulier
+			[fs] Feminin Singulier
+			
+			{^W}
+	
+	
 	
 /** -------------------------------------------------------------------------------------------------------------------- **
 /** -------------------------------------------------------------------------------------------------------------------- **
@@ -99,10 +114,26 @@
 /** -------------------------------------------------------------------------------------------------------------------- **
 /** -------------------------------------------------------------------------------------------------------------------- **
 /** ---																																					--- **
-/** ---												PHASE 2 - CONTROLE DES AUTORISATIONS													--- **
+/** ---												PHASE 2 - DECLARATION DES FUNCTIONS														--- **
 /** ---																																					--- **
 /** -------------------------------------------------------------------------------------------------------------------- **
 /** -------------------------------------------------------------------------------------------------------------------- **/
+//[FLAG::HERE]
+/** > Function de récupération des TAGS **/
+function load_tags(&$array, $table){
+	global $PDO;
+	
+	$pQuery = $PDO->prepare("SELECT TAG FROM $table");
+	$pQuery->execute(Array());
+	
+	$array[$table] = Array();
+	
+	while($faQuery = $pQuery->fetch(PDO::FETCH_ASSOC)){
+		$array[$table][] = $faQuery["TAG"];
+	}
+}
+
+
 
 /** -------------------------------------------------------------------------------------------------------------------- **
 /** -------------------------------------------------------------------------------------------------------------------- **
@@ -136,7 +167,7 @@
 
 
 /** > Initialisation des variables **/
-	$usleep = 30000;
+	$usleep = 25000;
 
 	$temp_path = __ROOT__."/Temps";
 	$zip_path = __ROOT__."/Temps/%s.zip";
@@ -223,23 +254,16 @@ while($faIdentifiers = $pIdentifiers->fetch(PDO::FETCH_ASSOC)){
 
 /** ------------------------------------------------------------------------------------ **/
 /** --- Phase 4.4 :: Récupération des objets connu                                   --- **/
-/** ------------------------------------------------------------------------------------ **/
+/** ------------------------------------------------------------------------------------ **///[FLAG::HERE]
 /** > 4.4.1. Objet ITEMS **/
-$pItems = $PDO->prepare("SELECT TAG FROM ITEMS");
-$pItems->execute(Array());
+load_tags($datas, "ITEMS");
 
-while($faItems = $pItems->fetch(PDO::FETCH_ASSOC)){
-	if(!isset($datas["ITEMS"])) $datas["ITEMS"] = Array();
-	
-	$datas["ITEMS"][] = $faItems["TAG"];
-}
 
-//[FLAG::HERE]
 
 
 /** ------------------------------------------------------------------------------------ **/
 /** --- Phase 4.5 :: Récupération des texts                                          --- **/
-/** ------------------------------------------------------------------------------------ **/
+/** ------------------------------------------------------------------------------------ **///[FLAG::HERE]
 /** > 4.5.1. Texts des objets (TAGS_NAMES) **/
 $pItems = $PDO->prepare("SELECT * FROM TAGS_NAMES");
 $pItems->execute(Array());
@@ -250,7 +274,7 @@ while($faItems = $pItems->fetch(PDO::FETCH_ASSOC)){
 	
 	$names["TAGS_NAMES"][$faItems["LANG"]][$faItems["TAG"]] = $faItems;
 }
-//[FLAG::HERE]
+
 
 
 
@@ -270,6 +294,7 @@ foreach($langs as $index => $lang){
 	$zip->extractTo($temp_path."/$lang", $tags_files);
 	$zip->close();
 	
+	
 	/** Parcourir les fichiers **/
 	foreach($tags_files as $index => $file){
 		$handler = fopen($temp_path."/$lang/$file", "r");
@@ -282,6 +307,11 @@ foreach($langs as $index => $lang){
 				if(!isset($names[$identifier["TABLE_NAME"]])) $names[$identifier["TABLE_NAME"]] = Array();
 				if(!isset($names[$identifier["TABLE_NAME"]][$lang])) $names[$identifier["TABLE_NAME"]][$lang] = Array();
 				
+				if(!isset($datas[$identifier["TABLE_DATA"]])) $datas[$identifier["TABLE_DATA"]] = Array();
+				if(!isset($datas[$identifier["TABLE_DATA"]][$lang])) $datas[$identifier["TABLE_DATA"]][$lang] = Array();
+				
+				
+				
 				/** Définition du pattern de recherche **/
 				$pattern = "#^".$identifier["TAG"]."#";
 				
@@ -293,15 +323,26 @@ foreach($langs as $index => $lang){
 					$value = preg_replace("#\s$#", "", substr($buffer, $eqpos+1));
 					
 					
-					/** Faut-il l'ignorer ? **/
-					if($identifier["IGNORE"] !== ""){if(preg_match("#".$identifier["IGNORE"]."#", $tag)) break;};
+					/** Si aucune valeur n'est défini, on passe **/
+					if($value === "") continue;
 					
 					
-					/** Procéssing sur la valeur **/
+					/** Processing sur le tag **/
+					//──┐ Faut-il l'ignorer ?
+					if($identifier["IGNORE"] !== ""){if(preg_match("#".$identifier["IGNORE"]."#", $tag)) break;}
+					//──┐ Cleansing à l'aide du modèle
+					if($identifier["CLEAN"]){$tag = preg_replace("#".$identifier["CLEAN"]."#", "", $tag);}
+					//──┐ Operer des modifications sur le taf
+					if($identifier["REPLACE"]) {}
+					
+					
+					
+					/** Procssing sur la valeur **/
 					//──┐ Supprimer les codes spéciaux {^[A-Z]}
-					$value = preg_replace("#\{\^[A-Z]\}#", "", $value);
+					$value = preg_replace("#\{?\^[a-zA-Z]\}?#", "", $value);
 					//──┐ Supprimer les guillemets de début et de fin
 					$value = preg_replace('#^"|"$#', "", $value);
+					//\{%(\+)?\.?[0-9]?[a-z][0-9]\}
 					
 					
 					/** Est-ce une description ? **/
@@ -378,10 +419,11 @@ foreach($langs as $index => $lang){
 								//[FLAG::HERE]
 								case "ITEMS":
 									// Composition de la requête SQL
-									$query = "INSERT INTO ITEMS (FAMILY, TYPE, TAG, ATTACHMENT) VALUES(:FAMILY, :TYPE, :TAG, :ATTACHMENT)";
+									$query = "INSERT INTO ITEMS (FAMILY, TYPE, QUALITY, TAG, ATTACHMENT) VALUES(:FAMILY, :TYPE, :QUALITY, :TAG, :ATTACHMENT)";
 									$bound_tokens = Array(
 										":FAMILY" => $identifier["FAMILY"],
 										":TYPE" => $identifier["TYPE"],
+										":QUALITY" => $identifier["QUALITY"],
 										":TAG" => $tag,
 										":ATTACHMENT" => $identifier["ATTACHMENT"]
 									);
@@ -408,6 +450,11 @@ foreach($langs as $index => $lang){
 			}
 		}
 	}
+	
+	
+	/** Recharger les tags **///[FLAG::HERE]
+	echo sprintf("RELOADING TAGS FOR TABLE 'ITEMS'".LF, $tag);
+	load_tags($datas, "ITEMS");
 }
 
 
