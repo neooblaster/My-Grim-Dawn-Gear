@@ -335,12 +335,15 @@ CREATE TABLE `IDENTIFIERS` (
   `TABLE_DATA` varchar(30) NOT NULL COMMENT 'Table fonctionnel',
   `FAMILY` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT 'Dest : TABLE_DATA',
   `TYPE` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT 'Dest : TABLE_DATA',
+  `QUALITY` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `ATTACHMENT` smallint(5) unsigned NOT NULL DEFAULT '0',
   `TABLE_NAME` varchar(30) NOT NULL,
   `DESCRIPTION` varchar(30) NOT NULL,
-  `IGNORE` varchar(30) NOT NULL,
+  `IGNORE` text NOT NULL,
+  `CLEAN` text NOT NULL,
+  `REPLACE` text NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -349,7 +352,7 @@ CREATE TABLE `IDENTIFIERS` (
 
 LOCK TABLES `IDENTIFIERS` WRITE;
 /*!40000 ALTER TABLE `IDENTIFIERS` DISABLE KEYS */;
-INSERT INTO `IDENTIFIERS` VALUES (1,'tagWeaponSword[A-Z]','ITEMS',2,13,1,'TAGS_NAMES','Desc','');
+INSERT INTO `IDENTIFIERS` VALUES (1,'tagWeaponSword[A-Z]','ITEMS',2,13,1,1,'TAGS_NAMES','Desc','','',''),(2,'tagWeaponBlunt[A-Z]','ITEMS',2,12,1,1,'TAGS_NAMES','Desc','','',''),(3,'tagWeaponAxe[A-Z]','ITEMS',2,11,1,1,'TAGS_NAMES','Desc','','',''),(4,'tagWeaponGun1h[A-Z]','ITEMS',2,8,1,1,'TAGS_NAMES','Desc','','',''),(5,'tagWeaponGun2h[A-Z]','ITEMS',2,9,1,1,'TAGS_NAMES','Desc','','',''),(6,'tagWeaponCrossbow2h[A-Z]','ITEMS',2,10,1,1,'TAGS_NAMES','Desc','','',''),(7,'tagWeaponMelee2h[A-Z]','ITEMS',2,14,1,1,'TAGS_NAMES','Desc','','',''),(8,'tagWeaponCaster1h[A-Z]','ITEMS',2,17,1,1,'TAGS_NAMES','Desc','','',''),(9,'tagWeaponArcane[A-Z]','ITEMS',2,19,1,1,'TAGS_NAMES','Desc','','',''),(10,'tagWeaponCrossbow1h[A-Z]','ITEMS',2,18,1,1,'TAGS_NAMES','Desc','','',''),(11,'tagShield[A-Z]','ITEMS',2,15,1,1,'TAGS_NAMES','Desc','Info$','',''),(12,'tagFocus[A-Z]','ITEMS',2,16,1,1,'TAGS_NAMES','Desc','','',''),(13,'tagHead[A-Z]','ITEMS',1,1,1,1,'TAGS_NAMES','Desc','','',''),(14,'tagShoulder[A-Z]','ITEMS',1,2,1,1,'TAGS_NAMES','Desc','','',''),(15,'tagTorso[A-Z]','ITEMS',1,3,1,1,'TAGS_NAMES','Desc','','',''),(16,'tagWaist[A-Z]','ITEMS',1,7,1,1,'TAGS_NAMES','Desc','','',''),(17,'tagHands[A-Z]','ITEMS',1,4,1,1,'TAGS_NAMES','Desc','','',''),(18,'tagLegs[A-Z]','ITEMS',1,5,1,1,'TAGS_NAMES','Desc','','',''),(19,'tagFeet[A-Z]','ITEMS',1,6,1,1,'TAGS_NAMES','Desc','','',''),(20,'tagRing[A-Z]','ITEMS',3,22,1,1,'TAGS_NAMES','Desc','','',''),(21,'tagNecklace[A-Z]','ITEMS',3,20,1,1,'TAGS_NAMES','Desc','','',''),(22,'tagMedal[A-Z]','ITEMS',3,21,1,1,'TAGS_NAMES','Desc','','',''),(23,'tagRelic[A-Z]','ITEMS',4,23,6,1,'TAGS_NAMES','Desc','Error$','',''),(24,'tagEnchant[A-Z]','ITEMS',4,25,8,3,'TAGS_NAMES','Desc','[BC]$','A$',''),(25,'tagComp[A-Z]','ITEMS',4,24,7,2,'TAGS_NAMES','Desc','(Crystal|Box|Scrap)$','Name$',''),(26,'tagPrefix[A-Z]','ITEMS',5,26,2,4,'TAGS_NAMES','Desc','','',''),(27,'tagSuffix[A-Z]','ITEMS',5,27,2,5,'TAGS_NAMES','Desc','','','');
 /*!40000 ALTER TABLE `IDENTIFIERS` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -631,4 +634,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-04-10 21:42:06
+-- Dump completed on 2017-04-11 18:22:27
