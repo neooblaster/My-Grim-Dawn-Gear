@@ -41,6 +41,7 @@
 /** > Chargement des Paramètres **/
 	require_once "params.php";		// Params du "module"
 	//???// require_once "../params.php";	// Params de l'applis Master
+	//exit;
 
 /** > Ouverture des SESSIONS Globales **/
 	//require_once "../session_start.php";
