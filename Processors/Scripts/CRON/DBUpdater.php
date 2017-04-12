@@ -11,9 +11,9 @@
 /** ---																																					--- **
 /** ---		AUTEUR			: Nicolas DUPRE																									--- **
 /** ---																																					--- **
-/** ---		RELEASE			: 11.04.2017																										--- **
+/** ---		RELEASE			: 12.04.2017																										--- **
 /** ---																																					--- **
-/** ---		FILE_VERSION	: 1.1 NDU																											--- **
+/** ---		FILE_VERSION	: 1.2 NDU																											--- **
 /** ---																																					--- **
 /** ---																																					--- **
 /** --- 														---------------------------														--- **
@@ -29,6 +29,12 @@
 /** --- 															{ C H A N G E L O G } 															--- **
 /** --- 														-----------------------------														--- **	
 /** ---																																					--- **
+/** ---																																					--- **
+/** ---		VERSION 1.2 : 12.04.2017 : NDU																									--- **
+/** ---		------------------------------																									--- **
+/** ---			- Ajout de données pré-défini pour les cible de donnée ITEMS : 													--- **
+/** ---				> WIDTH  																														--- **
+/** ---				> HEIGHT 																														--- **
 /** ---																																					--- **
 /** ---		VERSION 1.1 : 11.04.2017 : NDU																									--- **
 /** ---		------------------------------																									--- **
@@ -419,13 +425,15 @@ foreach($langs as $index => $lang){
 								//[FLAG::HERE]
 								case "ITEMS":
 									// Composition de la requête SQL
-									$query = "INSERT INTO ITEMS (FAMILY, TYPE, QUALITY, TAG, ATTACHMENT) VALUES(:FAMILY, :TYPE, :QUALITY, :TAG, :ATTACHMENT)";
+									$query = "INSERT INTO ITEMS (FAMILY, TYPE, QUALITY, TAG, ATTACHMENT, WIDTH, HEIGHT) VALUES(:FAMILY, :TYPE, :QUALITY, :TAG, :ATTACHMENT, :WIDTH, :HEIGHT)";
 									$bound_tokens = Array(
 										":FAMILY" => $identifier["FAMILY"],
 										":TYPE" => $identifier["TYPE"],
 										":QUALITY" => $identifier["QUALITY"],
 										":TAG" => $tag,
-										":ATTACHMENT" => $identifier["ATTACHMENT"]
+										":ATTACHMENT" => $identifier["ATTACHMENT"],
+										":WIDTH" => $identifier["WIDTH"],
+										":HEIGHT" => $identifier["HEIGHT"]
 									);
 									
 									// Envoyer un message 

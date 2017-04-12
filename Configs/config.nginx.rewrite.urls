@@ -69,7 +69,9 @@
 	rewrite ^/Scripts/(.*)$ /Scripts/$1 last;
 	
 # Alias pour les Images : DEV en local et PRD chez OVH
-	rewrite ^/(.*)/tagAffix(Common|Magic|Rare|Elite|Legendary)(.*) /$1/tagAffix$2.png last;
+	# rewrite ^/(.*)/tagAffix(Common|Magic|Rare|Elite|Legendary)(.*) /$1/tagAffix$2.png last;
+	rewrite ^/(.*)/tagPrefix /$1/tagAffixMagic.png last;
+	rewrite ^/(.*)/tagSuffix /$1/tagAffixMagic.png last;
 	rewrite ^/Images/(.*)$ /Images/$1 last;
 	#rewrite ^/Images/(.*)$ http://mgdg.neoblaster.fr/Images/$1 last;
 	
