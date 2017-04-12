@@ -43,7 +43,7 @@ tar xzvf node-vX.Y.0.tar.gz
 cd node-vX.Y.0
 ```
 
-* Check if you had a C++ compiler
+* Check if you have C++ compiler
 
 
 ```bash
@@ -55,7 +55,7 @@ cd node-vX.Y.0
 
 
 ```bash
-# To do only if you get 'no c compiler found'
+# To do only if you have get message 'no c compiler found'
 apt-get install build-essential
 ```
 
@@ -74,7 +74,7 @@ Source : http://www.symfony-grenoble.fr/fr/75/installer-less-via-nodejs-et-npm-s
 
 ## 3. Get Node.js modules
 
-### 3.1. Download LESS compilator
+### 3.1. Download LESS compilater
 
 With that Node.js install, the module manager `npm` is include. Adding module is really easy :
 
