@@ -1,0 +1,1 @@
+*{margin:0;padding:0}html{font-size:1em}body,html{height:100%}footer{text-align:center;color:#fff}footer a{text-decoration:none;color:#963;font-weight:700}footer a:hover{text-decoration:underline}footer p{font-style:italic;margin-bottom:5px}footer p:after,footer p:before{content:" - "}footer ul li{display:inline}footer ul li:not(:last-child):after{content:" • "}
