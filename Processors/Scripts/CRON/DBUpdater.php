@@ -13,7 +13,7 @@
 /** ---																																					--- **
 /** ---		RELEASE			: 12.04.2017																										--- **
 /** ---																																					--- **
-/** ---		FILE_VERSION	: 1.2 NDU																											--- **
+/** ---		FILE_VERSION	: 1.3 NDU																											--- **
 /** ---																																					--- **
 /** ---																																					--- **
 /** --- 														---------------------------														--- **
@@ -29,6 +29,10 @@
 /** --- 															{ C H A N G E L O G } 															--- **
 /** --- 														-----------------------------														--- **	
 /** ---																																					--- **
+/** ---																																					--- **
+/** ---		VERSION 1.3 : 12.04.2017 : NDU																									--- **
+/** ---		------------------------------																									--- **
+/** ---			- Ajout de données pré-défini pour les cible de donnée ITEMS : 													--- **
 /** ---																																					--- **
 /** ---		VERSION 1.2 : 12.04.2017 : NDU																									--- **
 /** ---		------------------------------																									--- **
@@ -169,14 +173,34 @@ function load_tags(&$array, $table){
 	$inserts;			// ARRAY				:: Liste des texts à insérer
 	$updates;			// ARRAY				:: Liste des texts à updater
 
+	$cmt;					// STRING			:: Color Modifier Tag
+	$cmtb;				// STRING			:: Color Modifier table
+	$cml;					// STRING			:: Color Modifier Lang
+	$cms;					// STRING			:: Color Modifier Successfull
+	$cmw;					// STRING			:: Color Modifier Warning
+	$cmerr;				// STRING			:: Color Modifier Error
+	$cme;					// STRING			:: Color Modifier End
+
+	$first_lang;		// BOOLEAN			:: Indique qu'il s'agit de la première langue traité.
+
 	
 
 
 /** > Initialisation des variables **/
-	$usleep = 25000;
+	$first_lang = true;
+
+	$cmt = "\e[38;5;113m";
+	$cmtb = "\e[38;5;117m";
+	$cml = "\e[38;5;220m";
+	$cms = "\e[38;5;118m";
+	$cmw = "\e[38;5;208m";
+	$cmerr = "\e[38;5;160m";
+	$cme = "\e[0m";
 
 	$temp_path = __ROOT__."/Temps";
 	$zip_path = __ROOT__."/Temps/%s.zip";
+
+	$usleep = 25000;
 
 	$urls = Array();
 	$langs = Array();
@@ -225,7 +249,7 @@ fclose($cfg_file_urls);
 /** --- Phase 4.2 :: Récupération des fichiers ZIP                                   --- **/
 /** ------------------------------------------------------------------------------------ **/
 foreach($urls as $lang => $url){
-	echo sprintf("Retrieving ZIP File of language :: %s\n", $lang);
+	echo sprintf("Retrieving ZIP File of language :: $cml%s$cme\n", $lang);
 	
 	/** Création du fichier ZIP cible pour CURL **/
 	$zip = fopen(sprintf($zip_path, $lang), "w+");
@@ -249,7 +273,7 @@ foreach($urls as $lang => $url){
 /** ------------------------------------------------------------------------------------ **/
 /** --- Phase 4.3 :: Récupération des identifiers                                    --- **/
 /** ------------------------------------------------------------------------------------ **/
-$pIdentifiers = $PDO->prepare("SELECT * FROM IDENTIFIERS ORDER BY TAG DESC");
+$pIdentifiers = $PDO->prepare("SELECT * FROM IDENTIFIERS ORDER BY TAG ASC");
 $pIdentifiers->execute(Array());
 
 while($faIdentifiers = $pIdentifiers->fetch(PDO::FETCH_ASSOC)){
@@ -437,18 +461,27 @@ foreach($langs as $index => $lang){
 									);
 									
 									// Envoyer un message 
-									echo sprintf("TAG '% 40s' ADDED INTO ITEMS.".LF, $tag);
+									echo sprintf("TAG '$cmt% 40s$cme' ADDED INTO '$cmtb"."ITEMS$cme'.".LF, $tag);
 									usleep($usleep);
 									
 									// Execution de la requête 
 									$pQuery = $PDO->prepare($query);
 									$pQuery->execute($bound_tokens);
 								break;
+								default:
+									// N'emettre l'information uniquement pour la premiere langue traité (normalement en-EN la référence)
+									if($first_lang){
+										echo sprintf("TAG '$cmt% 40s$cme' $cmw"."HAS NO TABLE_DATA DEFINED$cme.".LF, $tag);
+										usleep(0.5 * $usleep);
+									}
+								break;
 							}
 						} else {
-							// Envoyer un message 
-							echo sprintf("TAG '% 40s' ALREADY EXISTS INTO ITEMS.".LF, $tag);
-							usleep($usleep);
+							// N'emettre l'information uniquement pour la premiere langue traité (normalement en-EN la référence)
+							if($first_lang){
+								echo sprintf("TAG '$cmt% 40s$cme' ALREADY EXISTS INTO '$cmtb"."ITEMS$cme'.".LF, $tag);
+								usleep(0.20 * $usleep);
+							}
 						}
 					}
 					
@@ -463,6 +496,8 @@ foreach($langs as $index => $lang){
 	/** Recharger les tags **///[FLAG::HERE]
 	echo sprintf("RELOADING TAGS FOR TABLE 'ITEMS'".LF, $tag);
 	load_tags($datas, "ITEMS");
+	
+	$first_lang = false;
 }
 
 
@@ -498,6 +533,9 @@ foreach($operations as $sql_op => $array){
 				//──┐ Lang non requis pour les updates 
 				$uvalues_to_process = Array();
 				
+				// Identification du tag
+				$tag = $fields["TAG"];
+				
 				foreach($fields as $field => $value){
 					//──┐ Ignorer le champs ID qui va servire pour la clause WHERE
 					if($field === "ID") continue;
@@ -516,13 +554,13 @@ foreach($operations as $sql_op => $array){
 				switch($sql_op){
 					case "INSERT":
 						$query = "INSERT INTO $table (".implode(", ", $fields_to_process).") VALUES (".implode(", ", $tokens_to_process).")";
-						$message = "INSERT QUERY DONE SUCESSFULLY";
+						$message = "INSERT QUERY DONE $cms"."SUCESSFULLY$cme FOR LANG '$cml$lang$cme' FOR TAG '$cmt$tag$cme' IN TABLE $cmtb'$table'$cme";
 					break;
 					case "UPDATE":
 						// Retirer :LANG des tokens 
 						array_shift($values_to_process);
 						$query = "UPDATE $table SET ".implode(", ", $uvalues_to_process)." WHERE ID = ".$fields["ID"];
-						$message = "UPDATE QUERY DONE SUCESSFULLY";
+						$message = "UPDATE QUERY DONE $cms"."SUCESSFULLY$cme FOR LANG '$cml$lang$cme' FOR TAG '$cmt$tag$cme' IN TABLE $cmtb'$table'$cme";
 					break;
 				}
 				
@@ -535,9 +573,9 @@ foreach($operations as $sql_op => $array){
 					echo $message.LF;
 					usleep($usleep);
 				} catch (Exception $e){
-					echo "SQL Query failed with error ".$e->getMessage().LF;
-					echo "Query is :: $query".LF;
-					echo "Token are :: ".print_r($values_to_process).LF;
+					echo "SQL QUERY $cmerr"."FAILED$cme WITH ERROR ".$e->getMessage().LF;
+					echo "QUERY IS :: $query".LF;
+					echo "TOKEN ARE :: ".print_r($values_to_process).LF;
 					usleep($usleep);
 				}
 			}
