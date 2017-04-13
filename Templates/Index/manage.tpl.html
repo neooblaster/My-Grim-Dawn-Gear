@@ -102,6 +102,15 @@
 								<option value="%ID%" data-rel-family="%FAMILY%" %SELECTED% data-type="%TYPE%">%TYPE_NAME%</option>
 								<!-- END_BLOCK -->
 							</select>
+							
+							<h4>
+								Item Slot Attachment
+							</h4>
+							<select onchange="updateItem(%ITEM_ID%, 'ATTACHMENT', this.value);">
+								<!-- BEGIN_BLOCK WITH ITEMS_ATTACHMENTS -->
+								<option value="%ID%" %SELECTED% >%ATTACHMENT%</option>
+								<!-- END_BLOCK -->
+							</select>
 						</div>
 						
 					</div>
