@@ -35,8 +35,8 @@
 				
 				<!-- Slot pour afficher l'image de l'objet en cours de manipulation -->
 				<div class="items_editor_slot" onclick="this.querySelector('input').click();">
-					<img id="item_image" src="" data-load-image="%ITEM_TAG_NAME%" data-width="%ITEM_WIDTH%" data-height="%ITEM_HEIGHT%"/>
-					<input type="file" hidden onchange="uploadImage(this);" data-image-name="%ITEM_TAG_NAME%"/>
+					<img id="item_image" src="" data-load-image="%ITEM_TAG%" data-width="%ITEM_WIDTH%" data-height="%ITEM_HEIGHT%"/>
+					<input type="file" hidden onchange="uploadImage(this);" data-image-name="%ITEM_TAG%"/>
 					<script type="text/javascript">
 						document.onreadystatechange = function(){
 							if(document.readyState === "complete"){
@@ -70,8 +70,10 @@
 								Item Name
 							</h4>
 							<input class="id_field" type="text" value="%ITEM_ID%" placeholder="ID" readonly/>
-							<input class="tag_field" type="text" value="%ITEM_TAG_NAME%" placeholder="Tag Name" readonly/><br />
-							<input class="name_field" type="text" value="%ITEM_NAME%" placeholder="Item Name" readonly/>
+							<input class="tag_field" type="text" value="%ITEM_TAG%" placeholder="Tag Name" readonly/><br />
+							<input class="name_field" type="text" value="%ITEM_NAME%" placeholder="Item Name" readonly/><br />
+							<textarea class="description" readonly placeholder="Description">%ITEM_DESCRIPTION%</textarea><br />
+							<input type="checkbox" id="readonly_remover"/><label for="readonly_remover" class="danger_zone">Unlock protected fields</label>
 							
 							<h4>
 								Item Size
