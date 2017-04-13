@@ -32,7 +32,18 @@
 /** ---																																					--- **
 /** ---		VERSION 1.3 : 12.04.2017 : NDU																									--- **
 /** ---		------------------------------																									--- **
-/** ---			- Ajout de données pré-défini pour les cible de donnée ITEMS : 													--- **
+/** ---			- Changement de l'ordre de selection des identfiers : 																--- **
+/** ---				>  Order DESC :: tagComp[] > tagCompSkill[]																			--- **
+/** ---				>  Order ASC  :: tagCompSkill[] > tagComp[]																			--- **
+/** ---																																					--- **
+/** ---			-  Suppresion des notifications suivante lors de second traitement (autres langue)							--- **
+/** ---				>  ALREADY EXIST																												--- **
+/** ---				>  HAS NO TABLE_DATA DEFINED																								--- **
+/** ---																																					--- **
+/** ---			-  Ajout de couleurs dans les messages console pour le confort visuel											--- **
+/** ---																																					--- **
+/** ---			-  Exporation de la constante __ROOT__ dans un fichier à part pour simplifier les évolutions				--- **
+/** ---																																					--- **
 /** ---																																					--- **
 /** ---		VERSION 1.2 : 12.04.2017 : NDU																									--- **
 /** ---		------------------------------																									--- **
@@ -103,7 +114,7 @@
 	require_once "../../../../Prepends/Functions/setup.php";
 
 	//──┐ Setups
-	const __ROOT__ = "/var/www/dev.my-grimdawn-gear.com/";
+	require_once "DBUpdater__ROOT__.php";
 	require_once "../../../../Prepends/Setups/setup.const.special_char.php";
 
 
