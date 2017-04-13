@@ -155,6 +155,22 @@ function load_tags(&$array, $table){
 }
 
 
+/** > Function de récupération des NALES **/
+function load_names(&$array, $table){
+	global $PDO;
+	
+	$pQuery = $PDO->prepare("SELECT * FROM $table");
+	$pQuery->execute(Array());
+	
+	while($faQuery = $pQuery->fetch(PDO::FETCH_ASSOC)){
+		if(!isset($array[$table])) $array[$table] = Array();
+		if(!isset($array[$table][$faQuery["LANG"]])) $array[$table][$faQuery["LANG"]] = Array();
+		
+		$array[$table][$faQuery["LANG"]][$faQuery["TAG"]] = $faQuery;
+	}
+}
+
+
 
 /** -------------------------------------------------------------------------------------------------------------------- **
 /** -------------------------------------------------------------------------------------------------------------------- **
@@ -301,21 +317,23 @@ load_tags($datas, "ITEMS");
 
 
 
-
 /** ------------------------------------------------------------------------------------ **/
 /** --- Phase 4.5 :: Récupération des texts                                          --- **/
 /** ------------------------------------------------------------------------------------ **///[FLAG::HERE]
 /** > 4.5.1. Texts des objets (TAGS_NAMES) **/
-$pItems = $PDO->prepare("SELECT * FROM TAGS_NAMES");
-$pItems->execute(Array());
+load_names($names, "TAGS_NAMES");
 
-while($faItems = $pItems->fetch(PDO::FETCH_ASSOC)){
-	if(!isset($names["TAGS_NAMES"])) $names["TAGS_NAMES"] = Array();
-	if(!isset($names["TAGS_NAMES"][$faItems["LANG"]])) $names["TAGS_NAMES"][$faItems["LANG"]] = Array();
-	
-	$names["TAGS_NAMES"][$faItems["LANG"]][$faItems["TAG"]] = $faItems;
-}
+/** > 4.5.2. Texts des Sorts (SKILLS_NAMES) **/
+load_names($names, "SKILLS_NAMES");
 
+/** > 4.5.3. Texts des Sets (SETS_NAMES) **/
+load_names($names, "SETS_NAMES");
+
+/** > 4.5.4. Texts des Attributs (ATTRIBUTES_NAMES) **/
+load_names($names, "ATTRIBUTES_NAMES");
+
+/** > 4.5.3. Autres textes disponible (OTHER_NAMES) **/
+load_names($names, "OTHER_NAMES");
 
 
 
@@ -381,8 +399,8 @@ foreach($langs as $index => $lang){
 					/** Procssing sur la valeur **/
 					//──┐ Supprimer les codes spéciaux {^[A-Z]}
 					$value = preg_replace("#\{?\^[a-zA-Z]\}?#", "", $value);
-					//──┐ Supprimer les guillemets de début et de fin
-					$value = preg_replace('#^"|"$#', "", $value);
+					//──┐ Supprimer les guillemets
+					$value = preg_replace('#"#', "", $value);
 					//\{%(\+)?\.?[0-9]?[a-z][0-9]\}
 					
 					
