@@ -36,7 +36,7 @@
 				<!-- Slot pour afficher l'image de l'objet en cours de manipulation -->
 				<div class="items_editor_slot" onclick="this.querySelector('input').click();">
 					<img id="item_image" src="" data-load-image="%ITEM_TAG%" data-width="%ITEM_WIDTH%" data-height="%ITEM_HEIGHT%"/>
-					<input type="file" hidden onchange="uploadImage(this);" data-image-name="%ITEM_TAG%"/>
+					<input type="file" name="file" hidden onchange="uploadImage(this);" data-image-name="%ITEM_TAG%"/>
 					<script type="text/javascript">
 						document.onreadystatechange = function(){
 							if(document.readyState === "complete"){

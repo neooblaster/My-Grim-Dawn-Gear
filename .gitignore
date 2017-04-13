@@ -1,1 +1,7 @@
 #initialisé
+
+# Ignore files in Temporaty folder Temps
+Temps
+
+#Ignore package files in __FILESMGR__
+Packages

@@ -9,7 +9,9 @@
 		$vars['ITEMS_FAMILIES'] = load_items_families();
 		$vars['ITEMS_QUALITIES'] = load_items_qualities();
 		$vars['ITEMS_TYPES'] = load_items_types();
+		$vars['ITEMS_ATTACHMENTS'] = load_items_attachments();
 		$vars['ITEMS'] = load_items();
+
 
 	/** > Initialisation des statut Active **/
 		$vars['ACTIVE_ITEMS'] = '';
@@ -20,12 +22,18 @@
 		$vars['ENABLED_SELECTED'] = '';
 		$vars['DISABLED_SELECTED'] = '';
 
+
 	/** > Initialisation des données **/
 		$vars['ITEM_ID'] = '';
-		$vars['ITEM_TAG_NAME'] = '';
+		$vars['ITEM_TAG'] = '';
 		$vars['ITEM_NAME'] = '';
+		$vars['ITEM_DESCRIPTION'] = '';
 		$vars['ITEM_WIDTH'] = '';
 		$vars['ITEM_HEIGHT'] = '';
+		$vars['ITEM_PHYSIQUE'] = '';
+		$vars['ITEM_CUNNING'] = '';
+		$vars['ITEM_SPIRIT'] = '';
+		$vars['ITEM_LEVEL'] = '';
 		
 		// Si $_GET['edit'] 
 		if(isset($_GET['edit'])){
@@ -40,76 +48,93 @@
 			$id = $_GET['id'];
 			
 			try {
-				$query = "
-					SELECT 
-						COUNT(*) AS ITEM,
-						Itm.TAG_ITEM AS ITEM_TAG_NAME,
-						Itm.ENABLED AS ITEM_ENABLED,
-						ItmTN.NAME AS ITEM_NAME,
-						Itm.REL_QUALITY AS ITEM_QUALITY,
-						Itm.REL_FAMILY AS ITEM_FAMILY,
-						Itm.REL_TYPE AS ITEM_TYPE,
-						Itm.WIDTH AS ITEM_WIDTH,
-						Itm.HEIGHT AS ITEM_HEIGHT
+				/** > Eléboration de la requête SQL **/
+				$query = " 
+					SELECT
+						I.ENABLED,
+						I.TAG, TN.NAME, TN.DESCRIPTION,
+						I.FAMILY, I.TYPE, I.QUALITY, I.ATTACHMENT,
+						I.WIDTH, I.HEIGHT,
+						I.LEVEL, I.PHYSIQUE, I.CUNNING, I.SPIRIT
 						
-					FROM ITEMS AS Itm
+					FROM ITEMS AS I
+					LEFT JOIN TAGS_NAMES AS TN
+					ON I.TAG = TN.TAG
 					
-					INNER JOIN ITEMS_TAGS_NAMES AS ItmTN
-					ON Itm.TAG_ITEM = ItmTN.TAG_NAME
-					
-					WHERE 
-							Itm.ID = $id
-						AND
-							LANg = '$lang_key'
+					WHERE
+						I.ID = :id AND TN.LANG = :lang
 				";
 				
-				$qData = $PDO->query($query);
 				
-				$faData = $qData->fetch(PDO::FETCH_ASSOC);
+				/** > Execution de la requête SQL **/
+				$pQuery = $PDO->prepare($query);
+				$pQuery->execute(Array(
+					":id" => $id,
+					":lang" => $lang_key
+				));
 				
-				//pprints($faData);
 				
-				if($faData['ITEM'] > 0){
-					$vars['ITEM_ID'] = $id;
-					$vars['ITEM_TAG_NAME'] = $faData['ITEM_TAG_NAME'];
-					$vars['ITEM_NAME'] = $faData['ITEM_NAME'];
-					$vars['ITEM_WIDTH'] = $faData['ITEM_WIDTH'];
-					$vars['ITEM_HEIGHT'] = $faData['ITEM_HEIGHT'];
+				/** > Traitement des données **/
+				if($pQuery->rowCount()){
+					$faData = $pQuery->fetch(PDO::FETCH_ASSOC);
 					
-					if($faData['ITEM_ENABLED']){
+					$vars['ITEM_ID'] = $id;
+					$vars['ITEM_TAG'] = $faData['TAG'];
+					$vars['ITEM_NAME'] = $faData['NAME'];
+					$vars['ITEM_DESCRIPTION'] = $faData['DESCRIPTION'];
+					$vars['ITEM_WIDTH'] = $faData['WIDTH'];
+					$vars['ITEM_HEIGHT'] = $faData['HEIGHT'];
+					
+					$vars['ITEM_PHYSIQUE'] = $faData['PHYSIQUE'];
+					$vars['ITEM_CUNNING'] = $faData['CUNNING'];
+					$vars['ITEM_SPIRIT'] = $faData['SPIRIT'];
+					$vars['ITEM_LEVEL'] = $faData['LEVEL'];
+					
+					if(ord($faData['ENABLED'])){
 						$vars['ENABLED_SETTED'] = "selected";
 					} else {
 						$vars['DISABLED_SETTED'] = "selected";
 					}
 				}
 				
+				
 				/** > Ajustement des jeu de données : **/
-					// QUALITY
+					// ITEM QUALITY
 					foreach($vars['ITEMS_QUALITIES'] as $key => $value){
-						if($value['ID'] === $faData['ITEM_QUALITY']){
+						if($value['ID'] === $faData['QUALITY']){
 							$vars['ITEMS_QUALITIES'][$key]['SELECTED'] = 'selected';
 						} else {
 							$vars['ITEMS_QUALITIES'][$key]['SELECTED'] = '';
 						}
 					}
 					
-					// FAMILY
+					// ITEM FAMILY
 					foreach($vars['ITEMS_FAMILIES'] as $key => $value){
-						if($value['ID'] === $faData['ITEM_FAMILY']){
+						if($value['ID'] === $faData['FAMILY']){
 							$vars['ITEMS_FAMILIES'][$key]['SELECTED'] = 'selected';
 						} else {
 							$vars['ITEMS_FAMILIES'][$key]['SELECTED'] = '';
 						}
 					}
 					
-					// TYPES
+					// ITEM TYPES
 					foreach($vars['ITEMS_TYPES'] as $key => $value){
-						if($value['ID'] === $faData['ITEM_TYPE']){
+						if($value['ID'] === $faData['TYPE']){
 							$vars['ITEMS_TYPES'][$key]['SELECTED'] = 'selected';
 						} else {
 							$vars['ITEMS_TYPES'][$key]['SELECTED'] = '';
 						}
 					}
+					
+					// ITEM SLOT ATTACHMENTS
+					foreach($vars['ITEMS_ATTACHMENTS'] as $key => $value){
+						if($value['ID'] === $faData['ATTACHMENT']){
+							$vars['ITEMS_ATTACHMENTS'][$key]['SELECTED'] = 'selected';
+						} else {
+							$vars['ITEMS_ATTACHMENTS'][$key]['SELECTED'] = '';
+						}
+					}
+				
 			} catch(Exception $e){
 				trigger_error($e->getMessage(), E_USER_ERROR);
 			}
