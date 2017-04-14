@@ -70,7 +70,7 @@
 /** -------------------------------------------------------------------------------------------------------------------- **
 /** -------------------------------------------------------------------------------------------------------------------- **
 /** > Chargement des Paramètres **/
- setup('/Setups', Array('application', 'pdo'), 'setup.$1.php');
+ setup('/Setups', Array('application', 'pdo', 'sessions'), 'setup.$1.php');
 
 /** > Ouverture des SESSIONS Globales **/
 /** > Chargement des Classes **/
@@ -120,6 +120,8 @@
 
 	$ITEMS;					// ARRAY		:: Liste de tableau contenant les informations des objets
 	$first;					// BOOLEAN	:: Indique si c'est le premier objet de la liste
+
+	$enabled_only;			// STRING	:: Clause sur les objet activé par défaut
 	
 
 /** > Initialisation des variables **/
@@ -201,11 +203,13 @@
 		$query_tokens[":item_name"] = "%$item_name%";
 	}
 		
-	// Afficher les objets activé
+	// Afficher les objets activé (ou tous si admin)
+	$enabled_only = (isset($_SESSION["MGDG-ADMIN"]) && $_SESSION["MGDG-ADMIN"]) ? "" : "I.ENABLED = 1 AND";
+
 	if($query_where){
-		$query_where .= " AND I.ENABLED = 1 AND TN.LANG = :lang";
+		$query_where .= " AND $enabled_only TN.LANG = :lang";
 	} else {
-		$query_where = "WHERE I.ENABLED = 1 AND TN.LANG = :lang";
+		$query_where = "WHERE $enabled_only TN.LANG = :lang";
 	}
 	
 	$query_tokens[":lang"] = $lang;

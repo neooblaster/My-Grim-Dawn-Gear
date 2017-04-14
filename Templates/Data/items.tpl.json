@@ -2,7 +2,7 @@
 	"items": [
 		<!-- BEGIN_BLOCK ITEMS -->
 		%COMMA% 
-		<!-- INCLUDE_TEMPLATE (../../../Templates/Data/item.tpl.json) --><
+		<!-- INCLUDE_TEMPLATE (../../../Templates/Data/item.tpl.json) -->
 		<!-- END_BLOCK ITEMS -->
 	]
 }
