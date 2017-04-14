@@ -3,5 +3,8 @@
 # Ignore files in Temporaty folder Temps
 Temps
 
-#Ignore package files in __FILESMGR__
+# Ignore package files in __FILESMGR__
 Packages
+
+# Ignorer le fichier de log
+error.log

@@ -1140,6 +1140,21 @@ section {
 							}
 						}
 						
+						&.disabled {
+							&:after {
+								content: "";
+								position: absolute;
+								display: block;
+								width: 0.15 * (@gear_inventory_offset_size - 2px);
+								height: 0.15 * (@gear_inventory_offset_size - 2px);
+								background-color: @darkred_hexa_color;
+								top: 2px;
+								left: 2px;
+								border: 1px solid black;
+								border-radius: 0.15 * (0.5 * @gear_inventory_offset_size + 1px);
+							}
+						}
+						
 						img {
 							width: 100%;
 							height: 100%;
@@ -1861,7 +1876,7 @@ section {
 			display: none;
 			cursor: pointer;
 			text-decoration: none;
-			color: @golden_hexa_color;
+			color: @common_hexa_color;
 				
 			&:before {
 				content: " - ";

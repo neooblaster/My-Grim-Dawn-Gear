@@ -1,3 +1,9 @@
 • Configs/config.application.credentials.json   => Only if structure changed
 • Script/*.jsc                                  => Only when package is done
 • CSS                                           => Only when package is done (conflict with LESS files)
+
+
+Commandes :
+
+find . -name "*.jsc" | xargs git update-index --assume-unchanged
+find . -name "*.jsc" | xargs git update-index --no-assume-unchanged

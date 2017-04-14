@@ -418,6 +418,7 @@ foreach($langs as $index => $lang){
 								if(!isset($updates[$identifier["TABLE_NAME"]][$lang][$base_tag])) $updates[$identifier["TABLE_NAME"]][$lang][$base_tag] = Array();
 								
 								$updates[$identifier["TABLE_NAME"]][$lang][$base_tag]["ID"] = $names[$identifier["TABLE_NAME"]][$lang][$base_tag]["ID"];
+								$updates[$identifier["TABLE_NAME"]][$lang][$base_tag]["TAG"] = $base_tag;
 								$updates[$identifier["TABLE_NAME"]][$lang][$base_tag]["DESCRIPTION"] = $value;
 								$updates[$identifier["TABLE_NAME"]][$lang][$base_tag]["DESCRIPTION_MD5"] = md5($value);
 							}

@@ -82,7 +82,7 @@ function load_items($clause="", $bound_tokens=Array()){
 	/** Composition de la requête SQL **/
 	$query = sprintf("
 	SELECT
-		I.ID,
+		I.ID, I.ENABLED,
 		I.WIDTH, I.HEIGHT,
 		I.FAMILY, I.TYPE, T.TAG AS TAG_TYPE, I.QUALITY, A.ATTACHMENT,
 		I.TAG, TN.NAME, TN.DESCRIPTION,
@@ -114,6 +114,7 @@ function load_items($clause="", $bound_tokens=Array()){
 			$ITEMS[] = Array(
 				"COMMA" => ($first) ? "" : ",",
 				"ID" => $faData["ID"],
+				"ENABLED" => ord($faData["ENABLED"]), 
 				
 				"WIDTH" => $faData["WIDTH"],
 				"HEIGHT" => $faData["HEIGHT"],

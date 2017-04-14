@@ -78,6 +78,7 @@ function gear(token){
 	self.items = {};				// OBJECT	:: Liste des objets présente dans l'inventaire
 	self.slots = {};				// OBJECT	:: Stockage des objets liés aux slots
 	self.sets = {};				// OBJECT	:: Donnée relative au sets
+	self.signed = false;			// BOOLEAN	:: Indique si on et connecté en Admin (affichage étendu)
 	
 	/** Block described properties **/
 	// Liste des selecteurs utilisé dans l'application
@@ -113,7 +114,8 @@ function gear(token){
 		items_loader: "/XHR/Index/load_items.php",
 		item_loader: '/XHR/Index/load_item.php',
 		set_loader: '/XHR/Index/load_set.php',
-		skill_loader: '/XHR/Index/load_skill.php'
+		skill_loader: '/XHR/Index/load_skill.php',
+		is_signed: '/XHR/Admin/is_signed.php'
 	};
 	
 	
@@ -173,6 +175,19 @@ function gear(token){
 				}
 				
 				document.querySelector("#submitSearch").disabled = false;
+				
+				var xQuery = new xhrQuery();
+					xQuery.target(self.targets.is_signed);
+					xQuery.callbacks(function(e){
+						try {
+							e = JSON.parse(e);
+							
+							self.signed = e.signed;
+						} catch(err) {
+							console.error("gear::init.callback failed on", e, "with error", err);
+						}
+					});
+					xQuery.send();
 			}
 		},
 		
@@ -471,12 +486,14 @@ function gear(token){
 							var item = data.items[i];
 							var size;
 							
+							
 							/** Calculer les paramètres suivant **/
 							// Dimension de l'objet
 							size = "size"+item.WIDTH+"x"+item.HEIGHT;
 							
-							/** Création de l'objet depuis la structure JSON suivante **/
-							host.appendChild(HTML().compose({
+							
+							/** Déclaration de la structure JSON de l'objet HTML **/
+							var HTMLItem = {
 								name: "div", 
 								classList: ["gear_panel_inventory_grid_item", "quality_"+self.qualities[item.QUALITY], size],
 								attributes: {
@@ -519,7 +536,16 @@ function gear(token){
 										}
 									}
 								]
-							}));
+							};
+							
+							
+							/** Si l'objet n'est pas activé alors afficher un indicateur pour l'admin **/
+							if(!item.ENABLED) HTMLItem.classList.push("disabled");
+							
+							
+							/** Création et intégration de l'objet **/
+							host.appendChild(HTML().compose(HTMLItem));
+							
 							
 							/** Stocker les données **/
 							self.item().store(item);
@@ -599,7 +625,7 @@ function gear(token){
 						};
 						
 						
-						/** Le contenu de la fenêtre dépend du mode **/
+						/** > Le contenu de la fenêtre dépend du mode **/
 						// Si c'est depuis l'inventaire, seul un objet est visualisé
 						// Si c'est depuis l'équipement, c'est une combinaison d'objet appliqué au slot (data from slot)
 						switch(mode){
@@ -778,26 +804,35 @@ function gear(token){
 						}
 						
 						
-						/** Enregistrer l'offset **/
+						/** > Ajustement finaux **/
+						//──┐ Enregistrer l'offset
 						window.attributes["data-window-offset"] = (32 + (32 * max_width));
 						
-						/** Ajustement finaux **/
+						//──┐ Ajustement sur le titre de l'objet
 						if(show_tag_item === "true") title.properties.textContent += " "+data.TAG_NAME;
 						
-						/** Ajout des attributs **/
+						//──┐ Ajout des attributs
 						attributes.children = self.attributes().make(attributes_list);
 						
-						/** Ajout du skill de l'objet **/
+						//──┐ Ajout du skill de l'objet
 						if(data.SKILL) skill.children = self.skill().make(data.SKILL);
 						
-						/** Ajout du Set de l'objet **/
+						//──┐ Ajout du Set de l'objet
 						if(data.SET) set.children = self.set().make(data.SET);
 						
-						/** Ajout de l'enchant attaché **/
+						//──┐ Ajout des requirements
 						
-						/** Ajout des requiremennts **/
+						//──┐ Si en mode administrateur, ajouter un lien vers l'éditeur
+						if(self.signed) {
+							subtitle.children.push({
+								name: "a", classList: ["editer"], properties: {
+									textContent: "Edit", href: "/manage/edit/items/"+ID, target: ID
+								}
+							});
+						}
 						
-						/** Création de la fenêtre **/
+						
+						/** > Création de la fenêtre **/
 						window = HTML().compose(window);
 						document.body.appendChild(window);
 						
@@ -807,7 +842,7 @@ function gear(token){
 						window.classList.remove("unsized");
 						
 						
-						/** Mémorisation des données **/
+						/** > Mémorisation des données **/
 						self.windows.id = ID;
 						self.windows.element = window;
 						self.windows.mode = mode;
@@ -822,32 +857,6 @@ function gear(token){
 					//window.setAttribute("style", "left: "+(e.pageX + offset_x)+"px; top: "+(e.pageY + (-16))+"px;");
 					window.style.left = (e.pageX + offset_x)+"px";
 					window.style.top = (e.pageY + (-16))+"px";
-					
-					
-				//		for(var att in data.ATTRIBUTES){
-				//			var attribut = data.ATTRIBUTES[att];
-				//			
-				//			// Ne pas attacher les attribut basic (primaire)
-				//			if(!attribut.BASIC){
-				//				attributes.push({
-				//					name: "li", properties: {innerHTML: attribut.ATTRIBUT}
-				//				});
-				//			}
-				//		}
-				//		
-				//		var edit_pattern = /#!edit$/gi;
-				//		
-				//		if(edit_pattern.test(document.location.href)){
-				//			structure.children[1].children.push({
-				//				name: "a", classList: ["editer"],
-				//				properties: {
-				//					textContent: "Edit",
-				//					onclick: function(){},
-				//					href: "/manage/edit/items/"+ID,
-				//					target: data.NAME
-				//				}
-				//			});
-				//		}
 				}
 			},
 			
