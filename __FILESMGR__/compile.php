@@ -468,11 +468,11 @@ if(!$preview_only){
 
 	/** > Afficher les sorties **/
 	echo "Compilation terminée :\n\n";
-	echo '<input type="button" value="Rafraichir" onclick="document.location.href = \'index.php\';"/>';
+	echo '<input type="button" value="Rafraichir" onclick="document.location.reload();"/>';
 	echo "\n\n";
 	echo file_get_contents('Temps/Compiling/manifest');
 	echo "\n\n";
-	echo '<input type="button" value="Rafraichir" onclick="document.location.href = \'index.php\';"/>';
+	echo '<input type="button" value="Rafraichir" onclick="document.location.reload();"/>';
 
 
 	/** > Nettoyer les données temporaire **/
