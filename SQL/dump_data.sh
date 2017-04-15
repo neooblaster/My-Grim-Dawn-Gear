@@ -1,2 +1,2 @@
 #!/bin/sh
-mysqldump -u ***_USER_*** -p***_PASSWD_*** ***_DATABASE_*** --no-create-info --complete-insert > DATA.MY-GRIMDAWN-GEAR.SQL
+mysqldump -u ***_USER_*** -p***_PASSWD_*** ***_DATABASE_*** --no-create-info --complete-insert ARTICLES ATTRIBUTES BUILDS ITEMS OTHER_NAMES SETS SETS_NAMES SKILLS SKILLS_NAMES TAGS_NAMES > DATA.MY-GRIMDAWN-GEAR.SQL
