@@ -133,6 +133,18 @@
 					<!-- Volet de droite - Donnée proper & Attributs -->
 					<div class="items_editor_properties_attributes">
 						<h3>
+							Item Duplication
+						</h3>
+							
+						<div class="duplicates">
+							<input type="button" value="^N" title="Normal" onclick="duplicateItem(%ITEM_ID%, '');"/>
+							<input type="button" value="^E" title="Empowered" onclick="duplicateItem(%ITEM_ID%, 'xE');"/>
+							<input type="button" value="^M" title="Mythical" onclick="duplicateItem(%ITEM_ID%, 'xM');"/>
+						</div>
+						
+						
+						
+						<h3>
 							Item Requirments
 						</h3>
 							
@@ -160,7 +172,7 @@
 						
 						<!--
 							7	SET	bit(1)
-							8	TAG	varchar(30)	
+							8	TAG	varchar(30)
 							15	SKILLED	bit(1)
 							16	LAST_CHANG
 						-->
