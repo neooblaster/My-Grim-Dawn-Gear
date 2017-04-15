@@ -826,7 +826,10 @@ function gear(token){
 						if(self.signed) {
 							subtitle.children.push({
 								name: "a", classList: ["editer"], properties: {
-									textContent: "Edit", href: "/manage/edit/items/"+ID, target: ID
+									textContent: "Edit", href: "/manage/edit/items/"+ID, target: ID,
+									onmouseup: function(){
+										self.item().activator();
+									}
 								}
 							});
 						}
