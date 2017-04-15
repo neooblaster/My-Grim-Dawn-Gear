@@ -1,2 +1,2 @@
 #!/bin/sh
-mysqldump -u ***USER*** -p***PASSWORD*** ***DEV_DATABASE*** > MY-GRIMDAWN-GEAR.SQL
+mysqldump -u ***_USER_*** -p***_PASSWRD_*** ***_DATABASE_*** --add-drop-table > MY-GRIMDAWN-GEAR.SQL
