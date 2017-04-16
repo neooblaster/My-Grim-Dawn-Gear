@@ -11,9 +11,9 @@
 /** ---																																					--- **
 /** ---		AUTEUR			: Nicolas DUPRE																									--- **
 /** ---																																					--- **
-/** ---		RELEASE			: 12.04.2017																										--- **
+/** ---		RELEASE			: 16.04.2017																										--- **
 /** ---																																					--- **
-/** ---		FILE_VERSION	: 1.3 NDU																											--- **
+/** ---		FILE_VERSION	: 1.4 NDU																											--- **
 /** ---																																					--- **
 /** ---																																					--- **
 /** --- 														---------------------------														--- **
@@ -28,6 +28,13 @@
 /** --- 														-----------------------------														--- **
 /** --- 															{ C H A N G E L O G } 															--- **
 /** --- 														-----------------------------														--- **	
+/** ---																																					--- **
+/** ---																																					--- **
+/** ---		VERSION 1.4 : 16.04.2017 : NDU																									--- **
+/** ---		------------------------------																									--- **
+/** ---			-  Finalisation du script par l'ajout de la fonctionnalité "REPLACE" sur le tag à l'aide d'un model	--- **
+/** ---			RegExp présenté lui-même sous ce modèle : /regexp_pattern/replace/modifier 									--- **
+/** ---				>  A la façon de la commande SED ou PERL par substituion 														--- **
 /** ---																																					--- **
 /** ---																																					--- **
 /** ---		VERSION 1.3 : 12.04.2017 : NDU																									--- **
@@ -391,8 +398,13 @@ foreach($langs as $index => $lang){
 					if($identifier["IGNORE"] !== ""){if(preg_match("#".$identifier["IGNORE"]."#", $tag)) break;}
 					//──┐ Cleansing à l'aide du modèle
 					if($identifier["CLEAN"]){$tag = preg_replace("#".$identifier["CLEAN"]."#", "", $tag);}
-					//──┐ Operer des modifications sur le taf
-					if($identifier["REPLACE"]) {}
+					//──┐ Operer des modifications sur le tag
+					if($identifier["REPLACE"]) {
+						// Replace :: /pattern/replace/modifier
+						list($void, $pattern, $replace, $modifier) = preg_split("#(?<!\\\\)\/#", $identifier["REPLACE"]);
+						
+						$tag = preg_replace("#$pattern#$modifier", $replace, $tag);
+					}
 					
 					
 					
@@ -405,7 +417,7 @@ foreach($langs as $index => $lang){
 					
 					
 					/** Est-ce une description ? **/
-					if(preg_match("#".$identifier["DESCRIPTION"]."#", $tag)){
+					if($identifier["DESCRIPTION"] !== "" && preg_match("#".$identifier["DESCRIPTION"]."#", $tag)){
 						// Dans le cas d'un description, alors il faut identifier le tag name de base
 						$base_tag = preg_replace("#".$identifier["DESCRIPTION"]."#", "", $tag);
 						
@@ -502,7 +514,7 @@ foreach($langs as $index => $lang){
 									// N'emettre l'information uniquement pour la premiere langue traité (normalement en-EN la référence)
 									if($first_lang){
 										echo sprintf("TAG '$cmt% 40s$cme' $cmw"."HAS NO TABLE_DATA DEFINED$cme.".LF, $tag);
-										usleep(0.5 * $usleep);
+										usleep(0.35 * $usleep);
 									}
 								break;
 							}
