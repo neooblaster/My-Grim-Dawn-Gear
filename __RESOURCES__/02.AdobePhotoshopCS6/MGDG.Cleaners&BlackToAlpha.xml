@@ -476,7 +476,65 @@
       </ActionItem>
       <ActionItem key="TEXT" expanded="false" enabled="true" withDialog="false" dialogOptions="0" identifier="TEXT" event="close" name="Fermer" hasDescriptor="false"/>
     </Action>
-    <Action key="6" name="BlackToAlpha" index="2" shiftKey="true" expanded="false" count="6">
+    <Action key="6" name="BlackToAlpha" index="2" shiftKey="true" expanded="false" count="18">
+      <ActionItem key="TEXT" expanded="false" enabled="true" withDialog="false" dialogOptions="0" identifier="TEXT" event="set" name="Définir" hasDescriptor="true">
+        <ActionDescriptor key="set" count="2">
+          <DescValueType.REFERENCETYPE key="1853189228" id="1853189228" symname="Null" sym="null">
+            <ActionReference key="1853189228" id="1853189228" symname="Null" sym="null" count="1">
+              <ReferenceFormType.PROPERTY key="1283027488" id="1283027488" symname="Layer" sym="Lyr " desiredClassString="Layer" desiredClass="Lyr " property="1113811815" propertyName="Background" propertySym="Bckg"/>
+            </ActionReference>
+          </DescValueType.REFERENCETYPE>
+          <DescValueType.OBJECTTYPE key="1411391520" id="1411391520" symname="To" sym="T   " objectTypeString="Layer" objectType="Lyr " count="2">
+            <ActionDescriptor key="1411391520" id="1411391520" symname="To" sym="T   " count="2">
+              <DescValueType.UNITDOUBLE key="1332765556" id="1332765556" symname="Opacity" sym="Opct" unitDoubleTypeString="Percent" unitDoubleType="#Prc" unitDoubleValue="100"/>
+              <DescValueType.ENUMERATEDTYPE key="1298407456" id="1298407456" symname="Mode" sym="Md  " enumeratedTypeString="BlendMode" enumeratedType="BlnM" enumeratedValueString="Normal" enumeratedValue="Nrml"/>
+            </ActionDescriptor>
+          </DescValueType.OBJECTTYPE>
+        </ActionDescriptor>
+      </ActionItem>
+      <ActionItem key="TEXT" expanded="false" enabled="true" withDialog="true" dialogOptions="2" identifier="TEXT" event="set" name="Définir" hasDescriptor="true">
+        <ActionDescriptor key="set" count="2">
+          <DescValueType.REFERENCETYPE key="1853189228" id="1853189228" symname="Null" sym="null">
+            <ActionReference key="1853189228" id="1853189228" symname="Null" sym="null" count="1">
+              <ReferenceFormType.PROPERTY key="1130917484" id="1130917484" symname="Channel" sym="Chnl" desiredClassString="Channel" desiredClass="Chnl" property="1718838636" propertyName="selection" propertySym="selection"/>
+            </ActionReference>
+          </DescValueType.REFERENCETYPE>
+          <DescValueType.REFERENCETYPE key="1411391520" id="1411391520" symname="To" sym="T   ">
+            <ActionReference key="1411391520" id="1411391520" symname="To" sym="T   " count="1">
+              <ReferenceFormType.ENUMERATED key="1130917484" id="1130917484" symname="Channel" sym="Chnl" desiredClassString="Channel" desiredClass="Chnl" enumeratedTypeString="Channel" enumeratedType="Chnl" enumeratedValueString="Transparency" enumeratedValue="Trsp"/>
+            </ActionReference>
+          </DescValueType.REFERENCETYPE>
+        </ActionDescriptor>
+      </ActionItem>
+      <ActionItem key="TEXT" expanded="false" enabled="true" withDialog="false" dialogOptions="2" identifier="TEXT" event="copyEvent" name="Copier" hasDescriptor="false"/>
+      <ActionItem key="TEXT" expanded="false" enabled="true" withDialog="false" dialogOptions="0" identifier="TEXT" event="save" name="Enregistrer" hasDescriptor="false"/>
+      <ActionItem key="TEXT" expanded="false" enabled="true" withDialog="false" dialogOptions="0" identifier="TEXT" event="close" name="Fermer" hasDescriptor="false"/>
+      <ActionItem key="TEXT" expanded="false" enabled="true" withDialog="false" dialogOptions="0" identifier="TEXT" event="set" name="Définir" hasDescriptor="true">
+        <ActionDescriptor key="set" count="2">
+          <DescValueType.REFERENCETYPE key="1853189228" id="1853189228" symname="Null" sym="null">
+            <ActionReference key="1853189228" id="1853189228" symname="Null" sym="null" count="1">
+              <ReferenceFormType.PROPERTY key="1283027488" id="1283027488" symname="Layer" sym="Lyr " desiredClassString="Layer" desiredClass="Lyr " property="1113811815" propertyName="Background" propertySym="Bckg"/>
+            </ActionReference>
+          </DescValueType.REFERENCETYPE>
+          <DescValueType.OBJECTTYPE key="1411391520" id="1411391520" symname="To" sym="T   " objectTypeString="Layer" objectType="Lyr " count="2">
+            <ActionDescriptor key="1411391520" id="1411391520" symname="To" sym="T   " count="2">
+              <DescValueType.UNITDOUBLE key="1332765556" id="1332765556" symname="Opacity" sym="Opct" unitDoubleTypeString="Percent" unitDoubleType="#Prc" unitDoubleValue="100"/>
+              <DescValueType.ENUMERATEDTYPE key="1298407456" id="1298407456" symname="Mode" sym="Md  " enumeratedTypeString="BlendMode" enumeratedType="BlnM" enumeratedValueString="Normal" enumeratedValue="Nrml"/>
+            </ActionDescriptor>
+          </DescValueType.OBJECTTYPE>
+        </ActionDescriptor>
+      </ActionItem>
+      <ActionItem key="TEXT" expanded="false" enabled="true" withDialog="false" dialogOptions="2" identifier="TEXT" event="make" name="Créer" hasDescriptor="true">
+        <ActionDescriptor key="make" count="3">
+          <DescValueType.CLASSTYPE key="1316429856" id="1316429856" symname="New" sym="Nw  " classString="Channel" class="Chnl"/>
+          <DescValueType.REFERENCETYPE key="1098129440" id="1098129440" symname="At" sym="At  ">
+            <ActionReference key="1098129440" id="1098129440" symname="At" sym="At  " count="1">
+              <ReferenceFormType.ENUMERATED key="1130917484" id="1130917484" symname="Channel" sym="Chnl" desiredClassString="Channel" desiredClass="Chnl" enumeratedTypeString="Channel" enumeratedType="Chnl" enumeratedValueString="Mask" enumeratedValue="Msk "/>
+            </ActionReference>
+          </DescValueType.REFERENCETYPE>
+          <DescValueType.ENUMERATEDTYPE key="1433628263" id="1433628263" symname="Using" sym="Usng" enumeratedTypeString="UserMaskOptions" enumeratedType="UsrM" enumeratedValueString="RevealAll" enumeratedValue="RvlA"/>
+        </ActionDescriptor>
+      </ActionItem>
       <ActionItem key="TEXT" expanded="false" enabled="true" withDialog="false" dialogOptions="2" identifier="TEXT" event="select" name="Sélectionner" hasDescriptor="true">
         <ActionDescriptor key="select" count="2">
           <DescValueType.REFERENCETYPE key="1853189228" id="1853189228" symname="Null" sym="null">
@@ -533,6 +591,145 @@
           <DescValueType.ENUMERATEDTYPE key="1231975538" id="1231975538" symname="Intersect" sym="Intr" enumeratedTypeString="Interpolation" enumeratedType="Intp" enumeratedValueString="Bicubic" enumeratedValue="Bcbc"/>
         </ActionDescriptor>
       </ActionItem>
+      <ActionItem key="TEXT" expanded="false" enabled="true" withDialog="false" dialogOptions="2" identifier="TEXT" event="copyEvent" name="Copier" hasDescriptor="false"/>
+      <ActionItem key="TEXT" expanded="false" enabled="true" withDialog="false" dialogOptions="2" identifier="TEXT" event="paste" name="Coller" hasDescriptor="true">
+        <ActionDescriptor key="paste" count="1">
+          <DescValueType.ENUMERATEDTYPE key="1097757761" id="1097757761" symname="AntiAliasedPICTAcquire" sym="AntA" enumeratedTypeString="AntiAlias" enumeratedType="Annt" enumeratedValueString="AntiAliasNone" enumeratedValue="Anno"/>
+        </ActionDescriptor>
+      </ActionItem>
+      <ActionItem key="TEXT" expanded="false" enabled="true" withDialog="false" dialogOptions="0" identifier="TEXT" event="export" name="Exportation" hasDescriptor="true">
+        <ActionDescriptor key="export" count="1">
+          <DescValueType.OBJECTTYPE key="1433628263" id="1433628263" symname="Using" sym="Usng" objectTypeString="SaveForWeb" objectType="SaveForWeb" count="42">
+            <ActionDescriptor key="1433628263" id="1433628263" symname="Using" sym="Usng" count="42">
+              <DescValueType.ENUMERATEDTYPE key="1332748320" id="1332748320" sym="Op  " enumeratedTypeString="SWOp" enumeratedType="SWOp" enumeratedValueString="OpSa" enumeratedValue="OpSa"/>
+              <DescValueType.BOOLEANTYPE key="1145652338" id="1145652338" sym="DIDr" boolean="true"/>
+              <DescValueType.ALIASTYPE key="1231953952" id="1231953952" symname="StampIn" sym="In  " path="~/Desktop/MGDG/Items"/>
+              <DescValueType.ENUMERATEDTYPE key="1181578272" id="1181578272" symname="Format" sym="Fmt " enumeratedTypeString="IRFm" enumeratedType="IRFm" enumeratedValueString="PN24" enumeratedValue="PN24"/>
+              <DescValueType.BOOLEANTYPE key="1231975538" id="1231975538" symname="Intersect" sym="Intr" boolean="false"/>
+              <DescValueType.BOOLEANTYPE key="1416785523" id="1416785523" symname="Transparent" sym="Trns" boolean="true"/>
+              <DescValueType.BOOLEANTYPE key="1299477536" id="1299477536" sym="Mtt " boolean="false"/>
+              <DescValueType.INTEGERTYPE key="1299477586" id="1299477586" sym="MttR" integer="0"/>
+              <DescValueType.INTEGERTYPE key="1299477575" id="1299477575" sym="MttG" integer="0"/>
+              <DescValueType.INTEGERTYPE key="1299477570" id="1299477570" sym="MttB" integer="0"/>
+              <DescValueType.BOOLEANTYPE key="1397249101" id="1397249101" sym="SHTM" boolean="false"/>
+              <DescValueType.BOOLEANTYPE key="1397321063" id="1397321063" sym="SImg" boolean="true"/>
+              <DescValueType.ENUMERATEDTYPE key="1398240108" id="1398240108" sym="SWsl" enumeratedTypeString="STsl" enumeratedType="STsl" enumeratedValueString="SLAl" enumeratedValue="SLAl"/>
+              <DescValueType.ENUMERATEDTYPE key="1398236008" id="1398236008" sym="SWch" enumeratedTypeString="STch" enumeratedType="STch" enumeratedValueString="CHDc" enumeratedValue="CHDc"/>
+              <DescValueType.ENUMERATEDTYPE key="1398238564" id="1398238564" sym="SWmd" enumeratedTypeString="STmd" enumeratedType="STmd" enumeratedValueString="MDAl" enumeratedValue="MDAl"/>
+              <DescValueType.BOOLEANTYPE key="1869109320" id="1869109320" sym="ohXH" boolean="false"/>
+              <DescValueType.BOOLEANTYPE key="1869105475" id="1869105475" sym="ohIC" boolean="true"/>
+              <DescValueType.BOOLEANTYPE key="1869103425" id="1869103425" sym="ohAA" boolean="true"/>
+              <DescValueType.BOOLEANTYPE key="1869107521" id="1869107521" sym="ohQA" boolean="true"/>
+              <DescValueType.BOOLEANTYPE key="1869103937" id="1869103937" sym="ohCA" boolean="false"/>
+              <DescValueType.BOOLEANTYPE key="1869105498" id="1869105498" sym="ohIZ" boolean="true"/>
+              <DescValueType.ENUMERATEDTYPE key="1869108291" id="1869108291" sym="ohTC" enumeratedTypeString="SToc" enumeratedType="SToc" enumeratedValueString="OC03" enumeratedValue="OC03"/>
+              <DescValueType.ENUMERATEDTYPE key="1869103427" id="1869103427" sym="ohAC" enumeratedTypeString="SToc" enumeratedType="SToc" enumeratedValueString="OC03" enumeratedValue="OC03"/>
+              <DescValueType.INTEGERTYPE key="1869105518" id="1869105518" sym="ohIn" integer="-1"/>
+              <DescValueType.ENUMERATEDTYPE key="1869106245" id="1869106245" sym="ohLE" enumeratedTypeString="STle" enumeratedType="STle" enumeratedValueString="LE03" enumeratedValue="LE03"/>
+              <DescValueType.ENUMERATEDTYPE key="1869104494" id="1869104494" sym="ohEn" enumeratedTypeString="STen" enumeratedType="STen" enumeratedValueString="EN00" enumeratedValue="EN00"/>
+              <DescValueType.BOOLEANTYPE key="1869366099" id="1869366099" sym="olCS" boolean="false"/>
+              <DescValueType.ENUMERATEDTYPE key="1869366595" id="1869366595" sym="olEC" enumeratedTypeString="STst" enumeratedType="STst" enumeratedValueString="ST00" enumeratedValue="ST00"/>
+              <DescValueType.ENUMERATEDTYPE key="1869371208" id="1869371208" sym="olWH" enumeratedTypeString="STwh" enumeratedType="STwh" enumeratedValueString="WH01" enumeratedValue="WH01"/>
+              <DescValueType.ENUMERATEDTYPE key="1869370198" id="1869370198" sym="olSV" enumeratedTypeString="STsp" enumeratedType="STsp" enumeratedValueString="SP04" enumeratedValue="SP04"/>
+              <DescValueType.ENUMERATEDTYPE key="1869370184" id="1869370184" sym="olSH" enumeratedTypeString="STsp" enumeratedType="STsp" enumeratedValueString="SP04" enumeratedValue="SP04"/>
+              <DescValueType.LISTTYPE key="1869368899" id="1869368899" sym="olNC">
+                <ActionList key="1869368899" id="1869368899" sym="olNC" count="6">
+                  <DescValueType.OBJECTTYPE key="0" objectTypeString="SCnc" objectType="SCnc" count="1">
+                    <ActionDescriptor key="0" count="1">
+                      <DescValueType.ENUMERATEDTYPE key="1852003440" id="1852003440" sym="ncTp" enumeratedTypeString="STnc" enumeratedType="STnc" enumeratedValueString="NC00" enumeratedValue="NC00"/>
+                    </ActionDescriptor>
+                  </DescValueType.OBJECTTYPE>
+                  <DescValueType.OBJECTTYPE key="1" objectTypeString="SCnc" objectType="SCnc" count="1">
+                    <ActionDescriptor key="1" count="1">
+                      <DescValueType.ENUMERATEDTYPE key="1852003440" id="1852003440" sym="ncTp" enumeratedTypeString="STnc" enumeratedType="STnc" enumeratedValueString="NC19" enumeratedValue="NC19"/>
+                    </ActionDescriptor>
+                  </DescValueType.OBJECTTYPE>
+                  <DescValueType.OBJECTTYPE key="2" objectTypeString="SCnc" objectType="SCnc" count="1">
+                    <ActionDescriptor key="2" count="1">
+                      <DescValueType.ENUMERATEDTYPE key="1852003440" id="1852003440" sym="ncTp" enumeratedTypeString="STnc" enumeratedType="STnc" enumeratedValueString="NC28" enumeratedValue="NC28"/>
+                    </ActionDescriptor>
+                  </DescValueType.OBJECTTYPE>
+                  <DescValueType.OBJECTTYPE key="3" objectTypeString="SCnc" objectType="SCnc" count="1">
+                    <ActionDescriptor key="3" count="1">
+                      <DescValueType.ENUMERATEDTYPE key="1852003440" id="1852003440" sym="ncTp" enumeratedTypeString="STnc" enumeratedType="STnc" enumeratedValueString="NC24" enumeratedValue="NC24"/>
+                    </ActionDescriptor>
+                  </DescValueType.OBJECTTYPE>
+                  <DescValueType.OBJECTTYPE key="4" objectTypeString="SCnc" objectType="SCnc" count="1">
+                    <ActionDescriptor key="4" count="1">
+                      <DescValueType.ENUMERATEDTYPE key="1852003440" id="1852003440" sym="ncTp" enumeratedTypeString="STnc" enumeratedType="STnc" enumeratedValueString="NC24" enumeratedValue="NC24"/>
+                    </ActionDescriptor>
+                  </DescValueType.OBJECTTYPE>
+                  <DescValueType.OBJECTTYPE key="5" objectTypeString="SCnc" objectType="SCnc" count="1">
+                    <ActionDescriptor key="5" count="1">
+                      <DescValueType.ENUMERATEDTYPE key="1852003440" id="1852003440" sym="ncTp" enumeratedTypeString="STnc" enumeratedType="STnc" enumeratedValueString="NC24" enumeratedValue="NC24"/>
+                    </ActionDescriptor>
+                  </DescValueType.OBJECTTYPE>
+                </ActionList>
+              </DescValueType.LISTTYPE>
+              <DescValueType.BOOLEANTYPE key="1868712257" id="1868712257" sym="obIA" boolean="false"/>
+              <DescValueType.STRINGTYPE key="1868712272" id="1868712272" sym="obIP" string=""/>
+              <DescValueType.ENUMERATEDTYPE key="1868710739" id="1868710739" sym="obCS" enumeratedTypeString="STcs" enumeratedType="STcs" enumeratedValueString="CS01" enumeratedValue="CS01"/>
+              <DescValueType.LISTTYPE key="1870024259" id="1870024259" sym="ovNC">
+                <ActionList key="1870024259" id="1870024259" sym="ovNC" count="9">
+                  <DescValueType.OBJECTTYPE key="0" objectTypeString="SCnc" objectType="SCnc" count="1">
+                    <ActionDescriptor key="0" count="1">
+                      <DescValueType.ENUMERATEDTYPE key="1852003440" id="1852003440" sym="ncTp" enumeratedTypeString="STnc" enumeratedType="STnc" enumeratedValueString="NC01" enumeratedValue="NC01"/>
+                    </ActionDescriptor>
+                  </DescValueType.OBJECTTYPE>
+                  <DescValueType.OBJECTTYPE key="1" objectTypeString="SCnc" objectType="SCnc" count="1">
+                    <ActionDescriptor key="1" count="1">
+                      <DescValueType.ENUMERATEDTYPE key="1852003440" id="1852003440" sym="ncTp" enumeratedTypeString="STnc" enumeratedType="STnc" enumeratedValueString="NC20" enumeratedValue="NC20"/>
+                    </ActionDescriptor>
+                  </DescValueType.OBJECTTYPE>
+                  <DescValueType.OBJECTTYPE key="2" objectTypeString="SCnc" objectType="SCnc" count="1">
+                    <ActionDescriptor key="2" count="1">
+                      <DescValueType.ENUMERATEDTYPE key="1852003440" id="1852003440" sym="ncTp" enumeratedTypeString="STnc" enumeratedType="STnc" enumeratedValueString="NC02" enumeratedValue="NC02"/>
+                    </ActionDescriptor>
+                  </DescValueType.OBJECTTYPE>
+                  <DescValueType.OBJECTTYPE key="3" objectTypeString="SCnc" objectType="SCnc" count="1">
+                    <ActionDescriptor key="3" count="1">
+                      <DescValueType.ENUMERATEDTYPE key="1852003440" id="1852003440" sym="ncTp" enumeratedTypeString="STnc" enumeratedType="STnc" enumeratedValueString="NC19" enumeratedValue="NC19"/>
+                    </ActionDescriptor>
+                  </DescValueType.OBJECTTYPE>
+                  <DescValueType.OBJECTTYPE key="4" objectTypeString="SCnc" objectType="SCnc" count="1">
+                    <ActionDescriptor key="4" count="1">
+                      <DescValueType.ENUMERATEDTYPE key="1852003440" id="1852003440" sym="ncTp" enumeratedTypeString="STnc" enumeratedType="STnc" enumeratedValueString="NC06" enumeratedValue="NC06"/>
+                    </ActionDescriptor>
+                  </DescValueType.OBJECTTYPE>
+                  <DescValueType.OBJECTTYPE key="5" objectTypeString="SCnc" objectType="SCnc" count="1">
+                    <ActionDescriptor key="5" count="1">
+                      <DescValueType.ENUMERATEDTYPE key="1852003440" id="1852003440" sym="ncTp" enumeratedTypeString="STnc" enumeratedType="STnc" enumeratedValueString="NC24" enumeratedValue="NC24"/>
+                    </ActionDescriptor>
+                  </DescValueType.OBJECTTYPE>
+                  <DescValueType.OBJECTTYPE key="6" objectTypeString="SCnc" objectType="SCnc" count="1">
+                    <ActionDescriptor key="6" count="1">
+                      <DescValueType.ENUMERATEDTYPE key="1852003440" id="1852003440" sym="ncTp" enumeratedTypeString="STnc" enumeratedType="STnc" enumeratedValueString="NC24" enumeratedValue="NC24"/>
+                    </ActionDescriptor>
+                  </DescValueType.OBJECTTYPE>
+                  <DescValueType.OBJECTTYPE key="7" objectTypeString="SCnc" objectType="SCnc" count="1">
+                    <ActionDescriptor key="7" count="1">
+                      <DescValueType.ENUMERATEDTYPE key="1852003440" id="1852003440" sym="ncTp" enumeratedTypeString="STnc" enumeratedType="STnc" enumeratedValueString="NC24" enumeratedValue="NC24"/>
+                    </ActionDescriptor>
+                  </DescValueType.OBJECTTYPE>
+                  <DescValueType.OBJECTTYPE key="8" objectTypeString="SCnc" objectType="SCnc" count="1">
+                    <ActionDescriptor key="8" count="1">
+                      <DescValueType.ENUMERATEDTYPE key="1852003440" id="1852003440" sym="ncTp" enumeratedTypeString="STnc" enumeratedType="STnc" enumeratedValueString="NC22" enumeratedValue="NC22"/>
+                    </ActionDescriptor>
+                  </DescValueType.OBJECTTYPE>
+                </ActionList>
+              </DescValueType.LISTTYPE>
+              <DescValueType.BOOLEANTYPE key="1870021453" id="1870021453" sym="ovCM" boolean="false"/>
+              <DescValueType.BOOLEANTYPE key="1870021463" id="1870021463" sym="ovCW" boolean="true"/>
+              <DescValueType.BOOLEANTYPE key="1870021461" id="1870021461" sym="ovCU" boolean="true"/>
+              <DescValueType.BOOLEANTYPE key="1870025542" id="1870025542" sym="ovSF" boolean="true"/>
+              <DescValueType.BOOLEANTYPE key="1870021442" id="1870021442" sym="ovCB" boolean="true"/>
+              <DescValueType.STRINGTYPE key="1870025550" id="1870025550" sym="ovSN" string="images"/>
+            </ActionDescriptor>
+          </DescValueType.OBJECTTYPE>
+        </ActionDescriptor>
+      </ActionItem>
+      <ActionItem key="TEXT" expanded="false" enabled="true" withDialog="false" dialogOptions="0" identifier="TEXT" event="save" name="Enregistrer" hasDescriptor="false"/>
+      <ActionItem key="TEXT" expanded="false" enabled="true" withDialog="false" dialogOptions="0" identifier="TEXT" event="close" name="Fermer" hasDescriptor="false"/>
     </Action>
     <Action key="7" name="Cleaner 2X1" index="7" expanded="false" count="8">
       <ActionItem key="TEXT" expanded="false" enabled="true" withDialog="false" dialogOptions="2" identifier="TEXT" event="addTo" name="Ajouter à" hasDescriptor="true">
