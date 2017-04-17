@@ -8,23 +8,30 @@
 /** ---																																					--- **
 /** ---		AUTEUR 	: Nicolas DUPRE																											--- **
 /** ---																																					--- **
-/** ---		RELEASE	: 10.04.2017																												--- **
+/** ---		RELEASE	: 17.04.2017																												--- **
 /** ---																																					--- **
-/** ---		VERSION	: 1.1																															--- **
+/** ---		VERSION	: 1.2																															--- **
 /** ---																																					--- **
 /** ---																																					--- **
 /** --- 														----------------------------- 													--- **
 /** --- 															{ C H A N G E L O G } 															--- **
-/** --- 														----------------------------- 													--- **	
+/** --- 														----------------------------- 													--- **
+/** ---																																					--- **
+/** ---																																					--- **
+/** ---		VERSION 1.2 : 17.04.2017 : NDU																									--- **
+/** ---		------------------------------																									--- **
+/** ---			- Utilisation de la fonction load_attributes au lieu de disposer d'une copie du code						--- **
 /** ---																																					--- **
 /** ---																																					--- **
 /** ---		VERSION 1.1 : 10.04.2017																											--- **
 /** ---		------------------------																											--- **
 /** ---			- Ajustements pour fonctionner de maniere plus autonome aves l'auto-assimilation des données 			--- **
 /** ---																																					--- **
+/** ---																																					--- **
 /** ---		VERSION 1.0 : 26.03.2017																											--- **
 /** ---		------------------------																											--- **
 /** ---			- Première release																												--- **
+/** ---																																					--- **
 /** ---																																					--- **
 /** -------------------------------------------------------------------------------------------------------------------- **
 /** -------------------------------------------------------------------------------------------------------------------- **
@@ -49,6 +56,7 @@
 /** > Chargement des Classes **/
 /** > Chargement des Configs **/
 /** > Chargement des Fonctions **/
+	require_once __ROOT__."/Processors/Functions/Index/load_attributes.php";
 
 
 /** -------------------------------------------------------------------------------------------------------------------- **
@@ -73,11 +81,9 @@
 	$moteur;			// Template			:: Moteur de rendu
 	$lang;			// STRING			:: Lang de l'utilisateur
 	$ATTRIBUTES;	// ARRAY				:: Liste des attributes obtenus
-	$first;			// BOOLEAN			:: Indique si c'est la premiere entrée enregistrée
 
 
 /** > Initialisation des variables **/
-	$first = true;
 	$ATTRIBUTES = Array();
 
 	$ID = $_POST["item_id"];
@@ -97,32 +103,8 @@
 /** ---																																					--- **
 /** -------------------------------------------------------------------------------------------------------------------- **
 /** -------------------------------------------------------------------------------------------------------------------- **/
-/** > Composition de la requête SQL **/
-	$query = "
-	SELECT
-		A.ID,
-		A.BASIC, A.PET, A.PROBABILITY, A.TIER, A.ATTACHMENT,
-		A.MASTER_VALUE_1, A.MASTER_VALUE_2, A.SLAVE_VALUE_1, A.SLAVE_VALUE_2, 
-		MAN.NAME AS MASTER_NAME, SAN.NAME AS SLAVE_NAME
-		
-	FROM ATTRIBUTES AS A
-	LEFT JOIN ATTRIBUTES_NAMES AS MAN
-	ON A.MASTER_TAG = MAN.TAG
-	LEFT JOIN ATTRIBUTES_NAMES AS SAN
-	ON A.SLAVE_TAG = SAN.TAG
-	
-	WHERE 
-		ITEM = :item 
-		AND MAN.LANG = :lang
-		AND SAN.LANG = :lang
-	
-	ORDER BY
-		PROBABILITY DESC
-	";
-
-/** > Récupération des attributes **/
-	$pAttributes = $PDO->prepare($query);
-	$pAttributes->execute(Array(":item" => $ID, ":lang" => $lang));
+/** > Charger les attributes de l'objet **/
+$ATTRIBUTES = load_attributes($lang, "ITEM", $ID);
 
 
 
@@ -133,43 +115,6 @@
 /** ---																																					--- **
 /** -------------------------------------------------------------------------------------------------------------------- **
 /** -------------------------------------------------------------------------------------------------------------------- **/
-/** > Parcourir les données reçues pour envois au client **/
-while($faAttributes = $pAttributes->fetch(PDO::FETCH_ASSOC)){
-	$master_name = $faAttributes["MASTER_NAME"];
-	$slave_name = $faAttributes["SLAVE_NAME"];
-	
-	//──┐ Convertir le % en entité HTML
-	$master_name = preg_replace("#%s(%)#", "%s&#37;", $master_name);
-	$slave_name = preg_replace("#%s(%)#", "%s&#37;", $slave_name);
-	
-	//──┐ Ajouter la balise span autour des valeurs
-	$master_name = preg_replace("#(\+?\s*%s(&\#37;)?)#", "<span>$1</span>", $master_name);
-	$slave_name = preg_replace("#(\+?\s*%s(&\#37;)?)#", "<span>$1</span>", $slave_name);
-	
-	//──┐ Composer l'attribut a proprement parler
-	$master_name = @sprintf($master_name, $faAttributes["MASTER_VALUE_1"], $faAttributes["MASTER_VALUE_2"]);
-	$slave_name = @sprintf(" $slave_name", $faAttributes["SLAVE_VALUE_1"], $faAttributes["SLAVE_VALUE_2"]);
-	
-	$attribut = $master_name;
-	if($faAttributes["SLAVE_NAME"]) $attribut .= $slave_name;
-	
-	$ATTRIBUTES[] = Array(
-		"COMMA" => ($first) ? "" : ",",
-		"ID" => $faAttributes["ID"],
-		"BASIC" => ord($faAttributes["BASIC"]),
-		"PET" => ord($faAttributes["PET"]),
-		"TIER" => $faAttributes["TIER"],
-		"ATTRIBUT" => $attribut,
-		"ATTACHMENT" => $faAttributes["ATTACHMENT"],
-		"PROBABILITY" => $faAttributes["PROBABILITY"] * 100,
-		"MASTER_VALUE_1" => $faAttributes["MASTER_VALUE_1"],
-		"MASTER_VALUE_2" => $faAttributes["MASTER_VALUE_2"],
-		"SLAVE_VALUE_1" => $faAttributes["SLAVE_VALUE_1"],
-		"SLAVE_VALUE_2" => $faAttributes["SLAVE_VALUE_2"]
-	);
-	
-	$first = false;
-}
 
 
 

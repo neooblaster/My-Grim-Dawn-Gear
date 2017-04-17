@@ -8,19 +8,24 @@
 /** ---																																					--- **
 /** ---		AUTEUR 	: Nicolas DUPRE																											--- **
 /** ---																																					--- **
-/** ---		RELEASE	: 28.03.2017																												--- **
+/** ---		RELEASE	: 17.04.2017																												--- **
 /** ---																																					--- **
-/** ---		VERSION	: 1.0																															--- **
+/** ---		VERSION	: 1.1																															--- **
 /** ---																																					--- **
 /** ---																																					--- **
 /** --- 														-----------------------------														--- **
 /** --- 															{ C H A N G E L O G } 															--- **
-/** --- 														-----------------------------														--- **	
+/** --- 														-----------------------------														--- **
+/** ---																																					--- **
+/** ---		VERSION 1.1 : 17.04.2017 : NDU																									--- **
+/** ---		------------------------------																									--- **
+/** ---			- Utilisation de la fonction load_attributes au lieu de disposer d'une copie du code						--- **
 /** ---																																					--- **
 /** ---																																					--- **
 /** ---		VERSION 1.0 : 28.03.2017																											--- **
 /** ---		------------------------																											--- **
 /** ---			- Première release																												--- **
+/** ---																																					--- **
 /** ---																																					--- **
 /** -------------------------------------------------------------------------------------------------------------------- **
 /** -------------------------------------------------------------------------------------------------------------------- **
@@ -45,6 +50,7 @@
 /** > Chargement des Classes **/
 /** > Chargement des Configs **/
 /** > Chargement des Fonctions **/
+	require_once __ROOT__."/Processors/Functions/Index/load_attributes.php";
 
 
 /** -------------------------------------------------------------------------------------------------------------------- **
@@ -115,32 +121,18 @@
 /** > Récupération des informations **/
 	$pSkill = $PDO->prepare($skill_query);
 	$pSkill->execute(Array(":ID" => $ID, ":lang" => $lang));
+
+	//--- Si par de sort trouvé, renvoyée null
+	if(!$pSkill->rowCount()){
+		echo "null";
+		exit;
+	}
 	$faSkill = $pSkill->fetch(PDO::FETCH_ASSOC);
 	$faSkill["NAME"] = preg_replace("#%s(%)#", "%s&#37;", $faSkill["NAME"]);
 
 
-/** > Composition de la requête SQL (ATTRIBUTES) **/
-	$attributes_query = "
-	SELECT
-		A.ID,
-		A.BASIC, A.PET, A.PROBABILITY, A.TIER,
-		A.MASTER_VALUE, A.SLAVE_VALUE, A.ATTACHMENT,
-		AN.NAME
-	
-	FROM ATTRIBUTES AS A
-	INNER JOIN ATTRIBUTES_NAMES AS AN
-	ON A.TAG = AN.TAG
-	
-	WHERE
-		SKILL = :SID AND LANG = :lang
-		
-	ORDER BY
-		PROBABILITY DESC
-	";
-
-/** > Récupération des informations **/
-	$pAttributes = $PDO->prepare($attributes_query);
-	$pAttributes->execute(Array(":SID" => $faSkill["ID"], ":lang" => $lang));
+/** > Charger les attributes associés **/
+$ATTRIBUTES = load_attributes($lang, "SKILL", $faSkill["ID"]);
 
 
 
@@ -151,30 +143,6 @@
 /** ---																																					--- **
 /** -------------------------------------------------------------------------------------------------------------------- **
 /** -------------------------------------------------------------------------------------------------------------------- **/
-/** > Parcourir les données reçues pour envois au client **/
-while($faAttributes = $pAttributes->fetch(PDO::FETCH_ASSOC)){
-	$name = $faAttributes["NAME"];
-	
-	$name = preg_replace("#%s(%)#", "%s&#37;", $name);
-	$name = preg_replace("#(\+?\s*%s(&\#37;)?)#", "<span>$1</span>", $name);
-	
-	$attribut = @sprintf($name, $faAttributes["MASTER_VALUE"], $faAttributes["SLAVE_VALUE"]);
-	
-	$ATTRIBUTES[] = Array(
-		"COMMA" => ($first) ? "" : ",",
-		"ID" => $faAttributes["ID"],
-		"BASIC" => ord($faAttributes["BASIC"]),
-		"PET" => ord($faAttributes["PET"]),
-		"TIER" => $faAttributes["TIER"],
-		"ATTRIBUT" => $attribut,
-		"ATTACHMENT" => $faAttributes["ATTACHMENT"],
-		"PROBABILITY" => $faAttributes["PROBABILITY"] * 100,
-		"MASTER_VALUE" => $faAttributes["MASTER_VALUE"],
-		"SLAVE_VALUE" => $faAttributes["SLAVE_VALUE"]
-	);
-	
-	$first = false;
-}
 
 
 
