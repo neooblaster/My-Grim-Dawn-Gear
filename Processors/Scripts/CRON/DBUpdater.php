@@ -13,7 +13,7 @@
 /** ---																																					--- **
 /** ---		RELEASE			: 17.04.2017																										--- **
 /** ---																																					--- **
-/** ---		FILE_VERSION	: 1.5 NDU																											--- **
+/** ---		FILE_VERSION	: 1.6 NDU																											--- **
 /** ---																																					--- **
 /** ---																																					--- **
 /** --- 														---------------------------														--- **
@@ -29,6 +29,13 @@
 /** --- 															{ C H A N G E L O G } 															--- **
 /** --- 														-----------------------------														--- **
 /** ---																																					--- **
+/** ---																																					--- **
+/** ---		VERSION 1.6 : 17.04.2017 : NDU																									--- **
+/** ---		------------------------------																									--- **
+/** ---			-  Correction du comportement par défaut lorsqu'une table de donnée est définie: 							--- **
+/** ---				>  Avant      : case 'default' indiqué pas de table définie, même si c'était le cas 					--- **
+/** ---				>  maintenant : case '' (vide) est le cas "pas de table définie" et par défaut entre le tag dans	--- **
+/** ---				la table définie  																											--- **
 /** ---																																					--- **
 /** ---		VERSION 1.5 : 17.04.2017 : NDU																									--- **
 /** ---		------------------------------																									--- **
@@ -534,12 +541,29 @@ foreach($langs as $index => $lang){
 									$pQuery = $PDO->prepare($query);
 									$pQuery->execute($bound_tokens);
 								break;
-								default:
+								case "":
 									// N'emettre l'information uniquement pour la premiere langue traité (normalement en-EN la référence)
 									if($first_lang){
 										echo sprintf("TAG '$cmt% 40s$cme' $cmw"."HAS NO TABLE_DATA DEFINED$cme.".LF, $tag);
 										usleep(0.35 * $usleep);
 									}
+								break;
+								// Si une valeur défini, mais pas de traitement spécifique, alors inséré le tag uniquement
+								default:
+									// Composition de la requête SQL
+									$table = $identifier["TABLE_DATA"];
+									$query = "INSERT INTO $table (TAG) VALUES(:TAG)";
+									$bound_tokens = Array(
+										":TAG" => $tag
+									);
+									
+									// Envoyer un message 
+									echo sprintf("TAG '$cmt% 40s$cme' ADDED INTO '$cmtb"."$table$cme'.".LF, $tag);
+									usleep($usleep);
+									
+									// Execution de la requête 
+									$pQuery = $PDO->prepare($query);
+									$pQuery->execute($bound_tokens);
 								break;
 							}
 						} else {
