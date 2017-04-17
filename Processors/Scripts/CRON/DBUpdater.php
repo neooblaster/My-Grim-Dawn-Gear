@@ -11,9 +11,9 @@
 /** ---																																					--- **
 /** ---		AUTEUR			: Nicolas DUPRE																									--- **
 /** ---																																					--- **
-/** ---		RELEASE			: 16.04.2017																										--- **
+/** ---		RELEASE			: 17.04.2017																										--- **
 /** ---																																					--- **
-/** ---		FILE_VERSION	: 1.4 NDU																											--- **
+/** ---		FILE_VERSION	: 1.5 NDU																											--- **
 /** ---																																					--- **
 /** ---																																					--- **
 /** --- 														---------------------------														--- **
@@ -27,7 +27,14 @@
 /** ---																																					--- **
 /** --- 														-----------------------------														--- **
 /** --- 															{ C H A N G E L O G } 															--- **
-/** --- 														-----------------------------														--- **	
+/** --- 														-----------------------------														--- **
+/** ---																																					--- **
+/** ---																																					--- **
+/** ---		VERSION 1.5 : 17.04.2017 : NDU																									--- **
+/** ---		------------------------------																									--- **
+/** ---			-  Ajout de la fonctionnalité EXTEND_DESC_TAG : 																		--- **
+/** ---				> Permet d'attacher une description à plusieurs tags (SETS) en version Normal et Empowered			--- **
+/** ---				> Un cleansing est requis, car l'EXTEND_DESC_TAG créér des entrée inutile									--- **
 /** ---																																					--- **
 /** ---																																					--- **
 /** ---		VERSION 1.4 : 16.04.2017 : NDU																									--- **
@@ -418,32 +425,49 @@ foreach($langs as $index => $lang){
 					
 					/** Est-ce une description ? **/
 					if($identifier["DESCRIPTION"] !== "" && preg_match("#".$identifier["DESCRIPTION"]."#", $tag)){
-						// Dans le cas d'un description, alors il faut identifier le tag name de base
-						$base_tag = preg_replace("#".$identifier["DESCRIPTION"]."#", "", $tag);
+						$tags = Array();
 						
-						// Si le tag de base est connu alors...
-						if(array_key_exists($base_tag, $names[$identifier["TABLE_NAME"]][$lang])){
-							// Controler le MD5
-							if(md5($value) !== $names[$identifier["TABLE_NAME"]][$lang][$base_tag]["DESCRIPTION_MD5"]){
-								if(!isset($updates[$identifier["TABLE_NAME"]])) $updates[$identifier["TABLE_NAME"]] = Array();
-								if(!isset($updates[$identifier["TABLE_NAME"]][$lang])) $updates[$identifier["TABLE_NAME"]][$lang] = Array();
-								if(!isset($updates[$identifier["TABLE_NAME"]][$lang][$base_tag])) $updates[$identifier["TABLE_NAME"]][$lang][$base_tag] = Array();
-								
-								$updates[$identifier["TABLE_NAME"]][$lang][$base_tag]["ID"] = $names[$identifier["TABLE_NAME"]][$lang][$base_tag]["ID"];
-								$updates[$identifier["TABLE_NAME"]][$lang][$base_tag]["TAG"] = $base_tag;
-								$updates[$identifier["TABLE_NAME"]][$lang][$base_tag]["DESCRIPTION"] = $value;
-								$updates[$identifier["TABLE_NAME"]][$lang][$base_tag]["DESCRIPTION_MD5"] = md5($value);
+						//--- Dans le cas d'un description, alors il faut identifier le tag name de base
+						$base_tag = preg_replace("#".$identifier["DESCRIPTION"]."#", "", $tag);
+						$tags[] = $base_tag;
+						
+						//--- Si la description sert à plusieurs tag : EXTEND_DESC_TAG, alors les générer (séparateur /)
+						if($identifier["EXTEND_DESC_TAG"] !== "") {
+							$extends = preg_split("#\/#", $identifier["EXTEND_DESC_TAG"]);
+							
+							// Ajouter à la liste des tags
+							foreach($extends as $key => $extend){
+								$tags[] = "$base_tag$extend";
 							}
 						}
-						// Sinon, c'est un ajout
-						else {
-							if(!isset($inserts[$identifier["TABLE_NAME"]])) $inserts[$identifier["TABLE_NAME"]] = Array();
-							if(!isset($inserts[$identifier["TABLE_NAME"]][$lang])) $inserts[$identifier["TABLE_NAME"]][$lang] = Array();
-							if(!isset($inserts[$identifier["TABLE_NAME"]][$lang][$base_tag])) $inserts[$identifier["TABLE_NAME"]][$lang][$base_tag] = Array();
-							
-							$inserts[$identifier["TABLE_NAME"]][$lang][$base_tag]["TAG"] = $base_tag;
-							$inserts[$identifier["TABLE_NAME"]][$lang][$base_tag]["DESCRIPTION"] = $value;
-							$inserts[$identifier["TABLE_NAME"]][$lang][$base_tag]["DESCRIPTION_MD5"] = md5($value);
+						
+						
+						//--- Controler la descriptions pour tout les tags retenu (base + extends)
+						foreach($tags as $key => $etag){
+							// Si le tag de base est connu alors...
+							if(array_key_exists($etag, $names[$identifier["TABLE_NAME"]][$lang])){
+								// Controler le MD5
+								if(md5($value) !== $names[$identifier["TABLE_NAME"]][$lang][$etag]["DESCRIPTION_MD5"]){
+									if(!isset($updates[$identifier["TABLE_NAME"]])) $updates[$identifier["TABLE_NAME"]] = Array();
+									if(!isset($updates[$identifier["TABLE_NAME"]][$lang])) $updates[$identifier["TABLE_NAME"]][$lang] = Array();
+									if(!isset($updates[$identifier["TABLE_NAME"]][$lang][$etag])) $updates[$identifier["TABLE_NAME"]][$lang][$etag] = Array();
+									
+									$updates[$identifier["TABLE_NAME"]][$lang][$etag]["ID"] = $names[$identifier["TABLE_NAME"]][$lang][$etag]["ID"];
+									$updates[$identifier["TABLE_NAME"]][$lang][$etag]["TAG"] = $etag;
+									$updates[$identifier["TABLE_NAME"]][$lang][$etag]["DESCRIPTION"] = $value;
+									$updates[$identifier["TABLE_NAME"]][$lang][$etag]["DESCRIPTION_MD5"] = md5($value);
+								}
+							}
+							// Sinon, c'est un ajout
+							else {
+								if(!isset($inserts[$identifier["TABLE_NAME"]])) $inserts[$identifier["TABLE_NAME"]] = Array();
+								if(!isset($inserts[$identifier["TABLE_NAME"]][$lang])) $inserts[$identifier["TABLE_NAME"]][$lang] = Array();
+								if(!isset($inserts[$identifier["TABLE_NAME"]][$lang][$etag])) $inserts[$identifier["TABLE_NAME"]][$lang][$etag] = Array();
+								
+								$inserts[$identifier["TABLE_NAME"]][$lang][$etag]["TAG"] = $etag;
+								$inserts[$identifier["TABLE_NAME"]][$lang][$etag]["DESCRIPTION"] = $value;
+								$inserts[$identifier["TABLE_NAME"]][$lang][$etag]["DESCRIPTION_MD5"] = md5($value);
+							}
 						}
 					}
 					
@@ -546,14 +570,27 @@ foreach($langs as $index => $lang){
 
 
 /** ------------------------------------------------------------------------------------------------------- **
-/** --- Phase 5.2 :: Traitement des textes                                                              --- **
+/** --- Phase 5.2 :: Cleansing                                                                          --- **
+/** ------------------------------------------------------------------------------------------------------- **/
+//--- Supprimer les entrée où une description n'est pas rattaché à un nom (NAME) (créé par les EXTEND_DESC_TAG)
+foreach($inserts as $nkey => &$r_names){
+	foreach($r_names as $lkey => &$r_lang){
+		foreach($r_lang as $tkey => $tag){
+			if(!isset($tag["NAME"])) unset($r_lang[$tkey]);
+		}
+	}
+}
+
+
+
+/** ------------------------------------------------------------------------------------------------------- **
+/** --- Phase 5.3 :: Traitement des textes                                                              --- **
 /** ------------------------------------------------------------------------------------------------------- **/
 $operations = Array(
 	"INSERT" => $inserts,
 	"UPDATE" => $updates
 );
 
-//pprints($operations);
 
 /** Procéder aux différentes opération SQL **/
 foreach($operations as $sql_op => $array){
@@ -568,7 +605,7 @@ foreach($operations as $sql_op => $array){
 				$fields_to_process = Array("LANG");
 				//──┐ Ajouter le token :LANG
 				$tokens_to_process = Array(":LANG");
-				//──┐ Ajouter la valeur $lang au toke :LANG
+				//──┐ Ajouter la valeur $lang au token :LANG
 				$values_to_process = Array(
 					":LANG" => $lang
 				);
