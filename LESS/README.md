@@ -1,4 +1,4 @@
-//#!/compile = true
+//#!/compile = false
 
 # How To Compile .less files manually
 
