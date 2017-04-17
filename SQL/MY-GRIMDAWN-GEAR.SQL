@@ -154,7 +154,7 @@ CREATE TABLE `ATTRIBUTES_NAMES` (
   PRIMARY KEY (`ID`),
   KEY `LANG` (`LANG`),
   KEY `TAG` (`TAG`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -163,6 +163,7 @@ CREATE TABLE `ATTRIBUTES_NAMES` (
 
 LOCK TABLES `ATTRIBUTES_NAMES` WRITE;
 /*!40000 ALTER TABLE `ATTRIBUTES_NAMES` DISABLE KEYS */;
+INSERT INTO `ATTRIBUTES_NAMES` VALUES (1,'en-EN','','ms','','','','','2017-04-17 06:17:45'),(2,'fr-FR','','ms','','','','','2017-04-17 06:17:49'),(3,'el-EL','','ms','','','','','2017-04-17 06:18:24'),(4,'es-ES','','ms','','','','','2017-04-17 06:18:34'),(5,'ja-JA','','ms','','','','','2017-04-17 06:18:43'),(6,'zh-ZH','','ms','','','','','2017-04-17 06:18:55'),(7,'pt-PT','','ms','','','','','2017-04-17 06:19:13'),(8,'ru-RU','','ms','','','','','2017-04-17 06:19:38'),(9,'de-DE','','ms','','','','','2017-04-17 06:20:00'),(10,'cs-CS','','ms','','','','','2017-04-17 06:20:20'),(11,'it-IT','','ms','','','','','2017-04-17 06:20:51'),(12,'vi-VI','','ms','','','','','2017-04-17 06:21:08'),(13,'pl-PL','','ms','','','','','2017-04-17 06:21:18'),(14,'bg-BG','','ms','','','','','2017-04-17 06:21:28');
 /*!40000 ALTER TABLE `ATTRIBUTES_NAMES` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -376,7 +377,7 @@ CREATE TABLE `ITEMS` (
   `TYPE` tinyint(3) unsigned NOT NULL DEFAULT '1',
   `QUALITY` tinyint(3) unsigned NOT NULL DEFAULT '1',
   `ATTACHMENT` tinyint(3) unsigned NOT NULL DEFAULT '1',
-  `SET` bit(1) NOT NULL,
+  `SET` smallint(5) unsigned NOT NULL DEFAULT '0',
   `TAG` varchar(30) NOT NULL,
   `EXTEND` char(2) DEFAULT '',
   `WIDTH` tinyint(3) unsigned NOT NULL DEFAULT '1',
@@ -645,4 +646,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-04-17  0:03:59
+-- Dump completed on 2017-04-17  6:21:38
