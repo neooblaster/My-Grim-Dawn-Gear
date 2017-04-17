@@ -10,9 +10,9 @@
 /** ---																																					--- **
 /** ---		AUTEUR			: Nicolas DUPRE																									--- **
 /** ---																																					--- **
-/** ---		RELEASE			: 04.04.2017																										--- **
+/** ---		RELEASE			: 17.04.2017																										--- **
 /** ---																																					--- **
-/** ---		FILE_VERSION	: 1.0 NDU																											--- **
+/** ---		FILE_VERSION	: 1.1 NDU																											--- **
 /** ---																																					--- **
 /** ---																																					--- **
 /** --- 														---------------------------														--- **
@@ -28,6 +28,11 @@
 /** ---															{ C H A N G E L O G }															--- **
 /** --- 														---------------------------														--- **
 /** ---																																					--- **
+/** ---																																					--- **
+/** ---		VERSION 1.1 : 17.04.2017 : NDU																									--- **
+/** ---		------------------------------																									--- **
+/** ---			- Suppression de la fonction ORD. Le champ SET n'était pas un BIT													--- **
+/** ---				>  Erreur de copie																											--- **
 /** ---																																					--- **
 /** ---		VERSION 1.0 : 04.04.2017 : NDU																									--- **
 /** ---		------------------------------																									--- **
@@ -130,7 +135,7 @@ function load_items($clause="", $bound_tokens=Array()){
 				"NAME" => $faData["NAME"],
 				"DESCRIPTION" => $faData["DESCRIPTION"],
 				
-				"SET" => ord($faData["SET"]),
+				"SET" => $faData["SET"],
 				"SKILLED" => ord($faData["SKILLED"]),
 				
 				"LEVEL" => $faData["LEVEL"],

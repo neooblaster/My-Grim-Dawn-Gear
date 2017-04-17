@@ -11,6 +11,7 @@
 		$vars['ITEMS_TYPES'] = load_items_types();
 		$vars['ITEMS_ATTACHMENTS'] = load_items_attachments();
 		$vars['ITEMS'] = load_items();
+		$vars['SETS'] = load_sets($lang_key);
 
 
 	/** > Initialisation des statut Active **/
@@ -54,7 +55,7 @@
 						I.ENABLED,
 						CONCAT(I.TAG, I.EXTEND) AS TAG,
 						TN.NAME, TN.DESCRIPTION,
-						I.FAMILY, I.TYPE, I.QUALITY, I.ATTACHMENT,
+						I.FAMILY, I.TYPE, I.QUALITY, I.ATTACHMENT, I.SET,
 						I.WIDTH, I.HEIGHT,
 						I.LEVEL, I.PHYSIQUE, I.CUNNING, I.SPIRIT
 						
@@ -135,7 +136,15 @@
 							$vars['ITEMS_ATTACHMENTS'][$key]['SELECTED'] = '';
 						}
 					}
-				
+					
+					// ITEM SET
+					foreach($vars['SETS'] as $key => $value){
+						if($value["SET_ID"] === $faData["SET"]){
+							$vars['SETS'][$key]['SELECTED'] = 'selected';
+						} else {
+							$vars['SETS'][$key]['SELECTED'] = '';
+						}
+					}
 			} catch(Exception $e){
 				trigger_error($e->getMessage(), E_USER_ERROR);
 			}
