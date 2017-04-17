@@ -1200,15 +1200,18 @@ function gear(token){
 					xQuery.callbacks(function(e){
 						try {
 							e = JSON.parse(e);
-							e.ATTACHMENT = attachment;
 							
-							switch(attachment){
-								case 'item':
-									self.items["itm-"+ID].SKILL = e;
-								break;
-								case 'set':
-									self.sets["set-"+ID].SKILL = e;
-								break;
+							if(e !== null){
+								e.ATTACHMENT = attachment;
+								
+								switch(attachment){
+									case 'item':
+										self.items["itm-"+ID].SKILL = e;
+									break;
+									case 'set':
+										self.sets["set-"+ID].SKILL = e;
+									break;
+								}
 							}
 						} catch (err){
 							console.log("gear::skills::load.callback failed on", e, "with error", err);
@@ -1222,19 +1225,21 @@ function gear(token){
 			make: function(skill){
 				var children = [];
 				
-				/** Granted Skill si c'est un item **/
-				if(skill.ATTACHMENT === "item") children.push({name: "h4", properties: {innerHTML: "Granted Skills"}});
-				
-				/** Titre du sort **/
-				children.push({name: "h4", classList: ["skill"], properties: {innerHTML: skill.NAME}});
-				
-				/** Description du sort **/
-				var description = {name: "p", classList: [], properties: {innerHTML: skill.DESCRIPTION}};
-				if(skill.DESCRIPTION) description.classList.push("not_empty");
-				children.push(description);
-				
-				/** Attributs du sort **/
-				children.push({name: "ul", children: self.attributes().make(skill.ATTRIBUTES)});
+				if(skill){
+					/** Granted Skill si c'est un item **/
+					if(skill.ATTACHMENT === "item") children.push({name: "h4", properties: {innerHTML: "Granted Skills"}});
+					
+					/** Titre du sort **/
+					children.push({name: "h4", classList: ["skill"], properties: {innerHTML: skill.NAME}});
+					
+					/** Description du sort **/
+					var description = {name: "p", classList: [], properties: {innerHTML: skill.DESCRIPTION}};
+					if(skill.DESCRIPTION) description.classList.push("not_empty");
+					children.push(description);
+					
+					/** Attributs du sort **/
+					children.push({name: "ul", children: self.attributes().make(skill.ATTRIBUTES)});
+				}
 				
 				return children;
 			}
