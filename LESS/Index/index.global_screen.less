@@ -354,6 +354,17 @@ section {
 					color: lighten(@article_hexa_color, 20%);
 				}
 			}
+			
+			ul {
+				margin: 6px 0 6px 35px;
+				li {
+					
+				}
+			}
+			
+			img {
+				width: 100%;
+			}
 		}
 	}
 	
@@ -1414,6 +1425,14 @@ section {
 			&[type=text] {
 				&:extend(.gd_text_input all);
 			}
+		}
+	}
+	
+	.privacy_panel {
+		&:extend(section .home_panel all);
+		
+		p {
+			text-indent: 25px;
 		}
 	}
 }

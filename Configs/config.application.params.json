@@ -43,7 +43,8 @@
 		"MANAGE": true,
 		"PROGRESS": false,
 		"REPORT": false,
-		"LOGIN": true
+		"LOGIN": true,
+		"PRIVACY": true
 	},
 	
 	/** Vue nécéssitant l'accès admin **/

@@ -56,6 +56,7 @@
 	require_once 'Processors/Functions/Index/load_items_qualities.php';
 	require_once 'Processors/Functions/Index/load_items_types.php';
 	require_once 'Processors/Functions/Index/load_items_attachments.php';
+	require_once 'Processors/Functions/Index/load_sets.php';
 
 	require_once 'Processors/Functions/Index/timestamp_to_date.php';
 

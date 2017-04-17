@@ -21,11 +21,13 @@
 		<resource KEY="HEAD_VIEW_TITLE_GEAR" CST="false" SST="true">Gear Builder</resource>
 		<resource KEY="HEAD_VIEW_TITLE_MANAGE" CST="false" SST="true">Admin Portal</resource>
 		<resource KEY="HEAD_VIEW_TITLE_LOGIN" CST="false" SST="true">Login Portal</resource>
+		<resource KEY="HEAD_VIEW_TITLE_PRIVACY" CST="false" SST="true">About Cookies</resource>
 	
 		<resource KEY="VIEW_TITLE_HOME" CST="false" SST="true">Welcome Home</resource>
 		<resource KEY="VIEW_TITLE_GEAR" CST="false" SST="true">Gear Builder</resource>
 		<resource KEY="VIEW_TITLE_MANAGE" CST="false" SST="true">Admin Portal</resource>
 		<resource KEY="VIEW_TITLE_LOGIN" CST="false" SST="true">Login Portal</resource>
+		<resource KEY="VIEW_TITLE_PRIVACY" CST="false" SST="true">About Cookies</resource>
 	
 	
 	<!--''''''''''''''''''''''''''''''''''''''-->
@@ -276,4 +278,5 @@
 	<!-- Nombre d'occurences : 1 -->
 		<resource KEY="FOOT_VERSION" CST="false" SST="true">Release</resource>
 		<resource KEY="FOOT_LOGIN" CST="false" SST="true">Login</resource>
+		<resource KEY="FOOT_ABOUT_COOKIES" CST="false" SST="true">About Cookies</resource>
 </resources>
