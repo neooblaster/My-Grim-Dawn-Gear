@@ -8,15 +8,19 @@
 /** ---																																					--- **
 /** ---		AUTEUR 	: Nicolas DUPRE																											--- **
 /** ---																																					--- **
-/** ---		RELEASE	: 04.04.2017																												--- **
+/** ---		RELEASE	: 18.04.2017																												--- **
 /** ---																																					--- **
-/** ---		VERSION	: 1.1																															--- **
+/** ---		VERSION	: 1.2																															--- **
 /** ---																																					--- **
 /** ---																																					--- **
 /** --- 														-----------------------------														--- **
 /** --- 															{ C H A N G E L O G } 															--- **
 /** --- 														-----------------------------														--- **	
 /** ---																																					--- **
+/** ---																																					--- **
+/** ---		VERSION 1.2 : 18.04.2017 : NDU																									--- **
+/** ---		------------------------------																									--- **
+/** ---			- Changement du format des données renvoyé pour etre json_encodable												--- **
 /** ---																																					--- **
 /** ---		VERSION 1.1 : 04.04.2017																											--- **
 /** ---		------------------------																											--- **
@@ -90,16 +94,19 @@
 /** -------------------------------------------------------------------------------------------------------------------- **/
 /** > Execution la requête SQL de récupération **/
 try {
-	$moteur = new Template();
-	$moteur->set_template_file("../../../Templates/Data/item.tpl.json");
-	$moteur->set_output_name("item.json");
-	$moteur->set_temporary_repository("../../../Temps");
-	$moteur->set_vars(
-		load_items("WHERE I.ID = :id AND LANG = :lang", Array(":id" => $ID, ":lang" => $lang))[0]
-	);
+	//$moteur = new Template();
+	//$moteur->set_template_file("../../../Templates/Data/item.tpl.json");
+	//$moteur->set_output_name("item.json");
+	//$moteur->set_temporary_repository("../../../Temps");
+	//$moteur->set_vars(
+	//	load_items("WHERE I.ID = :id AND LANG = :lang", Array(":id" => $ID, ":lang" => $lang))[0]
+	//);
+	//
+	//echo Template::strip_blank($moteur->render()->get_render_content());
+	//
 	
-	echo Template::strip_blank($moteur->render()->get_render_content());
-	
+	$ITEM = load_items("WHERE I.ID = :id AND LANG = :lang",  Array(":id" => $ID, ":lang" => $lang));
+	echo json_encode($ITEM);
 } catch(Exception $e){
 	error_log(sprintf("[ MGDG ] :: load_item.php failed with error %s", $e->getMessage()));
 	echo "{}";

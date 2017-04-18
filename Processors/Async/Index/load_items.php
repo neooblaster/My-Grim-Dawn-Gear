@@ -8,15 +8,18 @@
 /** ---																																					--- **
 /** ---		AUTEUR 	: Nicolas DUPRE																											--- **
 /** ---																																					--- **
-/** ---		RELEASE	: 04.04.2017																												--- **
+/** ---		RELEASE	: 18.04.2017																												--- **
 /** ---																																					--- **
-/** ---		VERSION	: 1.0																															--- **
+/** ---		VERSION	: 1.1																															--- **
 /** ---																																					--- **
 /** ---																																					--- **
 /** --- 														-----------------------------														--- **
 /** --- 															{ C H A N G E L O G } 															--- **
 /** --- 														-----------------------------														--- **	
 /** ---																																					--- **
+/** ---		VERSION 1.1 : 18.04.2017 : NDU																									--- **
+/** ---		------------------------------																									--- **
+/** ---			- Changement du format des données renvoyé pour etre json_encodable												--- **
 /** ---																																					--- **
 /** ---		VERSION 1.0 : 04.04.2017																											--- **
 /** ---		------------------------																											--- **
@@ -219,6 +222,7 @@
 /** > Execution de la requête SQL **/
 try {
 	$ITEMS = load_items($query_where, $query_tokens);
+	echo json_encode($ITEMS);
 } catch(Exception $e){
 	error_log("[ MGDG ] :: load_items.php failed on query $query with error ".$e->getMessage());
 }
@@ -232,7 +236,7 @@ try {
 /** ---																																					--- **
 /** -------------------------------------------------------------------------------------------------------------------- **
 /** -------------------------------------------------------------------------------------------------------------------- **/
-
+	//echo "load_items.php";
 
 /** -------------------------------------------------------------------------------------------------------------------- **
 /** -------------------------------------------------------------------------------------------------------------------- **
@@ -242,13 +246,13 @@ try {
 /** -------------------------------------------------------------------------------------------------------------------- **
 /** -------------------------------------------------------------------------------------------------------------------- **/
 /** > Configuration du moteur **/
-	$moteur->set_template_file("../../../Templates/Data/items.tpl.json");
-	$moteur->set_output_name("items.json");
-	$moteur->set_temporary_repository("../../../Temps");
+	//$moteur->set_template_file("../../../Templates/Data/items.tpl.json");
+	//$moteur->set_output_name("items.json");
+	//$moteur->set_temporary_repository("../../../Temps");
 
 /** > Envoie des données **/
-	$moteur->set_vars(Array("ITEMS" => $ITEMS));
+	//$moteur->set_vars(Array("ITEMS" => $ITEMS));
 	
 /** > Execution du moteur **/
-	echo Template::strip_blank($moteur->render()->get_render_content());
+	//echo Template::strip_blank($moteur->render()->get_render_content());
 ?>

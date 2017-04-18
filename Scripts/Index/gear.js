@@ -470,6 +470,8 @@ function gear(token){
 				
 				/** Méthode de rappel **/
 				xQuery.callbacks(function(self, d){
+					console.log(d);
+					
 					try {
 						// Récupération de l'hote
 						var host = document.querySelector(self.selectors.inventory);
@@ -481,10 +483,16 @@ function gear(token){
 						var data = JSON.parse(d);
 						
 						// Parcourir l'ensemble des objets
-						for(var i = 0; i < data.items.length; i++){
+						for(var i = 0; i < data.ITEMS.length; i++){
 							/** Variable Locale **/
-							var item = data.items[i];
 							var size;
+							var item = {};
+							
+							
+							/** > Associer les valeurs à leurs entete correspondant **/
+							for(var itm = 0; itm < data.ITEMS[i].length; itm++){
+								item[data.HEADERS[itm]] = data.ITEMS[i][itm];
+							}
 							
 							
 							/** Calculer les paramètres suivant **/
@@ -987,6 +995,16 @@ function gear(token){
 						try {
 							/** Parser la chaine JSON **/
 							e = JSON.parse(e);
+							
+							/** Variable Locale **/
+							var item = {};
+							
+							/** > Associer les valeurs à leurs entete correspondant **/
+							for(var itm = 0; itm < e.ITEMS[0].length; itm++){
+								item[e.HEADERS[itm]] = e.ITEMS[0][itm];
+							}
+							
+							e = item;
 							
 							/** Stocker les données **/
 							self.item().store(e);

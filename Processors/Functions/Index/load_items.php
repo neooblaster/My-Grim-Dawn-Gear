@@ -10,9 +10,9 @@
 /** ---																																					--- **
 /** ---		AUTEUR			: Nicolas DUPRE																									--- **
 /** ---																																					--- **
-/** ---		RELEASE			: 17.04.2017																										--- **
+/** ---		RELEASE			: 18.04.2017																										--- **
 /** ---																																					--- **
-/** ---		FILE_VERSION	: 1.1 NDU																											--- **
+/** ---		FILE_VERSION	: 1.2 NDU																											--- **
 /** ---																																					--- **
 /** ---																																					--- **
 /** --- 														---------------------------														--- **
@@ -28,6 +28,10 @@
 /** ---															{ C H A N G E L O G }															--- **
 /** --- 														---------------------------														--- **
 /** ---																																					--- **
+/** ---																																					--- **
+/** ---		VERSION 1.2 : 18.04.2017 : NDU																									--- **
+/** ---		------------------------------																									--- **
+/** ---			- Changement du format des données renvoyé pour etre json_encodable												--- **
 /** ---																																					--- **
 /** ---		VERSION 1.1 : 17.04.2017 : NDU																									--- **
 /** ---		------------------------------																									--- **
@@ -78,6 +82,8 @@ function load_items($clause="", $bound_tokens=Array()){
 	global $PDO;	// PDO				:: Socket de connexion DB PDO
 	$query;			// STRING			:: Requête SQL à jouer
 	$pQuery;			// PDOStatement	:: Requête SQL Préparée
+	$DATAS;			// ARRAY				:: Donnée combinée HEADER + ITEMS
+	$HEADERS;		// ARRAY				:: Entête correspondants
 	$ITEMS;			// ARRAY				:: Liste des objets obtenu
 	$first;			// BOOLEAN			:: Flag indiquant le traitement de la premier ligne
 	
@@ -117,38 +123,46 @@ function load_items($clause="", $bound_tokens=Array()){
 		/** Parser les données **/
 		$first = true;
 		while($faData = $pQuery->fetch(PDO::FETCH_ASSOC)){
-			$ITEMS[] = Array(
-				"COMMA" => ($first) ? "" : ",",
-				"ID" => $faData["ID"],
-				"ENABLED" => ord($faData["ENABLED"]), 
-				
-				"WIDTH" => $faData["WIDTH"],
-				"HEIGHT" => $faData["HEIGHT"],
-				
-				"FAMILY" => $faData["FAMILY"],
-				"TYPE" => $faData["TYPE"],
-				"TYPE_NAME" => $faData["TAG_TYPE"],// translation ici
-				"QUALITY" => $faData["QUALITY"],
-				"ATTACHMENT" => $faData["ATTACHMENT"],
-				
-				"TAG" => $faData["TAG"],
-				"NAME" => $faData["NAME"],
-				"DESCRIPTION" => $faData["DESCRIPTION"],
-				
-				"SET" => $faData["SET"],
-				"SKILLED" => ord($faData["SKILLED"]),
-				
-				"LEVEL" => $faData["LEVEL"],
-				"PHYSIQUE" => $faData["PHYSIQUE"],
-				"CUNNING" => $faData["CUNNING"],
-				"SPIRIT" => $faData["SPIRIT"],
-			);
+			/** SI c'est la premiere fois, on récupère les champs **/
+			if($first) $HEADERS = array_keys($faData);
+			
+			
+			/** Opérer des conversion sur les données **/
+			//--- Format Numérique
+			$faData["ID"] = intval($faData["ID"]);
+			
+			$faData["FAMILY"] = intval($faData["FAMILY"]);
+			$faData["TYPE"] = intval($faData["TYPE"]);
+			
+			$faData["PHYSIQUE"] = intval($faData["PHYSIQUE"]);
+			$faData["CUNNING"] = intval($faData["CUNNING"]);
+			$faData["SPIRIT"] = intval($faData["SPIRIT"]);
+			$faData["LEVEL"] = intval($faData["LEVEL"]);
+			
+			$faData["WIDTH"] = intval($faData["WIDTH"]);
+			$faData["HEIGHT"] = intval($faData["HEIGHT"]);
+			
+			$faData["SET"] = intval($faData["SET"]);
+			
+			//--- Format Binaire
+			$faData["ENABLED"] = ord($faData["ENABLED"]);
+			$faData["SKILLED"] = ord($faData["SKILLED"]);
+			
+			
+			$ITEMS[] = array_values($faData);
 			
 			$first = false;
 		}
 		
+		/** Assembler les données **/
+		$DATAS = Array(
+			"HEADERS" => $HEADERS,
+			"ITEMS" => $ITEMS
+		);
+		
+		
 		/** Renvoyer les objets trouvés  **/
-		return $ITEMS;
+		return $DATAS;
 	} catch (Exception $e){
 		error_log(sprintf("[ MGDG ] :: load_items() failed on %s with error %s", $query, $e->getMessage()));
 		return false;
