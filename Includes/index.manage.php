@@ -1,10 +1,10 @@
 <?php
-	
 	/** > Inclure le script CKEDITOR **/
 		$vars['INCLUDE_CKEDITOR'] = "true";
-
-
+	
+	
 	/** > Chargement des jeux de donnée **/
+		// Liste de données :: Array
 		$vars['ARTICLES'] = load_articles();
 		$vars['ITEMS_FAMILIES'] = load_items_families();
 		$vars['ITEMS_QUALITIES'] = load_items_qualities();
@@ -12,14 +12,16 @@
 		$vars['ITEMS_ATTACHMENTS'] = load_items_attachments();
 		$vars['ITEMS'] = load_items();
 		$vars['SETS'] = load_sets($lang_key);
-
-
+		$vars['SKILLS'] = load_skills($lang_key);
+		$vars['PROCS'] = load_procs($lang_key);
+	
+	
 	/** > Initialisation des statut Active **/
 		$vars['ACTIVE_ITEMS'] = '';
 		$vars['ACTIVE_SKILLS'] = '';
 		$vars['ACTIVE_ARTICLES'] = '';
 		$vars['ACTIVE_GAME_DATA'] = '';
-
+		
 		$vars['ENABLED_SELECTED'] = '';
 		$vars['DISABLED_SELECTED'] = '';
 
@@ -35,14 +37,20 @@
 		$vars['ITEM_CUNNING'] = '';
 		$vars['ITEM_SPIRIT'] = '';
 		$vars['ITEM_LEVEL'] = '';
+		$vars['ITEM_SKILLED'] = '0';
+		$vars['SKILL_ATTACHED'] = 'false';
+		$vars['ITEM_SKILL_ID'] = "";
+		$vars['ITEM_SKILL_CHANCE'] = "";
+		$vars['ITEM_SKILL_EXTRA'] = "";
 		
-		// Si $_GET['edit'] 
+		//--- Vue par défaut : ITEMS
 		if(isset($_GET['edit'])){
 			$vars['ACTIVE_'.strtoupper($_GET['edit'])] = 'active';
 		} else {
 			$vars['ACTIVE_ITEMS'] = 'active';
 		}
-
+	
+	
 	/** > Récupération des données correspondant à la demande **/
 		// Donnée Item
 		if(strtolower($_GET['edit']) === 'items' && $_GET['id'] !== ''){
@@ -55,7 +63,7 @@
 						I.ENABLED,
 						CONCAT(I.TAG, I.EXTEND) AS TAG,
 						TN.NAME, TN.DESCRIPTION,
-						I.FAMILY, I.TYPE, I.QUALITY, I.ATTACHMENT, I.SET,
+						I.FAMILY, I.TYPE, I.QUALITY, I.ATTACHMENT, I.SET, I.SKILLED,
 						I.WIDTH, I.HEIGHT,
 						I.LEVEL, I.PHYSIQUE, I.CUNNING, I.SPIRIT
 						
@@ -92,10 +100,40 @@
 					$vars['ITEM_SPIRIT'] = $faData['SPIRIT'];
 					$vars['ITEM_LEVEL'] = $faData['LEVEL'];
 					
+					$vars['ITEM_SKILLED'] = ord($faData['SKILLED']);
+					
 					if(ord($faData['ENABLED'])){
 						$vars['ENABLED_SETTED'] = "selected";
 					} else {
 						$vars['DISABLED_SETTED'] = "selected";
+					}
+					
+					
+					/** > Chercher l'existence d'un SKILL, peut etre disable bien qu'existant **/
+					$pSkillQuery = $PDO->prepare("
+					SELECT
+						S.ID, S.TAG, S.PROC, S.CHANCE, S.EXTRA
+					
+					FROM SKILLS AS S
+					
+					WHERE
+						ITEM = :id
+					");
+					$pSkillQuery->bindValue(":id", $id);
+					$pSkillQuery->execute();
+					
+					$faSkillData = Array(
+						"TAG" => null,
+						"PROC" => null
+					);
+					
+					if($pSkillQuery->rowCount()){
+						$faSkillData = $pSkillQuery->fetch(PDO::FETCH_ASSOC);
+						
+						$vars['SKILL_ATTACHED'] = 'true';
+						$vars['ITEM_SKILL_ID'] = $faSkillData["ID"];
+						$vars['ITEM_SKILL_CHANCE'] = $faSkillData["CHANCE"];
+						$vars['ITEM_SKILL_EXTRA'] = intval($faSkillData["EXTRA"]) ?: "";
 					}
 				}
 				
@@ -143,6 +181,24 @@
 							$vars['SETS'][$key]['SELECTED'] = 'selected';
 						} else {
 							$vars['SETS'][$key]['SELECTED'] = '';
+						}
+					}
+					
+					// ITEM SKILL NAME
+					foreach($vars['SKILLS'] as $key => $value){
+						if($value["SKILL_TAG"] === $faSkillData["TAG"]){
+							$vars["SKILLS"][$key]["SELECTED"] = "selected";
+						} else {
+							$vars["SKILLS"][$key]["SELECTED"] = "";
+						}
+					}
+					
+					// ITEM SKILL PROC
+					foreach($vars['PROCS'] as $key => $value){
+						if($value["PROC_TAG"] === $faSkillData["PROC"]){
+							$vars["PROCS"][$key]["SELECTED"] = "selected";
+						} else {
+							$vars["PROCS"][$key]["SELECTED"] = "";
 						}
 					}
 			} catch(Exception $e){

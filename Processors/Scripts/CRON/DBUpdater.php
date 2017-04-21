@@ -427,7 +427,9 @@ foreach($langs as $index => $lang){
 					$value = preg_replace("#\{?\^[a-zA-Z]\}?#", "", $value);
 					//──┐ Supprimer les guillemets
 					$value = preg_replace('#"#', "", $value);
+					//──┐ Supprimer les guillemets
 					//\{%(\+)?\.?[0-9]?[a-z][0-9]\}
+					$value = preg_replace('#\{%(\+)?\.?[0-9]?[a-z][0-9]\}#', "$1%s", $value);
 					
 					
 					/** Est-ce une description ? **/

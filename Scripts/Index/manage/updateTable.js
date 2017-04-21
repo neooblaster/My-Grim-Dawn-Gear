@@ -9,9 +9,9 @@
 /** ---																																						--- **
 /** ---		AUTEUR			: Nicolas DUPRE																										--- **
 /** ---																																						--- **
-/** ---		RELEASE			: 17.04.2017																											--- **
+/** ---		RELEASE			: 20.04.2017																											--- **
 /** ---																																						--- **
-/** ---		FILE_VERSION	: 1.0 NDU																												--- **
+/** ---		FILE_VERSION	: 1.1 NDU																												--- **
 /** ---																																						--- **
 /** ---																																						--- **
 /** --- 														---------------------------															--- **
@@ -24,8 +24,18 @@
 /** ---																																						--- **
 /** ---																																						--- **
 /** --- 														-----------------------------															--- **
-/** --- 															 { C H A N G E L O G } 																--- **
+/** --- 															 { C H A N G E L O G }  															--- **
 /** --- 														-----------------------------															--- **
+/** ---																																						--- **
+/** ---		VERSION 1.1 : 20.04.2017 : NDU																										--- **
+/** ---		------------------------------																										--- **
+/** ---			- Augmentation de la portée de la fonction en spécifiant la table à mettre à jour								--- **
+/** ---				> updateItem devient updateTable fonctionnellement parlant															--- **
+/** ---				> updateItem est concervé en tant qu'alias																				--- **
+/** ---																																						--- **
+/** ---			- Ajout de la notion de type de donnée (faculative) par défaut à STR													--- **
+/** ---				> Les valeurs admise pour type sont les différente possibilité pour PDO::bindValue							--- **
+/** ---				> Obligé pour manipuler des champs de type BIT  																		--- **
 /** ---																																						--- **
 /** ---		VERSION 1.0 : 17.04.2017 : NDU																										--- **
 /** ---		------------------------------																										--- **
@@ -67,20 +77,33 @@
 	
 /** ----------------------------------------------------------------------------------------------------------------------- **
 /** ----------------------------------------------------------------------------------------------------------------------- **/
-function updateItem(id, property, property_value){
+function updateTable(table, id, property, value, type){
+	var types = ["BOOL", "NULL", "INT", "STR", "LOB", "STMT"];
+	
+	if(type === undefined) type = "STR";
+	if(types.lastIndexOf(type.toUpperCase()) < 0) type = "STR";
+	
 	var xQuery = new xhrQuery();
-		xQuery.target('/XHR/Admin/update_item.php');
+		xQuery.target('/XHR/Admin/update_table.php');
 		xQuery.values(
-			'ID='+id,
+			'table='+table.toUpperCase(),
 			'property='+property,
-			'property_value='+property_value
+			'value='+value,
+			'type='+type,
+			'ID='+id
 		);
 			
 		xQuery.callbacks(
 			function(e){
-				console.log(e);
+				//console.log(e);
 			}
 		);
 		
 		xQuery.send();
+}
+
+
+/** Concervation en tant qu'alias **/
+function updateItem(id, property, value){
+	updateTable('ITEMS', id, property, value);
 }

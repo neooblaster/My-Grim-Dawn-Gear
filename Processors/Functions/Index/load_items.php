@@ -88,6 +88,8 @@ function load_items($clause="", $bound_tokens=Array()){
 	$first;			// BOOLEAN			:: Flag indiquant le traitement de la premier ligne
 	
 	/** Initialisation des variables **/
+	$HEADERS = Array();
+	$ITEMS = Array();
 	
 	
 	/** Composition de la requête SQL **/

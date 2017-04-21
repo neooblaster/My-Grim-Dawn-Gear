@@ -72,7 +72,7 @@ function load_attributes($lang, $attachment=null, $id=null){
 	
 	$attributes = Array();
 	$tokens = Array(
-		":lang" => $lang
+		":lang" => $lang,
 	);
 	
 	

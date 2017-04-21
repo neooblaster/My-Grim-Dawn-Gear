@@ -3,34 +3,35 @@
 /** -------------------------------------------------------------------------------------------------------------------- ** 
 /** ---																																					--- **
 /** --- 											-----------------------------------------------											--- **
-/** ---																{ load_skill.php }															--- **
+/** ---															{ delete_skill.php }																--- **
 /** --- 											-----------------------------------------------											--- **
 /** ---																																					--- **
-/** ---		AUTEUR 	: Nicolas DUPRE																											--- **
+/** ---		TAB SIZE			: 3																													--- **
 /** ---																																					--- **
-/** ---		RELEASE	: 21.04.2017																												--- **
+/** ---		AUTEUR			: Nicolas DUPRE																									--- **
 /** ---																																					--- **
-/** ---		VERSION	: 1.2																															--- **
+/** ---		RELEASE			:21.04.2017																											--- **
+/** ---																																					--- **
+/** ---		FILE_VERSION	: 1.0 NDU																											--- **
+/** ---																																					--- **
+/** ---																																					--- **
+/** --- 														---------------------------														--- **
+/** ---																{ G I T H U B }																--- **
+/** --- 														---------------------------														--- **
+/** ---																																					--- **
+/** ---		Automatize url?ts=3 :																												--- **
+/** ---																																					--- **
+/** ---			https://chrome.google.com/webstore/detail/tab-size-on-github/ofjbgncegkdemndciafljngjbdpfmbkn/related	--- **
 /** ---																																					--- **
 /** ---																																					--- **
 /** --- 														-----------------------------														--- **
 /** --- 															{ C H A N G E L O G } 															--- **
-/** --- 														-----------------------------														--- **
+/** --- 														-----------------------------														--- **	
 /** ---																																					--- **
-/** ---		VERSION 1.2 : 21.04.2017 : NDU																									--- **
+/** ---																																					--- **
+/** ---		VERSION 1.0 : 21.04.2017 : NDU																									--- **
 /** ---		------------------------------																									--- **
-/** ---			- Mise à jour de la fonction pour prise en compte du texte PROC													--- **
-/** ---																																					--- **
-/** ---																																					--- **
-/** ---		VERSION 1.1 : 17.04.2017 : NDU																									--- **
-/** ---		------------------------------																									--- **
-/** ---			- Utilisation de la fonction load_attributes au lieu de disposer d'une copie du code						--- **
-/** ---																																					--- **
-/** ---																																					--- **
-/** ---		VERSION 1.0 : 28.03.2017																											--- **
-/** ---		------------------------																											--- **
 /** ---			- Première release																												--- **
-/** ---																																					--- **
 /** ---																																					--- **
 /** -------------------------------------------------------------------------------------------------------------------- **
 /** -------------------------------------------------------------------------------------------------------------------- **
@@ -49,13 +50,13 @@
 /** -------------------------------------------------------------------------------------------------------------------- **
 /** -------------------------------------------------------------------------------------------------------------------- **
 /** > Chargement des Paramètres **/
-	setup("/Setups", Array("application", "sessions", "pdo"), "setup.$1.php");
+	setup("/Setups", Array("application", "pdo", "sessions"), 'setup.$1.php');
 
 /** > Ouverture des SESSIONS Globales **/
 /** > Chargement des Classes **/
 /** > Chargement des Configs **/
 /** > Chargement des Fonctions **/
-	require_once __ROOT__."/Processors/Functions/Index/load_attributes.php";
+
 
 
 /** -------------------------------------------------------------------------------------------------------------------- **
@@ -65,6 +66,10 @@
 /** ---																																					--- **
 /** -------------------------------------------------------------------------------------------------------------------- **
 /** -------------------------------------------------------------------------------------------------------------------- **/
+if(!isset($_SESSION["MGDG-ADMIN"]) && !$_SESSION["MDGD-ADMIN"]) exit;
+
+
+
 /** -------------------------------------------------------------------------------------------------------------------- **
 /** -------------------------------------------------------------------------------------------------------------------- **
 /** ---																																					--- **
@@ -73,28 +78,15 @@
 /** -------------------------------------------------------------------------------------------------------------------- **
 /** -------------------------------------------------------------------------------------------------------------------- **/
 /** > Déclaration des variables **/
-	$pSkill;					// PDOStatement	:: Instance PDO contenant les données reçue (Skill)
-	$skill_query;			// STRING			:: Requete SQL à jouer pour obtenir les informations du sort
-	$pAttributes;			// PDOStatement	:: Instance PDO contenant les données reçue (Attributes)
-	$attributes_query;	// STRING			:: Requete SQL à jouer pour obtenir les attributes du sort
-	$ID;						// STRING			:: Identifiant de l'objet dont on souhaite récupérer les attributes
-	$SYSLang;				// SYSLang			:: Moteur de langue
-	$moteur;					// Template			:: Moteur de rendu
-	$lang;					// STRING			:: Lang de l'utilisateur
-	//--//$ATTRIBUTES;	// ARRAY				:: Liste des attributes obtenus
-	$first;					// BOOLEAN			:: Indique si c'est la premiere entrée enregistrée
-	$skillID;				// INTEGER			:: Identifiant du sort (nécessaire pour récupéré les attributs)
-	$attachment;			// STRING			:: A quel élément le skill est attaché (ITEM ou SET)
+	$query;	// STRING			:: Requête(s) SQL à jouer
+	$pQuery;	// PDOStatement	:: Requête Préparée depuis $query
+	$skill;	// STRING			:: Identifiant du sort à supprimer
+	$item;	// STRING			:: Identifiant de l'objet à modifier
 
 
 /** > Initialisation des variables **/
-	$first = true;
-
-	$ID = $_POST["id"];
-	$attachment = strtoupper($_POST["attachment"]);
-
-	$SYSLang = new SYSLang(__ROOT__."/Languages");
-	$lang = $SYSLang->get_lang();
+	$skill = $_POST["skill"];
+	$item = $_POST["item"];
 
 
 /** > Déclaration et Intialisation des variables pour le moteur (référence) **/
@@ -108,42 +100,30 @@
 /** ---																																					--- **
 /** -------------------------------------------------------------------------------------------------------------------- **
 /** -------------------------------------------------------------------------------------------------------------------- **/
-/** > Composition de la requête SQL (SKILL) **/
-	$skill_query = "
-	SELECT
-		S.ID,
-		CONCAT(SN.NAME, ' ', PN.NAME) AS NAME,
-		SN.DESCRIPTION,
-		S.CHANCE, S.EXTRA
-		
-	FROM SKILLS AS S
-	INNER JOIN SKILLS_NAMES AS SN
-	ON S.TAG = SN.TAG
-	INNER JOIN PROCS_NAMES AS PN
-	ON S.PROC = PN.TAG
-	
-	WHERE
-		SN.LANG = :lang
-		AND PN.LANG = :lang
-		AND S.$attachment = :ID 
-	";
+/** > Requête de suppression **/
+$query = "DELETE FROM SKILLS WHERE ID = :id";
+
+try {
+	$pQuery = $PDO->prepare($query);
+	$pQuery->execute(Array(
+		":id" => $skill
+	));
+} catch(Exception $e) {
+	echo $e->getMessage();
+}
 
 
-/** > Récupération des informations **/
-	$pSkill = $PDO->prepare($skill_query);
-	$pSkill->execute(Array(":ID" => $ID, ":lang" => $lang));
+/** > Mise à jour de l'item (Not skilled) **/
+$query = "UPDATE ITEMS SET SKILLED = 0 WHERE ID = :id";
 
-	//--- Si par de sort trouvé, renvoyée null
-	if(!$pSkill->rowCount()){
-		echo "null";
-		exit;
-	}
-	$faSkill = $pSkill->fetch(PDO::FETCH_ASSOC);
-	$faSkill["NAME"] = preg_replace("#%s(%)#", "%s&#37;", $faSkill["NAME"]);
-
-
-/** > Charger les attributes associés **/
-$ATTRIBUTES = load_attributes($lang, "SKILL", $faSkill["ID"]);
+try {
+	$pQuery = $PDO->prepare($query);
+	$pQuery->execute(Array(
+		":id" => $item
+	));
+} catch(Exception $e) {
+	echo $e->getMessage();
+}
 
 
 
@@ -154,9 +134,6 @@ $ATTRIBUTES = load_attributes($lang, "SKILL", $faSkill["ID"]);
 /** ---																																					--- **
 /** -------------------------------------------------------------------------------------------------------------------- **
 /** -------------------------------------------------------------------------------------------------------------------- **/
-
-
-
 /** -------------------------------------------------------------------------------------------------------------------- **
 /** -------------------------------------------------------------------------------------------------------------------- **
 /** ---																																					--- **
@@ -165,21 +142,7 @@ $ATTRIBUTES = load_attributes($lang, "SKILL", $faSkill["ID"]);
 /** -------------------------------------------------------------------------------------------------------------------- **
 /** -------------------------------------------------------------------------------------------------------------------- **/
 /** > Création du moteur **/
-	$moteur = new Template();
-
 /** > Configuration du moteur **/
-	$moteur->set_template_file("../../../Templates/Data/skill.tpl.json");
-	$moteur->set_output_name("skill.tpl.json.json");
-	$moteur->set_temporary_repository("../../../Temps");
-
 /** > Envoie des données **/
-	$moteur->set_vars(Array(
-		"ID" => $faSkill["ID"],
-		"NAME" => @sprintf($faSkill["NAME"], $faSkill["CHANCE"], $faSkill["EXTRA"]),
-		"DESCRIPTION" => $faSkill["DESCRIPTION"],
-		"ATTRIBUTES" => $ATTRIBUTES
-	));
-
 /** > Execution du moteur **/
-	echo Template::strip_blank($moteur->render()->get_render_content());
 ?>

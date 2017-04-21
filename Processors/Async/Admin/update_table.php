@@ -3,16 +3,16 @@
 /** -------------------------------------------------------------------------------------------------------------------- ** 
 /** ---																																					--- **
 /** --- 											-----------------------------------------------											--- **
-/** ---															{ update_item.php }																--- **
+/** ---															{ update_table.php }																--- **
 /** --- 											-----------------------------------------------											--- **
 /** ---																																					--- **
 /** ---		TAB SIZE			: 3																													--- **
 /** ---																																					--- **
 /** ---		AUTEUR			: Nicolas DUPRE																									--- **
 /** ---																																					--- **
-/** ---		RELEASE			: 17.04.2017																										--- **
+/** ---		RELEASE			: 20.04.2017																										--- **
 /** ---																																					--- **
-/** ---		FILE_VERSION	: 1.0 NDU																											--- **
+/** ---		FILE_VERSION	: 1.1 NDU																											--- **
 /** ---																																					--- **
 /** ---																																					--- **
 /** --- 														---------------------------														--- **
@@ -26,7 +26,16 @@
 /** ---																																					--- **
 /** --- 														-----------------------------														--- **
 /** --- 															{ C H A N G E L O G } 															--- **
-/** --- 														-----------------------------														--- **	
+/** --- 														-----------------------------														--- **
+/** ---																																					--- **
+/** ---																																					--- **
+/** ---		VERSION 1.1 : 20.04.2017 : NDU																									--- **
+/** ---		------------------------------																									--- **
+/** ---			- Transformation en update_table, plus générale																			--- **
+/** ---			- Ajout d'une nouvelle donnée : type																						--- **
+/** ---				> Type permet de faire des opérations de conversion sur la valeur spécifiée								--- **
+/** ---				> Type permet de specifier le format de donnée pour PDO::bindValue											--- **
+/** ---			- Ajout du contrôle d'authentification																						--- **
 /** ---																																					--- **
 /** ---																																					--- **
 /** ---		VERSION 1.0 : 17.04.2017 : NDU																									--- **
@@ -50,7 +59,7 @@
 /** -------------------------------------------------------------------------------------------------------------------- **
 /** -------------------------------------------------------------------------------------------------------------------- **
 /** > Chargement des Paramètres **/
-	setup('/Setups', Array('application', 'pdo', 'session'), 'setup.$1.php');
+	setup('/Setups', Array('application', 'pdo', 'sessions'), 'setup.$1.php');
 
 /** > Ouverture des SESSIONS Globales **/
 /** > Chargement des Classes **/
@@ -62,8 +71,11 @@
 /** ---																																					--- **
 /** ---												PHASE 2 - CONTROLE DES AUTORISATIONS													--- **
 /** ---																																					--- **
-/** -------------------------------------------------------------------------------------------------------------------- **
 /** -------------------------------------------------------------------------------------------------------------------- **/
+if(!isset($_SESSION["MGDG-ADMIN"]) && !$_SESSION["MGDG-ADMIN"]) exit;
+
+
+
 /** -------------------------------------------------------------------------------------------------------------------- **
 /** -------------------------------------------------------------------------------------------------------------------- **
 /** ---																																					--- **
@@ -72,21 +84,24 @@
 /** -------------------------------------------------------------------------------------------------------------------- **
 /** -------------------------------------------------------------------------------------------------------------------- **/
 /** > Déclaration des variables **/
-	$item_id;					// STRING			:: Identifiant de l'objet à mettre à jour
-	$item_property;			// STRING			:: Champs SQL à mettre à jour
-	$item_property_value;	// STRING			:: Valeur du chammps à mettre à jour
-	$query;						// STRING			:: Requête SQL à jouer
-	$pQuery;						// PDOStatement	:: Requête SQL Préparée
+	$table;			// STRING			:: Valeur du chammps à mettre à jour
+	$property;		// STRING			:: Champs SQL à mettre à jour
+	$value;			// STRING			:: Valeur du chammps à mettre à jour
+	$id;				// STRING			:: Identifiant de l'objet à mettre à jour
+	$query;			// STRING			:: Requête SQL à jouer
+	$pQuery;			// PDOStatement	:: Requête SQL Préparée
+	$type;			// STRING			:: Type de donnée voulu pour la valeur
 
 
 /** > Initialisation des variables **/
-	$item_id = $_POST['ID'];
-	$item_property = $_POST['property'];
-	$item_property_value = $_POST['property_value'];
+	$table = $_POST['table'];
+	$id = $_POST['ID'];
+	$property = $_POST['property'];
+	$value = $_POST['value'];
+	$type = $_POST['type'];
 
 
 /** > Déclaration et Intialisation des variables pour le moteur (référence) **/
-
 
 
 /** -------------------------------------------------------------------------------------------------------------------- **
@@ -98,19 +113,31 @@
 /** -------------------------------------------------------------------------------------------------------------------- **/
 /** > Elaboration de la requête SQL **/
 $query = "
-	UPDATE ITEMS
+	UPDATE `$table`
 	
-	SET `$item_property` = :value
+	SET `$property` = :value
 	
 	WHERE ID = :id
 ";
 
 /** > Execution de la requête SQL **/
-$pQuery = $PDO->prepare($query);
-$pQuery->execute(Array(
-	":value" => $item_property_value,
-	":id" => $item_id
-));
+try {
+	switch($type){
+		case "BOOL":
+			$value = ($value == '0') ? false : true;
+		break;
+		case "INT":
+			$value = intval($value);
+		break;
+	}
+	
+	$pQuery = $PDO->prepare($query);
+	$pQuery->bindValue(":id", $id);
+	$pQuery->bindValue(":value", $value, constant("PDO::PARAM_$type"));
+	$pQuery->execute();
+} catch (Exception $e){
+	echo $e->getMessage();
+}
 
 
 

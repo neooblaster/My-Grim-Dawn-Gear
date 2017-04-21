@@ -74,7 +74,7 @@
 /** ------------------------- **/
 /** --- Variables Commune --- **/
 /** ------------------------- **/
-@app_width: 796px;
+@app_width: 836px;
 
 
 
@@ -1310,6 +1310,9 @@ section {
 								height: 70px; // 2 + 8 + 15 = 25
 							}
 						}
+						select {
+							margin: 2px 0;
+						}
 						
 						& > div {
 							display: inline-block;
@@ -1378,7 +1381,7 @@ section {
 							&_attributes {
 								label {
 									display: inline-block;
-									width: 100px;
+									width: 80px;
 									text-align: right;
 									margin-right: 2px;
 									color: @text_hexa_color;
@@ -1512,6 +1515,10 @@ section {
 
 // init = 16 - désirée = 17 :: 17/16 = 1.0625
 @scroll_coef: 1.0625;
+
+
+@sliders_width: 75px;
+@sliders_height: 23px;
 
 
 .gd_scrollbar {
@@ -1787,6 +1794,53 @@ section {
 	}
 }
 
+.gd_slider {
+	
+	width: @sliders_width;
+	height: @sliders_height;
+	
+	background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.3) 33%, rgba(0, 0, 0, 0.5)34%, rgba(0, 0, 0, 0.1) 100%), linear-gradient(180deg, #161413, #9e6e3f);
+	
+	border: 1px solid @article_uppercase_hexa_color;
+	border-radius: 2px;
+	
+	box-shadow: inset 0 0 1px 2px rgba(0, 0, 0, 0.8);
+	
+	
+	slide {
+		width: 1.5 * @sliders_width;
+		height: @sliders_height;
+		
+		onside {
+			width: 0.7 * @sliders_width;
+			height: @sliders_height;
+			background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.3) 33%, rgba(0, 0, 0, 0.5)34%, rgba(0, 0, 0, 0.1) 100%), linear-gradient(180deg, #161413, #34a434);
+		}
+		
+		offside {
+			width: 0.7 * @sliders_width;
+			height: @sliders_height;
+			background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.3) 33%, rgba(0, 0, 0, 0.5)34%, rgba(0, 0, 0, 0.1) 100%), linear-gradient(180deg, #161413, #a43434);
+		}
+		
+		btnSlide {
+			width: 0.46 * @sliders_width + 1.5px;
+			background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.3) 33%, rgba(0, 0, 0, 0.5)34%, rgba(0, 0, 0, 0.1) 100%), linear-gradient(180deg, #161413, #9e6e3f);
+			border: 1px solid black;
+			height: @sliders_height - 2px; 
+			@btnSlideLeft: ((0.46 * @sliders_width) / 2) + 2px;
+			left: calc(~"50% - @{btnSlideLeft}");
+		}
+		
+		&[state="off"] {
+			left: (-0.46 * @sliders_width) - 3px;
+		}
+	}
+	
+	
+}
+
+
 .gd_text_input {
 	background: none;
 	border: 1px solid @article_uppercase_hexa_color;
@@ -1816,7 +1870,7 @@ section {
 		&_field {width: 60px;}
 	}
 	
-	&.level, &.physique, &.cunning, &.spirit {
+	&.level, &.physique, &.cunning, &.spirit, &.chance, &.extra {
 		&_field {width: 75px;}
 	}
 }
@@ -2290,6 +2344,12 @@ section {
 		position: relative;
 		top: -1px;
 	}
+}
+
+.hmSlider {
+	&:extend(.gd_slider all);
+	
+	top: 8px;
 }
 
 

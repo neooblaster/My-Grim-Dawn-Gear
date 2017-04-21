@@ -1,0 +1,140 @@
+//#!/compile = true
+/** -------------------------------------------------------------------------------------------------------------------- ** 
+/** -------------------------------------------------------------------------------------------------------------------- ** 
+/** ---																																					--- **
+/** --- 											-----------------------------------------------											--- **
+/** ---													{ module.sliders.global_screen.less }												--- **
+/** --- 											-----------------------------------------------											--- **
+/** ---																																					--- **
+/** ---		TAB SIZE			: 3																													--- **
+/** ---																																					--- **
+/** ---		AUTEUR			: Nicolas DUPRE																									--- **
+/** ---																																					--- **
+/** ---		RELEASE			: 27.03.2017																										--- **
+/** ---																																					--- **
+/** ---		FILE_VERSION	: 1.0 NDU																											--- **
+/** ---																																					--- **
+/** ---																																					--- **
+/** --- 														-----------------------------														--- **
+/** --- 															{ C H A N G E L O G } 															--- **
+/** --- 														-----------------------------														--- **	
+/** ---																																					--- **
+/** ---																																					--- **
+/** ---		VERSION 1.1 : 01.03.2016 : NDU																									--- **
+/** ---		------------------------------																									--- **
+/** ---			- Révision organisationnelle complete entre variables, mixins, classes											--- **
+/** ---				>  Introduction d'inclusion de référence facon dépendence														--- **
+/** ---																																					--- **
+/** ---		VERSION 1.0 : 26.01.2016 : NDU																									--- **
+/** ---		------------------------------																									--- **
+/** ---			- Première release																												--- **
+/** ---																																					--- **
+/** ---																																					--- **
+/** ---																																					--- **
+/** ---																																					--- **
+/** -------------------------------------------------------------------------------------------------------------------- **
+/** -------------------------------------------------------------------------------------------------------------------- **
+
+	Les @import doivent etre en relatif, sinon la compilation lessc via node js ne fonctionnera pas
+
+/** -------------------------------------------------------------------------------------------------------------------- **
+/** -------------------------------------------------------------------------------------------------------------------- **
+/** ---																																					--- **
+/** ---														Chargement des dépendances															--- **
+/** ---																																					--- **
+/** -------------------------------------------------------------------------------------------------------------------- **
+/** -------------------------------------------------------------------------------------------------------------------- **/
+//@import (once, reference) "../_References/Variables/variables.colors.less";
+
+
+/** -------------------------------------------------------------------------------------------------------------------- **
+/** -------------------------------------------------------------------------------------------------------------------- **
+/** ---																																					--- **
+/** ---															Déclaration des variables														--- **
+/** ---																																					--- **
+/** -------------------------------------------------------------------------------------------------------------------- **
+/** -------------------------------------------------------------------------------------------------------------------- **/
+@images_path: "/Images";
+
+@main_border_width: 1px;
+@main_border_style: solid;
+@main_border_color: #62666a;
+
+@slide_border_width: 1px;
+@slide_border_style: solid;
+@slide_border_color: #454545;
+
+
+/** -------------------------------------------------------------------------------------------------------------------- **
+/** -------------------------------------------------------------------------------------------------------------------- **
+/** ---																																					--- **
+/** ---										Configuration graphique des bouton type sliders 											--- **
+/** ---																																					--- **
+/** -------------------------------------------------------------------------------------------------------------------- **
+/** -------------------------------------------------------------------------------------------------------------------- **/
+.hmSlider {
+	position: relative;
+	display: inline-block;
+	width: 50px;
+	height: 16px;
+	border: @main_border_width @main_border_style @main_border_color;
+	border-radius: 4px;
+	cursor: pointer;
+	overflow: hidden;
+	box-shadow: 1px 1px 2px rgba(0,0,0,0.6) inset, -1px -1px 1px rgba(255,255,255,0.6) inset;
+	
+	slide {
+		position: absolute;
+		display: block;
+		width: 75px;
+		height: 16px;
+		-webkit-transition: left 0.25s;
+		transition: left 0.25s;
+		
+		&[state="on"] {
+			left: 0;
+		}
+		
+		&[state="off"] {
+			left: -25px;
+		}
+		
+		onside,
+		offside,
+		btnSlide
+		{
+			position: absolute;
+			height: 16px;
+		}
+		
+		onside {
+			width: 35px;
+			left: 0;
+			background: rgb(235,241,246);
+			background: -webkit-linear-gradient(rgba(238, 246, 234,1) 0%, rgba(194, 238, 170,1) 50%, rgba(170, 235, 136,1) 51%, rgba(224, 251, 211,1) 100%);
+			background: -o-linear-gradient(rgba(238, 246, 234,1) 0%, rgba(194, 238, 170,1) 50%, rgba(170, 235, 136,1) 51%, rgba(224, 251, 211,1) 100%);
+			background: linear-gradient(rgba(238, 246, 234,1) 0%, rgba(194, 238, 170,1) 50%, rgba(170, 235, 136,1) 51%, rgba(224, 251, 211,1) 100%);
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ebf1f6', endColorstr='#d5ebfb',GradientType=0 );
+		}
+		
+		offside {
+			width: 35px;
+			right: 0;
+			background: rgb(235,241,246);
+			background: -webkit-linear-gradient(rgba(246, 231, 231,1) 0%, rgba(238, 171, 169,1) 50%, rgba(236, 141, 137,1) 51%, rgba(251, 212, 210,1) 100%);
+			background: -o-linear-gradient(rgba(246, 231, 231,1) 0%, rgba(238, 171, 169,1) 50%, rgba(236, 141, 137,1) 51%, rgba(251, 212, 210,1) 100%);
+			background: linear-gradient(rgba(246, 231, 231,1) 0%, rgba(238, 171, 169,1) 50%, rgba(236, 141, 137,1) 51%, rgba(251, 212, 210,1) 100%);
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ebf1f6', endColorstr='#d5ebfb',GradientType=0 );
+		}
+		
+		btnSlide {
+			width: 23px;
+			height: 14px;
+			background-image: url('@{images_path}/slider.png');
+			background-position: -1px -1px;
+			left: calc(~"50% - 12.5px");
+			border: @slide_border_width @slide_border_style @slide_border_color;
+			border-radius: 3px;
+		}
+	}
+}

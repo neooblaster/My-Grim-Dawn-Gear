@@ -131,7 +131,7 @@
 							<input class="id_field" type="text" placeholder="Y" value="%ITEM_HEIGHT%" onkeyup="updateItem(%ITEM_ID%, 'HEIGHT', this.value);"/>
 								
 							<h4>Item Visibility</h4>
-							<select onchange="updateItem(%ITEM_ID%, 'ENABLED', this.value);">
+							<select onchange="updateTable('ITEMS', %ITEM_ID%, 'ENABLED', this.value, 'INT');">
 								<option value="1" %ENABLED_SETTED%>Enabled</option>
 								<option value="0" %DISABLED_SETTED%>Disabled</option>
 							</select>
@@ -191,7 +191,7 @@
 						
 						<!-- Section de configuration des requirements -->
 						<h3>
-							Item Requirments
+							Item Requirements
 						</h3>
 						
 						<!-- Requirement :: Physique -->
@@ -252,6 +252,67 @@
 						<h4>
 							Skills
 						</h4>
+						
+						<!-- IF (%SKILL_ATTACHED%) AS SKILL_ATTACHED -->
+						<div>
+							<label>Enabled :</label>
+							<input type="slider" name="skilled" value="%ITEM_SKILLED%" hidden onchange="updateTable('ITEMS', %ITEM_ID%, 'SKILLED', this.value, 'INT');"/>
+							<input type="button" value="Delete" onclick="deleteSkill(%ITEM_SKILL_ID%, %ITEM_ID%);"/>
+						</div>
+						<div>
+							<label>Skill :</label>
+							<select onchange="updateTable('SKILLS', %ITEM_SKILL_ID%, 'TAG', this.value);">
+								<!-- BEGIN_BLOCK WITH SKILLS -->
+								<option value="%SKILL_TAG%" %SELECTED%>%SKILL_NAME%</option>
+								<!-- END_BLOCK -->
+							</select>
+						</div>
+						<div>
+							<label>Proc :</label>
+							<select onchange="updateTable('SKILLS', %ITEM_SKILL_ID%, 'PROC', this.value);">
+								<!-- BEGIN_BLOCK WITH PROCS -->
+								<option value="%PROC_TAG%" %SELECTED%>%PROC_NAME%</option>
+								<!-- END_BLOCK -->
+							</select>
+						</div>
+						<div>
+							<label>Values :</label>
+							<input class="chance_field" type="text" placeholder="Chance" value="%ITEM_SKILL_CHANCE%" onchange="updateTable('SKILLS', %ITEM_SKILL_ID%, 'CHANCE', this.value);"/>
+							<input class="extra_field" type="text" placeholder="Extra" value="%ITEM_SKILL_EXTRA%" onchange="updateTable('SKILLS', %ITEM_SKILL_ID%, 'EXTRA', this.value);"/>
+						</div>
+						<!-- ELSE -->
+						<form method="post" action="#" onsubmit="createSkill(); return false;" id="create_skill_form">
+							<input type="hidden" value="%ITEM_ID%" name="ITEM"/>
+							<input type="hidden" value="ITEM" name="ATTACHMENT"/>
+							<div>
+								<label>Skill :</label>
+								<select name="TAG" required>
+									<option value="">Select Skill</option>
+									<!-- BEGIN_BLOCK WITH SKILLS -->
+									<option value="%SKILL_TAG%" %SELECTED%>%SKILL_NAME%</option>
+									<!-- END_BLOCK -->
+								</select>
+							</div>
+							<div>
+								<label>Proc :</label>
+								<select name="PROC" required>
+									<option value="">Select Proc</option>
+									<!-- BEGIN_BLOCK WITH PROCS -->
+									<option value="%PROC_TAG%" %SELECTED%>%PROC_NAME%</option>
+									<!-- END_BLOCK -->
+								</select>
+							</div>
+							<div>
+								<label>Values :</label>
+								<input class="chance_field" type="text" name="CHANCE" placeholder="Chance" required/>
+								<input class="extra_field" type="text" name="EXTRA" placeholder="Extra" />
+								<input type="submit" value="Create" onclick=""/>
+							</div>
+						</form>
+						<!-- ENDIF SKILL_ATTACHED -->
+						
+						
+						
 						
 						<h4>
 							Sets

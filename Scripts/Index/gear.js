@@ -470,7 +470,7 @@ function gear(token){
 				
 				/** Méthode de rappel **/
 				xQuery.callbacks(function(self, d){
-					console.log(d);
+					//console.log(d);
 					
 					try {
 						// Récupération de l'hote
