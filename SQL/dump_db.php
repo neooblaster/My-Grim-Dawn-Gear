@@ -90,7 +90,7 @@ $minutes;	// STRING		:: Les minutes de l'execution
 $lifetime;	// INTEGER		:: Durée de vie des Dump SQL
 
 /** > Initialisation des variables **/
-$lifetime = 15;
+$lifetime = 8;
 
 /** > Déclaration et Intialisation des variables pour le moteur (référence) **/
 /** -------------------------------------------------------------------------------------------------------------------- **
