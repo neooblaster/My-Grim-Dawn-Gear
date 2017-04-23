@@ -11,9 +11,9 @@
 /** ---																																					--- **
 /** ---		AUTEUR			: Nicolas DUPRE																									--- **
 /** ---																																					--- **
-/** ---		RELEASE			: 17.04.2017																										--- **
+/** ---		RELEASE			: 22.04.2017																										--- **
 /** ---																																					--- **
-/** ---		FILE_VERSION	: 1.6 NDU																											--- **
+/** ---		FILE_VERSION	: 1.7 NDU																											--- **
 /** ---																																					--- **
 /** ---																																					--- **
 /** --- 														---------------------------														--- **
@@ -29,6 +29,12 @@
 /** --- 															{ C H A N G E L O G } 															--- **
 /** --- 														-----------------------------														--- **
 /** ---																																					--- **
+/** ---																																					--- **
+/** ---		VERSION 1.7 : 22.04.2017 : NDU																									--- **
+/** ---		------------------------------																									--- **
+/** ---			-  Prise en charge de la table de donnée SETS																			--- **
+/** ---			-  Prise en charge de la table des noms PROCS_NAMES																	--- **
+/** ---				>  En l'absence des ces chargements, génère des doublons à chaque lancement du script					--- **
 /** ---																																					--- **
 /** ---		VERSION 1.6 : 17.04.2017 : NDU																									--- **
 /** ---		------------------------------																									--- **
@@ -335,6 +341,7 @@ while($faIdentifiers = $pIdentifiers->fetch(PDO::FETCH_ASSOC)){
 /** ------------------------------------------------------------------------------------ **///[FLAG::HERE]
 /** > 4.4.1. Objet ITEMS **/
 load_tags($datas, "ITEMS");
+load_tags($datas, "SETS");
 
 
 
@@ -355,6 +362,9 @@ load_names($names, "ATTRIBUTES_NAMES");
 
 /** > 4.5.3. Autres textes disponible (OTHER_NAMES) **/
 load_names($names, "OTHER_NAMES");
+
+/** > 4.5.3. Autres textes disponible (OTHER_NAMES) **/
+load_names($names, "PROCS_NAMES");
 
 
 
@@ -536,7 +546,7 @@ foreach($langs as $index => $lang){
 									);
 									
 									// Envoyer un message 
-									echo sprintf("TAG '$cmt% 40s$cme' ADDED INTO '$cmtb"."ITEMS$cme'.".LF, $tag);
+									echo sprintf("TAG '$cmt% 40s$cme' ADDED INTO '{$cmtb}ITEMS$cme'.".LF, $tag);
 									usleep($usleep);
 									
 									// Execution de la requête 
@@ -560,7 +570,7 @@ foreach($langs as $index => $lang){
 									);
 									
 									// Envoyer un message 
-									echo sprintf("TAG '$cmt% 40s$cme' ADDED INTO '$cmtb"."$table$cme'.".LF, $tag);
+									echo sprintf("TAG '$cmt% 40s$cme' ADDED INTO '{$cmtb}$table$cme'.".LF, $tag);
 									usleep($usleep);
 									
 									// Execution de la requête 
@@ -571,7 +581,7 @@ foreach($langs as $index => $lang){
 						} else {
 							// N'emettre l'information uniquement pour la premiere langue traité (normalement en-EN la référence)
 							if($first_lang){
-								echo sprintf("TAG '$cmt% 40s$cme' ALREADY EXISTS INTO '$cmtb"."ITEMS$cme'.".LF, $tag);
+								echo sprintf("TAG '$cmt% 40s$cme' ALREADY EXISTS INTO '{$cmtb}ITEMS$cme'.".LF, $tag);
 								usleep(0.20 * $usleep);
 							}
 						}
@@ -586,8 +596,9 @@ foreach($langs as $index => $lang){
 	
 	
 	/** Recharger les tags **///[FLAG::HERE]
-	echo sprintf("RELOADING TAGS FOR TABLE 'ITEMS'".LF, $tag);
+	echo sprintf("RELOADING TAGS FOR TABLES :: '{$cmtb}ITEMS$cme', '{$cmtb}SETS$cme'".LF, $tag);
 	load_tags($datas, "ITEMS");
+	load_tags($datas, "SETS");
 	
 	$first_lang = false;
 }
@@ -659,13 +670,13 @@ foreach($operations as $sql_op => $array){
 				switch($sql_op){
 					case "INSERT":
 						$query = "INSERT INTO $table (".implode(", ", $fields_to_process).") VALUES (".implode(", ", $tokens_to_process).")";
-						$message = "INSERT QUERY DONE $cms"."SUCESSFULLY$cme FOR LANG '$cml$lang$cme' FOR TAG '$cmt$tag$cme' IN TABLE $cmtb'$table'$cme";
+						$message = "INSERT QUERY DONE {$cms}SUCESSFULLY$cme FOR LANG '$cml$lang$cme' FOR TAG '$cmt$tag$cme' IN TABLE '$cmtb$table$cme'";
 					break;
 					case "UPDATE":
 						// Retirer :LANG des tokens 
 						array_shift($values_to_process);
 						$query = "UPDATE $table SET ".implode(", ", $uvalues_to_process)." WHERE ID = ".$fields["ID"];
-						$message = "UPDATE QUERY DONE $cms"."SUCESSFULLY$cme FOR LANG '$cml$lang$cme' FOR TAG '$cmt$tag$cme' IN TABLE $cmtb'$table'$cme";
+						$message = "UPDATE QUERY DONE {$cms}SUCESSFULLY$cme FOR LANG '$cml$lang$cme' FOR TAG '$cmt$tag$cme' IN TABLE '$cmtb$table$cme'";
 					break;
 				}
 				
@@ -678,7 +689,7 @@ foreach($operations as $sql_op => $array){
 					echo $message.LF;
 					usleep($usleep);
 				} catch (Exception $e){
-					echo "SQL QUERY $cmerr"."FAILED$cme WITH ERROR ".$e->getMessage().LF;
+					echo "SQL QUERY {$cmerr}FAILED$cme WITH ERROR ".$e->getMessage().LF;
 					echo "QUERY IS :: $query".LF;
 					echo "TOKEN ARE :: ".print_r($values_to_process).LF;
 					usleep($usleep);
