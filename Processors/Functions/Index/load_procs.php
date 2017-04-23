@@ -10,9 +10,9 @@
 /** ---																																					--- **
 /** ---		AUTEUR			: Nicolas DUPRE																									--- **
 /** ---																																					--- **
-/** ---		RELEASE			: 20.04.2017																										--- **
+/** ---		RELEASE			: 24.04.2017																										--- **
 /** ---																																					--- **
-/** ---		FILE_VERSION	: 1.0 NDU																											--- **
+/** ---		FILE_VERSION	: 1.1 NDU																											--- **
 /** ---																																					--- **
 /** ---																																					--- **
 /** --- 														---------------------------														--- **
@@ -28,6 +28,10 @@
 /** ---															{ C H A N G E L O G }															--- **
 /** --- 														---------------------------														--- **
 /** ---																																					--- **
+/** ---																																					--- **
+/** ---		VERSION 1.1 : 24.04.2017 : NDU																									--- **
+/** ---		------------------------------																									--- **
+/** ---			- Ajout d'un triage ordonnée par nom pour simplifier la gestion sur le portail d'administration 		--- **
 /** ---																																					--- **
 /** ---		VERSION 1.0 : 20.04.2017 : NDU																									--- **
 /** ---		------------------------------																									--- **
@@ -79,6 +83,8 @@ function load_procs($lang){
 	
 	WHERE
 		PN.LANG = :lang
+		
+	ORDER BY NAME ASC
 	";
 	
 	//--- Récupération des donnée
