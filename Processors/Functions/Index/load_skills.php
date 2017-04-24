@@ -12,7 +12,7 @@
 /** ---																																					--- **
 /** ---		RELEASE			: 24.04.2017																										--- **
 /** ---																																					--- **
-/** ---		FILE_VERSION	: 1.1 NDU																											--- **
+/** ---		FILE_VERSION	: 1.2 NDU																											--- **
 /** ---																																					--- **
 /** ---																																					--- **
 /** --- 														---------------------------														--- **
@@ -28,6 +28,10 @@
 /** ---															{ C H A N G E L O G }															--- **
 /** --- 														---------------------------														--- **
 /** ---																																					--- **
+/** ---																																					--- **
+/** ---		VERSION 1.2 : 24.04.2017 : NDU																									--- **
+/** ---		------------------------------																									--- **
+/** ---			- Ajout d'une petite portion de la description pour différencier deux sorts du même nom					--- **
 /** ---																																					--- **
 /** ---		VERSION 1.1 : 24.04.2017 : NDU																									--- **
 /** ---		------------------------------																									--- **
@@ -77,7 +81,8 @@ function load_skills($lang){
 	SELECT
 		SN.ID,
 		SN.TAG,
-		SN.NAME
+		SN.NAME,
+		SN.DESCRIPTION
 		
 	FROM SKILLS_NAMES AS SN
 	
@@ -95,6 +100,9 @@ function load_skills($lang){
 	
 	//--- Traitement des données
 	while($faQuery = $pQuery->fetch(PDO::FETCH_ASSOC)){
+		// Si description, alors affichier une portion
+		if($faQuery["DESCRIPTION"]) $faQuery["NAME"] .= " | ".substr($faQuery['DESCRIPTION'], 0, 6)."..";
+		
 		$skills[] = Array(
 			"SKILL_ID" => $faQuery["ID"],
 			"SKILL_TAG" => $faQuery["TAG"],
