@@ -119,6 +119,7 @@
 	$vars = Array(
 		// @Donnée simple
 		"VERSION" => VERSION,
+		"GOOGLE_ANALYTICS_APP_ID" => GOOGLE_ANALYTICS_APP_ID,
 		"MGDG-ADMIN" => ((isset($_SESSION['MGDG-ADMIN']) && $_SESSION['MGDG-ADMIN']) ? 'true' : 'false'),
 		"VIEW" => &$view,
 		"HEAD_VIEW_TITLE" => &$head_view_title,
@@ -146,6 +147,7 @@
 
 /** > Récupération de la langue définie **/
 	$lang_key = $lang->get_lang();
+
 
 
 /** -------------------------------------------------------------------------------------------------------------------- **
