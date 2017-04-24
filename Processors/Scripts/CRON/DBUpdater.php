@@ -11,9 +11,9 @@
 /** ---																																					--- **
 /** ---		AUTEUR			: Nicolas DUPRE																									--- **
 /** ---																																					--- **
-/** ---		RELEASE			: 22.04.2017																										--- **
+/** ---		RELEASE			: 24.04.2017																										--- **
 /** ---																																					--- **
-/** ---		FILE_VERSION	: 1.7 NDU																											--- **
+/** ---		FILE_VERSION	: 1.8 NDU																											--- **
 /** ---																																					--- **
 /** ---																																					--- **
 /** --- 														---------------------------														--- **
@@ -29,6 +29,10 @@
 /** --- 															{ C H A N G E L O G } 															--- **
 /** --- 														-----------------------------														--- **
 /** ---																																					--- **
+/** ---																																					--- **
+/** ---		VERSION 1.8 : 24.04.2017 : NDU																									--- **
+/** ---		------------------------------																									--- **
+/** ---			-  Correction du modèle de ré-écriture des valeur du genre {+%.0f0}												--- **
 /** ---																																					--- **
 /** ---		VERSION 1.7 : 22.04.2017 : NDU																									--- **
 /** ---		------------------------------																									--- **
@@ -439,7 +443,7 @@ foreach($langs as $index => $lang){
 					$value = preg_replace('#"#', "", $value);
 					//──┐ Supprimer les guillemets
 					//\{%(\+)?\.?[0-9]?[a-z][0-9]\}
-					$value = preg_replace('#\{%(\+)?\.?[0-9]?[a-z][0-9]\}#', "$1%s", $value);
+					$value = preg_replace('#\{(\+|-)?%(\+|-)?\.?[0-9]?[a-z][0-9]\}#', "$1$2%s", $value);
 					
 					
 					/** Est-ce une description ? **/
@@ -691,7 +695,8 @@ foreach($operations as $sql_op => $array){
 				} catch (Exception $e){
 					echo "SQL QUERY {$cmerr}FAILED$cme WITH ERROR ".$e->getMessage().LF;
 					echo "QUERY IS :: $query".LF;
-					echo "TOKEN ARE :: ".print_r($values_to_process).LF;
+					echo "TOKEN ARE :: ";
+					print_r($values_to_process).LF.LF;
 					usleep($usleep);
 				}
 			}
