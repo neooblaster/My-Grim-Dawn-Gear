@@ -79,6 +79,8 @@ function load_attributes_names($lang){
 	
 	WHERE
 		AN.LANG = :lang
+		
+	ORDER BY NAME ASC, TAG ASC
 	";
 	
 	
@@ -91,6 +93,19 @@ function load_attributes_names($lang){
 	
 	/** > Traitement des données **/
 	while($faQuery = $pQuery->fetch(PDO::FETCH_ASSOC)){
+		//--- Création d'indicateur concernant l'attribut
+		$flags = null;
+		//──┐ Ajouter P si c'est pour un Pet
+		if(preg_match("#Pet#", $faQuery["TAG"])) $flags .= "P";
+		//──┐ Ajouter M si c'est pour un Modifier
+		if(preg_match("#Modifier#", $faQuery["TAG"])) $flags .= "M";
+		//──┐ Ajouter R si c'est une range
+		if(preg_match("#R$#", $faQuery["TAG"])) $flags .= "R";
+		
+		//--- Ajouter les flag si existant
+		if($flags) $faQuery["NAME"] .= " [$flags]";
+		
+		
 		$attributes_names[] = Array(
 			"ATTRIBUTE_ID" => $faQuery["ID"],
 			"ATTRIBUTE_TAG" => $faQuery["TAG"],
