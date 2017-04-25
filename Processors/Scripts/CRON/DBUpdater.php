@@ -331,7 +331,7 @@ foreach($urls as $lang => $url){
 /** ------------------------------------------------------------------------------------ **/
 /** --- Phase 4.3 :: Récupération des identifiers                                    --- **/
 /** ------------------------------------------------------------------------------------ **/
-$pIdentifiers = $PDO->prepare("SELECT * FROM IDENTIFIERS ORDER BY TAG ASC");
+$pIdentifiers = $PDO->prepare("SELECT * FROM IDENTIFIERS ORDER BY PRIORITY DESC, TAG ASC");
 $pIdentifiers->execute(Array());
 
 while($faIdentifiers = $pIdentifiers->fetch(PDO::FETCH_ASSOC)){
