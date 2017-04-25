@@ -267,14 +267,14 @@
 	/** > Selon le type de dépende (ROOT = aucune = realse) sinon c'est un UPDATE **/
 	$package_type = ($last_snap_version === 'ROOT') ? 'RE' : 'UD';
 	
-	foreach($packages as $key => $value){
-		if(preg_match('#^Package#', $value) AND (preg_match("#$version_md5#", $value) AND preg_match("#$package_type#", $value))){
-			echo "Création du package inutile\n";
-			echo "MD5 des fichiers de l'application : $version_md5\n";
-			echo "Package correspondant : $value\n";
-			exit();
-		}
-	}
+	//foreach($packages as $key => $value){
+	//	if(preg_match('#^Package#', $value) AND (preg_match("#$version_md5#", $value) AND preg_match("#$package_type#", $value))){
+	//		echo "Création du package inutile\n";
+	//		echo "MD5 des fichiers de l'application : $version_md5\n";
+	//		echo "Package correspondant : $value\n";
+	//		exit();
+	//	}
+	//}
 
 
 /** -------------------------------------------------------------------------------- **/
