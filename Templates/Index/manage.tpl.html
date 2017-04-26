@@ -224,21 +224,73 @@
 							Item Attributes
 						</h3>
 						
-						<h4>
-							Basics
-						</h4>
+						<!-- Attributs :: Création d'attribut -->
+						<h4>Create</h4>
+						<div>
+							<form onsubmit="createItemAttribute(); return false;" action="#" method="post" id="create_attribute_form">
+								<input type="hidden" name="target" value="ITEM"/>
+								<input type="hidden" name="id" value="%ITEM_ID%"/>
+								<!-- Family -->
+								<div>
+									<input id="BASIC" type="radio" name="spec" value="BASIC"/><label for="BASIC">Basic</label>
+									<input id="DEFAULT" type="radio" name="spec" value="" checked="true" /><label for="DEFAULT">Default</label>
+									<input id="PET" type="radio" name="spec" value="PET"/><label for="PET">Petties</label>
+								</div>
+								
+								<!-- MASTER TAG -->
+								<div>
+									<select name="master_tag" required>
+										<!-- BEGIN_BLOCK WITH ATTRIBUTES_NAMES -->
+										<option value="%ATTRIBUTE_TAG%">%ATTRIBUTE_NAME%</option>
+										<!-- END_BLOCK ATTRIBUTES_NAMES -->
+									</select>
+									<br />
+									<input class="probability_field" type="text" name="probability" placeholder="1.00" value=""/>
+									<input class="attr_value_field" type="text" name="master_value_1" placeholder="0" value=""/>
+									<input class="attr_value_field" type="text" name="master_value_2" placeholder="0" value=""/>
+								</div>
+								
+								<!-- SLAVE TAG -->
+								<div>
+									<select name="slave_tag">
+										<!-- BEGIN_BLOCK WITH ATTRIBUTES_NAMES -->
+										<option value="%ATTRIBUTE_TAG%">%ATTRIBUTE_NAME%</option>
+										<!-- END_BLOCK ATTRIBUTES_NAMES -->
+									</select>
+									<br />
+									<input class="attr_value_field" type="text" name="slave_value_1" placeholder="0" value=""/>
+									<input class="attr_value_field" type="text" name="slave_value_2" placeholder="0" value=""/>
+								</div>
+								
+								<!-- Attachement -->
+								<div>
+									<select name="attachment">
+										<option value="0"></option>
+									</select>
+								</div>
+								<input type="submit" value="CREATE" />
+							</form>
+						</div>
 						
-						<h4>
-							Primaries
-						</h4>
+						<!-- Attributs :: Basique -->
+						<h4>Basics</h4>
 						
-						<h4>
-							Secondaries
-						</h4>
+						<div>
+							<!-- BEGIN_BLOCK WITH ITEM_ATTRIBUTES -->
+							<div>
+								<a href="javascript:deleteAttribute(%ID%);">[D]</a>
+								<a href="javascript:">[E]</a>
+								<span>%ATTRIBUT%</span>
+							</div>
+							<!-- END_BLOCK -->
+						</div>
 						
-						<h4>
-							Petties
-						</h4>
+						
+						<!-- Attributs :: Normaux -->
+						<h4>Defaults</h4>
+						
+						<!-- Attributs :: Petties -->
+						<h4>Petties</h4>
 						
 						<!-- Forcer l'espacement-->
 						<br />

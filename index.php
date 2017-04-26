@@ -59,6 +59,8 @@
 	require_once 'Processors/Functions/Index/load_sets.php';
 	require_once 'Processors/Functions/Index/load_skills.php';
 	require_once 'Processors/Functions/Index/load_procs.php';
+	require_once 'Processors/Functions/Index/load_attributes.php';
+	require_once 'Processors/Functions/Index/load_attributes_names.php';
 
 	require_once 'Processors/Functions/Index/timestamp_to_date.php';
 

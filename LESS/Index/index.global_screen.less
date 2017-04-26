@@ -1388,6 +1388,20 @@ section {
 									font-style: italic;
 								}
 								
+								input[type=radio] + label {
+									position: relative;
+									top: -2px;
+									width: auto;
+									cursor: pointer;
+									margin: 0 4px;
+									font-style: normal;
+									text-align: center;
+									
+									&:hover {
+										color: @golden_hexa_color;
+									}
+								}
+								
 								.duplicates {
 									text-align: center;
 									margin-bottom: 15px;
@@ -1866,7 +1880,11 @@ section {
 		border-color: @blood_hexa_color;
 	}
 	
-	&.id {
+	&.attr_value {
+		&_field {width: 50px;}
+	}
+	
+	&.id, &.probability {
 		&_field {width: 60px;}
 	}
 	

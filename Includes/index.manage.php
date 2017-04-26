@@ -5,16 +5,17 @@
 	
 	/** > Chargement des jeux de donnée **/
 		// Liste de données :: Array
+		//$vars['ITEMS'] = load_items();
 		$vars['ARTICLES'] = load_articles();
 		$vars['ITEMS_FAMILIES'] = load_items_families();
 		$vars['ITEMS_QUALITIES'] = load_items_qualities();
 		$vars['ITEMS_TYPES'] = load_items_types();
 		$vars['ITEMS_ATTACHMENTS'] = load_items_attachments();
-		$vars['ITEMS'] = load_items();
 		$vars['SETS'] = load_sets($lang_key);
 		$vars['SKILLS'] = load_skills($lang_key);
 		$vars['PROCS'] = load_procs($lang_key);
-	
+		$vars['ATTRIBUTES_NAMES'] = load_attributes_names($lang_key);
+
 	
 	/** > Initialisation des statut Active **/
 		$vars['ACTIVE_ITEMS'] = '';
@@ -42,6 +43,7 @@
 		$vars['ITEM_SKILL_ID'] = "";
 		$vars['ITEM_SKILL_CHANCE'] = "";
 		$vars['ITEM_SKILL_EXTRA'] = "";
+		$vars['ITEM_ATTRIBUTES'] = Array();
 		
 		//--- Vue par défaut : ITEMS
 		if(isset($_GET['edit'])){
@@ -102,6 +104,9 @@
 					
 					$vars['ITEM_SKILLED'] = ord($faData['SKILLED']);
 					
+					$vars['ITEM_ATTRIBUTES'] = load_attributes($lang_key, "ITEM", $id);
+					
+					
 					if(ord($faData['ENABLED'])){
 						$vars['ENABLED_SETTED'] = "selected";
 					} else {
@@ -109,7 +114,7 @@
 					}
 					
 					
-					/** > Chercher l'existence d'un SKILL, peut etre disable bien qu'existant **/
+					/** > Chercher l'existence d'un SKILL : peut etre disable bien qu'existant **/
 					$pSkillQuery = $PDO->prepare("
 					SELECT
 						S.ID, S.TAG, S.PROC, S.CHANCE, S.EXTRA
