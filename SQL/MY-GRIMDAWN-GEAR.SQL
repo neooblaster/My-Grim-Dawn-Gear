@@ -88,10 +88,13 @@ CREATE TABLE `ATTRIBUTES` (
   `SLAVE_VALUE_1` smallint(6) NOT NULL DEFAULT '0',
   `SLAVE_VALUE_2` smallint(6) NOT NULL DEFAULT '0',
   `ATTACHMENT` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `PRIORITY` tinyint(3) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`ID`),
   KEY `ITEM` (`ITEM`),
   KEY `SKILL` (`SKILL`),
-  KEY `SET` (`SET`)
+  KEY `SET` (`SET`),
+  KEY `PRIORITY` (`PRIORITY`),
+  KEY `ATTACHMENT` (`ATTACHMENT`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -144,7 +147,7 @@ DROP TABLE IF EXISTS `ATTRIBUTES_NAMES`;
 CREATE TABLE `ATTRIBUTES_NAMES` (
   `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `LANG` char(5) NOT NULL,
-  `TAG` varchar(30) NOT NULL,
+  `TAG` varchar(40) NOT NULL,
   `GENDER` char(2) NOT NULL DEFAULT 'ms',
   `NAME` varchar(150) NOT NULL,
   `NAME_MD5` char(40) NOT NULL,
@@ -332,7 +335,8 @@ DROP TABLE IF EXISTS `IDENTIFIERS`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `IDENTIFIERS` (
   `ID` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
-  `TAG` varchar(30) NOT NULL,
+  `TAG` varchar(40) NOT NULL,
+  `PRIORITY` tinyint(3) unsigned NOT NULL,
   `TABLE_DATA` varchar(30) NOT NULL COMMENT 'Table fonctionnel',
   `FAMILY` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT 'Dest : TABLE_DATA',
   `TYPE` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT 'Dest : TABLE_DATA',
@@ -343,13 +347,17 @@ CREATE TABLE `IDENTIFIERS` (
   `TABLE_NAME` varchar(30) NOT NULL,
   `DESCRIPTION` varchar(30) NOT NULL,
   `EXTEND_DESC_TAG` text NOT NULL,
-  `IGNORE` text NOT NULL,
-  `CLEAN` text NOT NULL,
-  `REPLACE` text NOT NULL,
+  `IGNORE` text NOT NULL COMMENT 'Ignore on TAG',
+  `CLEAN` text NOT NULL COMMENT 'Clean on TAG',
+  `REPLACE` text NOT NULL COMMENT 'Replace on TAG',
   `COMMENT` text NOT NULL,
+  `VIGNORE` text NOT NULL COMMENT 'Ignore on VALUE',
+  `VCLEAN` text NOT NULL COMMENT 'Clean on VALUE',
+  `VREPLACE` text NOT NULL COMMENT 'Replace on VALUE',
+  `VCOMMENT` text NOT NULL,
   `LAST_CHANGE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -358,7 +366,7 @@ CREATE TABLE `IDENTIFIERS` (
 
 LOCK TABLES `IDENTIFIERS` WRITE;
 /*!40000 ALTER TABLE `IDENTIFIERS` DISABLE KEYS */;
-INSERT INTO `IDENTIFIERS` VALUES (1,'tagWeaponSword[A-Z]','ITEMS',2,13,1,1,1,3,'TAGS_NAMES','Desc','','','','','0','0000-00-00 00:00:00'),(2,'tagWeaponBlunt[A-Z]','ITEMS',2,12,1,1,1,3,'TAGS_NAMES','Desc','','','','','0','0000-00-00 00:00:00'),(3,'tagWeaponAxe[A-Z]','ITEMS',2,11,1,1,2,2,'TAGS_NAMES','Desc','','','','','0','0000-00-00 00:00:00'),(4,'tagWeaponGun1h[A-Z]','ITEMS',2,8,1,1,2,2,'TAGS_NAMES','Desc','','','','','0','0000-00-00 00:00:00'),(5,'tagWeaponGun2h[A-Z]','ITEMS',2,9,1,1,1,4,'TAGS_NAMES','Desc','','','','','0','0000-00-00 00:00:00'),(6,'tagWeaponCrossbow2h[A-Z]','ITEMS',2,10,1,1,2,2,'TAGS_NAMES','Desc','','','','','0','0000-00-00 00:00:00'),(7,'tagWeaponMelee2h[A-Z]','ITEMS',2,14,1,1,1,4,'TAGS_NAMES','Desc','','','','','0','0000-00-00 00:00:00'),(8,'tagWeaponCaster1h[A-Z]','ITEMS',2,17,1,1,1,3,'TAGS_NAMES','Desc','','','','','0','0000-00-00 00:00:00'),(9,'tagWeaponArcane[A-Z]','ITEMS',2,19,1,1,2,3,'TAGS_NAMES','Desc','','','','','0','0000-00-00 00:00:00'),(10,'tagWeaponCrossbow1h[A-Z]','ITEMS',2,18,1,1,2,2,'TAGS_NAMES','Desc','','','','','0','0000-00-00 00:00:00'),(11,'tagShield[A-Z]','ITEMS',2,15,1,1,2,3,'TAGS_NAMES','Desc','','Info$','','','0','0000-00-00 00:00:00'),(12,'tagFocus[A-Z]','ITEMS',2,16,1,1,2,2,'TAGS_NAMES','Desc','','','','','0','0000-00-00 00:00:00'),(13,'tagHead[A-Z]','ITEMS',1,1,1,1,2,2,'TAGS_NAMES','Desc','','','','','0','0000-00-00 00:00:00'),(14,'tagShoulder[A-Z]','ITEMS',1,2,1,1,2,2,'TAGS_NAMES','Desc','','','','','0','0000-00-00 00:00:00'),(15,'tagTorso[A-Z]','ITEMS',1,3,1,1,2,3,'TAGS_NAMES','Desc','','','','','0','0000-00-00 00:00:00'),(16,'tagWaist[A-Z]','ITEMS',1,7,1,1,2,1,'TAGS_NAMES','Desc','','','','','0','0000-00-00 00:00:00'),(17,'tagHands[A-Z]','ITEMS',1,4,1,1,2,2,'TAGS_NAMES','Desc','','','','','0','0000-00-00 00:00:00'),(18,'tagLegs[A-Z]','ITEMS',1,5,1,1,2,3,'TAGS_NAMES','Desc','','','','','0','0000-00-00 00:00:00'),(19,'tagFeet[A-Z]','ITEMS',1,6,1,1,2,2,'TAGS_NAMES','Desc','','','','','0','0000-00-00 00:00:00'),(20,'tagRing[A-Z]','ITEMS',3,22,1,1,1,1,'TAGS_NAMES','Desc','','','','','0','0000-00-00 00:00:00'),(21,'tagNecklace[A-Z]','ITEMS',3,20,1,1,1,1,'TAGS_NAMES','Desc','','','','','0','0000-00-00 00:00:00'),(22,'tagMedal[A-Z]','ITEMS',3,21,1,1,1,1,'TAGS_NAMES','Desc','','','','','0','0000-00-00 00:00:00'),(23,'tagRelic[A-Z]','ITEMS',4,23,6,1,1,1,'TAGS_NAMES','Desc','','Error$','','','0','0000-00-00 00:00:00'),(24,'tagEnchant[A-Z]','ITEMS',4,25,8,3,1,2,'TAGS_NAMES','Desc','','[BC]$','A$','','0','0000-00-00 00:00:00'),(25,'tagComp[A-Z]','ITEMS',4,24,7,2,1,1,'TAGS_NAMES','Desc','','(Crystal|Box|Scrap)$','Name$','','0','0000-00-00 00:00:00'),(26,'tagPrefix[A-Z]','ITEMS',5,26,2,4,2,1,'TAGS_NAMES','Desc','','','','','0','0000-00-00 00:00:00'),(27,'tagSuffix[A-Z]','ITEMS',5,27,2,5,2,1,'TAGS_NAMES','Desc','','','','','0','0000-00-00 00:00:00'),(28,'tagItemSkill[A-Z]','',0,0,0,0,0,0,'SKILLS_NAMES','Description|Desc','','','Name','','0','2017-04-18 13:18:49'),(29,'tagCompSkill[A-Z]','',0,0,0,0,0,0,'SKILLS_NAMES','Desc','','','Name','','0','0000-00-00 00:00:00'),(30,'tagRelicSkill[A-Z]','',0,0,0,0,0,0,'SKILLS_NAMES','Desc','','','Name','','0','0000-00-00 00:00:00'),(31,'tagStyleUniqueTier2','',0,0,0,0,0,0,'OTHER_NAMES','','','','','/^.*/xE/i','Empowered to xE','2017-04-16 03:06:37'),(32,'tagStyleUniqueTier3','',0,0,0,0,0,0,'OTHER_NAMES','','','','','/^.*/xM/i','Mythical to xM','2017-04-16 03:06:54'),(33,'tagItemSet[CD]','SETS',0,0,0,0,0,0,'SETS_NAMES','Desc','B','','Name','','Une description pour deux set . Normal & Empowered','2017-04-17 07:04:30'),(34,'tagAutoSkillCondition','',0,0,0,0,0,0,'PROCS_NAMES','','','','','','','2017-04-17 07:04:30'),(35,'tagTooltipSkillsHeader','',0,0,0,0,0,0,'PROCS_NAMES','','','','','','','2017-04-17 07:04:30');
+INSERT INTO `IDENTIFIERS` VALUES (1,'tagWeaponSword[A-Z]',0,'ITEMS',2,13,1,1,1,3,'TAGS_NAMES','Desc','','','','','0','','','','','0000-00-00 00:00:00'),(2,'tagWeaponBlunt[A-Z]',0,'ITEMS',2,12,1,1,1,3,'TAGS_NAMES','Desc','','','','','0','','','','','0000-00-00 00:00:00'),(3,'tagWeaponAxe[A-Z]',0,'ITEMS',2,11,1,1,2,2,'TAGS_NAMES','Desc','','','','','0','','','','','0000-00-00 00:00:00'),(4,'tagWeaponGun1h[A-Z]',0,'ITEMS',2,8,1,1,2,2,'TAGS_NAMES','Desc','','','','','0','','','','','0000-00-00 00:00:00'),(5,'tagWeaponGun2h[A-Z]',0,'ITEMS',2,9,1,1,1,4,'TAGS_NAMES','Desc','','','','','0','','','','','0000-00-00 00:00:00'),(6,'tagWeaponCrossbow2h[A-Z]',0,'ITEMS',2,10,1,1,2,2,'TAGS_NAMES','Desc','','','','','0','','','','','0000-00-00 00:00:00'),(7,'tagWeaponMelee2h[A-Z]',0,'ITEMS',2,14,1,1,1,4,'TAGS_NAMES','Desc','','','','','0','','','','','0000-00-00 00:00:00'),(8,'tagWeaponCaster1h[A-Z]',0,'ITEMS',2,17,1,1,1,3,'TAGS_NAMES','Desc','','','','','0','','','','','0000-00-00 00:00:00'),(9,'tagWeaponArcane[A-Z]',0,'ITEMS',2,19,1,1,2,3,'TAGS_NAMES','Desc','','','','','0','','','','','0000-00-00 00:00:00'),(10,'tagWeaponCrossbow1h[A-Z]',0,'ITEMS',2,18,1,1,2,2,'TAGS_NAMES','Desc','','','','','0','','','','','0000-00-00 00:00:00'),(11,'tagShield[A-Z]',0,'ITEMS',2,15,1,1,2,3,'TAGS_NAMES','Desc','','Info$','','','0','','','','','0000-00-00 00:00:00'),(12,'tagFocus[A-Z]',0,'ITEMS',2,16,1,1,2,2,'TAGS_NAMES','Desc','','','','','0','','','','','0000-00-00 00:00:00'),(13,'tagHead[A-Z]',0,'ITEMS',1,1,1,1,2,2,'TAGS_NAMES','Desc','','','','','0','','','','','0000-00-00 00:00:00'),(14,'tagShoulder[A-Z]',0,'ITEMS',1,2,1,1,2,2,'TAGS_NAMES','Desc','','','','','0','','','','','0000-00-00 00:00:00'),(15,'tagTorso[A-Z]',0,'ITEMS',1,3,1,1,2,3,'TAGS_NAMES','Desc','','','','','0','','','','','0000-00-00 00:00:00'),(16,'tagWaist[A-Z]',0,'ITEMS',1,7,1,1,2,1,'TAGS_NAMES','Desc','','','','','0','','','','','0000-00-00 00:00:00'),(17,'tagHands[A-Z]',0,'ITEMS',1,4,1,1,2,2,'TAGS_NAMES','Desc','','','','','0','','','','','0000-00-00 00:00:00'),(18,'tagLegs[A-Z]',0,'ITEMS',1,5,1,1,2,3,'TAGS_NAMES','Desc','','','','','0','','','','','0000-00-00 00:00:00'),(19,'tagFeet[A-Z]',0,'ITEMS',1,6,1,1,2,2,'TAGS_NAMES','Desc','','','','','0','','','','','0000-00-00 00:00:00'),(20,'tagRing[A-Z]',0,'ITEMS',3,22,1,1,1,1,'TAGS_NAMES','Desc','','','','','0','','','','','0000-00-00 00:00:00'),(21,'tagNecklace[A-Z]',0,'ITEMS',3,20,1,1,1,1,'TAGS_NAMES','Desc','','','','','0','','','','','0000-00-00 00:00:00'),(22,'tagMedal[A-Z]',0,'ITEMS',3,21,1,1,1,1,'TAGS_NAMES','Desc','','','','','0','','','','','0000-00-00 00:00:00'),(23,'tagRelic[A-Z]',0,'ITEMS',4,23,6,1,1,1,'TAGS_NAMES','Desc','','Error$','','','0','','','','','0000-00-00 00:00:00'),(24,'tagEnchant[A-Z]',0,'ITEMS',4,25,8,3,1,2,'TAGS_NAMES','Desc','','[BC]$','A$','','0','','','','','0000-00-00 00:00:00'),(25,'tagComp[A-Z]',0,'ITEMS',4,24,7,2,1,1,'TAGS_NAMES','Desc','','(Crystal|Box|Scrap)$','Name$','','0','','','','','0000-00-00 00:00:00'),(26,'tagPrefix[A-Z]',0,'ITEMS',5,26,2,4,2,1,'TAGS_NAMES','Desc','','','','','0','','','','','0000-00-00 00:00:00'),(27,'tagSuffix[A-Z]',0,'ITEMS',5,27,2,5,2,1,'TAGS_NAMES','Desc','','','','','0','','','','','0000-00-00 00:00:00'),(28,'tagItemSkill[A-Z]',0,'',0,0,0,0,0,0,'SKILLS_NAMES','Description|Desc','','','Name','','0','','','','','2017-04-18 13:18:49'),(29,'tagCompSkill[A-Z]',0,'',0,0,0,0,0,0,'SKILLS_NAMES','Desc','','','Name','','0','','','','','0000-00-00 00:00:00'),(30,'tagRelicSkill[A-Z]',0,'',0,0,0,0,0,0,'SKILLS_NAMES','Desc','','','Name','','0','','','','','0000-00-00 00:00:00'),(31,'tagStyleUniqueTier2',0,'',0,0,0,0,0,0,'OTHER_NAMES','','','','','/^.*/xE/i','Empowered to xE','','','','','2017-04-16 03:06:37'),(32,'tagStyleUniqueTier3',0,'',0,0,0,0,0,0,'OTHER_NAMES','','','','','/^.*/xM/i','Mythical to xM','','','','','2017-04-16 03:06:54'),(33,'tagItemSet[CD]',0,'SETS',0,0,0,0,0,0,'SETS_NAMES','Desc','B','','Name','','Une description pour deux set . Normal & Empowered','','','','','2017-04-17 07:04:30'),(34,'tagAutoSkillCondition',0,'',0,0,0,0,0,0,'PROCS_NAMES','','','','','','','','','','','2017-04-17 07:04:30'),(35,'tagTooltipSkillsHeader',0,'',0,0,0,0,0,0,'PROCS_NAMES','','','','','','','','','','','2017-04-17 07:04:30'),(36,'tagCharAttribute0',0,'',0,0,0,0,0,0,'ATTRIBUTES_NAMES','','','R$','','','Attributs primaire (PHy,CUN,SPI,HEA,EN) en ignorant les attributs \"Range\"','','','','','2017-04-24 19:08:34'),(37,'tagChar(Constitution|Life)',0,'',0,0,0,0,0,0,'ATTRIBUTES_NAMES','','','R$','','','','','','','','2017-04-24 19:22:44'),(38,'tagCharMana',0,'',0,0,0,0,0,0,'ATTRIBUTES_NAMES','','','R$','','','Ingore Ranged attributes','','','','','2017-04-24 19:08:38'),(39,'tagChar(.*)Speed(Modifier)?(R)?=',0,'',0,0,0,0,0,0,'ATTRIBUTES_NAMES','','','R$','=$','','Ingore Ranged attributes','','','','','2017-04-24 19:08:41'),(40,'tagChar(Offensive|Defensive)',0,'',0,0,0,0,0,0,'ATTRIBUTES_NAMES','','','R$','','','','','','','','2017-04-24 19:08:43'),(41,'tagCharStatsPet',1,'',0,0,0,0,0,0,'ATTRIBUTES_NAME','','','','','','','','','/(.*)/[Pet] $1/i','','2017-04-25 10:43:36');
 /*!40000 ALTER TABLE `IDENTIFIERS` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -666,7 +674,7 @@ CREATE TABLE `TYPES` (
 
 LOCK TABLES `TYPES` WRITE;
 /*!40000 ALTER TABLE `TYPES` DISABLE KEYS */;
-INSERT INTO `TYPES` VALUES (1,1,'head','tagHead'),(2,1,'shoulders','tagShoulders'),(3,1,'chest','tagChest'),(4,1,'hands','tagGloves'),(5,1,'legs','tagLegs'),(6,1,'feet','tagFeet'),(7,1,'waist','tagBelt'),(8,2,'pistols','tagOneHandedPistol'),(9,2,'rifles','tagTwoHandedRifle'),(10,2,'crossbows','T_CROSSBOWS'),(11,2,'axes','tagOneHandedAxe'),(12,2,'maces','tagOneHandedMace'),(13,2,'swords','tagOneHandedSword'),(14,2,'two_handers','T_TWO_HANDERS'),(15,2,'shields','T_SHIELDS'),(16,2,'focus','T_FOCUS'),(17,2,'scepters_daggers','T_SCEPTERS_DAGGERS'),(18,2,'light_crossbows','T_LIGHT_CROSSBOWS'),(19,2,'staffs','tagStaff'),(20,3,'amulets','tagAmulet'),(21,3,'medals','tagMedal'),(22,3,'rings','tagRing'),(23,4,'relics','T_RELICS'),(24,4,'components','tagComponentComplete'),(25,4,'augments','T_AUGMENTS'),(26,5,'prefixes','T_PREFIXES'),(27,5,'suffixes','T_SUFFIXES');
+INSERT INTO `TYPES` VALUES (1,1,'head','T_HEAD'),(2,1,'shoulders','T_SHOULDERS'),(3,1,'chest','T_CHEST'),(4,1,'hands','T_HANDS'),(5,1,'legs','T_LEGS'),(6,1,'feet','T_FEET'),(7,1,'waist','T_WAIST'),(8,2,'pistols','T_PISTOLS'),(9,2,'rifles','T_RIFLES'),(10,2,'crossbows','T_CROSSBOWS'),(11,2,'axes','T_AXES'),(12,2,'maces','T_MACES'),(13,2,'swords','T_SWORDS'),(14,2,'two_handers','T_TWO_HANDERS'),(15,2,'shields','T_SHIELDS'),(16,2,'focus','T_FOCUS'),(17,2,'scepters_daggers','T_SCEPTERS_DAGGERS'),(18,2,'light_crossbows','T_LIGHT_CROSSBOWS'),(19,2,'staffs','T_STAFFS'),(20,3,'amulets','T_AMULETS'),(21,3,'medals','T_MEDALS'),(22,3,'rings','T_RINGS'),(23,4,'relics','T_RELICS'),(24,4,'components','T_COMPONENTS'),(25,4,'augments','T_AUGMENTS'),(26,5,'prefixes','T_PREFIXES'),(27,5,'suffixes','T_SUFFIXES');
 /*!40000 ALTER TABLE `TYPES` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -679,4 +687,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-04-21 18:54:30
+-- Dump completed on 2017-04-26 20:45:57
